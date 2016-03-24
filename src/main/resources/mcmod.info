@@ -1,0 +1,21 @@
+[
+  {
+    "modid": "LittleThings",
+    "name": "Little Things",
+    "description": "Adding little things to Minecraft to make it better",
+    "version": ${version},
+    "mcversion": ${mcversion},
+    "url": "https://github.com/GamingsModding/LittleThings",
+    "updateUrl": "",
+    "authorList": [
+      "RageGamingPE"
+    ],
+    "credits": "Programming: RageGamingPE, Textures: HardcoreGamingMC",
+    "logoFile": "",
+    "screenshots": [
+    ],
+    "parent": "",
+    "dependencies": [
+    ]
+  }
+]
