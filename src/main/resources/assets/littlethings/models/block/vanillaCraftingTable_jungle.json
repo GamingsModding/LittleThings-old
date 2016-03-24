@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "littlethings:blocks/vanillaCraftingTable_jungle_front",
+    "down": "blocks/planks_jungle",
+    "up": "littlethings:blocks/vanillaCraftingTable_jungle_top",
+    "north": "littlethings:blocks/vanillaCraftingTable_jungle_front",
+    "east": "littlethings:blocks/vanillaCraftingTable_jungle_side",
+    "south": "littlethings:blocks/vanillaCraftingTable_jungle_side",
+    "west": "littlethings:blocks/vanillaCraftingTable_jungle_front"
+  }
+}

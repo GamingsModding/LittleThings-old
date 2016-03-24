@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "type=birch": { "model": "littlethings:vanillaCraftingTable_birch" },
+    "type=jungle": { "model": "littlethings:vanillaCraftingTable_jungle" },
+    "type=spruce": { "model": "littlethings:vanillaCraftingTable_spruce" },
+    "type=acacia": { "model": "littlethings:vanillaCraftingTable_acacia" },
+    "type=darkoak": { "model": "littlethings:vanillaCraftingTable_darkoak" }
+  }
+}

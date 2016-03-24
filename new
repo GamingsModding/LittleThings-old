@@ -1,0 +1,67 @@
+<?php
+$mod_id = "littlethings";
+$base = "src/main/resources/assets/{$mod_id}/";
+array_shift($argv);
+
+switch (array_shift($argv)) {
+	case 'b':
+		foreach ($argv as $arg) {
+			if (!file_exists($base . "blockstates/{$arg}.json")) {
+				$file = fopen($base . "blockstates/{$arg}.json", "w");
+				fwrite($file, "{\n");
+		    	fwrite($file, "  \"variants\": {\n");
+		        fwrite($file, "    \"normal\": { \"model\": \"{$mod_id}:{$arg}\" }\n");
+		   		fwrite($file, "  }\n");
+				fwrite($file, "}");
+				fclose($file);
+			}
+
+			if (!file_exists($base . "models/block/{$arg}.json")) {
+				$file = fopen($base . "models/block/{$arg}.json", "w");
+				fwrite($file, "{\n");
+				fwrite($file, "  \"parent\": \"block/cube_all\",\n");
+				fwrite($file, "  \"textures\": {\n");
+				fwrite($file, "    \"all\": \"{$mod_id}:blocks/{$arg}\"\n");
+				fwrite($file, "  }\n");
+				fwrite($file, "}\n");
+				fclose($file);
+			}
+
+			if (!file_exists($base . "models/item/{$arg}.json")) {
+				$file = fopen($base . "models/item/{$arg}.json", "w");
+				fwrite($file, "{\n");
+				fwrite($file, "  \"parent\":\"{$mod_id}:block/{$arg}\",\n");
+				fwrite($file, "  \"display\": {\n");
+				fwrite($file, "    \"thirdperson\": {\n");
+				fwrite($file, "      \"rotation\": [ 10, -45, 170 ],\n");
+				fwrite($file, "      \"translation\": [ 0, 1.5, -2.75 ],\n");
+				fwrite($file, "      \"scale\": [ 0.375, 0.375, 0.375 ]\n");
+				fwrite($file, "    }\n");
+				fwrite($file, "  }\n");
+				fwrite($file, "}");
+				fclose($file);
+			}
+			echo "Writen {$arg}\n";
+		}
+		break;
+
+	case 'i':
+		foreach ($argv as $arg) {
+			if (!file_exists($base . "models/item/{$arg}.json")) {
+				$file = fopen($base . "models/item/{$arg}.json", "w");
+				fwrite($file, "{\n");
+				fwrite($file, "  \"parent\":\"{$mod_id}:item/standard_item\",\n");
+				fwrite($file, "  \"textures\": {\n");
+				fwrite($file, "    \"layer0\":\"{$mod_id}:items/{$arg}\"\n");
+				fwrite($file, "  }\n");
+				fwrite($file, "}");
+				fclose($file);
+			}
+
+			echo "Writen {$arg}\n";
+		}
+		break;
+
+	default:
+		echo "Must have b or i has first arg\n";
+}

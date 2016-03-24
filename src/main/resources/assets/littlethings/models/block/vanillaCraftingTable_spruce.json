@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "littlethings:blocks/vanillaCraftingTable_spruce_front",
+    "down": "blocks/planks_spruce",
+    "up": "littlethings:blocks/vanillaCraftingTable_spruce_top",
+    "north": "littlethings:blocks/vanillaCraftingTable_spruce_front",
+    "east": "littlethings:blocks/vanillaCraftingTable_spruce_side",
+    "south": "littlethings:blocks/vanillaCraftingTable_spruce_side",
+    "west": "littlethings:blocks/vanillaCraftingTable_spruce_front"
+  }
+}

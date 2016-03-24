@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "littlethings:blocks/vanillaCraftingTable_darkoak_front",
+    "down": "blocks/planks_big_oak",
+    "up": "littlethings:blocks/vanillaCraftingTable_darkoak_top",
+    "north": "littlethings:blocks/vanillaCraftingTable_darkoak_front",
+    "east": "littlethings:blocks/vanillaCraftingTable_darkoak_side",
+    "south": "littlethings:blocks/vanillaCraftingTable_darkoak_side",
+    "west": "littlethings:blocks/vanillaCraftingTable_darkoak_front"
+  }
+}
