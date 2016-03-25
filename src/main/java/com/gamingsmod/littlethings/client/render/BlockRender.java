@@ -1,5 +1,6 @@
 package com.gamingsmod.littlethings.client.render;
 
+import com.gamingsmod.littlethings.common.block.VanillaCraftingTables;
 import com.gamingsmod.littlethings.common.init.ModBlocks;
 import com.gamingsmod.littlethings.common.lib.LibMisc;
 import net.minecraft.block.Block;
@@ -26,11 +27,10 @@ public class BlockRender
 
     public static void registerBlockRenderer()
     {
-        reg(ModBlocks.VanillaCraftingTables, 0, "vanillaCraftingTable_birch");
-        reg(ModBlocks.VanillaCraftingTables, 1, "vanillaCraftingTable_jungle");
-        reg(ModBlocks.VanillaCraftingTables, 2, "vanillaCraftingTable_spruce");
-        reg(ModBlocks.VanillaCraftingTables, 3, "vanillaCraftingTable_acacia");
-        reg(ModBlocks.VanillaCraftingTables, 4, "vanillaCraftingTable_darkoak");
+        for (VanillaCraftingTables.Variant variant:
+             VanillaCraftingTables.Variant.values()) {
+            reg(ModBlocks.VanillaCraftingTables, variant.getId(), "vanillaCraftingTable_" + variant.getName());
+        }
     }
 
     private static void reg(Block block)

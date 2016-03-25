@@ -27,7 +27,7 @@ public class VanillaCraftingTables extends BlockWorkbench implements IMetaBlockN
         this.setUnlocalizedName(LibBlocks.VANILLACRAFTINGTABLE);
         this.setHardness(2.5F);
         this.setStepSound(SoundType.WOOD);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, Variant.BIRCH_WORKBENCH));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, Variant.SPRUCE));
     }
 
     @Override
@@ -39,17 +39,17 @@ public class VanillaCraftingTables extends BlockWorkbench implements IMetaBlockN
     public IBlockState getStateFromMeta(int meta) {
         switch (meta) {
             case 0:
-                return getDefaultState().withProperty(TYPE, Variant.BIRCH_WORKBENCH);
+                return getDefaultState().withProperty(TYPE, Variant.SPRUCE);
             case 1:
-                return getDefaultState().withProperty(TYPE, Variant.JUNGLE_WORKBENCH);
+                return getDefaultState().withProperty(TYPE, Variant.BIRCH);
             case 2:
-                return getDefaultState().withProperty(TYPE, Variant.SPRUCE_WORKBENCH);
+                return getDefaultState().withProperty(TYPE, Variant.JUNGLE);
             case 3:
-                return getDefaultState().withProperty(TYPE, Variant.ACACIA_WORKBENCH);
+                return getDefaultState().withProperty(TYPE, Variant.ACACIA);
             case 4:
-                return getDefaultState().withProperty(TYPE, Variant.DARKOAK_WORKBENCH);
+                return getDefaultState().withProperty(TYPE, Variant.DARK_OAK);
         }
-        return getDefaultState().withProperty(TYPE, Variant.BIRCH_WORKBENCH);
+        return getDefaultState().withProperty(TYPE, Variant.SPRUCE);
     }
 
     @Override
@@ -76,11 +76,11 @@ public class VanillaCraftingTables extends BlockWorkbench implements IMetaBlockN
     public String getSpecialName(ItemStack stack) {
         switch (stack.getItemDamage()) {
             case 0:
-                return "birch";
-            case 1:
-                return "jungle";
-            case 2:
                 return "spruce";
+            case 1:
+                return "birch";
+            case 2:
+                return "jungle";
             case 3:
                 return "acacia";
             case 4:
@@ -96,11 +96,11 @@ public class VanillaCraftingTables extends BlockWorkbench implements IMetaBlockN
 
     public enum Variant implements IStringSerializable
     {
-        BIRCH_WORKBENCH(0, "birch"),
-        JUNGLE_WORKBENCH(1, "jungle"),
-        SPRUCE_WORKBENCH(2, "spruce"),
-        ACACIA_WORKBENCH(3, "acacia"),
-        DARKOAK_WORKBENCH(4, "darkoak");
+        SPRUCE(0, "spruce"),
+        BIRCH(1, "birch"),
+        JUNGLE(2, "jungle"),
+        ACACIA(3, "acacia"),
+        DARK_OAK(4, "darkoak");
 
         private int id;
         private String name;
