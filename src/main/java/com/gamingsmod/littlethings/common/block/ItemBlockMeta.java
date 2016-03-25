@@ -18,7 +18,7 @@ public class ItemBlockMeta extends ItemBlock
 
     @Override
     public int getMetadata(int damage) {
-        return  damage;
+        return damage;
     }
 
     @Override

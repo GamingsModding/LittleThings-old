@@ -1,6 +1,7 @@
 package com.gamingsmod.littlethings.client.render;
 
 import com.gamingsmod.littlethings.common.block.VanillaCraftingTables;
+import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.init.ModBlocks;
 import com.gamingsmod.littlethings.common.lib.LibMisc;
 import net.minecraft.block.Block;
@@ -15,21 +16,25 @@ public class BlockRender
     public static void preInit()
     {
         String modId = LibMisc.PREFIX_MOD;
-        ModelBakery.registerItemVariants(
-                Item.getItemFromBlock(ModBlocks.VanillaCraftingTables),
-                new ResourceLocation(modId + "vanillaCraftingTable_acacia"),
-                new ResourceLocation(modId + "vanillaCraftingTable_birch"),
-                new ResourceLocation(modId + "vanillaCraftingTable_darkoak"),
-                new ResourceLocation(modId + "vanillaCraftingTable_jungle"),
-                new ResourceLocation(modId + "vanillaCraftingTable_spruce")
-        );
+        if (ConfigurationHandler.enableExtraCraftingTables) {
+            ModelBakery.registerItemVariants(
+                    Item.getItemFromBlock(ModBlocks.VanillaCraftingTables),
+                    new ResourceLocation(modId + "vanillaCraftingTable_acacia"),
+                    new ResourceLocation(modId + "vanillaCraftingTable_birch"),
+                    new ResourceLocation(modId + "vanillaCraftingTable_darkoak"),
+                    new ResourceLocation(modId + "vanillaCraftingTable_jungle"),
+                    new ResourceLocation(modId + "vanillaCraftingTable_spruce")
+            );
+        }
     }
 
     public static void registerBlockRenderer()
     {
-        for (VanillaCraftingTables.Variant variant:
-             VanillaCraftingTables.Variant.values()) {
-            reg(ModBlocks.VanillaCraftingTables, variant.getId(), "vanillaCraftingTable_" + variant.getName());
+        if (ConfigurationHandler.enableExtraCraftingTables) {
+            for (VanillaCraftingTables.Variant variant :
+                    VanillaCraftingTables.Variant.values()) {
+                reg(ModBlocks.VanillaCraftingTables, variant.getId(), "vanillaCraftingTable_" + variant.getName());
+            }
         }
     }
 
