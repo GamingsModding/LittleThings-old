@@ -1,6 +1,6 @@
 package com.gamingsmod.littlethings.common;
 
-import com.gamingsmod.littlethings.common.command.CommandHead;
+import com.gamingsmod.littlethings.common.command.*;
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.handler.GuiHandler;
 import com.gamingsmod.littlethings.common.init.ModBlocks;
@@ -34,5 +34,9 @@ public class CommonProxy
     public void serverStarting(FMLServerStartingEvent e)
     {
         e.registerServerCommand(new CommandHead());
+        e.registerServerCommand(new CommandSurvivalShortcut());
+        e.registerServerCommand(new CommandCreativeShortcut());
+        e.registerServerCommand(new CommandAdventureShortcut());
+        e.registerServerCommand(new CommandSpectatorShortcut());
     }
 }
