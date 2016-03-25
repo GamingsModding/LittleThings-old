@@ -10,6 +10,8 @@ public class ClientProxy extends CommonProxy
     public void preInit(FMLPreInitializationEvent e)
     {
         super.preInit(e);
+
+        BlockRender.preInit();
     }
 
     public void init(FMLInitializationEvent e)
