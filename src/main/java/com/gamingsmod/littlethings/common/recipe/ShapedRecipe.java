@@ -1,6 +1,6 @@
 package com.gamingsmod.littlethings.common.recipe;
 
-import com.gamingsmod.littlethings.common.block.VanillaCraftingTables;
+import com.gamingsmod.littlethings.common.block.BlockVanillaCraftingTables;
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.init.ModBlocks;
 import net.minecraft.init.Blocks;
@@ -19,8 +19,8 @@ public class ShapedRecipe
                     "xx", "xx",
                     'x', new ItemStack(Blocks.planks));
 
-            for (VanillaCraftingTables.Variant variant :
-                    VanillaCraftingTables.Variant.values()) {
+            for (BlockVanillaCraftingTables.Variant variant :
+                    BlockVanillaCraftingTables.Variant.values()) {
                 addRecipe(new ItemStack(ModBlocks.VanillaCraftingTables, 1, variant.getId()),
                         "xx", "xx",
                         'x', new ItemStack(Blocks.planks, 1, variant.getId() + 1));

@@ -1,4 +1,4 @@
-package com.gamingsmod.littlethings.common.block;
+package com.gamingsmod.littlethings.common.block.base;
 
 import net.minecraft.item.ItemStack;
 

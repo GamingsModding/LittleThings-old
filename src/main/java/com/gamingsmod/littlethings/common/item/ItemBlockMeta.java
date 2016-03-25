@@ -1,5 +1,6 @@
-package com.gamingsmod.littlethings.common.block;
+package com.gamingsmod.littlethings.common.item;
 
+import com.gamingsmod.littlethings.common.block.base.IMetaBlockName;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;

@@ -1,6 +1,6 @@
 package com.gamingsmod.littlethings.client.render;
 
-import com.gamingsmod.littlethings.common.block.VanillaCraftingTables;
+import com.gamingsmod.littlethings.common.block.BlockVanillaCraftingTables;
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.init.ModBlocks;
 import com.gamingsmod.littlethings.common.lib.LibMisc;
@@ -31,8 +31,8 @@ public class BlockRender
     public static void registerBlockRenderer()
     {
         if (ConfigurationHandler.enableExtraCraftingTables) {
-            for (VanillaCraftingTables.Variant variant :
-                    VanillaCraftingTables.Variant.values()) {
+            for (BlockVanillaCraftingTables.Variant variant :
+                    BlockVanillaCraftingTables.Variant.values()) {
                 reg(ModBlocks.VanillaCraftingTables, variant.getId(), "vanillaCraftingTable_" + variant.getName());
             }
         }
