@@ -4,8 +4,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
@@ -23,7 +22,7 @@ public class CommandHead extends CommandBase
 
     @Override
     public int getRequiredPermissionLevel() {
-        return 2;
+        return 0;
     }
 
     @Override
@@ -33,24 +32,16 @@ public class CommandHead extends CommandBase
 
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-        Entity entity = sender.getCommandSenderEntity();
-        if (entity == null)
-            throw new CommandException("Must be performed by a player");
+        EntityPlayerMP entityPlayerMP = getCommandSenderAsPlayer(sender);
+        ItemStack stack = entityPlayerMP.getHeldItem(EnumHand.MAIN_HAND);
 
-        ItemStack stack = ((EntityPlayer) sender.getCommandSenderEntity()).getHeldItem(EnumHand.MAIN_HAND);
-
-        if (entity instanceof EntityPlayer)
-        {
-            ((EntityPlayer)entity).inventoryContainer.detectAndSendChanges();
+        entityPlayerMP.inventoryContainer.detectAndSendChanges();
+        entityPlayerMP.replaceItemInInventory(100 + EntityEquipmentSlot.HEAD.getIndex(), stack);
+        if (!entityPlayerMP.isCreative()) {
+            entityPlayerMP.setHeldItem(EnumHand.MAIN_HAND, null);
         }
-
-        entity.replaceItemInInventory(100 + EntityEquipmentSlot.HEAD.getIndex(), stack);
         sender.addChatMessage(new TextComponentString("Success").setChatStyle(new Style().setColor(TextFormatting.GREEN)));
-
-        if (entity instanceof EntityPlayer)
-        {
-            ((EntityPlayer)entity).inventoryContainer.detectAndSendChanges();
-        }
+        entityPlayerMP.inventoryContainer.detectAndSendChanges();
     }
 
     public boolean isUsernameIndex(String[] args, int index)
