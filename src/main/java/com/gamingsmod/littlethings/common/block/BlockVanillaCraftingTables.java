@@ -1,30 +1,44 @@
 package com.gamingsmod.littlethings.common.block;
 
-import com.gamingsmod.littlethings.common.block.base.IMetaBlock;
+import com.gamingsmod.littlethings.common.block.base.ModBlockMeta;
 import com.gamingsmod.littlethings.common.lib.LibBlocks;
 import net.minecraft.block.BlockWorkbench;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BlockVanillaCraftingTables extends BlockWorkbench implements IMetaBlock
+public class BlockVanillaCraftingTables extends ModBlockMeta
 {
     public static final PropertyEnum TYPE = PropertyEnum.create("type", BlockVanillaCraftingTables.Variant.class);
 
     public BlockVanillaCraftingTables()
     {
-        super();
+        super(Material.wood);
+        this.setCreativeTab(CreativeTabs.tabDecorations);
         this.setUnlocalizedName(LibBlocks.VANILLACRAFTINGTABLE);
         this.setHardness(2.5F);
         this.setStepSound(SoundType.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, Variant.SPRUCE));
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+        if (!worldIn.isRemote)
+            playerIn.displayGui(new BlockWorkbench.InterfaceCraftingTable(worldIn, pos));
+        return true;
     }
 
     @Override
@@ -34,19 +48,7 @@ public class BlockVanillaCraftingTables extends BlockWorkbench implements IMetaB
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        switch (meta) {
-            case 0:
-                return getDefaultState().withProperty(TYPE, Variant.SPRUCE);
-            case 1:
-                return getDefaultState().withProperty(TYPE, Variant.BIRCH);
-            case 2:
-                return getDefaultState().withProperty(TYPE, Variant.JUNGLE);
-            case 3:
-                return getDefaultState().withProperty(TYPE, Variant.ACACIA);
-            case 4:
-                return getDefaultState().withProperty(TYPE, Variant.DARK_OAK);
-        }
-        return getDefaultState().withProperty(TYPE, Variant.SPRUCE);
+        return getDefaultState().withProperty(TYPE, Variant.values()[meta]);
     }
 
     @Override
@@ -57,28 +59,14 @@ public class BlockVanillaCraftingTables extends BlockWorkbench implements IMetaB
 
     @Override
     public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {
-        list.add(new ItemStack(itemIn, 1, 0));
-        list.add(new ItemStack(itemIn, 1, 1));
-        list.add(new ItemStack(itemIn, 1, 2));
-        list.add(new ItemStack(itemIn, 1, 3));
-        list.add(new ItemStack(itemIn, 1, 4));
+        for (Variant v : Variant.values()) {
+            list.add(new ItemStack(itemIn, 1, v.getId()));
+        }
     }
 
     @Override
     public String getSpecialName(ItemStack stack) {
-        switch (stack.getItemDamage()) {
-            case 0:
-                return "spruce";
-            case 1:
-                return "birch";
-            case 2:
-                return "jungle";
-            case 3:
-                return "acacia";
-            case 4:
-                return "darkoak";
-        }
-        return "";
+        return Variant.values()[stack.getItemDamage()].getName();
     }
 
     public enum Variant implements IStringSerializable
