@@ -1,5 +1,6 @@
 package com.gamingsmod.littlethings.common;
 
+import com.gamingsmod.littlethings.common.command.CommandHead;
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.handler.GuiHandler;
 import com.gamingsmod.littlethings.common.init.ModBlocks;
@@ -7,6 +8,7 @@ import com.gamingsmod.littlethings.common.recipe.Recipes;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 public class CommonProxy
@@ -27,5 +29,10 @@ public class CommonProxy
     public void postInit(FMLPostInitializationEvent e)
     {
 
+    }
+
+    public void serverStarting(FMLServerStartingEvent e)
+    {
+        e.registerServerCommand(new CommandHead());
     }
 }

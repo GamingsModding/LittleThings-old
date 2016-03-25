@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 @Mod(modid = LibMisc.MOD_ID, name = LibMisc.MOD_NAME, version = LibMisc.VERSION, dependencies = LibMisc.DEPENDENCIES)
 public class LittleThings
@@ -32,5 +33,11 @@ public class LittleThings
     public void postInit(FMLPostInitializationEvent e)
     {
         proxy.postInit(e);
+    }
+
+    @Mod.EventHandler
+    public void serverStarting(FMLServerStartingEvent e)
+    {
+        proxy.serverStarting(e);
     }
 }

@@ -4,3 +4,5 @@ tile.vanillaCraftingTable.birch.name=Birch Crafting Table
 tile.vanillaCraftingTable.darkoak.name=Dark Oak Crafting Table
 tile.vanillaCraftingTable.spruce.name=Spruce Crafting Table
 tile.vanillaCraftingTable.jungle.name=Jungle Crafting Table
+
+command.littlethings.head.usage=[player] [item]
