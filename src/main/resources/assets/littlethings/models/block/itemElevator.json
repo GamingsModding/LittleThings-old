@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "littlethings:blocks/itemElevator_top",
+    "up": "littlethings:blocks/itemElevator_top",
+    "north": "blocks/furnace_side",
+    "south": "blocks/furnace_side",
+    "east": "blocks/furnace_side",
+    "west": "blocks/furnace_side",
+    "down": "blocks/furnace_top"
+  }
+}

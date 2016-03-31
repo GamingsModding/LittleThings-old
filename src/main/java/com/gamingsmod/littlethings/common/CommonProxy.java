@@ -4,6 +4,7 @@ import com.gamingsmod.littlethings.common.command.*;
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.handler.GuiHandler;
 import com.gamingsmod.littlethings.common.init.ModBlocks;
+import com.gamingsmod.littlethings.common.init.ModTileEntities;
 import com.gamingsmod.littlethings.common.recipe.Recipes;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -18,6 +19,7 @@ public class CommonProxy
         ConfigurationHandler.init(e.getSuggestedConfigurationFile());
 
         ModBlocks.init();
+        ModTileEntities.init();
     }
 
     public void init(FMLInitializationEvent e)

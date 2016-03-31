@@ -36,6 +36,9 @@ public class BlockRender
                 reg(ModBlocks.VanillaCraftingTables, variant.getId(), "vanillaCraftingTable_" + variant.getName());
             }
         }
+
+        if (ConfigurationHandler.enableItemElevator)
+            reg(ModBlocks.ItemEleveator);
     }
 
     private static void reg(Block block)
