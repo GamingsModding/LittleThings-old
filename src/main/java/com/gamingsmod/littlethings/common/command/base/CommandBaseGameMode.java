@@ -1,5 +1,6 @@
 package com.gamingsmod.littlethings.common.command.base;
 
+import com.gamingsmod.littlethings.common.lib.LibCommandLevel;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -13,7 +14,7 @@ public abstract class CommandBaseGameMode extends CommandBase
 
     @Override
     public int getRequiredPermissionLevel() {
-        return 2;
+        return LibCommandLevel.MODERATOR;
     }
 
     @Override
