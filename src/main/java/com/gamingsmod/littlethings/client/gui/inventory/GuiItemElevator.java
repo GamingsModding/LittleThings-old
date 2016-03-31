@@ -24,7 +24,7 @@ public class GuiItemElevator extends GuiContainer
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
-        this.mc.getTextureManager().bindTexture(new ResourceLocation("textures/gui/container/dispenser.png"));
+        this.mc.getTextureManager().bindTexture(new ResourceLocation("minecraft:textures/gui/container/dispenser.png"));
         int i = (this.width - this.xSize) / 2;
         int j = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);

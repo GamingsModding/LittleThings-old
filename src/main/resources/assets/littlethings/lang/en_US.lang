@@ -6,6 +6,8 @@ tile.vanillaCraftingTable.spruce.name=Spruce Crafting Table
 tile.vanillaCraftingTable.jungle.name=Jungle Crafting Table
 tile.itemElevator.name=Item Elevator
 
+container.itemElevator=Item Elevator
+
 command.littlethings.head=/head
 command.littlethings.gms=/gms [player]
 command.littlethings.gma=/gma [player]

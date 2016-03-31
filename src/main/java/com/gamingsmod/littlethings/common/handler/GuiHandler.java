@@ -13,23 +13,19 @@ public class GuiHandler implements IGuiHandler
 {
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        System.out.println("Fired! - Server");
         switch (ID) {
             case LibGuiId.ITEMELEVATOR:
                 return new ContainerItemElevator(player.inventory, (TileEntityItemElevator) world.getTileEntity(new BlockPos(x, y, z)));
         }
-        System.out.println("Nothing Found!");
         return null;
     }
 
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        System.out.println("Fired! - Client");
         switch (ID) {
             case LibGuiId.ITEMELEVATOR:
                 return new GuiItemElevator(player.inventory, (TileEntityItemElevator) world.getTileEntity(new BlockPos(x,y,z)));
         }
-        System.out.println("Nothing Found!");
         return null;
     }
 }
