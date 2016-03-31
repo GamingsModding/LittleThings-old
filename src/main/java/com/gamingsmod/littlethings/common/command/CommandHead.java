@@ -43,9 +43,4 @@ public class CommandHead extends CommandBase
         sender.addChatMessage(new TextComponentString("Success").setChatStyle(new Style().setColor(TextFormatting.GREEN)));
         entityPlayerMP.inventoryContainer.detectAndSendChanges();
     }
-
-    public boolean isUsernameIndex(String[] args, int index)
-    {
-        return index == 0;
-    }
 }

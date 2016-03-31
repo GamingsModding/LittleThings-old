@@ -1,5 +1,6 @@
 package com.gamingsmod.littlethings.common.command.base;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.CommandGameMode;
@@ -17,7 +18,7 @@ public abstract class CommandBaseGameMode extends CommandBase
 
     @Override
     public String getCommandUsage(ICommandSender sender) {
-        return null;
+        return I18n.format( "command.littlethings." + getCommandName());
     }
 
     @Override
@@ -36,6 +37,6 @@ public abstract class CommandBaseGameMode extends CommandBase
 
     @Override
     public boolean isUsernameIndex(String[] args, int index) {
-        return index == 1;
+        return index == 0;
     }
 }

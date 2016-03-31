@@ -4,5 +4,10 @@ tile.vanillaCraftingTable.birch.name=Birch Crafting Table
 tile.vanillaCraftingTable.darkoak.name=Dark Oak Crafting Table
 tile.vanillaCraftingTable.spruce.name=Spruce Crafting Table
 tile.vanillaCraftingTable.jungle.name=Jungle Crafting Table
+tile.itemElevator.name=Item Elevator
 
-command.littlethings.head.usage=[player] [item]
+command.littlethings.head=/head
+command.littlethings.gms=/gms [player]
+command.littlethings.gma=/gma [player]
+command.littlethings.gmc=/gmc [player]
+command.littlethings.gmsp=/gmsp [player]
