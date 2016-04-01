@@ -220,8 +220,8 @@ public class TileEntityItemElevator extends TileEntity implements IInventory, IT
 
             if (previousRedstone == 0 && currentRedstone != 0) {
                 this.updateElevator();
-                previousRedstone = currentRedstone;
             }
+            previousRedstone = currentRedstone;
         }
     }
 
@@ -299,9 +299,14 @@ public class TileEntityItemElevator extends TileEntity implements IInventory, IT
                 this.oldBlock = foundBlock;
                 return (IInventory) foundte;
             } else if (foundte == null && !((foundBlock instanceof BlockGlass) || foundBlock instanceof BlockStainedGlass)) {
+                this.foundInventory = null;
+                this.oldBlock = null;
                 return null;
             }
         }
+
+        this.foundInventory = null;
+        this.oldBlock = null;
         return null;
     }
 }
