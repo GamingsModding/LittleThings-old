@@ -1,5 +1,7 @@
 package com.gamingsmod.littlethings.common.tileentity;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockGlass;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -127,8 +129,7 @@ public class TileEntityItemElevator extends TileEntity implements IInventory, IT
     @Override
     public boolean isUseableByPlayer(EntityPlayer player)
     {
-//        return this.worldObj.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.pos.add(0.5, 0.5, 0.5)) <= 64;
-        return true;
+        return this.worldObj.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.pos.add(0.5, 0.5, 0.5)) <= 64;
     }
 
     @Override
@@ -204,8 +205,76 @@ public class TileEntityItemElevator extends TileEntity implements IInventory, IT
         }
     }
 
+    private int previousRedstone = 0;
+
     @Override
     public void update() {
-        //TODO
+        if (!worldObj.isRemote) {
+            int currentRedstone = worldObj.getStrongPower(getPos());
+
+            if (previousRedstone == 0 && currentRedstone!= 0) {
+
+                for (int i = 0; i < getSizeInventory(); i++) {
+                    ItemStack stack = getStackInSlot(i);
+
+                    if (stack != null) {
+                        IInventory toInventory = null;
+
+                        for (int j = 1; j < 64; j++) {
+                            TileEntity foundte = worldObj.getTileEntity(getPos().add(0, j, 0));
+                            Block foundBlock = worldObj.getBlockState(getPos().add(0, j, 0)).getBlock();
+
+                            if (foundte != null && foundte instanceof IInventory) {
+                                toInventory = (IInventory) foundte;
+                                break;
+                            } else if (foundte == null && !(foundBlock instanceof BlockGlass)) {
+                                break;
+                            }
+                        }
+
+                        if (toInventory != null) {
+                            ItemStack move = new ItemStack(stack.getItem(), 1, stack.getItemDamage(), stack.getTagCompound());
+                            boolean moved = false;
+
+                            for (int j = 0; j < (toInventory.getSizeInventory()); j++) {
+                                if (toInventory.isItemValidForSlot(j, move)) {
+                                    //Move the stack
+                                    ItemStack currentStack = toInventory.getStackInSlot(j);
+
+                                    if (currentStack != null && currentStack.getItem() == move.getItem() && currentStack.stackSize < 64 && inventory[i] != null) {
+                                        if (inventory[i].stackSize <= 0)
+                                            inventory[i] = null;
+                                        else inventory[i].stackSize--;
+
+                                        if (currentStack.getMaxStackSize() > currentStack.stackSize)
+                                            currentStack.stackSize++;
+                                        else continue;
+
+                                        moved = true;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (!moved) {
+                                for (int j = 0; j < (toInventory.getSizeInventory()); j++) {
+                                    if (toInventory.getStackInSlot(j) == null && inventory[i] != null) {
+                                        if (inventory[i].stackSize <= 0)
+                                            inventory[i] = null;
+
+                                        toInventory.setInventorySlotContents(j, move);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            previousRedstone = currentRedstone;
+        }
     }
 }
