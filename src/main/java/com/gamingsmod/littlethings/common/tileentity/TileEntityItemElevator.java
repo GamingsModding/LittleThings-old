@@ -279,15 +279,12 @@ public class TileEntityItemElevator extends TileEntity implements IInventory, IT
     private IInventory findInventory()
     {
         if (this.foundInventory == null || this.oldBlock == null) {
-            System.out.println("First Time");
             return searchForInventory();
         }
         if (this.oldBlock != worldObj.getBlockState(this.foundInventory).getBlock()) {
-            System.out.println("Block changed");
             return searchForInventory();
         }
 
-        System.out.println("Old block");
         return (IInventory) worldObj.getTileEntity(this.foundInventory);
     }
 
