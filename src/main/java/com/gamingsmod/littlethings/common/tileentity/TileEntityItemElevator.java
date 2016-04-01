@@ -10,6 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -167,6 +168,7 @@ public class TileEntityItemElevator extends TileEntity implements IInventory, IT
             this.setInventorySlotContents(i, null);
     }
 
+
     @Override
     public void writeToNBT(NBTTagCompound nbt)
     {
@@ -207,77 +209,102 @@ public class TileEntityItemElevator extends TileEntity implements IInventory, IT
     }
 
     private int previousRedstone = 0;
+    private BlockPos foundInventory = null;
+    private Block oldBlock = null;
 
     @Override
-    public void update() {
+    public void update()
+    {
         if (!worldObj.isRemote) {
             int currentRedstone = worldObj.getStrongPower(getPos());
 
-            if (previousRedstone == 0 && currentRedstone!= 0) {
+            if (previousRedstone == 0 && currentRedstone != 0) {
+                this.updateElevator();
+                previousRedstone = currentRedstone;
+            }
+        }
+    }
 
-                for (int i = 0; i < getSizeInventory(); i++) {
-                    ItemStack stack = getStackInSlot(i);
+    private void updateElevator()
+    {
+        for (int i = 0; i < getSizeInventory(); i++) {
+            ItemStack stack = getStackInSlot(i);
 
-                    if (stack != null) {
-                        IInventory toInventory = null;
+            if (stack != null) {
+                IInventory toInventory = findInventory();
 
-                        for (int j = 1; j < 64; j++) {
-                            TileEntity foundte = worldObj.getTileEntity(getPos().add(0, j, 0));
-                            Block foundBlock = worldObj.getBlockState(getPos().add(0, j, 0)).getBlock();
+                if (toInventory != null) {
+                    ItemStack move = new ItemStack(stack.getItem(), 1, stack.getItemDamage(), stack.getTagCompound());
+                    boolean moved = false;
 
-                            if (foundte != null && foundte instanceof IInventory) {
-                                toInventory = (IInventory) foundte;
-                                break;
-                            } else if (foundte == null && !((foundBlock instanceof BlockGlass) || foundBlock instanceof BlockStainedGlass)) {
+                    for (int j = 0; j < (toInventory.getSizeInventory()); j++) {
+                        if (toInventory.isItemValidForSlot(j, move)) {
+                            //Move the stack
+                            ItemStack currentStack = toInventory.getStackInSlot(j);
+
+                            if (currentStack != null && currentStack.getItem() == move.getItem() && currentStack.stackSize < 64 && inventory[i] != null) {
+                                inventory[i].stackSize--;
+                                if (inventory[i].stackSize <= 0)
+                                    inventory[i] = null;
+
+                                if (currentStack.getMaxStackSize() > currentStack.stackSize)
+                                    currentStack.stackSize++;
+                                else continue;
+
+                                moved = true;
                                 break;
                             }
                         }
+                    }
 
-                        if (toInventory != null) {
-                            ItemStack move = new ItemStack(stack.getItem(), 1, stack.getItemDamage(), stack.getTagCompound());
-                            boolean moved = false;
+                    if (!moved) {
+                        for (int j = 0; j < (toInventory.getSizeInventory()); j++) {
+                            if (toInventory.getStackInSlot(j) == null && inventory[i] != null) {
+                                inventory[i].stackSize--;
+                                if (inventory[i].stackSize <= 0)
+                                    inventory[i] = null;
 
-                            for (int j = 0; j < (toInventory.getSizeInventory()); j++) {
-                                if (toInventory.isItemValidForSlot(j, move)) {
-                                    //Move the stack
-                                    ItemStack currentStack = toInventory.getStackInSlot(j);
-
-                                    if (currentStack != null && currentStack.getItem() == move.getItem() && currentStack.stackSize < 64 && inventory[i] != null) {
-                                        inventory[i].stackSize--;
-                                        if (inventory[i].stackSize <= 0)
-                                            inventory[i] = null;
-
-                                        if (currentStack.getMaxStackSize() > currentStack.stackSize)
-                                            currentStack.stackSize++;
-                                        else continue;
-
-                                        moved = true;
-                                        break;
-                                    }
-                                }
-                            }
-
-                            if (!moved) {
-                                for (int j = 0; j < (toInventory.getSizeInventory()); j++) {
-                                    if (toInventory.getStackInSlot(j) == null && inventory[i] != null) {
-                                        inventory[i].stackSize--;
-                                        if (inventory[i].stackSize <= 0)
-                                            inventory[i] = null;
-
-                                        System.out.println("Fired!");
-                                        toInventory.setInventorySlotContents(j, move);
-                                        break;
-                                    }
-                                }
+                                toInventory.setInventorySlotContents(j, move);
+                                break;
                             }
                         }
-
-                        break;
                     }
                 }
-            }
 
-            previousRedstone = currentRedstone;
+                break;
+            }
         }
+    }
+
+    private IInventory findInventory()
+    {
+        if (this.foundInventory == null || this.oldBlock == null) {
+            System.out.println("First Time");
+            return searchForInventory();
+        }
+        if (this.oldBlock != worldObj.getBlockState(this.foundInventory).getBlock()) {
+            System.out.println("Block changed");
+            return searchForInventory();
+        }
+
+        System.out.println("Old block");
+        return (IInventory) worldObj.getTileEntity(this.foundInventory);
+    }
+
+    private IInventory searchForInventory()
+    {
+        for (int j = 1; j < 64; j++) {
+            TileEntity foundte = worldObj.getTileEntity(getPos().add(0, j, 0));
+            Block foundBlock = worldObj.getBlockState(getPos().add(0, j, 0)).getBlock();
+
+            if (foundte != null && foundte instanceof IInventory) {
+                this.foundInventory = getPos().add(0, j, 0);
+                this.oldBlock = foundBlock;
+                return (IInventory) foundte;
+            } else if (foundte == null && !((foundBlock instanceof BlockGlass) || foundBlock instanceof BlockStainedGlass)) {
+                return null;
+            }
+        }
+        return null;
     }
 }
