@@ -6,6 +6,9 @@ tile.vanillaCraftingTable.spruce.name=Spruce Crafting Table
 tile.vanillaCraftingTable.jungle.name=Jungle Crafting Table
 tile.itemElevator.name=Item Elevator
 
+tooltip.littlethings.playerSkull=Player Skull
+tooltip.littlethings.skullOwner=Skull Owner: %s
+
 container.itemElevator=Item Elevator
 
 command.littlethings.head=/head
