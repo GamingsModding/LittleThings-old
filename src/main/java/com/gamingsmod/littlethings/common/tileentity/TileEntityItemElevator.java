@@ -2,6 +2,7 @@ package com.gamingsmod.littlethings.common.tileentity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
+import net.minecraft.block.BlockStainedGlass;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -227,7 +228,7 @@ public class TileEntityItemElevator extends TileEntity implements IInventory, IT
                             if (foundte != null && foundte instanceof IInventory) {
                                 toInventory = (IInventory) foundte;
                                 break;
-                            } else if (foundte == null && !(foundBlock instanceof BlockGlass)) {
+                            } else if (foundte == null && !((foundBlock instanceof BlockGlass) || foundBlock instanceof BlockStainedGlass)) {
                                 break;
                             }
                         }
