@@ -13,6 +13,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
@@ -38,8 +39,10 @@ public class BlockVanillaCraftingTables extends ModBlockMeta
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-        if (!worldIn.isRemote)
+        if (!worldIn.isRemote) {
             playerIn.openGui(LittleThings.instance, LibGuiId.VANILLACRAFTINGTABLES, worldIn, pos.getX(), pos.getY(), pos.getZ());
+            playerIn.addStat(StatList.craftingTableInteraction);
+        }
 
         return true;
     }
