@@ -1,3 +1,4 @@
+#Blocks
 tile.workbench.name=Oak Crafting Table
 tile.vanillaCraftingTable.acacia.name=Acacia Crafting Table
 tile.vanillaCraftingTable.birch.name=Birch Crafting Table
@@ -6,11 +7,20 @@ tile.vanillaCraftingTable.spruce.name=Spruce Crafting Table
 tile.vanillaCraftingTable.jungle.name=Jungle Crafting Table
 tile.itemElevator.name=Item Elevator
 
+#Tooltips
 tooltip.littlethings.playerSkull=Player Skull
 tooltip.littlethings.skullOwner=Skull Owner: %s
 
+#Friend Skulls
+tooltip.littlethings.skull.LilMissSpl3nd0r=Pie and Hugs
+tooltip.littlethings.skull.The_EliteAngel="I took a good shit today"-2016
+tooltip.littlethings.skull.CamGaming69=Moo!
+tooltip.littlethings.skull.HCGamingMC=Merk
+
+#Containers
 container.itemElevator=Item Elevator
 
+#Command Usage
 command.littlethings.head=/head
 command.littlethings.gms=/gms [player]
 command.littlethings.gma=/gma [player]

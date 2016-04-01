@@ -43,5 +43,6 @@ public class CommonProxy
         e.registerServerCommand(new CommandCreativeShortcut());
         e.registerServerCommand(new CommandAdventureShortcut());
         e.registerServerCommand(new CommandSpectatorShortcut());
+        e.registerServerCommand(new CommandSkull());
     }
 }
