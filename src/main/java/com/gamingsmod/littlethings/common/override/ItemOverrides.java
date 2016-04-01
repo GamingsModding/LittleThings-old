@@ -1,5 +1,6 @@
 package com.gamingsmod.littlethings.common.override;
 
+import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import net.minecraft.item.ItemSkull;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -13,7 +14,8 @@ public class ItemOverrides
     @SuppressWarnings("unused")
     public void onHover(ItemTooltipEvent e)
     {
-        if (e.getItemStack().getItem() instanceof ItemSkull && e.getItemStack().getMetadata() == 3) {
+        //TODO When waila updates - Add to tooltip
+        if (ConfigurationHandler.enableSkullOwner && e.getItemStack().getItem() instanceof ItemSkull && e.getItemStack().getMetadata() == 3) {
             ItemStack skull = e.getItemStack();
             e.getToolTip().remove(0);
             e.getToolTip().add(0, I18n.translateToLocal("tooltip.littlethings.playerSkull"));
