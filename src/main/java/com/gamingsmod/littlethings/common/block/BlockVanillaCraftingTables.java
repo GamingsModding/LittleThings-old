@@ -1,8 +1,9 @@
 package com.gamingsmod.littlethings.common.block;
 
+import com.gamingsmod.littlethings.common.LittleThings;
 import com.gamingsmod.littlethings.common.block.base.ModBlockMeta;
 import com.gamingsmod.littlethings.common.lib.LibBlocks;
-import net.minecraft.block.BlockWorkbench;
+import com.gamingsmod.littlethings.common.lib.LibGuiId;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -37,7 +38,8 @@ public class BlockVanillaCraftingTables extends ModBlockMeta
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (!worldIn.isRemote)
-            playerIn.displayGui(new BlockWorkbench.InterfaceCraftingTable(worldIn, pos));
+            playerIn.openGui(LittleThings.instance, LibGuiId.VANILLACRAFTINGTABLES, worldIn, pos.getX(), pos.getY(), pos.getZ());
+
         return true;
     }
 
