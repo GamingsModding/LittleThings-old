@@ -2,8 +2,8 @@ package com.gamingsmod.littlethings.common.handler;
 
 import com.gamingsmod.littlethings.client.gui.inventory.GuiItemElevator;
 import com.gamingsmod.littlethings.client.gui.inventory.GuiVanillaCraftingTable;
-import com.gamingsmod.littlethings.common.container.ContainerItemElevator;
-import com.gamingsmod.littlethings.common.container.ContainerVanillaCraftingTable;
+import com.gamingsmod.littlethings.common.gui.container.ContainerItemElevator;
+import com.gamingsmod.littlethings.common.gui.container.ContainerVanillaCraftingTable;
 import com.gamingsmod.littlethings.common.lib.LibGuiId;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityItemElevator;
 import net.minecraft.entity.player.EntityPlayer;

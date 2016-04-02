@@ -1,4 +1,4 @@
-package com.gamingsmod.littlethings.common.container;
+package com.gamingsmod.littlethings.common.gui.container;
 
 import com.gamingsmod.littlethings.common.tileentity.TileEntityItemElevator;
 import net.minecraft.entity.player.EntityPlayer;

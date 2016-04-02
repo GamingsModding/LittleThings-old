@@ -1,6 +1,6 @@
 package com.gamingsmod.littlethings.client.gui.inventory;
 
-import com.gamingsmod.littlethings.common.container.ContainerVanillaCraftingTable;
+import com.gamingsmod.littlethings.common.gui.container.ContainerVanillaCraftingTable;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;

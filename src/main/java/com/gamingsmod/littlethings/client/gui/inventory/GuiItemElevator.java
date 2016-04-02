@@ -1,6 +1,6 @@
 package com.gamingsmod.littlethings.client.gui.inventory;
 
-import com.gamingsmod.littlethings.common.container.ContainerItemElevator;
+import com.gamingsmod.littlethings.common.gui.container.ContainerItemElevator;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityItemElevator;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.IInventory;
