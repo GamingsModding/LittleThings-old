@@ -17,7 +17,7 @@ import java.util.Arrays;
 
 public class ItemOverrides
 {
-    protected String[] playerNames = new String[]{"LilMissSpl3nd0r", "The_EliteAngel", "CamGaming69", "HCGamingMC"};
+    protected String[] playerNames = new String[]{"GingerMikie", "LilMissSpl3nd0r", "The_EliteAngel", "CamGaming69", "HCGamingMC"};
     private DecimalFormat df = new DecimalFormat("#.##");
 
     @SubscribeEvent
