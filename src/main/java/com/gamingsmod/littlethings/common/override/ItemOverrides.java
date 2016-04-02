@@ -1,6 +1,7 @@
 package com.gamingsmod.littlethings.common.override;
 
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSkull;
 import net.minecraft.item.ItemStack;
@@ -30,8 +31,8 @@ public class ItemOverrides
     private void onFoodHover(ItemTooltipEvent e)
     {
         ItemFood food = (ItemFood) e.getItemStack().getItem();
-        e.getToolTip().add("Hunger: " + food.getHealAmount(e.getItemStack()));
-        e.getToolTip().add("Saturation: " + food.getSaturationModifier(e.getItemStack()));
+        if (GuiScreen.isShiftKeyDown())
+            e.getToolTip().add("H: " + food.getHealAmount(e.getItemStack()) + " | S: " + food.getSaturationModifier(e.getItemStack()));
     }
 
     private void onSkullHover(ItemTooltipEvent e)
