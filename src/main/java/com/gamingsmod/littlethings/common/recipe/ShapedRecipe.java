@@ -28,6 +28,13 @@ public class ShapedRecipe
                 addShapelessRecipe(new ItemStack(Blocks.crafting_table), new ItemStack(ModBlocks.VanillaCraftingTables, 1, variant.getId()));
             }
         }
+
+        if (ConfigurationHandler.enableItemElevator)
+            addRecipe(new ItemStack(ModBlocks.ItemEleveator),
+                    "sos", "sds", "sss",
+                    's', new ItemStack(Blocks.stone),
+                    'o', new ItemStack(Blocks.obsidian),
+                    'd', new ItemStack(Blocks.dispenser));
     }
 
     public static void addRecipe(ItemStack output, Object... recipe)
