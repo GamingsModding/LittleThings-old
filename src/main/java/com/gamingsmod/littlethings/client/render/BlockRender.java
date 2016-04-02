@@ -45,7 +45,7 @@ public class BlockRender
     {
         String modId = LibMisc.PREFIX_MOD;
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
-                .register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(modId + block.getUnlocalizedName().substring(5), "inventory"));
+                .register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(modId + block.getUnlocalizedName().substring(6 + LibMisc.MOD_ID.length()), "inventory"));
     }
 
     private static void reg(Block block, int meta, String file) {

@@ -1,11 +1,11 @@
 #Blocks
 tile.workbench.name=Oak Crafting Table
-tile.vanillaCraftingTable.acacia.name=Acacia Crafting Table
-tile.vanillaCraftingTable.birch.name=Birch Crafting Table
-tile.vanillaCraftingTable.darkoak.name=Dark Oak Crafting Table
-tile.vanillaCraftingTable.spruce.name=Spruce Crafting Table
-tile.vanillaCraftingTable.jungle.name=Jungle Crafting Table
-tile.itemElevator.name=Item Elevator
+tile.littlethings:vanillaCraftingTable.acacia.name=Acacia Crafting Table
+tile.littlethings:vanillaCraftingTable.birch.name=Birch Crafting Table
+tile.littlethings:vanillaCraftingTable.darkoak.name=Dark Oak Crafting Table
+tile.littlethings:vanillaCraftingTable.spruce.name=Spruce Crafting Table
+tile.littlethings:vanillaCraftingTable.jungle.name=Jungle Crafting Table
+tile.littlethings:itemElevator.name=Item Elevator
 
 #Tooltips
 tooltip.littlethings.playerSkull=Player Skull

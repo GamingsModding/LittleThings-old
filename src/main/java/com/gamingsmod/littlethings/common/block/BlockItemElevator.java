@@ -1,10 +1,10 @@
 package com.gamingsmod.littlethings.common.block;
 
 import com.gamingsmod.littlethings.common.LittleThings;
+import com.gamingsmod.littlethings.common.block.base.ModBlockContainer;
 import com.gamingsmod.littlethings.common.lib.LibBlocks;
 import com.gamingsmod.littlethings.common.lib.LibGuiId;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityItemElevator;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -20,7 +20,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockItemElevator extends BlockContainer
+public class BlockItemElevator extends ModBlockContainer
 {
     public BlockItemElevator()
     {

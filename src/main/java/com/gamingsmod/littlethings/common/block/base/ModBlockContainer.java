@@ -1,20 +1,13 @@
 package com.gamingsmod.littlethings.common.block.base;
 
 import com.gamingsmod.littlethings.common.lib.LibMisc;
-import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 
-public class ModBlock extends Block
+public abstract class ModBlockContainer extends BlockContainer
 {
-    public ModBlock(String name)
-    {
-        this(name, Material.rock);
-    }
-
-    public ModBlock(String name, Material material)
-    {
-        super(material);
-        this.setUnlocalizedName(name);
+    protected ModBlockContainer(Material materialIn) {
+        super(materialIn);
     }
 
     @Override

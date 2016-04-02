@@ -29,9 +29,8 @@ public class BlockVanillaCraftingTables extends ModBlockMeta
 
     public BlockVanillaCraftingTables()
     {
-        super(Material.wood);
+        super(LibBlocks.VANILLACRAFTINGTABLE, Material.wood);
         this.setCreativeTab(CreativeTabs.tabDecorations);
-        this.setUnlocalizedName(LibBlocks.VANILLACRAFTINGTABLE);
         this.setHardness(2.5F);
         this.setStepSound(SoundType.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, Variant.SPRUCE));

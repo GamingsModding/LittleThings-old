@@ -11,10 +11,6 @@ public interface IMetaBlock extends IMetaBlockName {
 
     IBlockState getStateFromMeta(int meta);
 
-    default int damageDropped(IBlockState state) {
-        return getMetaFromState(state);
-    }
-
     int getMetaFromState(IBlockState state);
 
     void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list);

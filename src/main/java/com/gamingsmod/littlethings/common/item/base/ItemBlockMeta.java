@@ -1,4 +1,4 @@
-package com.gamingsmod.littlethings.common.item;
+package com.gamingsmod.littlethings.common.item.base;
 
 import com.gamingsmod.littlethings.common.block.base.IMetaBlockName;
 import net.minecraft.block.Block;
