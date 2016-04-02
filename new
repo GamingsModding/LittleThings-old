@@ -50,7 +50,7 @@ switch (array_shift($argv)) {
 			if (!file_exists($base . "models/item/{$arg}.json")) {
 				$file = fopen($base . "models/item/{$arg}.json", "w");
 				fwrite($file, "{\n");
-				fwrite($file, "  \"parent\":\"{$mod_id}:item/standard_item\",\n");
+				fwrite($file, "  \"parent\":\"{$mod_id}:item/_standard_item\",\n");
 				fwrite($file, "  \"textures\": {\n");
 				fwrite($file, "    \"layer0\":\"{$mod_id}:items/{$arg}\"\n");
 				fwrite($file, "  }\n");
