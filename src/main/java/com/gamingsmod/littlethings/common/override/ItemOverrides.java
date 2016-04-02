@@ -11,11 +11,14 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 
 public class ItemOverrides
 {
     protected String[] playerNames = new String[]{"LilMissSpl3nd0r", "The_EliteAngel", "CamGaming69", "HCGamingMC"};
+    private DecimalFormat df = new DecimalFormat("#.##");
 
     @SubscribeEvent
     @SuppressWarnings("unused")
@@ -31,8 +34,13 @@ public class ItemOverrides
     private void onFoodHover(ItemTooltipEvent e)
     {
         ItemFood food = (ItemFood) e.getItemStack().getItem();
+        double healAmount = food.getHealAmount(e.getItemStack());
+        double saturationModifier = food.getSaturationModifier(e.getItemStack());
+        df.setRoundingMode(RoundingMode.FLOOR);
+
         if (GuiScreen.isShiftKeyDown())
-            e.getToolTip().add("H: " + food.getHealAmount(e.getItemStack()) + " | S: " + food.getSaturationModifier(e.getItemStack()));
+            e.getToolTip().add("H: " + healAmount + " | S: " + df.format(saturationModifier));
+        else e.getToolTip().add(String.valueOf(new Double(healAmount * saturationModifier).intValue()));
     }
 
     private void onSkullHover(ItemTooltipEvent e)
@@ -59,7 +67,10 @@ public class ItemOverrides
         }
 
         if (Arrays.asList(playerNames).contains(playerName)) {
-            e.getToolTip().add(2, TextFormatting.ITALIC + I18n.translateToLocalFormatted("tooltip.littlethings.skull." + playerName));
+            if (ConfigurationHandler.enableColorfulText || !I18n.canTranslate("tooltip.littlethings.skull." + playerName + ".clean"))
+                e.getToolTip().add(2, TextFormatting.ITALIC + I18n.translateToLocalFormatted("tooltip.littlethings.skull." + playerName));
+            else
+                e.getToolTip().add(2, TextFormatting.ITALIC + I18n.translateToLocalFormatted("tooltip.littlethings.skull." + playerName + ".clean"));
         }
     }
 }
