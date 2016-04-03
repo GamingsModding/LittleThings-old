@@ -39,6 +39,10 @@ public class BlockRender
 
         if (ConfigurationHandler.enableItemElevator)
             reg(ModBlocks.ItemEleveator);
+
+        if (ConfigurationHandler.enableUpgradedFurnaces)
+            for (Block block : ModBlocks.UpgradedFurnaces)
+                reg(block);
     }
 
     private static void reg(Block block)
