@@ -22,57 +22,45 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Edited from TileEntityFurnace
+ * Because it is basically the same code
  */
 public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITickable, ISidedInventory
 {
     private static final int[] slotsTop = new int[] {0};
     private static final int[] slotsBottom = new int[] {2, 1};
     private static final int[] slotsSides = new int[] {1};
-    /** The ItemStacks that hold the items currently being used in the furnace */
     private ItemStack[] furnaceItemStacks = new ItemStack[3];
-    /** The number of ticks that the furnace will keep burning */
     private int furnaceBurnTime;
-    /** The number of ticks that a fresh copy of the currently-burning item would keep the furnace burning for */
     private int currentItemBurnTime;
     private int cookTime;
     private int totalCookTime;
     private String furnaceCustomName;
 
-    /**
-     * Returns the number of slots in the inventory.
-     */
+    @Override
     public int getSizeInventory()
     {
         return this.furnaceItemStacks.length;
     }
 
-    /**
-     * Returns the stack in the given slot.
-     */
+    @Override
     public ItemStack getStackInSlot(int index)
     {
         return this.furnaceItemStacks[index];
     }
 
-    /**
-     * Removes up to a specified number of items from an inventory slot and returns them in a new stack.
-     */
+    @Override
     public ItemStack decrStackSize(int index, int count)
     {
         return ItemStackHelper.func_188382_a(this.furnaceItemStacks, index, count);
     }
 
-    /**
-     * Removes a stack from the given slot and returns it.
-     */
+    @Override
     public ItemStack removeStackFromSlot(int index)
     {
         return ItemStackHelper.func_188383_a(this.furnaceItemStacks, index);
     }
 
-    /**
-     * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
-     */
+    @Override
     public void setInventorySlotContents(int index, ItemStack stack)
     {
         boolean flag = stack != null && stack.isItemEqual(this.furnaceItemStacks[index]) && ItemStack.areItemStackTagsEqual(stack, this.furnaceItemStacks[index]);
@@ -89,9 +77,7 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
         }
     }
 
-    /**
-     * Get the name of this object. For players this returns their username
-     */
+    @Override
     public String getName()
     {
         Block block = worldObj.getBlockState(pos).getBlock();
@@ -102,19 +88,18 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
         return this.hasCustomName() ? this.furnaceCustomName : "container.upgradedFurnace." + unlocName;
     }
 
-    /**
-     * Returns true if this thing is named
-     */
+    @Override
     public boolean hasCustomName()
     {
         return this.furnaceCustomName != null && !this.furnaceCustomName.isEmpty();
     }
 
-    public void setCustomInventoryName(String p_145951_1_)
+    public void setCustomInventoryName(String name)
     {
-        this.furnaceCustomName = p_145951_1_;
+        this.furnaceCustomName = name;
     }
 
+    @Override
     public void readFromNBT(NBTTagCompound compound)
     {
         super.readFromNBT(compound);
@@ -140,6 +125,7 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
         }
     }
 
+    @Override
     public void writeToNBT(NBTTagCompound compound)
     {
         super.writeToNBT(compound);
@@ -167,96 +153,73 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
         }
     }
 
-    /**
-     * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended.
-     */
+    @Override
     public int getInventoryStackLimit()
     {
         return 64;
     }
 
-    /**
-     * Furnace isBurning
-     */
     public boolean isBurning()
     {
         return this.furnaceBurnTime > 0;
     }
 
     @SideOnly(Side.CLIENT)
-    public static boolean isBurning(IInventory p_174903_0_)
+    public static boolean isBurning(IInventory inventory)
     {
-        return p_174903_0_.getField(0) > 0;
+        return inventory.getField(0) > 0;
     }
 
-    /**
-     * Like the old updateEntity(), except more generic.
-     */
+    @Override
     public void update()
     {
         boolean flag = this.isBurning();
         boolean flag1 = false;
 
-        if (this.isBurning())
-        {
+        if (this.isBurning()) {
             --this.furnaceBurnTime;
         }
 
-        if (!this.worldObj.isRemote)
-        {
-            if (this.isBurning() || this.furnaceItemStacks[1] != null && this.furnaceItemStacks[0] != null)
-            {
-                if (!this.isBurning() && this.canSmelt())
-                {
+        if (!this.worldObj.isRemote) {
+            if (this.isBurning() || this.furnaceItemStacks[1] != null && this.furnaceItemStacks[0] != null) {
+                if (!this.isBurning() && this.canSmelt()) {
                     this.currentItemBurnTime = this.furnaceBurnTime = getItemBurnTime(this.furnaceItemStacks[1]);
 
-                    if (this.isBurning())
-                    {
+                    if (this.isBurning()) {
                         flag1 = true;
 
-                        if (this.furnaceItemStacks[1] != null)
-                        {
+                        if (this.furnaceItemStacks[1] != null) {
                             --this.furnaceItemStacks[1].stackSize;
 
                             if (this.furnaceItemStacks[1].stackSize == 0)
-                            {
                                 this.furnaceItemStacks[1] = furnaceItemStacks[1].getItem().getContainerItem(furnaceItemStacks[1]);
-                            }
                         }
                     }
                 }
 
-                if (this.isBurning() && this.canSmelt())
-                {
+                if (this.isBurning() && this.canSmelt()) {
                     ++this.cookTime;
 
-                    if (this.cookTime == this.totalCookTime)
-                    {
+                    if (this.cookTime == this.totalCookTime) {
                         this.cookTime = 0;
                         this.totalCookTime = this.getCookTime(this.furnaceItemStacks[0]);
                         this.smeltItem();
                         flag1 = true;
                     }
-                }
-                else
-                {
+                } else {
                     this.cookTime = 0;
                 }
-            }
-            else if (!this.isBurning() && this.cookTime > 0)
-            {
+            } else if (!this.isBurning() && this.cookTime > 0) {
                 this.cookTime = MathHelper.clamp_int(this.cookTime - 2, 0, this.totalCookTime);
             }
 
-            if (flag != this.isBurning())
-            {
+            if (flag != this.isBurning()) {
                 flag1 = true;
                 BlockUpgradedFurnace.setState(this.isBurning(), this.worldObj, this.pos);
             }
         }
 
-        if (flag1)
-        {
+        if (flag1) {
             this.markDirty();
         }
     }
@@ -283,9 +246,6 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
         return 150;
     }
 
-    /**
-     * Returns true if the furnace can smelt an item, i.e. has a source item, destination stack isn't full, etc.
-     */
     private boolean canSmelt()
     {
         if (this.furnaceItemStacks[0] == null)
@@ -303,9 +263,6 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
         }
     }
 
-    /**
-     * Turn one item from the furnace source stack into the appropriate smelted item in the furnace result stack
-     */
     public void smeltItem()
     {
         if (this.canSmelt())
@@ -335,38 +292,24 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
         }
     }
 
-    /**
-     * Returns the number of ticks that the supplied fuel item will keep the furnace burning, or 0 if the item isn't
-     * fuel
-     */
-    public static int getItemBurnTime(ItemStack p_145952_0_)
+    public static int getItemBurnTime(ItemStack stack)
     {
-        if (p_145952_0_ == null)
-        {
+        if (stack == null) {
             return 0;
-        }
-        else
-        {
-            Item item = p_145952_0_.getItem();
+        } else {
+            Item item = stack.getItem();
 
-            if (item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.air)
-            {
+            if (item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.air) {
                 Block block = Block.getBlockFromItem(item);
 
                 if (block == Blocks.wooden_slab)
-                {
                     return 150;
-                }
 
                 if (block.getDefaultState().getMaterial() == Material.wood)
-                {
                     return 300;
-                }
 
                 if (block == Blocks.coal_block)
-                {
                     return 16000;
-                }
             }
 
             if (item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD")) return 200;
@@ -377,87 +320,63 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
             if (item == Items.lava_bucket) return 20000;
             if (item == Item.getItemFromBlock(Blocks.sapling)) return 100;
             if (item == Items.blaze_rod) return 2400;
-            return net.minecraftforge.fml.common.registry.GameRegistry.getFuelValue(p_145952_0_);
+            return net.minecraftforge.fml.common.registry.GameRegistry.getFuelValue(stack);
         }
     }
 
-    public static boolean isItemFuel(ItemStack p_145954_0_)
+    public static boolean isItemFuel(ItemStack stack)
     {
-        /**
-         * Returns the number of ticks that the supplied fuel item will keep the furnace burning, or 0 if the item isn't
-         * fuel
-         */
-        return getItemBurnTime(p_145954_0_) > 0;
+        return getItemBurnTime(stack) > 0;
     }
 
-    /**
-     * Do not make give this method the name canInteractWith because it clashes with Container
-     */
+    @Override
     public boolean isUseableByPlayer(EntityPlayer player)
     {
         return this.worldObj.getTileEntity(this.pos) == this && player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
+    @Override
     public void openInventory(EntityPlayer player)
     {
     }
 
+    @Override
     public void closeInventory(EntityPlayer player)
     {
     }
 
-    /**
-     * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
-     */
+    @Override
     public boolean isItemValidForSlot(int index, ItemStack stack)
     {
         if (index == 2)
-        {
             return false;
-        }
         else if (index != 1)
-        {
             return true;
-        }
-        else
-        {
+        else {
             ItemStack itemstack = this.furnaceItemStacks[1];
             return isItemFuel(stack) || SlotFurnaceFuel.isBucket(stack) && (itemstack == null || itemstack.getItem() != Items.bucket);
         }
     }
 
+    @Override
     public int[] getSlotsForFace(EnumFacing side)
     {
         return side == EnumFacing.DOWN ? slotsBottom : (side == EnumFacing.UP ? slotsTop : slotsSides);
     }
 
-    /**
-     * Returns true if automation can insert the given item in the given slot from the given side.
-     *
-     * @param index The slot index to test insertion into
-     * @param itemStackIn The item to test insertion of
-     * @param direction The direction to test insertion from
-     */
+    @Override
     public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction)
     {
         return this.isItemValidForSlot(index, itemStackIn);
     }
 
-    /**
-     * Returns true if automation can extract the given item in the given slot from the given side.
-     *
-     * @param index The slot index to test extraction from
-     * @param stack The item to try to extract
-     * @param direction The direction to extract from
-     */
+    @Override
     public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction)
     {
-        if (direction == EnumFacing.DOWN && index == 1)
-        {
+        if (direction == EnumFacing.DOWN && index == 1) {
             Item item = stack.getItem();
 
-            if (item != Items.water_bucket && item != Items.bucket)
-            {
+            if (item != Items.water_bucket && item != Items.bucket) {
                 return false;
             }
         }
@@ -465,20 +384,22 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
         return true;
     }
 
+    @Override
     public String getGuiID()
     {
         return "minecraft:furnace";
     }
 
+    @Override
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
         return new ContainerFurnace(playerInventory, this);
     }
 
+    @Override
     public int getField(int id)
     {
-        switch (id)
-        {
+        switch (id) {
             case 0:
                 return this.furnaceBurnTime;
             case 1:
@@ -492,10 +413,10 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
         }
     }
 
+    @Override
     public void setField(int id, int value)
     {
-        switch (id)
-        {
+        switch (id) {
             case 0:
                 this.furnaceBurnTime = value;
                 break;
@@ -510,17 +431,17 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
         }
     }
 
+    @Override
     public int getFieldCount()
     {
         return 4;
     }
 
+    @Override
     public void clear()
     {
         for (int i = 0; i < this.furnaceItemStacks.length; ++i)
-        {
             this.furnaceItemStacks[i] = null;
-        }
     }
 
     net.minecraftforge.items.IItemHandler handlerTop = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.UP);
