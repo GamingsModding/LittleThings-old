@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -215,13 +216,25 @@ public class TileEntityItemElevator extends TileEntity implements IInventory, IT
     @Override
     public void update()
     {
-        if (!worldObj.isRemote) {
-            int currentRedstone = worldObj.getStrongPower(getPos());
+        int currentRedstone = worldObj.getStrongPower(getPos());
 
-            if (previousRedstone == 0 && currentRedstone != 0) {
-                this.updateElevator();
-            }
-            previousRedstone = currentRedstone;
+        if (previousRedstone == 0 && currentRedstone != 0) {
+            if (!worldObj.isRemote) this.updateElevator();
+            else this.updatePartials();
+        }
+        previousRedstone = currentRedstone;
+    }
+
+    private void updatePartials()
+    {
+        for (int j = 1; j < 64; j++) {
+            BlockPos added = getPos().add(0, j, 0);
+            if (worldObj.getBlockState(added).getBlock() instanceof BlockGlass || worldObj.getBlockState(added).getBlock() instanceof BlockStainedGlass)
+                for (int i = 10; i >= 1; i--)
+                    worldObj.spawnParticle(EnumParticleTypes.PORTAL,
+                            added.getX() + 0.5, added.getY() - 1 + i/10, added.getZ() + 0.5,
+                            0, 0.3, 0);
+            else break;
         }
     }
 
