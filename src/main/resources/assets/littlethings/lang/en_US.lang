@@ -1,10 +1,18 @@
 #Blocks
 tile.workbench.name=Oak Crafting Table
+tile.furnace.name=Stone Furnace
+
 tile.littlethings:vanillaCraftingTable.acacia.name=Acacia Crafting Table
 tile.littlethings:vanillaCraftingTable.birch.name=Birch Crafting Table
 tile.littlethings:vanillaCraftingTable.darkoak.name=Dark Oak Crafting Table
 tile.littlethings:vanillaCraftingTable.spruce.name=Spruce Crafting Table
 tile.littlethings:vanillaCraftingTable.jungle.name=Jungle Crafting Table
+
+tile.littlethings:upgradedFurnace_iron.name=Iron Furnace
+tile.littlethings:upgradedFurnace_gold.name=Gold Furnace
+tile.littlethings:upgradedFurnace_diamond.name=Diamond Furnace
+tile.littlethings:upgradedFurnace_emerald.name=Emerald Furnace
+
 tile.littlethings:itemElevator.name=Item Elevator
 
 #Items
@@ -24,6 +32,10 @@ tooltip.littlethings.skull.GingerMikie=Ride more, Worry less
 
 #Containers
 container.itemElevator=Item Elevator
+container.upgradedFurnace.iron=Iron Furnace
+container.upgradedFurnace.gold=Gold Furnace
+container.upgradedFurnace.diamond=Diamond Furnace
+container.upgradedFurnace.emerald=Emerald Furnace
 
 #Command Usage
 command.littlethings.head=/head

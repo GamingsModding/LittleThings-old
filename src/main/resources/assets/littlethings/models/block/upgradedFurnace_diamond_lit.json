@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "blocks/diamond_block",
+    "front": "littlethings:blocks/upgradedFurnace_diamond_front_on",
+    "side": "blocks/diamond_block"
+  }
+}
