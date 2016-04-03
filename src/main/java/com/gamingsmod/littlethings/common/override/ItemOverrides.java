@@ -40,7 +40,9 @@ public class ItemOverrides
 
         if (GuiScreen.isShiftKeyDown())
             e.getToolTip().add("H: " + healAmount + " | S: " + df.format(saturationModifier));
-        else e.getToolTip().add(String.valueOf(new Double(healAmount * saturationModifier).intValue()));
+        else {
+            e.getToolTip().add(I18n.translateToLocalFormatted("tooltip.littlethings.foodrating", String.valueOf(new Double(healAmount * saturationModifier).intValue())));
+        }
     }
 
     private void onSkullHover(ItemTooltipEvent e)

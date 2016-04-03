@@ -21,6 +21,7 @@ item.littlethings:ironNugget.name=Iron Nugget
 #Tooltips
 tooltip.littlethings.playerSkull=Player Skull
 tooltip.littlethings.skullOwner=Skull Owner: %s
+tooltip.littlethings.foodrating=Food Rating: %s
 
 #Friend Skulls
 tooltip.littlethings.skull.LilMissSpl3nd0r=Pie and Hugs

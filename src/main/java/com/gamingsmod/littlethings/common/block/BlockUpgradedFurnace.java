@@ -52,19 +52,7 @@ public class BlockUpgradedFurnace extends ModBlockContainer
      */
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        Block block = state.getBlock();
-        String unlocName = block.getUnlocalizedName().substring(6 + LibMisc.MOD_ID.length() + "upgradedFurnace_".length());
-        if (unlocName.endsWith("_lit")) {
-            unlocName = unlocName.substring(0, unlocName.length() - 4);
-        }
-        int foundIndex = -1;
-        for (int i = 0; i < Types.values().length; i++) {
-            if (Types.values()[i].toString().equals(unlocName)) {
-                foundIndex = ((i + 1) * 2) - 2;
-                break;
-            }
-        }
-
+        int foundIndex = findIndex(state);
         if (foundIndex == -1)
             return null;
 
@@ -132,20 +120,7 @@ public class BlockUpgradedFurnace extends ModBlockContainer
         IBlockState iblockstate = worldIn.getBlockState(pos);
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        Block block = worldIn.getBlockState(pos).getBlock();
-        String unlocName = block.getUnlocalizedName().substring(6 + LibMisc.MOD_ID.length() + "upgradedFurnace_".length());
-        if (unlocName.endsWith("_lit")) {
-            unlocName = unlocName.substring(0, unlocName.length() - 4);
-        }
-
-        int foundIndex = -1;
-        for (int i = 0; i < Types.values().length; i++) {
-            if (Types.values()[i].toString().equals(unlocName)) {
-                foundIndex = ((i + 1) * 2) - 2;
-                break;
-            }
-        }
-
+        int foundIndex = findIndex(worldIn.getBlockState(pos));
         if (foundIndex == -1)
             return;
 
@@ -224,23 +199,11 @@ public class BlockUpgradedFurnace extends ModBlockContainer
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        Block block = state.getBlock();
-        String unlocName = block.getUnlocalizedName().substring(6 + LibMisc.MOD_ID.length() + "upgradedFurnace_".length());
-        if (unlocName.endsWith("_lit")) {
-            unlocName = unlocName.substring(0, unlocName.length() - 4);
-        }
-        int foundIndex = -1;
-        for (int i = 0; i < Types.values().length; i++) {
-            if (Types.values()[i].toString().equals(unlocName)) {
-                foundIndex = ((i + 1) * 2) - 2;
-                break;
-            }
-        }
-
-        if (foundIndex == -1)
+        int index = findIndex(state);
+        if (index == -1)
             return null;
 
-        return new ItemStack(ModBlocks.UpgradedFurnaces[foundIndex]);
+        return new ItemStack(ModBlocks.UpgradedFurnaces[index]);
     }
 
     /**
@@ -295,6 +258,25 @@ public class BlockUpgradedFurnace extends ModBlockContainer
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, FACING);
+    }
+
+    public static int findIndex(IBlockState state)
+    {
+        Block block = state.getBlock();
+        String unlocName = block.getUnlocalizedName().substring(6 + LibMisc.MOD_ID.length() + "upgradedFurnace_".length());
+        if (unlocName.endsWith("_lit")) {
+            unlocName = unlocName.substring(0, unlocName.length() - 4);
+        }
+
+        int foundIndex = -1;
+        for (int i = 0; i < Types.values().length; i++) {
+            if (Types.values()[i].toString().equals(unlocName)) {
+                foundIndex = ((i + 1) * 2) - 2;
+                break;
+            }
+        }
+
+        return foundIndex;
     }
 
     public enum Types
