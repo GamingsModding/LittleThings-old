@@ -34,7 +34,7 @@ public class BlockUpgradedFurnace extends ModBlockContainer
 
     public BlockUpgradedFurnace(String name, boolean isBurning)
     {
-        super(Material.rock);
+        super(Material.iron);
         this.setUnlocalizedName(name);
         this.setHardness(3.5F);
         this.setStepSound(SoundType.STONE);
