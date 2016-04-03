@@ -23,6 +23,31 @@ public class Recipes
         if (ConfigurationHandler.enableExtraCraftingTables) recipesExtraCraftingTables();
 
         if (ConfigurationHandler.enableItemElevator) recipesItemElevator();
+
+        if (ConfigurationHandler.enableUpgradedFurnaces) recipesUpgradedFurnaces();
+    }
+
+    private static void recipesUpgradedFurnaces()
+    {
+        addRecipe(new ItemStack(ModBlocks.UpgradedFurnaces[0]),
+                "iii", "ifi", "iii",
+                'i', "ingotIron",
+                'f', new ItemStack(Blocks.furnace));
+
+        addRecipe(new ItemStack(ModBlocks.UpgradedFurnaces[2]),
+                "iii", "ifi", "iii",
+                'i', "ingotGold",
+                'f', new ItemStack(ModBlocks.UpgradedFurnaces[0]));
+
+        addRecipe(new ItemStack(ModBlocks.UpgradedFurnaces[4]),
+                "iii", "ifi", "iii",
+                'i', "gemDiamond",
+                'f', new ItemStack(ModBlocks.UpgradedFurnaces[2]));
+
+        addRecipe(new ItemStack(ModBlocks.UpgradedFurnaces[6]),
+                "iii", "ifi", "iii",
+                'i', "gemEmerald",
+                'f', new ItemStack(ModBlocks.UpgradedFurnaces[2]));
     }
 
     private static void recipesExtraCraftingTables()
@@ -46,11 +71,9 @@ public class Recipes
     {
         addRecipe(new ItemStack(ModBlocks.ItemEleveator),
                 "sos", "sds", "sss",
-                's', new ItemStack(Blocks.stone),
+                's', "stone",
                 'o', new ItemStack(Blocks.obsidian),
                 'd', new ItemStack(Blocks.dispenser));
-
-        addShapelessRecipe(new ItemStack(ModItems.IronNugget, 9), new ItemStack(Items.iron_ingot));
     }
 
     private static void removeFirstRecipeFor(Block block)
