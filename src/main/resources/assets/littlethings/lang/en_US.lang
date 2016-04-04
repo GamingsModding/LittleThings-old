@@ -44,3 +44,4 @@ command.littlethings.gms=/gms [player]
 command.littlethings.gma=/gma [player]
 command.littlethings.gmc=/gmc [player]
 command.littlethings.gmsp=/gmsp [player]
+command.littlethings.skull=/skull <player>
