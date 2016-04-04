@@ -7,6 +7,7 @@ import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.item.base.ItemBlockMeta;
 import com.gamingsmod.littlethings.common.lib.LibBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModBlocks
@@ -35,11 +36,24 @@ public class ModBlocks
 
     private static void addBlock(Block block, String name)
     {
-        GameRegistry.registerBlock(block, name);
+        if (block.getRegistryName() == null)
+            block.setRegistryName(name);
+
+        register(block);
+        ModItems.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
     }
 
     private static void addMetaBlock(Block block, String name)
     {
-        GameRegistry.registerBlock(block, ItemBlockMeta.class, name);
+        if (block.getRegistryName() == null)
+            block.setRegistryName(name);
+
+        register(block);
+        ModItems.register(new ItemBlockMeta(block).setRegistryName(block.getRegistryName()));
+    }
+
+    public static void register(Block block)
+    {
+        GameRegistry.register(block);
     }
 }

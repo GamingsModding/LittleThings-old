@@ -11,11 +11,19 @@ public class ModItems
 
     public static void init()
     {
-        reg(IronNugget = new ItemIronNugget(), LibItems.IRONNUGGET);
+        register(IronNugget = new ItemIronNugget(), LibItems.IRONNUGGET);
     }
 
-    private static void reg(Item item, String name)
+    public static void register(Item item, String name)
     {
-        GameRegistry.registerItem(item, name);
+        if (item.getRegistryName() == null)
+            item.setRegistryName(name);
+
+        GameRegistry.register(item);
+    }
+
+    public static void register(Item item)
+    {
+        GameRegistry.register(item);
     }
 }
