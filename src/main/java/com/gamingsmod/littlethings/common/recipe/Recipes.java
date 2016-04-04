@@ -16,6 +16,8 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class Recipes
 {
+    public static String[] oreDicDyes = {"dyeBlack", "dyeRed", "dyeGreen", "dyeBrown", "dyeBlue", "dyePurple", "dyeCyan", "dyeLightGray", "dyeGray", "dyePink", "dyeLime", "dyeYellow", "dyeLightBlue", "dyeMagenta", "dyeOrange", "dyeWhite"};
+
     public static void init()
     {
         addBlockRecipe(new ItemStack(Items.iron_ingot), new ItemStack(ModItems.IronNugget));
@@ -25,6 +27,20 @@ public class Recipes
         if (ConfigurationHandler.enableItemElevator) recipesItemElevator();
 
         if (ConfigurationHandler.enableUpgradedFurnaces) recipesUpgradedFurnaces();
+
+        if (ConfigurationHandler.enableGlassPanesRecipe) recipesRecoloringGlassPanes();
+    }
+
+    private static void recipesRecoloringGlassPanes()
+    {
+        int i = 0;
+        for (String dye : oreDicDyes) {
+            addRecipe(new ItemStack(Blocks.stained_glass_pane, 8, 15 - i),
+                    "ggg", "gdg", "ggg",
+                    'g', "paneGlass",
+                    'd', dye);
+            i++;
+        }
     }
 
     private static void recipesUpgradedFurnaces()

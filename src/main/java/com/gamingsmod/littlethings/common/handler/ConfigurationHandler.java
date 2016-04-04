@@ -13,6 +13,7 @@ public class ConfigurationHandler
     public static boolean enableSkullOwner;
     public static boolean enableColorfulText;
     public static boolean enableUpgradedFurnaces;
+    public static boolean enableGlassPanesRecipe;
 
     public static double percentOfSkullSpawn;
 
@@ -31,6 +32,7 @@ public class ConfigurationHandler
         enableItemElevator = configuration.get(Configuration.CATEGORY_GENERAL, "Enable Item Elevator", true).getBoolean();
         enableSkullOwner = configuration.get(Configuration.CATEGORY_GENERAL, "Enable Skull Owner", true).getBoolean();
         enableUpgradedFurnaces = configuration.get(Configuration.CATEGORY_GENERAL, "Enable Upgraded Furnaces", true).getBoolean();
+        enableGlassPanesRecipe = configuration.get(Configuration.CATEGORY_GENERAL, "Enable Recoloring Glass Panes", true).getBoolean();
 
         percentOfSkullSpawn = configuration.get(Configuration.CATEGORY_GENERAL, "Percent Of Zombie Spawning With Friend Skull", 0.01, "Higher the number the more common", 0.0, 1).getDouble();
 
