@@ -23,7 +23,7 @@ import java.util.Random;
 public class FriendsSkulls
 {
     protected String[] playerNames = new String[]{"GingerMikie", "LilMissSpl3nd0r", "The_EliteAngel", "CamGaming69", "HCGamingMC"};
-    protected String[] otherNames = new String[]{};
+    protected String[] otherNames = new String[]{"RageGamingPE", "GullWolf"};
 
     @SubscribeEvent
     @SuppressWarnings("unused")
@@ -63,7 +63,7 @@ public class FriendsSkulls
     @SubscribeEvent
     public void onMobKillDropSkull(LivingDropsEvent e)
     {
-        if (!e.getSource().isExplosion()) {
+        if (!e.getSource().isExplosion() && !e.getSource().isFireDamage()) {
             Entity justDied = e.getEntity();
             justDied.getArmorInventoryList().forEach((itemStack -> {
                 if (itemStack != null && itemStack.getItem() instanceof ItemSkull && itemStack.getMetadata() == 3) {
@@ -99,7 +99,12 @@ public class FriendsSkulls
         Random rng = new Random();
         if (rng.nextDouble() < ConfigurationHandler.percentOfSkullSpawn && e.getEntity() instanceof EntityZombie) {
             ItemStack skull = new ItemStack(Items.skull, 1, 3);
-            NBTHelper.setString(skull, "SkullOwner", playerNames[rng.nextInt(playerNames.length)]);
+            int id = rng.nextInt(playerNames.length + otherNames.length);
+            if (id + 1 > playerNames.length)
+                NBTHelper.setString(skull, "SkullOwner", otherNames[id - playerNames.length]);
+            else
+                NBTHelper.setString(skull, "SkullOwner", playerNames[rng.nextInt(playerNames.length)]);
+
             e.getEntity().replaceItemInInventory(100 + EntityEquipmentSlot.HEAD.getIndex(), skull);
         }
     }
