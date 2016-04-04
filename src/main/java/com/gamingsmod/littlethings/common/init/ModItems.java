@@ -8,7 +8,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ModItems
 {
     public static Item IronNugget;
-    public static Item Watch;
 
     public static void init()
     {

@@ -1,13 +1,14 @@
 package com.gamingsmod.littlethings.common;
 
 import com.gamingsmod.littlethings.common.command.*;
+import com.gamingsmod.littlethings.common.events.FoodInformation;
+import com.gamingsmod.littlethings.common.events.FriendsSkulls;
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.handler.GuiHandler;
 import com.gamingsmod.littlethings.common.init.ModBlocks;
 import com.gamingsmod.littlethings.common.init.ModItems;
 import com.gamingsmod.littlethings.common.init.ModOreDic;
 import com.gamingsmod.littlethings.common.init.ModTileEntities;
-import com.gamingsmod.littlethings.common.override.ItemOverrides;
 import com.gamingsmod.littlethings.common.recipe.Recipes;
 import com.gamingsmod.littlethings.common.recipe.Smelting;
 import net.minecraftforge.common.MinecraftForge;
@@ -34,7 +35,8 @@ public class CommonProxy
         Smelting.init();
         ModOreDic.init();
         NetworkRegistry.INSTANCE.registerGuiHandler(LittleThings.instance, new GuiHandler());
-        MinecraftForge.EVENT_BUS.register(new ItemOverrides());
+        MinecraftForge.EVENT_BUS.register(new FriendsSkulls());
+        MinecraftForge.EVENT_BUS.register(new FoodInformation());
     }
 
     public void postInit(FMLPostInitializationEvent e)
