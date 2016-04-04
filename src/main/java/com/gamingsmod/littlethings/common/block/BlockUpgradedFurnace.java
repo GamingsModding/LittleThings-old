@@ -14,6 +14,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -23,6 +24,8 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
@@ -213,6 +216,42 @@ public class BlockUpgradedFurnace extends ModBlockContainer
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, FACING);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    @SuppressWarnings("incomplete-switch")
+    public void randomDisplayTick(IBlockState worldIn, World pos, BlockPos state, Random rand)
+    {
+        if (this.isBurning) {
+            EnumFacing enumfacing = worldIn.getValue(FACING);
+            double d0 = (double)state.getX() + 0.5D;
+            double d1 = (double)state.getY() + rand.nextDouble() * 6.0D / 16.0D;
+            double d2 = (double)state.getZ() + 0.5D;
+            double d3 = 0.52D;
+            double d4 = rand.nextDouble() * 0.6D - 0.3D;
+
+            if (rand.nextDouble() < 0.1D)
+                pos.playSound((double) state.getX() + 0.5D, (double) state.getY(), (double) state.getZ() + 0.5D, SoundEvents.block_furnace_fire_crackle, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+
+            switch (enumfacing) {
+                case WEST:
+                    pos.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 - d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+                    pos.spawnParticle(EnumParticleTypes.FLAME, d0 - d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+                    break;
+                case EAST:
+                    pos.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+                    pos.spawnParticle(EnumParticleTypes.FLAME, d0 + d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+                    break;
+                case NORTH:
+                    pos.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 - d3, 0.0D, 0.0D, 0.0D);
+                    pos.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 - d3, 0.0D, 0.0D, 0.0D);
+                    break;
+                case SOUTH:
+                    pos.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 + d3, 0.0D, 0.0D, 0.0D);
+                    pos.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 + d3, 0.0D, 0.0D, 0.0D);
+            }
+        }
     }
 
     public static int findIndex(IBlockState state)
