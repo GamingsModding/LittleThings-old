@@ -258,9 +258,6 @@ public class BlockUpgradedFurnace extends ModBlockContainer
     {
         Block block = state.getBlock();
         String unlocName = block.getUnlocalizedName().substring(6 + LibMisc.MOD_ID.length() + "upgradedFurnace_".length());
-        if (unlocName.endsWith("_lit")) {
-            unlocName = unlocName.substring(0, unlocName.length() - 4);
-        }
 
         int foundIndex = -1;
         for (int i = 0; i < Types.values().length; i++) {

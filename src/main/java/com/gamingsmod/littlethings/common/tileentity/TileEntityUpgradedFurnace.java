@@ -228,9 +228,6 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
     {
         Block block = worldObj.getBlockState(pos).getBlock();
         String unlocName = block.getUnlocalizedName().substring(6 + LibMisc.MOD_ID.length() + "upgradedFurnace_".length());
-        if (unlocName.endsWith("_lit")) {
-            unlocName = unlocName.substring(0, unlocName.length() - 4);
-        }
 
         switch (unlocName) {
             case "iron":

@@ -26,7 +26,7 @@ public class ModBlocks
         if (ConfigurationHandler.enableUpgradedFurnaces) {
             int i = 0;
             for (BlockUpgradedFurnace.Types name : BlockUpgradedFurnace.Types.values()) {
-                addBlock(UpgradedFurnaces[i+1] = new BlockUpgradedFurnace(LibBlocks.UPGRADEDFURNACE + name + "_lit", true), LibBlocks.UPGRADEDFURNACE + name + "_lit");
+                addBlock(UpgradedFurnaces[i+1] = new BlockUpgradedFurnace(LibBlocks.UPGRADEDFURNACE + name, true), LibBlocks.UPGRADEDFURNACE + name + "_lit");
                 addBlock(UpgradedFurnaces[i] = new BlockUpgradedFurnace(LibBlocks.UPGRADEDFURNACE + name, false), LibBlocks.UPGRADEDFURNACE + name);
                 i = i + 2;
             }
