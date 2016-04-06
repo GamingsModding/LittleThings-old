@@ -1,5 +1,6 @@
 package com.gamingsmod.littlethings.common.init;
 
+import com.gamingsmod.littlethings.common.block.BlockAnimalChest;
 import com.gamingsmod.littlethings.common.block.BlockItemElevator;
 import com.gamingsmod.littlethings.common.block.BlockUpgradedFurnace;
 import com.gamingsmod.littlethings.common.block.BlockVanillaCraftingTables;
@@ -15,9 +16,12 @@ public class ModBlocks
     public static Block VanillaCraftingTables;
     public static Block ItemEleveator;
     public static Block[] UpgradedFurnaces = new Block[8];
+    public static Block[] AnimalChests = new Block[BlockAnimalChest.Types.values().length];
 
     public static void init()
     {
+        int i = 0;
+
         if (ConfigurationHandler.enableExtraCraftingTables)
             addMetaBlock(VanillaCraftingTables = new BlockVanillaCraftingTables(), LibBlocks.VANILLACRAFTINGTABLE);
 
@@ -25,11 +29,19 @@ public class ModBlocks
             addBlock(ItemEleveator = new BlockItemElevator(), LibBlocks.ITEMELEVATOR);
 
         if (ConfigurationHandler.enableUpgradedFurnaces) {
-            int i = 0;
+            i = 0;
             for (BlockUpgradedFurnace.Types name : BlockUpgradedFurnace.Types.values()) {
                 addBlock(UpgradedFurnaces[i+1] = new BlockUpgradedFurnace(LibBlocks.UPGRADEDFURNACE + name, true), LibBlocks.UPGRADEDFURNACE + name + "_lit");
                 addBlock(UpgradedFurnaces[i] = new BlockUpgradedFurnace(LibBlocks.UPGRADEDFURNACE + name, false), LibBlocks.UPGRADEDFURNACE + name);
                 i = i + 2;
+            }
+        }
+
+        if (ConfigurationHandler.enableAnimalChests) {
+            i = 0;
+            for (BlockAnimalChest.Types name : BlockAnimalChest.Types.values()) {
+                addBlock(AnimalChests[i] = new BlockAnimalChest(name.toString()), LibBlocks.ANIMALCHEST + name);
+                i++;
             }
         }
     }

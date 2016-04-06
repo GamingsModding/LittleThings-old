@@ -43,6 +43,11 @@ public class BlockRender
         if (ConfigurationHandler.enableUpgradedFurnaces)
             for (Block block : ModBlocks.UpgradedFurnaces)
                 reg(block);
+
+        if (ConfigurationHandler.enableAnimalChests)
+            for (Block block : ModBlocks.AnimalChests)
+                reg(block);
+
     }
 
     private static void reg(Block block)
