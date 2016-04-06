@@ -29,6 +29,28 @@ public class Recipes
         if (ConfigurationHandler.enableUpgradedFurnaces) recipesUpgradedFurnaces();
 
         if (ConfigurationHandler.enableGlassPanesRecipe) recipesRecoloringGlassPanes();
+
+        if (ConfigurationHandler.enableAnimalChests) recipesAnimalChests();
+    }
+
+    private static void recipesAnimalChests()
+    {
+        addRecipe(new ItemStack(ModBlocks.AnimalChests[0]),
+                "mmm", "mcm", "mmm",
+                'm', new ItemStack(Items.beef),
+                'c', "chestWood");
+        addRecipe(new ItemStack(ModBlocks.AnimalChests[1]),
+                "mmm", "mcm", "mmm",
+                'm', new ItemStack(Items.chicken),
+                'c', "chestWood");
+        addRecipe(new ItemStack(ModBlocks.AnimalChests[2]),
+                "mmm", "mcm", "mmm",
+                'm', new ItemStack(Items.porkchop),
+                'c', "chestWood");
+        addRecipe(new ItemStack(ModBlocks.AnimalChests[3]),
+                "mmm", "mcm", "mmm",
+                'm', new ItemStack(Items.mutton),
+                'c', "chestWood");
     }
 
     private static void recipesRecoloringGlassPanes()

@@ -1,15 +1,18 @@
 package com.gamingsmod.littlethings.client.render;
 
+import com.gamingsmod.littlethings.client.model.TEAnimalChestRenderer;
 import com.gamingsmod.littlethings.common.block.BlockVanillaCraftingTables;
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.init.ModBlocks;
 import com.gamingsmod.littlethings.common.lib.LibMisc;
+import com.gamingsmod.littlethings.common.tileentity.TileEntityAnimalChest;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 public class BlockRender
 {
@@ -44,9 +47,12 @@ public class BlockRender
             for (Block block : ModBlocks.UpgradedFurnaces)
                 reg(block);
 
-        if (ConfigurationHandler.enableAnimalChests)
+        if (ConfigurationHandler.enableAnimalChests) {
+            ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAnimalChest.class, new TEAnimalChestRenderer());
+
             for (Block block : ModBlocks.AnimalChests)
                 reg(block);
+        }
 
     }
 

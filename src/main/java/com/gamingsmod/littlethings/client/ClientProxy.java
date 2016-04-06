@@ -24,6 +24,5 @@ public class ClientProxy extends CommonProxy
 
         BlockRender.registerBlockRenderer();
         ItemRender.registerItemRender();
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAnimalChest.class, new TEAnimalChestRenderer());
     }
 }
