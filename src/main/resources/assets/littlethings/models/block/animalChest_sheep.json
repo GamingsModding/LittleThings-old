@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "littlethings:blocks/animalChest_sheep_top",
+    "up": "littlethings:blocks/animalChest_sheep_top",
+    "north": "littlethings:blocks/animalChest_sheep_top",
+    "south": "littlethings:blocks/animalChest_sheep_top",
+    "east": "littlethings:blocks/animalChest_sheep_top",
+    "west": "littlethings:blocks/animalChest_sheep_top",
+    "down": "littlethings:blocks/animalChest_sheep_top"
+  }
+}
