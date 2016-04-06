@@ -181,7 +181,7 @@ public class TileEntityAnimalChest extends TileEntity implements IInventory, ITi
                     open = SoundEvents.entity_sheep_ambient;
                     break;
             }
-            this.worldObj.playSound((EntityPlayer)null, d0, (double)j + 0.5D, d1, open, SoundCategory.BLOCKS, 0.75F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+            this.worldObj.playSound(null, d0, (double)j + 0.5D, d1, open, SoundCategory.BLOCKS, 0.75F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
         }
 
         if (this.numPlayersUsing == 0 && this.lidAngle > 0.0F || this.numPlayersUsing > 0 && this.lidAngle < 1.0F)
@@ -224,7 +224,7 @@ public class TileEntityAnimalChest extends TileEntity implements IInventory, ITi
                         close = SoundEvents.entity_sheep_death;
                         break;
                 }
-                this.worldObj.playSound((EntityPlayer)null, d3, (double)j + 0.5D, d2, close, SoundCategory.BLOCKS, 0.75F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+                this.worldObj.playSound(null, d3, (double)j + 0.5D, d2, close, SoundCategory.BLOCKS, 0.75F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
             }
 
             if (this.lidAngle < 0.0F)
