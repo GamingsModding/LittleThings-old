@@ -1,5 +1,7 @@
 package com.gamingsmod.littlethings.common.tileentity;
 
+import com.gamingsmod.littlethings.common.block.BlockAnimalChest;
+import com.gamingsmod.littlethings.common.init.ModBlocks;
 import com.gamingsmod.littlethings.common.lib.LibMisc;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -235,13 +237,41 @@ public class TileEntityAnimalChest extends TileEntity implements IInventory, ITi
     public void openChest()
     {
         ++this.numPlayersUsing;
-        System.out.println(numPlayersUsing);
+        int i = 0;
+        for (BlockAnimalChest.Types type : BlockAnimalChest.Types.values()) {
+            if (type.toString().equals(getAnimal()))
+                break;
+            i++;
+        }
+
+        worldObj.addBlockEvent(pos, ModBlocks.AnimalChests[i], 1, this.numPlayersUsing);
     }
 
     public void closeChest()
     {
         --this.numPlayersUsing;
-        System.out.println(numPlayersUsing);
+        int i = 0;
+        for (BlockAnimalChest.Types type : BlockAnimalChest.Types.values()) {
+            if (type.toString().equals(getAnimal()))
+                break;
+            i++;
+        }
+
+        worldObj.addBlockEvent(pos, ModBlocks.AnimalChests[i], 1, this.numPlayersUsing);
+    }
+
+    @Override
+    public boolean receiveClientEvent(int id, int type)
+    {
+        if (id == 1)
+        {
+            this.numPlayersUsing = type;
+            return true;
+        }
+        else
+        {
+            return super.receiveClientEvent(id, type);
+        }
     }
 
     public String getCustomName() {
