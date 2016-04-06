@@ -1,0 +1,43 @@
+{
+  "variants": {
+    "inventory": { "model": "littlethings:clearGlass_all" },
+    "down=false,east=false,north=false,south=false,up=false,west=false": { "model": "littlethings:clearGlass_all" },
+
+    "down=false,east=false,north=true,south=false,up=false,west=false": { "model": "littlethings:clearGlass_single" },
+    "down=false,east=false,north=false,south=true,up=false,west=false": { "model": "littlethings:clearGlass_single", "y": 180 },
+    "down=false,east=true,north=false,south=false,up=false,west=false": { "model": "littlethings:clearGlass_single", "y": 90 },
+    "down=false,east=false,north=false,south=false,up=false,west=true": { "model": "littlethings:clearGlass_single", "y": 270 },
+    "down=true,east=false,north=false,south=false,up=false,west=false": { "model": "littlethings:clearGlass_single", "x": 90 },
+    "down=false,east=false,north=false,south=false,up=true,west=false": { "model": "littlethings:clearGlass_single", "x": 270 },
+
+    "down=false,east=true,north=true,south=false,up=false,west=false": { "model": "littlethings:clearGlass_double_corner" },
+    "down=false,east=false,north=false,south=true,up=false,west=true": { "model": "littlethings:clearGlass_double_corner", "y": 180 },
+    "down=false,east=true,north=false,south=true,up=false,west=false": { "model": "littlethings:clearGlass_double_corner", "y": 90 },
+    "down=false,east=false,north=true,south=false,up=false,west=true": { "model": "littlethings:clearGlass_double_corner", "y": 270 },
+
+    "down=true,east=true,north=false,south=false,up=false,west=false": { "model": "littlethings:clearGlass_double_corner", "x": 90 },
+    "down=true,east=false,north=true,south=false,up=false,west=false": { "model": "littlethings:clearGlass_double_corner", "x": 90, "y": 270 },
+    "down=true,east=false,north=false,south=true,up=false,west=false": { "model": "littlethings:clearGlass_double_corner", "x": 90, "y": 90 },
+    "down=true,east=false,north=false,south=false,up=false,west=true": { "model": "littlethings:clearGlass_double_corner", "x": 90, "y": 180 },
+
+    "down=false,east=true,north=false,south=false,up=true,west=false": { "model": "littlethings:clearGlass_double_corner", "x": 270 },
+    "down=false,east=false,north=true,south=false,up=true,west=false": { "model": "littlethings:clearGlass_double_corner", "x": 270, "y": 270 },
+    "down=false,east=false,north=false,south=true,up=true,west=false": { "model": "littlethings:clearGlass_double_corner", "x": 270, "y": 90 },
+    "down=false,east=false,north=false,south=false,up=true,west=true": { "model": "littlethings:clearGlass_double_corner", "x": 270, "y": 180 },
+
+    "down=true,east=false,north=false,south=false,up=true,west=false": { "model": "littlethings:clearGlass_double_straight" },
+    "down=false,east=true,north=false,south=false,up=false,west=true": { "model": "littlethings:clearGlass_double_straight", "x": 90, "y": 90 },
+    "down=false,east=false,north=true,south=true,up=false,west=false": { "model": "littlethings:clearGlass_double_straight", "x": 270 },
+
+    "down=true,east=true,north=false,south=false,up=true,west=true": { "model": "littlethings:clearGlass_none" },
+    "down=true,east=false,north=true,south=true,up=true,west=false": { "model": "littlethings:clearGlass_none" },
+    "down=false,east=true,north=true,south=true,up=false,west=true": { "model": "littlethings:clearGlass_none" },
+    "down=true,east=true,north=true,south=true,up=true,west=true": { "model": "littlethings:clearGlass_none" },
+    "down=false,east=true,north=true,south=true,up=true,west=true": { "model": "littlethings:clearGlass_none" },
+    "down=true,east=false,north=true,south=true,up=true,west=true": { "model": "littlethings:clearGlass_none" },
+    "down=true,east=true,north=false,south=true,up=true,west=true": { "model": "littlethings:clearGlass_none" },
+    "down=true,east=true,north=true,south=false,up=true,west=true": { "model": "littlethings:clearGlass_none" },
+    "down=true,east=true,north=true,south=true,up=false,west=true": { "model": "littlethings:clearGlass_none" },
+    "down=true,east=true,north=true,south=true,up=true,west=false": { "model": "littlethings:clearGlass_none" }
+  }
+}

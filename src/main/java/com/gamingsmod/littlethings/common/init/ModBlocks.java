@@ -1,9 +1,6 @@
 package com.gamingsmod.littlethings.common.init;
 
-import com.gamingsmod.littlethings.common.block.BlockAnimalChest;
-import com.gamingsmod.littlethings.common.block.BlockItemElevator;
-import com.gamingsmod.littlethings.common.block.BlockUpgradedFurnace;
-import com.gamingsmod.littlethings.common.block.BlockVanillaCraftingTables;
+import com.gamingsmod.littlethings.common.block.*;
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.item.base.ItemBlockMeta;
 import com.gamingsmod.littlethings.common.lib.LibBlocks;
@@ -17,6 +14,7 @@ public class ModBlocks
     public static Block ItemEleveator;
     public static Block[] UpgradedFurnaces = new Block[8];
     public static Block[] AnimalChests = new Block[BlockAnimalChest.Types.values().length];
+    public static Block ClearGlass;
 
     public static void init()
     {
@@ -43,6 +41,10 @@ public class ModBlocks
                 addBlock(AnimalChests[i] = new BlockAnimalChest(name.toString()), LibBlocks.ANIMALCHEST + name);
                 i++;
             }
+        }
+
+        if (ConfigurationHandler.enableClearGlass) {
+            addBlock(ClearGlass = new BlockClearGlass(), LibBlocks.CLEARGLASS);
         }
     }
 

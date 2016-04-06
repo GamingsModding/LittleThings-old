@@ -54,6 +54,10 @@ public class BlockRender
                 reg(block);
         }
 
+        if (ConfigurationHandler.enableClearGlass) {
+            reg(ModBlocks.ClearGlass);
+        }
+
     }
 
     private static void reg(Block block)
