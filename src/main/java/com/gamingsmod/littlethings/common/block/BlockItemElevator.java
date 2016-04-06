@@ -5,6 +5,7 @@ import com.gamingsmod.littlethings.common.block.base.ModBlockContainer;
 import com.gamingsmod.littlethings.common.lib.LibBlocks;
 import com.gamingsmod.littlethings.common.lib.LibGuiId;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityItemElevator;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -26,6 +27,8 @@ public class BlockItemElevator extends ModBlockContainer
     {
         super(Material.rock);
         this.setUnlocalizedName(LibBlocks.ITEMELEVATOR);
+        this.setHardness(3.5F);
+        this.setStepSound(SoundType.STONE);
         this.setCreativeTab(CreativeTabs.tabRedstone);
     }
 

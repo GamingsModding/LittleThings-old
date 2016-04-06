@@ -4,6 +4,7 @@ import com.gamingsmod.littlethings.common.block.base.ModBlockContainer;
 import com.gamingsmod.littlethings.common.lib.LibBlocks;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityAnimalChest;
 import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
@@ -28,6 +29,8 @@ public class BlockAnimalChest extends ModBlockContainer
     {
         super(Material.wood);
         this.setUnlocalizedName(LibBlocks.ANIMALCHEST + name);
+        this.setHardness(2.5F);
+        this.setStepSound(SoundType.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.setCreativeTab(CreativeTabs.tabDecorations);
     }
