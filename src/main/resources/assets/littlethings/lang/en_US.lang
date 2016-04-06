@@ -8,6 +8,11 @@ tile.littlethings:vanillaCraftingTable.darkoak.name=Dark Oak Crafting Table
 tile.littlethings:vanillaCraftingTable.spruce.name=Spruce Crafting Table
 tile.littlethings:vanillaCraftingTable.jungle.name=Jungle Crafting Table
 
+tile.littlethings:animalChest_chicken.name=Chicken Chest
+tile.littlethings:animalChest_cow.name=Cow Chest
+tile.littlethings:animalChest_pig.name=Pig Chest
+tile.littlethings:animalChest_sheep.name=Sheep Chest
+
 tile.littlethings:upgradedFurnace_iron.name=Iron Furnace
 tile.littlethings:upgradedFurnace_gold.name=Gold Furnace
 tile.littlethings:upgradedFurnace_diamond.name=Diamond Furnace
@@ -37,6 +42,10 @@ container.upgradedFurnace.iron=Iron Furnace
 container.upgradedFurnace.gold=Gold Furnace
 container.upgradedFurnace.diamond=Diamond Furnace
 container.upgradedFurnace.emerald=Emerald Furnace
+container.animalChest.chicken=Chicken Chest
+container.animalChest.cow=Cow Chest
+container.animalChest.pig=Pig Chest
+container.animalChest.sheep=Sheep Chest
 
 #Command Usage
 command.littlethings.head=/head
