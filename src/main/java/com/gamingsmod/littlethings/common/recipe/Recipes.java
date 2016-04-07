@@ -31,6 +31,15 @@ public class Recipes
         if (ConfigurationHandler.enableGlassPanesRecipe) recipesRecoloringGlassPanes();
 
         if (ConfigurationHandler.enableAnimalChests) recipesAnimalChests();
+
+        if (ConfigurationHandler.enableClearGlass) recipesClearGlass();
+    }
+
+    private static void recipesClearGlass()
+    {
+        addRecipe(new ItemStack(ModBlocks.ClearGlass, 4),
+                "gg", "gg",
+                'g', new ItemStack(Blocks.glass));
     }
 
     private static void recipesAnimalChests()

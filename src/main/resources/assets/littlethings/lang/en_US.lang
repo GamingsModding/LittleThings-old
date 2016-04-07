@@ -19,6 +19,7 @@ tile.littlethings:upgradedFurnace_diamond.name=Diamond Furnace
 tile.littlethings:upgradedFurnace_emerald.name=Emerald Furnace
 
 tile.littlethings:itemElevator.name=Item Elevator
+tile.littlethings:clearGlass.name=Clear Glass
 
 #Items
 item.littlethings:ironNugget.name=Iron Nugget

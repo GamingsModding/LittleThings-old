@@ -1,23 +1,18 @@
 package com.gamingsmod.littlethings.common.block;
 
-import com.gamingsmod.littlethings.common.block.base.IMetaBlock;
 import com.gamingsmod.littlethings.common.block.base.ModBlock;
 import com.gamingsmod.littlethings.common.lib.LibBlocks;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.Random;
 
 public class BlockClearGlass extends ModBlock
 {
@@ -31,6 +26,8 @@ public class BlockClearGlass extends ModBlock
     public BlockClearGlass()
     {
         super(LibBlocks.CLEARGLASS, Material.glass);
+        this.setHardness(0.3F);
+        this.setStepSound(SoundType.GLASS);
         this.setCreativeTab(CreativeTabs.tabBlock);
         this.setDefaultState(blockState
                 .getBaseState()

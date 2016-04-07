@@ -8,6 +8,7 @@
     }
   },
   "textures": {
+    "particle": "littlethings:blocks/clearGlass_all",
     "down": "littlethings:blocks/clearGlass_double4",
     "up": "littlethings:blocks/clearGlass_none",
     "north": "littlethings:blocks/clearGlass_none",
