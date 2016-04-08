@@ -93,6 +93,11 @@ public class BlockStainedClearGlass extends ModBlock implements IMetaBlock
         return new ItemStack(Item.getItemFromBlock(state.getBlock()), 1, this.getMetaFromState(world.getBlockState(pos)));
     }
 
+    public int damageDropped(IBlockState state)
+    {
+        return getMetaFromState(state);
+    }
+
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
         IBlockState origState = state;
