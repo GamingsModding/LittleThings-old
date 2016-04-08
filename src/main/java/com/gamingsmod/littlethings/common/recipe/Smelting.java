@@ -1,5 +1,7 @@
 package com.gamingsmod.littlethings.common.recipe;
 
+import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
+import com.gamingsmod.littlethings.common.init.ModBlocks;
 import com.gamingsmod.littlethings.common.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -16,6 +18,14 @@ public class Smelting
         reg(Blocks.golden_rail, new ItemStack(Items.gold_ingot), 0.3F);
         reg(Blocks.activator_rail, new ItemStack(Items.iron_ingot), 0.3F);
         reg(Blocks.detector_rail, new ItemStack(Items.iron_ingot), 0.3F);
+
+
+        if (ConfigurationHandler.enableClearGlass) recipesClearGlass();
+    }
+
+    private static void recipesClearGlass()
+    {
+        reg(Blocks.glass, new ItemStack(ModBlocks.ClearGlass), 0.2F);
     }
 
     private static void reg(Item input, ItemStack output, float xp)

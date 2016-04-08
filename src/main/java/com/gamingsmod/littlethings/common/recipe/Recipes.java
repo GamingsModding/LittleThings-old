@@ -7,6 +7,7 @@ import com.gamingsmod.littlethings.common.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
@@ -37,9 +38,12 @@ public class Recipes
 
     private static void recipesClearGlass()
     {
-        addRecipe(new ItemStack(ModBlocks.ClearGlass, 4),
-                "gg", "gg",
-                'g', new ItemStack(Blocks.glass));
+        for (EnumDyeColor color : EnumDyeColor.values()) {
+            addRecipe(new ItemStack(ModBlocks.StainedClearGlass, 8, color.getMetadata()),
+                    "ggg", "gdg", "ggg",
+                    'g', new ItemStack(ModBlocks.ClearGlass),
+                    'd', oreDicDyes[color.getDyeDamage()]);
+        }
     }
 
     private static void recipesAnimalChests()
