@@ -1,0 +1,40 @@
+<?php
+$modid = "littlethings";
+$base = "src/main/resources/assets/{$modid}/";
+$make = "make/";
+
+$colors = ["white", "orange", "magenta", "light_blue", "yellow", "lime", "pink", "gray", "silver", "cyan", "purple", "blue", "brown", "green", "red", "black"];
+$models = ["clearGlass_all.json" => "stainedClearGlass_all_[color].json", 
+"clearGlass_double_corner.json" => "stainedClearGlass_double_corner_[color].json", 
+"clearGlass_double_straight.json" => "stainedClearGlass_double_straight_[color].json", 
+"clearGlass_none.json" => "stainedClearGlass_none_[color].json", 
+"clearGlass_quad.json" => "stainedClearGlass_quad_[color].json", 
+"clearGlass_quad2.json" => "stainedClearGlass_quad2_[color].json", 
+"clearGlass_single.json" => "stainedClearGlass_single_[color].json", 
+"clearGlass_triple_corner.json" => "stainedClearGlass_triple_corner_[color].json", 
+"clearGlass_triple_straight.json" => "stainedClearGlass_triple_straight_[color].json", 
+"clearGlass_triple_straight2.json" => "stainedClearGlass_triple_straight2_[color].json",
+"clearGlass_five.json" => "stainedClearGlass_five_[color].json"];
+
+$stainedGlassBase = file_get_contents($make . "stainedGlassBase.txt");
+$file = fopen($base . "blockstates/stainedClearGlass.json", "w");
+fwrite($file, "{");
+fwrite($file, "  \"variants\": {");
+
+foreach ($colors as $color) {
+	fwrite($file, str_replace("[color]", $color, $stainedGlassBase));
+	foreach ($models as $model => $newname) {
+		$modelfile = fopen($base . "models/block/" . str_replace("[color]", $color, $newname), "w");
+		fwrite($modelfile, str_replace("[color]", $color, file_get_contents($make . $model)));
+		fclose($modelfile);
+	}
+
+	$itemfile = fopen($base . "models/item/stainedClearGlass_" . $color . ".json", "w");
+	fwrite($itemfile, str_replace("[color]", $color, file_get_contents($make . "item.txt")));
+	fclose($itemfile);
+}
+
+fwrite($file, "  }");
+fwrite($file, "}");
+fclose($file);
+

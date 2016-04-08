@@ -15,10 +15,11 @@ public class ModBlocks
     public static Block[] UpgradedFurnaces = new Block[8];
     public static Block[] AnimalChests = new Block[BlockAnimalChest.Types.values().length];
     public static Block ClearGlass;
+    public static Block StainedClearGlass;
 
     public static void init()
     {
-        int i = 0;
+        int i;
 
         if (ConfigurationHandler.enableExtraCraftingTables)
             addMetaBlock(VanillaCraftingTables = new BlockVanillaCraftingTables(), LibBlocks.VANILLACRAFTINGTABLE);
@@ -45,6 +46,7 @@ public class ModBlocks
 
         if (ConfigurationHandler.enableClearGlass) {
             addBlock(ClearGlass = new BlockClearGlass(), LibBlocks.CLEARGLASS);
+            addMetaBlock(StainedClearGlass = new BlockStainedClearGlass(), LibBlocks.STAINEDCLEARGLASS);
         }
     }
 

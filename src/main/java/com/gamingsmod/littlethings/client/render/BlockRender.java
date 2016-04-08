@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -28,6 +29,17 @@ public class BlockRender
                     new ResourceLocation(modId + "vanillaCraftingTable_jungle"),
                     new ResourceLocation(modId + "vanillaCraftingTable_spruce")
             );
+        }
+
+        if (ConfigurationHandler.enableClearGlass) {
+            ResourceLocation[] rl = new ResourceLocation[16];
+            int i = 0;
+            for (EnumDyeColor color : EnumDyeColor.values()) {
+                rl[i] = new ResourceLocation(modId + "stainedClearGlass_" + color.getName());
+                i++;
+            }
+
+            ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.StainedClearGlass), rl);
         }
     }
 
@@ -56,6 +68,9 @@ public class BlockRender
 
         if (ConfigurationHandler.enableClearGlass) {
             reg(ModBlocks.ClearGlass);
+            for (EnumDyeColor color : EnumDyeColor.values()) {
+                reg(ModBlocks.StainedClearGlass, color.getMetadata(), "stainedClearGlass_" + color.getName());
+            }
         }
 
     }

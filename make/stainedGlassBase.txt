@@ -1,0 +1,78 @@
+    "color=[color],down=false,east=false,north=false,south=false,up=false,west=false": { "model": "littlethings:stainedClearGlass_all_[color]" },
+
+    "color=[color],down=false,east=false,north=true,south=false,up=false,west=false": { "model": "littlethings:stainedClearGlass_single_[color]" },
+    "color=[color],down=false,east=false,north=false,south=true,up=false,west=false": { "model": "littlethings:stainedClearGlass_single_[color]", "y": 180 },
+    "color=[color],down=false,east=true,north=false,south=false,up=false,west=false": { "model": "littlethings:stainedClearGlass_single_[color]", "y": 90 },
+    "color=[color],down=false,east=false,north=false,south=false,up=false,west=true": { "model": "littlethings:stainedClearGlass_single_[color]", "y": 270 },
+    "color=[color],down=true,east=false,north=false,south=false,up=false,west=false": { "model": "littlethings:stainedClearGlass_single_[color]", "x": 90 },
+    "color=[color],down=false,east=false,north=false,south=false,up=true,west=false": { "model": "littlethings:stainedClearGlass_single_[color]", "x": 270 },
+
+    "color=[color],down=false,east=true,north=true,south=false,up=false,west=false": { "model": "littlethings:stainedClearGlass_double_corner_[color]" },
+    "color=[color],down=false,east=false,north=false,south=true,up=false,west=true": { "model": "littlethings:stainedClearGlass_double_corner_[color]", "y": 180 },
+    "color=[color],down=false,east=true,north=false,south=true,up=false,west=false": { "model": "littlethings:stainedClearGlass_double_corner_[color]", "y": 90 },
+    "color=[color],down=false,east=false,north=true,south=false,up=false,west=true": { "model": "littlethings:stainedClearGlass_double_corner_[color]", "y": 270 },
+
+    "color=[color],down=true,east=true,north=false,south=false,up=false,west=false": { "model": "littlethings:stainedClearGlass_double_corner_[color]", "x": 90 },
+    "color=[color],down=true,east=false,north=true,south=false,up=false,west=false": { "model": "littlethings:stainedClearGlass_double_corner_[color]", "x": 90, "y": 270 },
+    "color=[color],down=true,east=false,north=false,south=true,up=false,west=false": { "model": "littlethings:stainedClearGlass_double_corner_[color]", "x": 90, "y": 90 },
+    "color=[color],down=true,east=false,north=false,south=false,up=false,west=true": { "model": "littlethings:stainedClearGlass_double_corner_[color]", "x": 90, "y": 180 },
+
+    "color=[color],down=false,east=true,north=false,south=false,up=true,west=false": { "model": "littlethings:stainedClearGlass_double_corner_[color]", "x": 270 },
+    "color=[color],down=false,east=false,north=true,south=false,up=true,west=false": { "model": "littlethings:stainedClearGlass_double_corner_[color]", "x": 270, "y": 270 },
+    "color=[color],down=false,east=false,north=false,south=true,up=true,west=false": { "model": "littlethings:stainedClearGlass_double_corner_[color]", "x": 270, "y": 90 },
+    "color=[color],down=false,east=false,north=false,south=false,up=true,west=true": { "model": "littlethings:stainedClearGlass_double_corner_[color]", "x": 270, "y": 180 },
+
+    "color=[color],down=true,east=false,north=false,south=false,up=true,west=false": { "model": "littlethings:stainedClearGlass_double_straight_[color]" },
+    "color=[color],down=false,east=true,north=false,south=false,up=false,west=true": { "model": "littlethings:stainedClearGlass_double_straight_[color]", "x": 90, "y": 90 },
+    "color=[color],down=false,east=false,north=true,south=true,up=false,west=false": { "model": "littlethings:stainedClearGlass_double_straight_[color]", "x": 270 },
+
+    "color=[color],down=false,east=false,north=true,south=true,up=true,west=false": { "model": "littlethings:stainedClearGlass_triple_straight_[color]" },
+    "color=[color],down=true,east=false,north=true,south=true,up=false,west=false": { "model": "littlethings:stainedClearGlass_triple_straight_[color]", "x": 180 },
+    "color=[color],down=false,east=true,north=false,south=false,up=true,west=true": { "model": "littlethings:stainedClearGlass_triple_straight_[color]", "y": 90 },
+    "color=[color],down=true,east=true,north=false,south=false,up=false,west=true": { "model": "littlethings:stainedClearGlass_triple_straight_[color]", "x": 180, "y": 90 },
+    "color=[color],down=true,east=false,north=true,south=false,up=true,west=false": { "model": "littlethings:stainedClearGlass_triple_straight_[color]", "x": 90 },
+    "color=[color],down=true,east=false,north=false,south=true,up=true,west=false": { "model": "littlethings:stainedClearGlass_triple_straight_[color]", "x": 270 },
+    "color=[color],down=true,east=true,north=false,south=false,up=true,west=false": { "model": "littlethings:stainedClearGlass_triple_straight_[color]", "x": 90, "y": 90 },
+    "color=[color],down=true,east=false,north=false,south=false,up=true,west=true": { "model": "littlethings:stainedClearGlass_triple_straight_[color]", "x": 270, "y": 90 },
+
+    "color=[color],down=false,east=true,north=true,south=true,up=false,west=false": { "model": "littlethings:stainedClearGlass_triple_straight2_[color]" },
+    "color=[color],down=false,east=false,north=true,south=true,up=false,west=true": { "model": "littlethings:stainedClearGlass_triple_straight2_[color]", "y": 180 },
+    "color=[color],down=false,east=true,north=true,south=false,up=false,west=true": { "model": "littlethings:stainedClearGlass_triple_straight2_[color]", "y": 270 },
+    "color=[color],down=false,east=true,north=false,south=true,up=false,west=true": { "model": "littlethings:stainedClearGlass_triple_straight2_[color]", "y": 90 },
+
+    "color=[color],down=false,east=true,north=true,south=false,up=true,west=false": { "model": "littlethings:stainedClearGlass_triple_corner_[color]" },
+    "color=[color],down=false,east=true,north=false,south=true,up=true,west=false": { "model": "littlethings:stainedClearGlass_triple_corner_[color]", "y": 90 },
+    "color=[color],down=false,east=false,north=false,south=true,up=true,west=true": { "model": "littlethings:stainedClearGlass_triple_corner_[color]", "y": 180 },
+    "color=[color],down=false,east=false,north=true,south=false,up=true,west=true": { "model": "littlethings:stainedClearGlass_triple_corner_[color]", "y": 270 },
+
+    "color=[color],down=true,east=true,north=false,south=true,up=false,west=false": { "model": "littlethings:stainedClearGlass_triple_corner_[color]", "x": 180 },
+    "color=[color],down=true,east=true,north=true,south=false,up=false,west=false": { "model": "littlethings:stainedClearGlass_triple_corner_[color]", "x": 180, "y": 270 },
+    "color=[color],down=true,east=false,north=false,south=true,up=false,west=true": { "model": "littlethings:stainedClearGlass_triple_corner_[color]", "x": 180, "y": 90 },
+    "color=[color],down=true,east=false,north=true,south=false,up=false,west=true": { "model": "littlethings:stainedClearGlass_triple_corner_[color]", "x": 180, "y": 180 },
+
+    "color=[color],down=false,east=true,north=false,south=true,up=true,west=true": { "model": "littlethings:stainedClearGlass_quad_[color]" },
+    "color=[color],down=false,east=false,north=true,south=true,up=true,west=true": { "model": "littlethings:stainedClearGlass_quad_[color]", "y": 90 },
+    "color=[color],down=false,east=true,north=true,south=false,up=true,west=true": { "model": "littlethings:stainedClearGlass_quad_[color]", "y": 180 },
+    "color=[color],down=false,east=true,north=true,south=true,up=true,west=false": { "model": "littlethings:stainedClearGlass_quad_[color]", "y": 270 },
+
+    "color=[color],down=true,east=true,north=false,south=true,up=false,west=true": { "model": "littlethings:stainedClearGlass_quad_[color]", "x": 180, "y": 180 },
+    "color=[color],down=true,east=false,north=true,south=true,up=false,west=true": { "model": "littlethings:stainedClearGlass_quad_[color]", "x": 180, "y": 270 },
+    "color=[color],down=true,east=true,north=true,south=false,up=false,west=true": { "model": "littlethings:stainedClearGlass_quad_[color]", "x": 180 },
+    "color=[color],down=true,east=true,north=true,south=true,up=false,west=false": { "model": "littlethings:stainedClearGlass_quad_[color]", "x": 180, "y": 90 },
+
+    "color=[color],down=true,east=false,north=false,south=true,up=true,west=true": { "model": "littlethings:stainedClearGlass_quad2_[color]" },
+    "color=[color],down=true,east=true,north=true,south=false,up=true,west=false": { "model": "littlethings:stainedClearGlass_quad2_[color]", "y": 180 },
+    "color=[color],down=true,east=true,north=false,south=true,up=true,west=false": { "model": "littlethings:stainedClearGlass_quad2_[color]", "y": 270 },
+    "color=[color],down=true,east=false,north=true,south=false,up=true,west=true": { "model": "littlethings:stainedClearGlass_quad2_[color]", "y": 90 },
+
+    "color=[color],down=true,east=true,north=false,south=false,up=true,west=true": { "model": "littlethings:stainedClearGlass_none_[color]", "x": 90 },
+    "color=[color],down=true,east=false,north=true,south=true,up=true,west=false": { "model": "littlethings:stainedClearGlass_none_[color]", "x": 90, "y": 90 },
+    "color=[color],down=false,east=true,north=true,south=true,up=false,west=true": { "model": "littlethings:stainedClearGlass_none_[color]" },
+    "color=[color],down=true,east=true,north=true,south=true,up=true,west=true": { "model": "littlethings:clearGlass_none" },
+
+    "color=[color],down=true,east=true,north=false,south=true,up=true,west=true": { "model": "littlethings:stainedClearGlass_five_[color]" },
+    "color=[color],down=true,east=true,north=true,south=false,up=true,west=true": { "model": "littlethings:stainedClearGlass_five_[color]", "y": 180 },
+    "color=[color],down=true,east=true,north=true,south=true,up=true,west=false": { "model": "littlethings:stainedClearGlass_five_[color]", "y": 270 },
+    "color=[color],down=true,east=false,north=true,south=true,up=true,west=true": { "model": "littlethings:stainedClearGlass_five_[color]", "y": 90 },
+    "color=[color],down=true,east=true,north=true,south=true,up=false,west=true": { "model": "littlethings:stainedClearGlass_five_[color]", "x": 270 },
+    "color=[color],down=false,east=true,north=true,south=true,up=true,west=true": { "model": "littlethings:stainedClearGlass_five_[color]", "x": 90 },

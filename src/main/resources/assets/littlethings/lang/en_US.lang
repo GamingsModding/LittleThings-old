@@ -20,6 +20,22 @@ tile.littlethings:upgradedFurnace_emerald.name=Emerald Furnace
 
 tile.littlethings:itemElevator.name=Item Elevator
 tile.littlethings:clearGlass.name=Clear Glass
+tile.littlethings:stainedClearGlass.white.name=White Stained Clear Glass
+tile.littlethings:stainedClearGlass.orange.name=Orange Stained Clear Glass
+tile.littlethings:stainedClearGlass.magenta.name=Magenta Stained Clear Glass
+tile.littlethings:stainedClearGlass.lightBlue.name=Light Blue Stained Clear Glass
+tile.littlethings:stainedClearGlass.yellow.name=Yellow Stained Clear Glass
+tile.littlethings:stainedClearGlass.lime.name=Lime Stained Clear Glass
+tile.littlethings:stainedClearGlass.pink.name=Pink Stained Clear Glass
+tile.littlethings:stainedClearGlass.gray.name=Gray Stained Clear Glass
+tile.littlethings:stainedClearGlass.silver.name=Silver Stained Clear Glass
+tile.littlethings:stainedClearGlass.cyan.name=Cyan Stained Clear Glass
+tile.littlethings:stainedClearGlass.purple.name=Purple Stained Clear Glass
+tile.littlethings:stainedClearGlass.blue.name=Blue Stained Clear Glass
+tile.littlethings:stainedClearGlass.brown.name=Brown Stained Clear Glass
+tile.littlethings:stainedClearGlass.green.name=Green Stained Clear Glass
+tile.littlethings:stainedClearGlass.red.name=Red Stained Clear Glass
+tile.littlethings:stainedClearGlass.black.name=Black Stained Clear Glass
 
 #Items
 item.littlethings:ironNugget.name=Iron Nugget

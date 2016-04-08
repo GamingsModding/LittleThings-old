@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "littlethings:blocks/clearGlass_all_lime"
+  }
+}

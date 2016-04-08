@@ -7,4 +7,5 @@ public class LibBlocks
     public static final String UPGRADEDFURNACE = "upgradedFurnace_";
     public static final String ANIMALCHEST = "animalChest_";
     public static final String CLEARGLASS = "clearGlass";
+    public static final String STAINEDCLEARGLASS = "stainedClearGlass";
 }
