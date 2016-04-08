@@ -28,6 +28,9 @@ version = "${config.mc_version}-${config.version}"
 group= "com.gamingsmod.littlethings" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = config.mod_name
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 minecraft {
     version = "${config.mc_version}-${config.forge_version}-${config.mc_version}"
     runDir = "run"

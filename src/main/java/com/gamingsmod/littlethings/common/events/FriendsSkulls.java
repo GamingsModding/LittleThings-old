@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.function.Consumer;
 
 public class FriendsSkulls
 {
