@@ -8,6 +8,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
@@ -277,6 +279,42 @@ public class TileEntityAnimalChest extends TileEntity implements IInventory, ITi
         }
     }
 
+    @Override
+    public void writeToNBT(NBTTagCompound nbt)
+    {
+        super.writeToNBT(nbt);
+        NBTTagList list = new NBTTagList();
+        for (int i = 0; i < this.getSizeInventory(); ++i) {
+            if (this.getStackInSlot(i) != null) {
+                NBTTagCompound stackTag = new NBTTagCompound();
+                stackTag.setByte("Slot", (byte) i);
+                this.getStackInSlot(i).writeToNBT(stackTag);
+                list.appendTag(stackTag);
+            }
+        }
+        nbt.setTag("Items", list);
+
+        if (this.hasCustomName()) {
+            nbt.setString("CustomName", this.getCustomName());
+        }
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbt)
+    {
+        super.readFromNBT(nbt);
+        NBTTagList list = nbt.getTagList("Items", 10);
+        for (int i = 0; i < list.tagCount(); ++i) {
+            NBTTagCompound stackTag = list.getCompoundTagAt(i);
+            int slot = stackTag.getByte("Slot") & 255;
+            this.setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(stackTag));
+        }
+
+        if (nbt.hasKey("CustomName", 8)) {
+            this.setCustomName(nbt.getString("CustomName"));
+        }
+    }
+
     public String getCustomName() {
         return this.customName;
     }
@@ -307,6 +345,8 @@ public class TileEntityAnimalChest extends TileEntity implements IInventory, ITi
     public String getAnimal()
     {
         Block block = worldObj.getBlockState(getPos()).getBlock();
+        if (!(block instanceof BlockAnimalChest))
+            return null;
         return block.getUnlocalizedName().substring(6 + LibMisc.MOD_ID.length() + "animalChest_".length());
     }
 }

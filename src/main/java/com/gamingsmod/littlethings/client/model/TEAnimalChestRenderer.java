@@ -37,19 +37,22 @@ public class TEAnimalChestRenderer extends TileEntitySpecialRenderer<TileEntityA
         }
         else
         {
-            switch (te.getAnimal()) {
-                case "cow":
-                    this.bindTexture(COW);
-                    break;
-                case "chicken":
-                    this.bindTexture(CHICKEN);
-                    break;
-                case "pig":
-                    this.bindTexture(PIG);
-                    break;
-                case "sheep":
-                    this.bindTexture(SHEEP);
-                    break;
+            String animal = te.getAnimal();
+            if (animal != null) {
+                switch (te.getAnimal()) {
+                    case "cow":
+                        this.bindTexture(COW);
+                        break;
+                    case "chicken":
+                        this.bindTexture(CHICKEN);
+                        break;
+                    case "pig":
+                        this.bindTexture(PIG);
+                        break;
+                    case "sheep":
+                        this.bindTexture(SHEEP);
+                        break;
+                }
             }
         }
 
