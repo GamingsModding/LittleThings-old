@@ -83,23 +83,26 @@ public class BlockStainedClearGlass extends ModBlock implements IMetaBlock
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
-        for (EnumDyeColor enumdyecolor : EnumDyeColor.values())
-        {
+        for (EnumDyeColor enumdyecolor : EnumDyeColor.values()) {
             list.add(new ItemStack(itemIn, 1, enumdyecolor.getMetadata()));
         }
     }
 
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+    {
         return new ItemStack(Item.getItemFromBlock(state.getBlock()), 1, this.getMetaFromState(world.getBlockState(pos)));
     }
 
+    @Override
     public int damageDropped(IBlockState state)
     {
         return getMetaFromState(state);
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    {
         IBlockState origState = state;
         state = state.withProperty(UP, worldIn.getBlockState(pos.up()).equals(origState));
         state = state.withProperty(DOWN, worldIn.getBlockState(pos.down()).equals(origState));
@@ -117,12 +120,14 @@ public class BlockStainedClearGlass extends ModBlock implements IMetaBlock
     }
 
     @Override
-    protected BlockStateContainer createBlockState() {
+    protected BlockStateContainer createBlockState()
+    {
         return new BlockStateContainer(this, COLOR, UP, DOWN, NORTH, SOUTH, EAST, WEST);
     }
 
     @Override
-    public String getSpecialName(ItemStack stack) {
+    public String getSpecialName(ItemStack stack)
+    {
         return EnumDyeColor.byMetadata(stack.getMetadata()).getUnlocalizedName();
     }
 }

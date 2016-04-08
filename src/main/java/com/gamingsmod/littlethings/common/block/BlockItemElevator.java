@@ -58,9 +58,8 @@ public class BlockItemElevator extends ModBlockContainer
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase player, ItemStack stack)
     {
-        if (stack.hasDisplayName()) {
+        if (stack.hasDisplayName())
             ((TileEntityItemElevator) world.getTileEntity(pos)).setCustomName(stack.getDisplayName());
-        }
     }
 
     @Override

@@ -70,7 +70,8 @@ public class BlockClearGlass extends ModBlock
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    {
         IBlockState origState = state;
         state = state.withProperty(UP, worldIn.getBlockState(pos.up()).equals(origState));
         state = state.withProperty(DOWN, worldIn.getBlockState(pos.down()).equals(origState));
@@ -88,7 +89,8 @@ public class BlockClearGlass extends ModBlock
     }
 
     @Override
-    protected BlockStateContainer createBlockState() {
+    protected BlockStateContainer createBlockState()
+    {
         return new BlockStateContainer(this, UP, DOWN, NORTH, SOUTH, EAST, WEST);
     }
 }

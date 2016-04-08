@@ -16,6 +16,9 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 
+/**
+ * Code adapted From TileEntityEnderChest and TileEntityChest
+ */
 public class TileEntityAnimalChest extends TileEntity implements IInventory, ITickable
 {
     private ItemStack[] inventory;
