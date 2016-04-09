@@ -34,6 +34,16 @@ public class Recipes
         if (ConfigurationHandler.enableAnimalChests) recipesAnimalChests();
 
         if (ConfigurationHandler.enableClearGlass) recipesClearGlass();
+
+        if (ConfigurationHandler.enableHorseEquipment) recipesHorseEquipment();
+    }
+
+    private static void recipesHorseEquipment()
+    {
+        addRecipe(new ItemStack(Items.saddle),
+                "l l", "lll", "lil",
+                'l', new ItemStack(Items.leather),
+                'i', "ingotIron");
     }
 
     private static void recipesClearGlass()
