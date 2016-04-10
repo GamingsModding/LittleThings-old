@@ -18,6 +18,9 @@ public class ConfigurationHandler
     public static boolean enableClearGlass;
     public static boolean enableHorseEquipment;
 
+    public static boolean enableOldSaddleRecipe;
+    public static boolean enableOldArmorRecipe;
+
     public static double percentOfSkullSpawn;
 
     public static void init(File file)
@@ -38,7 +41,10 @@ public class ConfigurationHandler
         enableGlassPanesRecipe = configuration.get(Configuration.CATEGORY_GENERAL, "Enable Recoloring Glass Panes", true).getBoolean();
         enableAnimalChests = configuration.get(Configuration.CATEGORY_GENERAL, "Enable Animal Chests", true).getBoolean();
         enableClearGlass = configuration.get(Configuration.CATEGORY_GENERAL, "Enable Clear Glass", true).getBoolean();
-        enableHorseEquipment = configuration.get(Configuration.CATEGORY_GENERAL, "Enable Horse Requipment Recipes", true).getBoolean();
+        enableHorseEquipment = configuration.get(Configuration.CATEGORY_GENERAL, "Enable Horse Equipment Recipes", true).getBoolean();
+
+        enableOldSaddleRecipe = configuration.get("Horse Equipment Recipes", "Enable Old Saddle Recipe", false, "Pre-13w18a Recipe").getBoolean();
+        enableOldArmorRecipe = configuration.get("Horse Equipment Recipes", "Enable Old Armor Recipe", false, "Pre-13w16a Recipe").getBoolean();
 
         percentOfSkullSpawn = configuration.get(Configuration.CATEGORY_GENERAL, "Percent Of Zombie Spawning With Friend Skull", 0.01, "Higher the number the more common", 0.0, 1).getDouble();
 

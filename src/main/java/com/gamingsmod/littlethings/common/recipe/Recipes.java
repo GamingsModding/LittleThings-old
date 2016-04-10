@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
@@ -40,10 +41,48 @@ public class Recipes
 
     private static void recipesHorseEquipment()
     {
-        addRecipe(new ItemStack(Items.saddle),
-                "l l", "lll", "lil",
-                'l', new ItemStack(Items.leather),
-                'i', "ingotIron");
+        if (ConfigurationHandler.enableOldSaddleRecipe)
+            addRecipe(new ItemStack(Items.saddle),
+                    "lll", "lil", "i i",
+                    'l', new ItemStack(Items.leather),
+                    'i', "ingotIron");
+        else
+            addRecipe(new ItemStack(Items.saddle),
+                    "l l", "lll", "lil",
+                    'l', new ItemStack(Items.leather),
+                    's', new ItemStack(Items.string),
+                    'i', "ingotIron");
+
+        if (ConfigurationHandler.enableOldArmorRecipe) {
+            addRecipe(new ItemStack(Items.iron_horse_armor),
+                    "  i", "iwi", "iii",
+                    'i', "ingotIron",
+                    'w', new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE));
+            addRecipe(new ItemStack(Items.golden_horse_armor),
+                    "  i", "iwi", "iii",
+                    'i', "ingotGold",
+                    'w', new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE));
+            addRecipe(new ItemStack(Items.diamond_horse_armor),
+                    "  i", "iwi", "iii",
+                    'i', "gemDiamond",
+                    'w', new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE));
+        } else {
+            addRecipe(new ItemStack(Items.iron_horse_armor),
+                    "  h", "iwi", "i i",
+                    'i', "ingotIron",
+                    'h', new ItemStack(Items.iron_helmet),
+                    'w', new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE));
+            addRecipe(new ItemStack(Items.golden_horse_armor),
+                    "  h", "iwi", "i i",
+                    'i', "ingotGold",
+                    'h', new ItemStack(Items.golden_helmet),
+                    'w', new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE));
+            addRecipe(new ItemStack(Items.diamond_horse_armor),
+                    "  h", "iwi", "i i",
+                    'i', "gemDiamond",
+                    'h', new ItemStack(Items.diamond_helmet),
+                    'w', new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE));
+        }
     }
 
     private static void recipesClearGlass()
