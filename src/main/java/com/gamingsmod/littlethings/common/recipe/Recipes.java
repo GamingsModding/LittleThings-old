@@ -4,6 +4,8 @@ import com.gamingsmod.littlethings.common.block.BlockVanillaCraftingTables;
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.init.ModBlocks;
 import com.gamingsmod.littlethings.common.init.ModItems;
+import com.gamingsmod.littlethings.common.lib.LibMisc;
+import com.gamingsmod.littlethings.common.recipe.custom.ShapedReturnRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -13,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
@@ -22,6 +25,8 @@ public class Recipes
 
     public static void init()
     {
+        RecipeSorter.register(LibMisc.PREFIX_MOD + "shapedReturnRecipe", ShapedReturnRecipe.class, RecipeSorter.Category.SHAPED, "after:forge:shapedore");
+
         addBlockRecipe(new ItemStack(Items.iron_ingot), new ItemStack(ModItems.IronNugget));
 
         if (ConfigurationHandler.enableExtraCraftingTables) recipesExtraCraftingTables();
@@ -97,6 +102,11 @@ public class Recipes
                     'g', new ItemStack(ModBlocks.StainedClearGlass, 1, OreDictionary.WILDCARD_VALUE),
                     'd', oreDicDyes[color.getDyeDamage()]);
         }
+
+        addRecipe(new ShapedReturnRecipe(new ItemStack(ModBlocks.ClearGlass, 8),
+                "ggg", "gbg", "ggg",
+                'g', new ItemStack(ModBlocks.StainedClearGlass, 1, OreDictionary.WILDCARD_VALUE),
+                'b', new ItemStack(Items.water_bucket)));
     }
 
     private static void recipesAnimalChests()
@@ -129,6 +139,11 @@ public class Recipes
                     'd', dye);
             i++;
         }
+
+        addRecipe(new ShapedReturnRecipe(new ItemStack(Blocks.glass, 8),
+                "ggg", "gbg", "ggg",
+                'g', new ItemStack(Blocks.stained_glass, 1, OreDictionary.WILDCARD_VALUE),
+                'b', new ItemStack(Items.water_bucket)));
     }
 
     private static void recipesUpgradedFurnaces()
@@ -201,6 +216,11 @@ public class Recipes
     private static void addRecipe(ItemStack output, Object... recipe)
     {
         CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(output, recipe));
+    }
+
+    private static void addRecipe(IRecipe recipe)
+    {
+        CraftingManager.getInstance().getRecipeList().add(recipe);
     }
 
     private static void addShapelessRecipe(ItemStack output, Object... recipe)
