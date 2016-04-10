@@ -92,6 +92,10 @@ public class Recipes
                     "ggg", "gdg", "ggg",
                     'g', new ItemStack(ModBlocks.ClearGlass),
                     'd', oreDicDyes[color.getDyeDamage()]);
+            addRecipe(new ItemStack(ModBlocks.StainedClearGlass, 8, color.getMetadata()),
+                    "ggg", "gdg", "ggg",
+                    'g', new ItemStack(ModBlocks.StainedClearGlass, 1, OreDictionary.WILDCARD_VALUE),
+                    'd', oreDicDyes[color.getDyeDamage()]);
         }
     }
 
