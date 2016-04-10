@@ -43,9 +43,6 @@ public class FoodEvents
 
             if (!world.isRemote) {
                 String unlocName = food.getUnlocalizedName().substring(5).toLowerCase();
-                System.out.println(unlocName);
-                System.out.println(unlocName.startsWith("raw"));
-                System.out.println(unlocName.endsWith("raw"));
                 if (unlocName.startsWith("raw") || unlocName.endsWith("raw") || unlocName.equals("fish")) {
                     if (world.rand.nextFloat() > 0.3F)
                         ((EntityPlayer) e.getEntity()).addPotionEffect(new PotionEffect(MobEffects.hunger, 600, 0));
