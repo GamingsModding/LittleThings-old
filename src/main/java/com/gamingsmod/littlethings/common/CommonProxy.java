@@ -1,7 +1,7 @@
 package com.gamingsmod.littlethings.common;
 
 import com.gamingsmod.littlethings.common.command.*;
-import com.gamingsmod.littlethings.common.events.FoodInformation;
+import com.gamingsmod.littlethings.common.events.FoodEvents;
 import com.gamingsmod.littlethings.common.events.FriendsSkulls;
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.handler.GuiHandler;
@@ -36,7 +36,7 @@ public class CommonProxy
         ModOreDic.init();
         NetworkRegistry.INSTANCE.registerGuiHandler(LittleThings.instance, new GuiHandler());
         MinecraftForge.EVENT_BUS.register(new FriendsSkulls());
-        MinecraftForge.EVENT_BUS.register(new FoodInformation());
+        MinecraftForge.EVENT_BUS.register(new FoodEvents());
     }
 
     public void postInit(FMLPostInitializationEvent e)
