@@ -1,12 +1,6 @@
 {
-  "parent": "block/cube",
+  "parent": "block/cube_all",
   "textures": {
-    "particle": "littlethings:blocks/animalChest_chicken_top",
-    "up": "littlethings:blocks/animalChest_chicken_top",
-    "north": "littlethings:blocks/animalChest_chicken_top",
-    "south": "littlethings:blocks/animalChest_chicken_top",
-    "east": "littlethings:blocks/animalChest_chicken_top",
-    "west": "littlethings:blocks/animalChest_chicken_top",
-    "down": "littlethings:blocks/animalChest_chicken_top"
+    "all": "littlethings:blocks/animalChest_chicken"
   }
 }

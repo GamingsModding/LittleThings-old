@@ -12,6 +12,13 @@ tile.littlethings:animalChest_chicken.name=Chicken Chest
 tile.littlethings:animalChest_cow.name=Cow Chest
 tile.littlethings:animalChest_pig.name=Pig Chest
 tile.littlethings:animalChest_sheep.name=Sheep Chest
+tile.littlethings:animalChest_horse.name=Horse Chest
+tile.littlethings:animalChest_dog.name=Dog Chest
+tile.littlethings:animalChest_squid.name=Squid Chest
+tile.littlethings:animalChest_zombie.name=Zombie Chest
+tile.littlethings:animalChest_skeleton.name=Skeleton Chest
+tile.littlethings:animalChest_creeper.name=Creeper Chest
+tile.littlethings:animalChest_spider.name=Spider Chest
 
 tile.littlethings:upgradedFurnace_iron.name=Iron Furnace
 tile.littlethings:upgradedFurnace_gold.name=Gold Furnace

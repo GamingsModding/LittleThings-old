@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "littlethings:animalChest_spider" },
+    "facing=south": { "model": "littlethings:animalChest_spider" },
+    "facing=east": { "model": "littlethings:animalChest_spider" },
+    "facing=west": { "model": "littlethings:animalChest_spider" }
+  }
+}
