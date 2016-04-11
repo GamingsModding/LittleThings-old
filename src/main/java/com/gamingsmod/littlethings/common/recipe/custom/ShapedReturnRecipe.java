@@ -8,20 +8,23 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 public class ShapedReturnRecipe extends ShapedOreRecipe
 {
 
-    public ShapedReturnRecipe(ItemStack result, Object... recipe) {
+    public ShapedReturnRecipe(ItemStack result, Object... recipe)
+    {
         super(result, recipe);
     }
 
     @Override
-    public ItemStack[] getRemainingItems(InventoryCrafting inv) {
+    public ItemStack[] getRemainingItems(InventoryCrafting inv)
+    {
         ItemStack[] stacks = new ItemStack[inv.getSizeInventory()];
-        for (int i = 0; i < inv.getSizeInventory(); ++i)
-        {
+        for (int i = 0; i < inv.getSizeInventory(); ++i) {
             ItemStack stack = inv.getStackInSlot(i);
-            if (stack != null && stack.getItem() == Items.water_bucket)
-                stacks[i] = new ItemStack(Items.bucket);
-            else
-                stacks[i] = null;
+            if (stack != null) {
+                if (stack.getItem() == Items.water_bucket || stack.getItem() == Items.lava_bucket)
+                    stacks[i] = new ItemStack(Items.bucket);
+                else
+                    stacks[i] = null;
+            }
         }
 
         return stacks;

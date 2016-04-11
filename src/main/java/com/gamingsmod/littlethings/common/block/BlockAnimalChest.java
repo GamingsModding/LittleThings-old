@@ -135,6 +135,13 @@ public class BlockAnimalChest extends ModBlockContainer
         cow,
         chicken,
         pig,
-        sheep
+        sheep,
+        horse,
+        dog,
+        squid,
+        zombie,
+        skeleton,
+        creeper,
+        spider
     }
 }

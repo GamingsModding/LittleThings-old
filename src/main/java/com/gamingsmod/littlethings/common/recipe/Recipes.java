@@ -28,6 +28,7 @@ public class Recipes
         RecipeSorter.register(LibMisc.PREFIX_MOD + "shapedReturnRecipe", ShapedReturnRecipe.class, RecipeSorter.Category.SHAPED, "after:forge:shapedore");
 
         addBlockRecipe(new ItemStack(Items.iron_ingot), new ItemStack(ModItems.IronNugget));
+        recipesSingleDye();
 
         if (ConfigurationHandler.enableExtraCraftingTables) recipesExtraCraftingTables();
 
@@ -42,6 +43,18 @@ public class Recipes
         if (ConfigurationHandler.enableClearGlass) recipesClearGlass();
 
         if (ConfigurationHandler.enableHorseEquipment) recipesHorseEquipment();
+    }
+
+    private static void recipesSingleDye()
+    {
+        int i = 0;
+        for (String dye : oreDicDyes) {
+            addShapelessRecipe(new ItemStack(Blocks.stained_glass_pane, 1, 15 - i),
+                    "paneGlass", dye);
+            addShapelessRecipe(new ItemStack(Blocks.stained_hardened_clay, 1, 15 - i),
+                    new ItemStack(Blocks.hardened_clay), dye);
+            i++;
+        }
     }
 
     private static void recipesHorseEquipment()

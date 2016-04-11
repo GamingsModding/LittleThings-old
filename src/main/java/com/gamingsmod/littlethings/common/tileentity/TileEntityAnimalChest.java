@@ -185,6 +185,8 @@ public class TileEntityAnimalChest extends TileEntity implements IInventory, ITi
                 case "sheep":
                     open = SoundEvents.entity_sheep_ambient;
                     break;
+                default:
+                    open = SoundEvents.entity_cow_death;
             }
             this.worldObj.playSound(null, d0, (double)j + 0.5D, d1, open, SoundCategory.BLOCKS, 0.75F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
         }
@@ -228,6 +230,8 @@ public class TileEntityAnimalChest extends TileEntity implements IInventory, ITi
                     case "sheep":
                         close = SoundEvents.entity_sheep_death;
                         break;
+                    default:
+                        close = SoundEvents.entity_cow_death;
                 }
                 this.worldObj.playSound(null, d3, (double)j + 0.5D, d2, close, SoundCategory.BLOCKS, 0.75F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
             }

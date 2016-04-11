@@ -27,6 +27,7 @@ public class BlockVanillaCraftingTables extends ModBlockMeta
 {
     public static final PropertyEnum TYPE = PropertyEnum.create("type", BlockVanillaCraftingTables.Variant.class);
 
+    @SuppressWarnings("unchecked")
     public BlockVanillaCraftingTables()
     {
         super(LibBlocks.VANILLACRAFTINGTABLE, Material.wood);
@@ -52,6 +53,7 @@ public class BlockVanillaCraftingTables extends ModBlockMeta
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public IBlockState getStateFromMeta(int meta) {
         return getDefaultState().withProperty(TYPE, Variant.values()[meta]);
     }

@@ -11,10 +11,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class TEAnimalChestRenderer extends TileEntitySpecialRenderer<TileEntityAnimalChest>
 {
-    private static final ResourceLocation COW = new ResourceLocation("littlethings:textures/entity/animalChest/cow.png");
-    private static final ResourceLocation CHICKEN = new ResourceLocation("littlethings:textures/entity/animalChest/chicken.png");
-    private static final ResourceLocation PIG = new ResourceLocation("littlethings:textures/entity/animalChest/pig.png");
-    private static final ResourceLocation SHEEP = new ResourceLocation("littlethings:textures/entity/animalChest/sheep.png");
     private ModelChest modelChest = new ModelChest();
 
     public void renderTileEntityAt(TileEntityAnimalChest te, double x, double y, double z, float partialTicks, int destroyStage)
@@ -39,20 +35,7 @@ public class TEAnimalChestRenderer extends TileEntitySpecialRenderer<TileEntityA
         {
             String animal = te.getAnimal();
             if (animal != null) {
-                switch (te.getAnimal()) {
-                    case "cow":
-                        this.bindTexture(COW);
-                        break;
-                    case "chicken":
-                        this.bindTexture(CHICKEN);
-                        break;
-                    case "pig":
-                        this.bindTexture(PIG);
-                        break;
-                    case "sheep":
-                        this.bindTexture(SHEEP);
-                        break;
-                }
+                this.bindTexture(new ResourceLocation("littlethings:textures/entity/animalChest/" + te.getAnimal() + ".png"));
             }
         }
 
