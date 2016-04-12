@@ -28,6 +28,7 @@ public class Recipes
         RecipeSorter.register(LibMisc.PREFIX_MOD + "shapedReturnRecipe", ShapedReturnRecipe.class, RecipeSorter.Category.SHAPED, "after:forge:shapedore");
 
         addBlockRecipe(new ItemStack(Items.iron_ingot), new ItemStack(ModItems.IronNugget));
+        addBlockRecipe(new ItemStack(Blocks.web), new ItemStack(Items.string), false);
         recipesSingleDye();
 
         if (ConfigurationHandler.enableExtraCraftingTables) recipesExtraCraftingTables();
@@ -124,21 +125,49 @@ public class Recipes
 
     private static void recipesAnimalChests()
     {
-        addRecipe(new ItemStack(ModBlocks.AnimalChests[0]),
+        addRecipe(new ItemStack(ModBlocks.AnimalChests[0]), //cow
                 "mmm", "mcm", "mmm",
                 'm', new ItemStack(Items.beef),
                 'c', "chestWood");
-        addRecipe(new ItemStack(ModBlocks.AnimalChests[1]),
+        addRecipe(new ItemStack(ModBlocks.AnimalChests[1]), //chicken
                 "mmm", "mcm", "mmm",
                 'm', new ItemStack(Items.chicken),
                 'c', "chestWood");
-        addRecipe(new ItemStack(ModBlocks.AnimalChests[2]),
+        addRecipe(new ItemStack(ModBlocks.AnimalChests[2]), //pig
                 "mmm", "mcm", "mmm",
                 'm', new ItemStack(Items.porkchop),
                 'c', "chestWood");
-        addRecipe(new ItemStack(ModBlocks.AnimalChests[3]),
+        addRecipe(new ItemStack(ModBlocks.AnimalChests[3]), //sheep
                 "mmm", "mcm", "mmm",
                 'm', new ItemStack(Items.mutton),
+                'c', "chestWood");
+//        addRecipe(new ItemStack(ModBlocks.AnimalChests[4])); //horse
+        addRecipe(new ItemStack(ModBlocks.AnimalChests[5]), //dog
+                "pbp", "bcb", "sbs",
+                'b', new ItemStack(Items.bone),
+                'p', new ItemStack(Items.cooked_porkchop),
+                's', new ItemStack(Items.cooked_beef),
+                'c', "chestWood");
+        addRecipe(new ItemStack(ModBlocks.AnimalChests[6]), //squid
+                "iii", "ici", "iii",
+                'i', new ItemStack(Items.dye, 1, 0),
+                'c', "chestWood");
+
+        addRecipe(new ItemStack(ModBlocks.AnimalChests[7]), //zombie
+                "fff", "fcf", "fff",
+                'f', new ItemStack(Items.rotten_flesh),
+                'c', "chestWood");
+        addRecipe(new ItemStack(ModBlocks.AnimalChests[8]), //skeleton
+                "bbb", "bcb", "bbb",
+                'b', new ItemStack(Items.bone),
+                'c', "chestWood");
+        addRecipe(new ItemStack(ModBlocks.AnimalChests[9]), //creeper
+                "sss", "scs", "sss",
+                's', new ItemStack(Items.gunpowder),
+                'c', "chestWood");
+        addRecipe(new ItemStack(ModBlocks.AnimalChests[10]), //spider
+                "ooo", "oco", "ooo",
+                'o', new ItemStack(Blocks.web),
                 'c', "chestWood");
     }
 
@@ -241,12 +270,19 @@ public class Recipes
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(output, recipe));
     }
 
-    private static void addBlockRecipe(ItemStack output, ItemStack input)
+    private static void addBlockRecipe(ItemStack output, ItemStack input, boolean reverse)
     {
         addRecipe(output,
                 "xxx", "xxx", "xxx",
                 'x', input);
-        input.stackSize = 9;
-        addShapelessRecipe(input, output);
+        if (reverse) {
+            input.stackSize = 9;
+            addShapelessRecipe(input, output);
+        }
+    }
+
+    private static void addBlockRecipe(ItemStack output, ItemStack input)
+    {
+        addBlockRecipe(output, input, true);
     }
 }
