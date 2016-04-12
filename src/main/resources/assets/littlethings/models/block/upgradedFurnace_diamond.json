@@ -3,6 +3,6 @@
   "textures": {
     "top": "blocks/diamond_block",
     "front": "littlethings:blocks/upgradedFurnace_diamond_front_off",
-    "side": "blocks/diamond_block"
+    "side": "littlethings:blocks/diamond_block"
   }
 }

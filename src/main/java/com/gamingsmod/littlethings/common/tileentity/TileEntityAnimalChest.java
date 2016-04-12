@@ -185,6 +185,27 @@ public class TileEntityAnimalChest extends TileEntity implements IInventory, ITi
                 case "sheep":
                     open = SoundEvents.entity_sheep_ambient;
                     break;
+                case "horse":
+                    open = SoundEvents.entity_horse_ambient;
+                    break;
+                case "dog":
+                    open = SoundEvents.entity_wolf_ambient;
+                    break;
+                case "squid":
+                    open = SoundEvents.entity_squid_ambient;
+                    break;
+                case "zombie":
+                    open = SoundEvents.entity_zombie_ambient;
+                    break;
+                case "skeleton":
+                    open = SoundEvents.entity_skeleton_ambient;
+                    break;
+                case "creeper":
+                    open = SoundEvents.entity_creeper_primed;
+                    break;
+                case "spider":
+                    open = SoundEvents.entity_spider_ambient;
+                    break;
                 default:
                     open = SoundEvents.entity_cow_death;
             }
@@ -230,6 +251,28 @@ public class TileEntityAnimalChest extends TileEntity implements IInventory, ITi
                     case "sheep":
                         close = SoundEvents.entity_sheep_death;
                         break;
+                    case "horse":
+                        close = SoundEvents.entity_horse_step;
+                        break;
+                    case "dog":
+                        close = SoundEvents.entity_wolf_growl;
+                        break;
+                    case "squid":
+                        close = SoundEvents.entity_squid_death;
+                        break;
+                    case "zombie":
+                        close = SoundEvents.entity_zombie_death;
+                        break;
+                    case "skeleton":
+                        close = SoundEvents.entity_skeleton_death;
+                        break;
+                    case "creeper":
+                        close = SoundEvents.entity_creeper_death;
+                        break;
+                    case "spider":
+                        close = SoundEvents.entity_spider_death;
+                        break;
+
                     default:
                         close = SoundEvents.entity_cow_death;
                 }

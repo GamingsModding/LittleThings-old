@@ -1,8 +1,8 @@
 {
   "parent": "block/orientable",
   "textures": {
-    "top": "blocks/gold_block",
+    "top": "littlethings:blocks/gold_block",
     "front": "littlethings:blocks/upgradedFurnace_gold_front_off",
-    "side": "blocks/gold_block"
+    "side": "littlethings:blocks/gold_block"
   }
 }
