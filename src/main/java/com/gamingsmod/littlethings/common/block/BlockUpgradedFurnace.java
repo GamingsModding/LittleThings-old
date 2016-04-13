@@ -177,12 +177,6 @@ public class BlockUpgradedFurnace extends ModBlockContainer
     }
 
     @Override
-    public EnumBlockRenderType getRenderType(IBlockState state)
-    {
-        return EnumBlockRenderType.MODEL;
-    }
-
-    @Override
     public IBlockState getStateFromMeta(int meta)
     {
         EnumFacing enumfacing = EnumFacing.getFront(meta);
