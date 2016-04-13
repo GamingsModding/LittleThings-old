@@ -6,7 +6,8 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public class ItemIronNugget extends ModItem
 {
-    public ItemIronNugget() {
+    public ItemIronNugget()
+    {
         super(LibItems.IRONNUGGET);
         this.setCreativeTab(CreativeTabs.tabMaterials);
     }

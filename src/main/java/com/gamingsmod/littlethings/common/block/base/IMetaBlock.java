@@ -7,7 +7,8 @@ import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public interface IMetaBlock extends IMetaBlockName {
+public interface IMetaBlock extends IMetaBlockName
+{
 
     IBlockState getStateFromMeta(int meta);
 

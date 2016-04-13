@@ -17,22 +17,26 @@ import net.minecraft.util.text.TextFormatting;
 public class CommandHead extends CommandBase
 {
     @Override
-    public String getCommandName() {
+    public String getCommandName()
+    {
         return "head";
     }
 
     @Override
-    public int getRequiredPermissionLevel() {
+    public int getRequiredPermissionLevel()
+    {
         return LibCommandLevel.NORMAL;
     }
 
     @Override
-    public String getCommandUsage(ICommandSender sender) {
+    public String getCommandUsage(ICommandSender sender)
+    {
         return I18n.format("command.littlethings.head");
     }
 
     @Override
-    public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
+    public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
+    {
         EntityPlayerMP entityPlayerMP = getCommandSenderAsPlayer(sender);
         ItemStack stack = entityPlayerMP.getHeldItem(EnumHand.MAIN_HAND);
 

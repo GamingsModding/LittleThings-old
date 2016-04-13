@@ -38,7 +38,8 @@ public class BlockVanillaCraftingTables extends ModBlockMeta
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
         if (!worldIn.isRemote) {
             playerIn.openGui(LittleThings.instance, LibGuiId.VANILLACRAFTINGTABLES, worldIn, pos.getX(), pos.getY(), pos.getZ());
             playerIn.addStat(StatList.craftingTableInteraction);
@@ -48,35 +49,40 @@ public class BlockVanillaCraftingTables extends ModBlockMeta
     }
 
     @Override
-    protected BlockStateContainer createBlockState() {
+    protected BlockStateContainer createBlockState()
+    {
         return new BlockStateContainer(this, TYPE);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public IBlockState getStateFromMeta(int meta) {
+    public IBlockState getStateFromMeta(int meta)
+    {
         return getDefaultState().withProperty(TYPE, Variant.values()[meta]);
     }
 
     @Override
-    public int getMetaFromState(IBlockState state) {
+    public int getMetaFromState(IBlockState state)
+    {
         Variant type = (Variant) state.getValue(TYPE);
         return type.getId();
     }
 
     @Override
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {
-        for (Variant v : Variant.values()) {
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
+    {
+        for (Variant v : Variant.values())
             list.add(new ItemStack(itemIn, 1, v.getId()));
-        }
     }
 
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+    {
         return new ItemStack(Item.getItemFromBlock(state.getBlock()), 1, this.getMetaFromState(world.getBlockState(pos)));
     }
 
     @Override
-    public String getSpecialName(ItemStack stack) {
+    public String getSpecialName(ItemStack stack)
+    {
         return Variant.values()[stack.getItemDamage()].getName();
     }
 
@@ -98,16 +104,19 @@ public class BlockVanillaCraftingTables extends ModBlockMeta
         }
 
         @Override
-        public String getName() {
+        public String getName()
+        {
             return name;
         }
 
-        public int getId() {
+        public int getId()
+        {
             return id;
         }
 
         @Override
-        public String toString() {
+        public String toString()
+        {
             return getName();
         }
     }

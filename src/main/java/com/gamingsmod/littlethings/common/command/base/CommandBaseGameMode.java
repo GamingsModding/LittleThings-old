@@ -13,17 +13,20 @@ public abstract class CommandBaseGameMode extends CommandBase
     public String gamemode;
 
     @Override
-    public int getRequiredPermissionLevel() {
+    public int getRequiredPermissionLevel()
+    {
         return LibCommandLevel.MODERATOR;
     }
 
     @Override
-    public String getCommandUsage(ICommandSender sender) {
+    public String getCommandUsage(ICommandSender sender)
+    {
         return I18n.format( "command.littlethings." + getCommandName());
     }
 
     @Override
-    public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
+    public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
+    {
         CommandGameMode gm = new CommandGameMode();
         String[] newArgs = new String[args.length + 1];
         if (args.length == 1) {
@@ -37,7 +40,8 @@ public abstract class CommandBaseGameMode extends CommandBase
     }
 
     @Override
-    public boolean isUsernameIndex(String[] args, int index) {
+    public boolean isUsernameIndex(String[] args, int index)
+    {
         return index == 0;
     }
 }

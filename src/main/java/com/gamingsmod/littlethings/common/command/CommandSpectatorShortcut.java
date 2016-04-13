@@ -10,7 +10,8 @@ public class CommandSpectatorShortcut extends CommandBaseGameMode
     }
 
     @Override
-    public String getCommandName() {
+    public String getCommandName()
+    {
         return "gmsp";
     }
 }

@@ -34,7 +34,8 @@ public class BlockStainedClearGlass extends ModBlock implements IMetaBlock
     private static final PropertyBool EAST = PropertyBool.create("east");
     private static final PropertyBool WEST = PropertyBool.create("west");
 
-    public BlockStainedClearGlass() {
+    public BlockStainedClearGlass()
+    {
         super(LibBlocks.STAINEDCLEARGLASS, Material.glass);
         this.setHardness(0.3F);
         this.setStepSound(SoundType.GLASS);
@@ -83,9 +84,8 @@ public class BlockStainedClearGlass extends ModBlock implements IMetaBlock
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
-        for (EnumDyeColor enumdyecolor : EnumDyeColor.values()) {
+        for (EnumDyeColor enumdyecolor : EnumDyeColor.values())
             list.add(new ItemStack(itemIn, 1, enumdyecolor.getMetadata()));
-        }
     }
 
     @Override

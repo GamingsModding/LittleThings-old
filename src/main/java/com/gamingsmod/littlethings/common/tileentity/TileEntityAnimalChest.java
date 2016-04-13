@@ -56,7 +56,7 @@ public class TileEntityAnimalChest extends TileEntity implements IInventory, ITi
         if (this.getStackInSlot(index) != null) {
             ItemStack itemstack;
 
-            if (this.getStackInSlot(index).stackSize <= count){
+            if (this.getStackInSlot(index).stackSize <= count) {
                 itemstack = this.getStackInSlot(index);
                 this.setInventorySlotContents(index, null);
                 this.markDirty();
@@ -166,8 +166,7 @@ public class TileEntityAnimalChest extends TileEntity implements IInventory, ITi
         int k = this.pos.getZ();
         float f = 0.1F;
 
-        if (this.numPlayersUsing > 0 && this.lidAngle == 0.0F)
-        {
+        if (this.numPlayersUsing > 0 && this.lidAngle == 0.0F) {
             double d0 = (double)i + 0.5D;
             double d1 = (double)k + 0.5D;
 
@@ -212,28 +211,18 @@ public class TileEntityAnimalChest extends TileEntity implements IInventory, ITi
             this.worldObj.playSound(null, d0, (double)j + 0.5D, d1, open, SoundCategory.BLOCKS, 0.75F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
         }
 
-        if (this.numPlayersUsing == 0 && this.lidAngle > 0.0F || this.numPlayersUsing > 0 && this.lidAngle < 1.0F)
-        {
+        if (this.numPlayersUsing == 0 && this.lidAngle > 0.0F || this.numPlayersUsing > 0 && this.lidAngle < 1.0F) {
             float f2 = this.lidAngle;
 
-            if (this.numPlayersUsing > 0)
-            {
-                this.lidAngle += f;
-            }
-            else
-            {
-                this.lidAngle -= f;
-            }
+            if (this.numPlayersUsing > 0) this.lidAngle += f;
+            else this.lidAngle -= f;
 
             if (this.lidAngle > 1.0F)
-            {
                 this.lidAngle = 1.0F;
-            }
 
             float f1 = 0.5F;
 
-            if (this.lidAngle < f1 && f2 >= f1)
-            {
+            if (this.lidAngle < f1 && f2 >= f1) {
                 double d3 = (double)i + 0.5D;
                 double d2 = (double)k + 0.5D;
 
@@ -280,9 +269,7 @@ public class TileEntityAnimalChest extends TileEntity implements IInventory, ITi
             }
 
             if (this.lidAngle < 0.0F)
-            {
                 this.lidAngle = 0.0F;
-            }
         }
     }
 
@@ -315,13 +302,10 @@ public class TileEntityAnimalChest extends TileEntity implements IInventory, ITi
     @Override
     public boolean receiveClientEvent(int id, int type)
     {
-        if (id == 1)
-        {
+        if (id == 1) {
             this.numPlayersUsing = type;
             return true;
-        }
-        else
-        {
+        } else {
             return super.receiveClientEvent(id, type);
         }
     }
@@ -362,7 +346,8 @@ public class TileEntityAnimalChest extends TileEntity implements IInventory, ITi
         }
     }
 
-    public String getCustomName() {
+    public String getCustomName()
+    {
         return this.customName;
     }
 

@@ -8,22 +8,26 @@ import net.minecraft.server.MinecraftServer;
 public class CommandSkull extends CommandBase
 {
     @Override
-    public String getCommandName() {
+    public String getCommandName()
+    {
         return "skull";
     }
 
     @Override
-    public int getRequiredPermissionLevel() {
+    public int getRequiredPermissionLevel()
+    {
         return LibCommandLevel.MODERATOR;
     }
 
     @Override
-    public String getCommandUsage(ICommandSender sender) {
+    public String getCommandUsage(ICommandSender sender)
+    {
         return I18n.format("command.littlethings.skull");
     }
 
     @Override
-    public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
+    public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
+    {
         if (args.length < 1)
             throw new WrongUsageException(getCommandUsage(sender));
 

@@ -10,7 +10,8 @@ public class CommandAdventureShortcut extends CommandBaseGameMode
     }
 
     @Override
-    public String getCommandName() {
+    public String getCommandName()
+    {
         return "gma";
     }
 }

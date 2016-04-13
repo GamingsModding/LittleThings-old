@@ -10,7 +10,8 @@ public class CommandCreativeShortcut extends CommandBaseGameMode
     }
 
     @Override
-    public String getCommandName() {
+    public String getCommandName()
+    {
         return "gmc";
     }
 }

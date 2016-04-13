@@ -33,19 +33,22 @@ public class BlockItemElevator extends ModBlockContainer
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world, int meta) {
+    public TileEntity createNewTileEntity(World world, int meta)
+    {
         return new TileEntityItemElevator();
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
         if (!worldIn.isRemote)
             playerIn.openGui(LittleThings.instance, LibGuiId.ITEMELEVATOR, worldIn, pos.getX(), pos.getY(), pos.getZ());
         return true;
     }
 
     @Override
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    {
         TileEntity te = worldIn.getTileEntity(pos);
         if (te instanceof IInventory) {
             InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory)te);
@@ -63,7 +66,8 @@ public class BlockItemElevator extends ModBlockContainer
     }
 
     @Override
-    public EnumBlockRenderType getRenderType(IBlockState state) {
+    public EnumBlockRenderType getRenderType(IBlockState state)
+    {
         return EnumBlockRenderType.MODEL;
     }
 }

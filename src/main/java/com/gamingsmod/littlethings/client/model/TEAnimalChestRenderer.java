@@ -18,25 +18,19 @@ public class TEAnimalChestRenderer extends TileEntitySpecialRenderer<TileEntityA
         int i = 0;
 
         if (te.hasWorldObj())
-        {
             i = te.getBlockMetadata();
-        }
 
-        if (destroyStage >= 0)
-        {
+        if (destroyStage >= 0) {
             this.bindTexture(DESTROY_STAGES[destroyStage]);
             GlStateManager.matrixMode(5890);
             GlStateManager.pushMatrix();
             GlStateManager.scale(4.0F, 4.0F, 1.0F);
             GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
             GlStateManager.matrixMode(5888);
-        }
-        else
-        {
+        } else {
             String animal = te.getAnimal();
-            if (animal != null) {
+            if (animal != null)
                 this.bindTexture(new ResourceLocation("littlethings:textures/entity/animalChest/" + te.getAnimal() + ".png"));
-            }
         }
 
         GlStateManager.pushMatrix();
@@ -48,24 +42,16 @@ public class TEAnimalChestRenderer extends TileEntitySpecialRenderer<TileEntityA
         int j = 0;
 
         if (i == 2)
-        {
             j = 180;
-        }
 
         if (i == 3)
-        {
             j = 0;
-        }
 
         if (i == 4)
-        {
             j = 90;
-        }
 
         if (i == 5)
-        {
             j = -90;
-        }
 
         GlStateManager.rotate((float)j, 0.0F, 1.0F, 0.0F);
         GlStateManager.translate(-0.5F, -0.5F, -0.5F);
@@ -78,8 +64,7 @@ public class TEAnimalChestRenderer extends TileEntitySpecialRenderer<TileEntityA
         GlStateManager.popMatrix();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-        if (destroyStage >= 0)
-        {
+        if (destroyStage >= 0) {
             GlStateManager.matrixMode(5890);
             GlStateManager.popMatrix();
             GlStateManager.matrixMode(5888);

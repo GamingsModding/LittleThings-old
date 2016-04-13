@@ -46,10 +46,8 @@ public class BlockRender
     public static void registerBlockRenderer()
     {
         if (ConfigurationHandler.enableExtraCraftingTables) {
-            for (BlockVanillaCraftingTables.Variant variant :
-                    BlockVanillaCraftingTables.Variant.values()) {
+            for (BlockVanillaCraftingTables.Variant variant : BlockVanillaCraftingTables.Variant.values())
                 reg(ModBlocks.VanillaCraftingTables, variant.getId(), "vanillaCraftingTable_" + variant.getName());
-            }
         }
 
         if (ConfigurationHandler.enableItemElevator)
@@ -68,9 +66,8 @@ public class BlockRender
 
         if (ConfigurationHandler.enableClearGlass) {
             reg(ModBlocks.ClearGlass);
-            for (EnumDyeColor color : EnumDyeColor.values()) {
+            for (EnumDyeColor color : EnumDyeColor.values())
                 reg(ModBlocks.StainedClearGlass, color.getMetadata(), "stainedClearGlass_" + color.getName());
-            }
         }
 
     }

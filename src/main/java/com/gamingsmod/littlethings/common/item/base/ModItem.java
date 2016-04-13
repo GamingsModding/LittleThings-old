@@ -19,7 +19,8 @@ public class ModItem extends Item
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack itemStack) {
+    public String getUnlocalizedName(ItemStack itemStack)
+    {
         return getUnlocalizedName();
     }
 

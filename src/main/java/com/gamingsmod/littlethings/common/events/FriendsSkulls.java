@@ -19,7 +19,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.Arrays;
 import java.util.Random;
-import java.util.function.Consumer;
 
 public class FriendsSkulls
 {
@@ -96,7 +95,8 @@ public class FriendsSkulls
     }
 
     @SubscribeEvent
-    public void onMobSpawn(LivingSpawnEvent e) {
+    public void onMobSpawn(LivingSpawnEvent e)
+    {
         Random rng = new Random();
         if (rng.nextDouble() < ConfigurationHandler.percentOfSkullSpawn && e.getEntity() instanceof EntityZombie) {
             ItemStack skull = new ItemStack(Items.skull, 1, 3);

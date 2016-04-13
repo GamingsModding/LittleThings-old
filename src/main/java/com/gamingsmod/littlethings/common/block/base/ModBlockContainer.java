@@ -6,7 +6,8 @@ import net.minecraft.block.material.Material;
 
 public abstract class ModBlockContainer extends BlockContainer
 {
-    protected ModBlockContainer(Material materialIn) {
+    protected ModBlockContainer(Material materialIn)
+    {
         super(materialIn);
     }
 

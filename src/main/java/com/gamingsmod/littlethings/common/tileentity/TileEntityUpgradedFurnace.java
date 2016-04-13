@@ -66,9 +66,8 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
         boolean flag = stack != null && stack.isItemEqual(this.furnaceItemStacks[index]) && ItemStack.areItemStackTagsEqual(stack, this.furnaceItemStacks[index]);
         this.furnaceItemStacks[index] = stack;
 
-        if (stack != null && stack.stackSize > this.getInventoryStackLimit()) {
+        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
             stack.stackSize = this.getInventoryStackLimit();
-        }
 
         if (index == 0 && !flag) {
             this.totalCookTime = this.getCookTime(stack);
@@ -245,12 +244,9 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
 
     private boolean canSmelt()
     {
-        if (this.furnaceItemStacks[0] == null)
-        {
+        if (this.furnaceItemStacks[0] == null) {
             return false;
-        }
-        else
-        {
+        } else {
             ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.furnaceItemStacks[0]);
             if (itemstack == null) return false;
             if (this.furnaceItemStacks[2] == null) return true;
@@ -262,28 +258,22 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
 
     public void smeltItem()
     {
-        if (this.canSmelt())
-        {
+        if (this.canSmelt()) {
             ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.furnaceItemStacks[0]);
 
-            if (this.furnaceItemStacks[2] == null)
-            {
+            if (this.furnaceItemStacks[2] == null) {
                 this.furnaceItemStacks[2] = itemstack.copy();
-            }
-            else if (this.furnaceItemStacks[2].getItem() == itemstack.getItem())
-            {
+            } else if (this.furnaceItemStacks[2].getItem() == itemstack.getItem()) {
                 this.furnaceItemStacks[2].stackSize += itemstack.stackSize; // Forge BugFix: Results may have multiple items
             }
 
-            if (this.furnaceItemStacks[0].getItem() == Item.getItemFromBlock(Blocks.sponge) && this.furnaceItemStacks[0].getMetadata() == 1 && this.furnaceItemStacks[1] != null && this.furnaceItemStacks[1].getItem() == Items.bucket)
-            {
+            if (this.furnaceItemStacks[0].getItem() == Item.getItemFromBlock(Blocks.sponge) && this.furnaceItemStacks[0].getMetadata() == 1 && this.furnaceItemStacks[1] != null && this.furnaceItemStacks[1].getItem() == Items.bucket) {
                 this.furnaceItemStacks[1] = new ItemStack(Items.water_bucket);
             }
 
             --this.furnaceItemStacks[0].stackSize;
 
-            if (this.furnaceItemStacks[0].stackSize <= 0)
-            {
+            if (this.furnaceItemStacks[0].stackSize <= 0) {
                 this.furnaceItemStacks[0] = null;
             }
         }

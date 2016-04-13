@@ -18,12 +18,14 @@ public class ItemBlockMeta extends ItemBlock
     }
 
     @Override
-    public int getMetadata(int damage) {
+    public int getMetadata(int damage)
+    {
         return damage;
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack) {
+    public String getUnlocalizedName(ItemStack stack)
+    {
         return super.getUnlocalizedName(stack) + "." + ((IMetaBlockName)this.block).getSpecialName(stack);
     }
 }
