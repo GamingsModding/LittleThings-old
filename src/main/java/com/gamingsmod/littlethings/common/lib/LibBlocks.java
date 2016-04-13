@@ -8,4 +8,5 @@ public class LibBlocks
     public static final String ANIMALCHEST = "animalChest_";
     public static final String CLEARGLASS = "clearGlass";
     public static final String STAINEDCLEARGLASS = "stainedClearGlass";
+    public static final String UNENCHANTING_TABLE = "unenchantingTable";
 }

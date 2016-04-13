@@ -70,6 +70,8 @@ public class BlockRender
                 reg(ModBlocks.StainedClearGlass, color.getMetadata(), "stainedClearGlass_" + color.getName());
         }
 
+        if (ConfigurationHandler.enableUnenchantingTable)
+            reg(ModBlocks.UnenchantingTable);
     }
 
     private static void reg(Block block)

@@ -17,6 +17,7 @@ public class ConfigurationHandler
     public static boolean enableAnimalChests;
     public static boolean enableClearGlass;
     public static boolean enableHorseEquipment;
+    public static boolean enableUnenchantingTable;
 
     public static boolean enableOldSaddleRecipe;
     public static boolean enableOldArmorRecipe;
@@ -42,6 +43,7 @@ public class ConfigurationHandler
         enableAnimalChests = configuration.get(Configuration.CATEGORY_GENERAL, "Enable Animal Chests", true).getBoolean();
         enableClearGlass = configuration.get(Configuration.CATEGORY_GENERAL, "Enable Clear Glass", true).getBoolean();
         enableHorseEquipment = configuration.get(Configuration.CATEGORY_GENERAL, "Enable Horse Equipment Recipes", true).getBoolean();
+        enableUnenchantingTable = configuration.get(Configuration.CATEGORY_GENERAL, "Enable Unenchanting Table", true).getBoolean();
 
         enableOldSaddleRecipe = configuration.get("Horse Equipment Recipes", "Enable Old Saddle Recipe", false, "Pre-13w18a Recipe").getBoolean();
         enableOldArmorRecipe = configuration.get("Horse Equipment Recipes", "Enable Old Armor Recipe", false, "Pre-13w16a Recipe").getBoolean();

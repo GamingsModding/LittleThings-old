@@ -44,6 +44,8 @@ tile.littlethings:stainedClearGlass.green.name=Green Stained Clear Glass
 tile.littlethings:stainedClearGlass.red.name=Red Stained Clear Glass
 tile.littlethings:stainedClearGlass.black.name=Black Stained Clear Glass
 
+tile.littlethings:unenchantingTable.name=Unenchanting Table [WIP]
+
 #Items
 item.littlethings:ironNugget.name=Iron Nugget
 
@@ -62,10 +64,12 @@ tooltip.littlethings.skull.GingerMikie=Ride more, Worry less
 
 #Containers
 container.itemElevator=Item Elevator
+
 container.upgradedFurnace.iron=Iron Furnace
 container.upgradedFurnace.gold=Gold Furnace
 container.upgradedFurnace.diamond=Diamond Furnace
 container.upgradedFurnace.emerald=Emerald Furnace
+
 container.animalChest.chicken=Chicken Chest
 container.animalChest.cow=Cow Chest
 container.animalChest.pig=Pig Chest
@@ -77,6 +81,8 @@ container.animalChest.zombie=Zombie Chest
 container.animalChest.skeleton=Skeleton Chest
 container.animalChest.creeper=Creeper Chest
 container.animalChest.spider=Spider Chest
+
+container.unenchantingTable=Unenchanting Table [WIP]
 
 #Command Usage
 command.littlethings.head=/head

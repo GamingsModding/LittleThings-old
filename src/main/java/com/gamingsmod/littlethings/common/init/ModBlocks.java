@@ -16,6 +16,7 @@ public class ModBlocks
     public static Block[] AnimalChests = new Block[BlockAnimalChest.Types.values().length];
     public static Block ClearGlass;
     public static Block StainedClearGlass;
+    public static Block UnenchantingTable;
 
     public static void init()
     {
@@ -48,6 +49,9 @@ public class ModBlocks
             addBlock(ClearGlass = new BlockClearGlass(), LibBlocks.CLEARGLASS);
             addMetaBlock(StainedClearGlass = new BlockStainedClearGlass(), LibBlocks.STAINEDCLEARGLASS);
         }
+
+        if (ConfigurationHandler.enableUnenchantingTable)
+            addBlock(UnenchantingTable = new BlockUnenchantingTable(), LibBlocks.UNENCHANTING_TABLE);
     }
 
     private static void addBlock(Block block, String name)
