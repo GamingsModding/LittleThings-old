@@ -4,11 +4,12 @@ import com.gamingsmod.littlethings.common.command.*;
 import com.gamingsmod.littlethings.common.events.FoodEvents;
 import com.gamingsmod.littlethings.common.events.FriendsSkulls;
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
-import com.gamingsmod.littlethings.common.handler.GuiHandler;
 import com.gamingsmod.littlethings.common.init.ModBlocks;
 import com.gamingsmod.littlethings.common.init.ModItems;
 import com.gamingsmod.littlethings.common.init.ModOreDic;
 import com.gamingsmod.littlethings.common.init.ModTileEntities;
+import com.gamingsmod.littlethings.common.network.GuiHandler;
+import com.gamingsmod.littlethings.common.network.MessageHandler;
 import com.gamingsmod.littlethings.common.recipe.Recipes;
 import com.gamingsmod.littlethings.common.recipe.Smelting;
 import net.minecraftforge.common.MinecraftForge;
@@ -27,6 +28,7 @@ public class CommonProxy
         ModBlocks.init();
         ModItems.init();
         ModTileEntities.init();
+        MessageHandler.preInit();
     }
 
     public void init(FMLInitializationEvent e)

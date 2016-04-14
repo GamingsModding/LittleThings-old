@@ -1,10 +1,15 @@
 package com.gamingsmod.littlethings.client.gui.inventory;
 
 import com.gamingsmod.littlethings.common.gui.container.ContainerUnenchantingTable;
+import com.gamingsmod.littlethings.common.network.MessageHandler;
+import com.gamingsmod.littlethings.common.network.message.MessageXP;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityUnenchantingTable;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
 
 import java.io.IOException;
@@ -54,7 +59,14 @@ public class GuiUnenchantingTable extends GuiContainer
     protected void actionPerformed(GuiButton button) throws IOException
     {
         if (button == this.buttons[0]) {
+            ItemStack itemStack = this.te.getStackInSlot(0);
+            if (itemStack != null && itemStack.getEnchantmentTagList() != null) {
+                NBTTagList enchantmentList = itemStack.getEnchantmentTagList();
+                Enchantment enchantment = Enchantment.getEnchantmentByID(enchantmentList.getCompoundTagAt(0).getByte("id"));
+                int levelCost = enchantment.getMinEnchantability(enchantmentList.getCompoundTagAt(0).getByte("lvl"));
 
+                MessageHandler.INSTANCE.sendToServer(new MessageXP(levelCost, itemStack));
+            }
         }
     }
 }

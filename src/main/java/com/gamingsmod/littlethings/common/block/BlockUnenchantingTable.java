@@ -9,6 +9,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -37,5 +38,15 @@ public class BlockUnenchantingTable extends ModBlockContainer
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
         return new TileEntityUnenchantingTable();
+    }
+
+    public static void runUnenchant(EntityPlayerMP playerEntity, int xp, ItemStack stack)
+    {
+        if (playerEntity.experienceLevel < xp && !playerEntity.isCreative())
+            return;
+
+        if (stack != null && stack.getEnchantmentTagList() != null) {
+            System.out.println("Unenchant the first enchant");
+        }
     }
 }

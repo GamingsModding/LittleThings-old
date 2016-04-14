@@ -1,4 +1,4 @@
-package com.gamingsmod.littlethings.common.handler;
+package com.gamingsmod.littlethings.common.network;
 
 import com.gamingsmod.littlethings.client.gui.inventory.GuiItemElevator;
 import com.gamingsmod.littlethings.client.gui.inventory.GuiUnenchantingTable;
