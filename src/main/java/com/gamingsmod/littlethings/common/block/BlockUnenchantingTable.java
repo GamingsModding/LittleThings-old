@@ -11,6 +11,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemBook;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -50,19 +52,47 @@ public class BlockUnenchantingTable extends ModBlockContainer
 
         if (stack != null && stack.getEnchantmentTagList() != null) {
             World world = playerEntity.worldObj;
-            TileEntity te  = world.getTileEntity(pos);
+            IInventory te  = (IInventory) world.getTileEntity(pos);
             if (te instanceof TileEntityUnenchantingTable) {
-                NBTTagList list = stack.getEnchantmentTagList();
-                NBTTagCompound enchTag = list.getCompoundTagAt(0);
-                ItemStack book = new ItemStack(Items.enchanted_book);
+                ItemStack books = te.getStackInSlot(1);
+                if ((books != null && books.getItem() instanceof ItemBook) && te.getStackInSlot(2) == null) {
+                    NBTTagList list = stack.getEnchantmentTagList();
+                    NBTTagCompound enchTag = list.getCompoundTagAt(0);
+                    ItemStack book = new ItemStack(Items.enchanted_book);
 
-                NBTTagCompound baseTag = new NBTTagCompound();
-                NBTTagList enchList = new NBTTagList();
-                enchList.appendTag(enchTag);
-                baseTag.setTag("StoredEnchantments", enchList);
-                book.setTagCompound(baseTag);
+                    NBTTagCompound baseTag = new NBTTagCompound();
+                    NBTTagList enchList = new NBTTagList();
+                    enchList.appendTag(enchTag);
+                    baseTag.setTag("StoredEnchantments", enchList);
+                    book.setTagCompound(baseTag);
 
-                ((TileEntityUnenchantingTable) te).setInventorySlotContents(2, book);
+                    te.setInventorySlotContents(2, book);
+                    --books.stackSize;
+
+                    list.removeTag(0);
+                    if (list.tagCount() == 0) {
+                        stack.getTagCompound().removeTag("ench");
+                        if (stack.getTagCompound().hasNoTags()) {
+                            stack.setTagCompound(null);
+                        }
+                    }
+
+                    if (stack.isItemStackDamageable()) {
+                        int damage = world.rand.nextInt(1 + (stack.getMaxDamage() / 4));
+                        int m = stack.getMaxDamage();
+                        damage = Math.min(m, damage + 1 + (m / 10)) + (m == 1 ? 1 : 0);
+                        if (stack.attemptDamageItem(damage, world.rand)) {
+                            te.setInventorySlotContents(0, null);
+                            stack = null;
+                        }
+                    }
+                    if (stack != null)
+                        te.setInventorySlotContents(0, stack);
+
+                    if (!playerEntity.isCreative()) {
+                        playerEntity.removeExperienceLevel(xp);
+                    }
+                }
             }
         }
     }
