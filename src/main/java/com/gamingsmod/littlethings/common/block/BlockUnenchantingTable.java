@@ -8,6 +8,7 @@ import com.gamingsmod.littlethings.common.tileentity.TileEntityUnenchantingTable
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
@@ -94,6 +95,18 @@ public class BlockUnenchantingTable extends ModBlockContainer
                     }
                 }
             }
+        }
+    }
+
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {
+        super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+
+        if (stack.hasDisplayName()) {
+            TileEntity tileentity = worldIn.getTileEntity(pos);
+
+            if (tileentity instanceof TileEntityUnenchantingTable)
+                ((TileEntityUnenchantingTable) tileentity).setCustomName(stack.getDisplayName());
         }
     }
 }
