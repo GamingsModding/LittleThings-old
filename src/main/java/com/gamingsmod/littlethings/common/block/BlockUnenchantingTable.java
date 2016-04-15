@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemBook;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,9 +28,11 @@ public class BlockUnenchantingTable extends ModBlockContainer
 {
     public BlockUnenchantingTable()
     {
-        super(Material.iron);
+        super(Material.rock);
         this.setUnlocalizedName(LibBlocks.UNENCHANTING_TABLE);
         this.setCreativeTab(CreativeTabs.tabDecorations);
+        this.setHardness(5.0F);
+        this.setResistance(2000.0F);
     }
 
     @Override
@@ -38,6 +41,12 @@ public class BlockUnenchantingTable extends ModBlockContainer
         if (!worldIn.isRemote)
             playerIn.openGui(LittleThings.instance, LibGuiId.UNENCHANTING_TABLE, worldIn, pos.getX(), pos.getY(), pos.getZ());
         return true;
+    }
+
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+        InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory) worldIn.getTileEntity(pos));
+        super.breakBlock(worldIn, pos, state);
     }
 
     @Override
