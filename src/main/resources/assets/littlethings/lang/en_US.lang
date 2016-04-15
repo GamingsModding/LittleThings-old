@@ -44,7 +44,7 @@ tile.littlethings:stainedClearGlass.green.name=Green Stained Clear Glass
 tile.littlethings:stainedClearGlass.red.name=Red Stained Clear Glass
 tile.littlethings:stainedClearGlass.black.name=Black Stained Clear Glass
 
-tile.littlethings:unenchantingTable.name=Unenchanting Table [WIP]
+tile.littlethings:unenchantingTable.name=Unenchanting Table
 
 #Items
 item.littlethings:ironNugget.name=Iron Nugget
@@ -82,7 +82,7 @@ container.animalChest.skeleton=Skeleton Chest
 container.animalChest.creeper=Creeper Chest
 container.animalChest.spider=Spider Chest
 
-container.unenchantingTable=Unenchanting Table [WIP]
+container.unenchantingTable=Unenchanting Table
 
 #Command Usage
 command.littlethings.head=/head
