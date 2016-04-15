@@ -21,11 +21,15 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockUnenchantingTable extends ModBlockContainer
 {
+    protected static final AxisAlignedBB boundingbox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D);
+
     public BlockUnenchantingTable()
     {
         super(Material.rock);
@@ -33,6 +37,23 @@ public class BlockUnenchantingTable extends ModBlockContainer
         this.setCreativeTab(CreativeTabs.tabDecorations);
         this.setHardness(5.0F);
         this.setResistance(2000.0F);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return boundingbox;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
+
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
     }
 
     @Override
