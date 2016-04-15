@@ -52,7 +52,23 @@ public class GuiUnenchantingTable extends GuiContainer
     public void initGui()
     {
         super.initGui();
-        this.buttonList.add(this.buttons[0] = new GuiButton(0, this.width / 2 - 25, this.height / 2 - 24, 50, 15, "Give XP"));
+        this.buttonList.add(this.buttons[0] = new GuiButton(0, this.width / 2 - 30, this.height / 2 - 24, 60, 15, "???"));
+    }
+
+    @Override
+    public void updateScreen()
+    {
+        super.updateScreen();
+        if (te.getStackInSlot(0) != null && te.getStackInSlot(0).getEnchantmentTagList() != null) {
+            this.buttons[0].enabled = true;
+            NBTTagList enchantmentList = te.getStackInSlot(0).getEnchantmentTagList();
+            Enchantment enchantment = Enchantment.getEnchantmentByID(enchantmentList.getCompoundTagAt(0).getShort("id"));
+            int levelCost = enchantment.getMinEnchantability(enchantmentList.getCompoundTagAt(0).getShort("lvl"));
+            this.buttons[0].displayString = levelCost + " Levels";
+        } else {
+            this.buttons[0].enabled = false;
+            this.buttons[0].displayString = "???";
+        }
     }
 
     @Override
