@@ -29,6 +29,10 @@ public class Recipes
 
         addBlockRecipe(new ItemStack(Items.iron_ingot), new ItemStack(ModItems.IronNugget));
         addBlockRecipe(new ItemStack(Blocks.web), new ItemStack(Items.string), false);
+        addRecipe(new ItemStack(Blocks.end_stone, 3),
+                "ccc", "cec", "ccc",
+                'e', new ItemStack(Items.ender_eye),
+                'c', new ItemStack(Blocks.sandstone, 1, 1));
         recipesSingleDye();
 
         if (ConfigurationHandler.enableExtraCraftingTables) recipesExtraCraftingTables();
@@ -44,6 +48,19 @@ public class Recipes
         if (ConfigurationHandler.enableClearGlass) recipesClearGlass();
 
         if (ConfigurationHandler.enableHorseEquipment) recipesHorseEquipment();
+
+        if (ConfigurationHandler.enableUnenchantingTable) recipesUnenchantingTable();
+    }
+
+    private static void recipesUnenchantingTable()
+    {
+        addRecipe(new ItemStack(ModBlocks.UnenchantingTable),
+                "rbr", "ded", "sss",
+                'e', new ItemStack(Blocks.enchanting_table),
+                's', new ItemStack(Blocks.end_stone),
+                'd', "gemDiamond",
+                'r', new ItemStack(Blocks.wool, 1, 14),
+                'b', new ItemStack(Blocks.wool, 1, 3));
     }
 
     private static void recipesSingleDye()
