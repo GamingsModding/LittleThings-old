@@ -8,6 +8,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemEnchantedBook;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
@@ -59,7 +60,7 @@ public class GuiUnenchantingTable extends GuiContainer
     public void updateScreen()
     {
         super.updateScreen();
-        if (te.getStackInSlot(0) != null && te.getStackInSlot(0).getEnchantmentTagList() != null) {
+        if (te.getStackInSlot(0) != null && te.getStackInSlot(0).getEnchantmentTagList() != null && !(te.getStackInSlot(0).getItem() instanceof ItemEnchantedBook)) {
             this.buttons[0].enabled = true;
             NBTTagList enchantmentList = te.getStackInSlot(0).getEnchantmentTagList();
             Enchantment enchantment = Enchantment.getEnchantmentByID(enchantmentList.getCompoundTagAt(0).getShort("id"));
