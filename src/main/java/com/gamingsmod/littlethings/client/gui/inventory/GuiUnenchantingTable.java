@@ -62,10 +62,10 @@ public class GuiUnenchantingTable extends GuiContainer
             ItemStack itemStack = this.te.getStackInSlot(0);
             if (itemStack != null && itemStack.getEnchantmentTagList() != null) {
                 NBTTagList enchantmentList = itemStack.getEnchantmentTagList();
-                Enchantment enchantment = Enchantment.getEnchantmentByID(enchantmentList.getCompoundTagAt(0).getByte("id"));
-                int levelCost = enchantment.getMinEnchantability(enchantmentList.getCompoundTagAt(0).getByte("lvl"));
+                Enchantment enchantment = Enchantment.getEnchantmentByID(enchantmentList.getCompoundTagAt(0).getShort("id"));
+                int levelCost = enchantment.getMinEnchantability(enchantmentList.getCompoundTagAt(0).getShort("lvl"));
 
-                MessageHandler.INSTANCE.sendToServer(new MessageXP(levelCost, itemStack));
+                MessageHandler.INSTANCE.sendToServer(new MessageXP(levelCost, itemStack, this.te.getPos()));
             }
         }
     }

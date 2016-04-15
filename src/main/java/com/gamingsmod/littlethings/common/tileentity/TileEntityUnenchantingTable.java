@@ -13,7 +13,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 
 public class TileEntityUnenchantingTable extends TileEntity implements IInventory, ITickable
 {
-    private ItemStack[] inventory;
+    public ItemStack[] inventory;
     private String customName;
 
     public TileEntityUnenchantingTable()

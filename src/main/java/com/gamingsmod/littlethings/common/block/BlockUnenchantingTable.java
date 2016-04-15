@@ -10,7 +10,10 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -40,13 +43,27 @@ public class BlockUnenchantingTable extends ModBlockContainer
         return new TileEntityUnenchantingTable();
     }
 
-    public static void runUnenchant(EntityPlayerMP playerEntity, int xp, ItemStack stack)
+    public static void runUnenchant(EntityPlayerMP playerEntity, int xp, ItemStack stack, BlockPos pos)
     {
         if (playerEntity.experienceLevel < xp && !playerEntity.isCreative())
             return;
 
         if (stack != null && stack.getEnchantmentTagList() != null) {
-            System.out.println("Unenchant the first enchant");
+            World world = playerEntity.worldObj;
+            TileEntity te  = world.getTileEntity(pos);
+            if (te instanceof TileEntityUnenchantingTable) {
+                NBTTagList list = stack.getEnchantmentTagList();
+                NBTTagCompound enchTag = list.getCompoundTagAt(0);
+                ItemStack book = new ItemStack(Items.enchanted_book);
+
+                NBTTagCompound baseTag = new NBTTagCompound();
+                NBTTagList enchList = new NBTTagList();
+                enchList.appendTag(enchTag);
+                baseTag.setTag("StoredEnchantments", enchList);
+                book.setTagCompound(baseTag);
+
+                ((TileEntityUnenchantingTable) te).setInventorySlotContents(2, book);
+            }
         }
     }
 }
