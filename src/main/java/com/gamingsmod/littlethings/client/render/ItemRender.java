@@ -11,6 +11,11 @@ public class ItemRender
     public static void registerItemRender()
     {
         reg(ModItems.IronNugget);
+        reg(ModItems.WoodHammer);
+        reg(ModItems.StoneHammer);
+        reg(ModItems.IronHammer);
+        reg(ModItems.GoldHammer);
+        reg(ModItems.DiamondHammer);
     }
 
     private static void reg(Item item)
