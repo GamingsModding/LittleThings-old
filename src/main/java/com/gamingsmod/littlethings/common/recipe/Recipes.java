@@ -50,6 +50,32 @@ public class Recipes
         if (ConfigurationHandler.enableHorseEquipment) recipesHorseEquipment();
 
         if (ConfigurationHandler.enableUnenchantingTable) recipesUnenchantingTable();
+
+        recipesHammer();
+    }
+
+    private static void recipesHammer()
+    {
+        addRecipe(new ItemStack(ModItems.WoodHammer),
+                "iii", "isi", " s ",
+                'i', "plankWood",
+                's', "stickWood");
+        addRecipe(new ItemStack(ModItems.StoneHammer),
+                "iii", "isi", " s ",
+                'i', "cobblestone",
+                's', "stickWood");
+        addRecipe(new ItemStack(ModItems.IronHammer),
+                "iii", "isi", " s ",
+                'i', "ingotIron",
+                's', "stickWood");
+        addRecipe(new ItemStack(ModItems.GoldHammer),
+                "iii", "isi", " s ",
+                'i', "ingotGold",
+                's', "stickWood");
+        addRecipe(new ItemStack(ModItems.DiamondHammer),
+                "iii", "isi", " s ",
+                'i', "gemDiamond",
+                's', "stickWood");
     }
 
     private static void recipesUnenchantingTable()
