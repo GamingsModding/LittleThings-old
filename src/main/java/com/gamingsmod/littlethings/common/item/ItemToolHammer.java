@@ -1,17 +1,39 @@
 package com.gamingsmod.littlethings.common.item;
 
 import com.gamingsmod.littlethings.common.lib.LibMisc;
+import com.google.common.collect.Sets;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.util.Arrays;
+import java.util.Set;
+
+/**
+ * Inspired By Tinkers Construct
+ */
 public class ItemToolHammer extends ItemPickaxe
 {
+    private static final Material[] effective = new Material[]{
+            Material.iron,
+            Material.anvil,
+            Material.rock,
+            Material.ice,
+            Material.glass,
+            Material.packedIce,
+            Material.piston
+    };
+
+    private static final Set<Block> vanilla_effective = Sets.newHashSet(Blocks.activator_rail, Blocks.coal_ore, Blocks.cobblestone, Blocks.detector_rail, Blocks.diamond_block, Blocks.diamond_ore, Blocks.double_stone_slab, Blocks.golden_rail, Blocks.gold_block, Blocks.gold_ore, Blocks.ice, Blocks.iron_block, Blocks.iron_ore, Blocks.lapis_block, Blocks.lapis_ore, Blocks.lit_redstone_ore, Blocks.mossy_cobblestone, Blocks.netherrack, Blocks.packed_ice, Blocks.rail, Blocks.redstone_ore, Blocks.sandstone, Blocks.red_sandstone, Blocks.stone, Blocks.stone_slab, Blocks.stone_button, Blocks.stone_pressure_plate);
+
     public ItemToolHammer(ToolMaterial material)
     {
         super(material);
@@ -20,7 +42,7 @@ public class ItemToolHammer extends ItemPickaxe
     @Override
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState blockIn, BlockPos pos, EntityLivingBase entityLiving)
     {
-        if (canHarvestBlock(blockIn)) {
+        if (isEffective(blockIn)) {
             if (entityLiving.getLookVec().yCoord < -0.7 || entityLiving.getLookVec().yCoord > 0.7) {
                 mineOrOtherwise(worldIn, pos.north(), stack, entityLiving);
                 mineOrOtherwise(worldIn, pos.south(), stack, entityLiving);
@@ -76,9 +98,14 @@ public class ItemToolHammer extends ItemPickaxe
     {
         IBlockState state = world.getBlockState(pos);
 
-        if (canHarvestBlock(state)) {
+        if (isEffective(state)) {
             state.getBlock().harvestBlock(world, (EntityPlayer) player, pos, state, world.getTileEntity(pos), tool);
             world.destroyBlock(pos, false);
         }
+    }
+
+    private boolean isEffective(IBlockState state)
+    {
+        return Arrays.asList(effective).contains(state.getMaterial()) || vanilla_effective.contains(state);
     }
 }
