@@ -3,6 +3,7 @@ package com.gamingsmod.littlethings.common.item;
 import com.gamingsmod.littlethings.common.lib.LibMisc;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -21,32 +22,32 @@ public class ItemToolHammer extends ItemPickaxe
     {
         if (canHarvestBlock(blockIn)) {
             if (entityLiving.getLookVec().yCoord < -0.7 || entityLiving.getLookVec().yCoord > 0.7) {
-                mineOrOtherwise(worldIn, pos.north());
-                mineOrOtherwise(worldIn, pos.south());
-                mineOrOtherwise(worldIn, pos.east());
-                mineOrOtherwise(worldIn, pos.west());
+                mineOrOtherwise(worldIn, pos.north(), stack, entityLiving);
+                mineOrOtherwise(worldIn, pos.south(), stack, entityLiving);
+                mineOrOtherwise(worldIn, pos.east(), stack, entityLiving);
+                mineOrOtherwise(worldIn, pos.west(), stack, entityLiving);
 
-                mineOrOtherwise(worldIn, pos.east().north());
-                mineOrOtherwise(worldIn, pos.east().south());
-                mineOrOtherwise(worldIn, pos.west().north());
-                mineOrOtherwise(worldIn, pos.west().south());
+                mineOrOtherwise(worldIn, pos.east().north(), stack, entityLiving);
+                mineOrOtherwise(worldIn, pos.east().south(), stack, entityLiving);
+                mineOrOtherwise(worldIn, pos.west().north(), stack, entityLiving);
+                mineOrOtherwise(worldIn, pos.west().south(), stack, entityLiving);
             } else {
-                mineOrOtherwise(worldIn, pos.up());
-                mineOrOtherwise(worldIn, pos.down());
+                mineOrOtherwise(worldIn, pos.up(), stack, entityLiving);
+                mineOrOtherwise(worldIn, pos.down(), stack, entityLiving);
                 if (entityLiving.getHorizontalFacing() == EnumFacing.NORTH || entityLiving.getHorizontalFacing() == EnumFacing.SOUTH) {
-                    mineOrOtherwise(worldIn, pos.east());
-                    mineOrOtherwise(worldIn, pos.east().up());
-                    mineOrOtherwise(worldIn, pos.east().down());
-                    mineOrOtherwise(worldIn, pos.west());
-                    mineOrOtherwise(worldIn, pos.west().up());
-                    mineOrOtherwise(worldIn, pos.west().down());
+                    mineOrOtherwise(worldIn, pos.east(), stack, entityLiving);
+                    mineOrOtherwise(worldIn, pos.east().up(), stack, entityLiving);
+                    mineOrOtherwise(worldIn, pos.east().down(), stack, entityLiving);
+                    mineOrOtherwise(worldIn, pos.west(), stack, entityLiving);
+                    mineOrOtherwise(worldIn, pos.west().up(), stack, entityLiving);
+                    mineOrOtherwise(worldIn, pos.west().down(), stack, entityLiving);
                 } else if (entityLiving.getHorizontalFacing() == EnumFacing.EAST || entityLiving.getHorizontalFacing() == EnumFacing.WEST) {
-                    mineOrOtherwise(worldIn, pos.north());
-                    mineOrOtherwise(worldIn, pos.north().up());
-                    mineOrOtherwise(worldIn, pos.north().down());
-                    mineOrOtherwise(worldIn, pos.south());
-                    mineOrOtherwise(worldIn, pos.south().up());
-                    mineOrOtherwise(worldIn, pos.south().down());
+                    mineOrOtherwise(worldIn, pos.north(), stack, entityLiving);
+                    mineOrOtherwise(worldIn, pos.north().up(), stack, entityLiving);
+                    mineOrOtherwise(worldIn, pos.north().down(), stack, entityLiving);
+                    mineOrOtherwise(worldIn, pos.south(), stack, entityLiving);
+                    mineOrOtherwise(worldIn, pos.south().up(), stack, entityLiving);
+                    mineOrOtherwise(worldIn, pos.south().down(), stack, entityLiving);
                 }
             }
         }
@@ -71,10 +72,13 @@ public class ItemToolHammer extends ItemPickaxe
         return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
 
-    protected void mineOrOtherwise(World world, BlockPos pos)
+    protected void mineOrOtherwise(World world, BlockPos pos, ItemStack tool, EntityLivingBase player)
     {
-        if (canHarvestBlock(world.getBlockState(pos))) {
-            world.destroyBlock(pos, true);
+        IBlockState state = world.getBlockState(pos);
+
+        if (canHarvestBlock(state)) {
+            state.getBlock().harvestBlock(world, (EntityPlayer) player, pos, state, world.getTileEntity(pos), tool);
+            world.destroyBlock(pos, false);
         }
     }
 }
