@@ -16,6 +16,11 @@ public class ItemRender
         reg(ModItems.IronHammer);
         reg(ModItems.GoldHammer);
         reg(ModItems.DiamondHammer);
+        reg(ModItems.WoodExcavator);
+        reg(ModItems.StoneExcavator);
+        reg(ModItems.IronExcavator);
+        reg(ModItems.GoldExcavator);
+        reg(ModItems.DiamondExcavator);
     }
 
     private static void reg(Item item)

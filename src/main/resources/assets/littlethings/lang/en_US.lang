@@ -48,6 +48,16 @@ tile.littlethings:unenchantingTable.name=Unenchanting Table
 
 #Items
 item.littlethings:ironNugget.name=Iron Nugget
+item.littlethings:hammerWood.name=Wooden Hammer
+item.littlethings:hammerStone.name=Stone Hammer
+item.littlethings:hammerIron.name=Iron Hammer
+item.littlethings:hammerGold.name=Gold Hammer
+item.littlethings:hammerDiamond.name=Diamond Hammer
+item.littlethings:excavatorWood.name=Wooden Excavator
+item.littlethings:excavatorStone.name=Stone Excavator
+item.littlethings:excavatorIron.name=Iron Excavator
+item.littlethings:excavatorGold.name=Gold Excavator
+item.littlethings:excavatorDiamond.name=Diamond Excavator
 
 #Tooltips
 tooltip.littlethings.playerSkull=Player Skull
