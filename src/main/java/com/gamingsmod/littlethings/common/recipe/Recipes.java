@@ -158,6 +158,10 @@ public class Recipes
                     "ggg", "gdg", "ggg",
                     'g', new ItemStack(ModBlocks.StainedClearGlass, 1, OreDictionary.WILDCARD_VALUE),
                     'd', oreDicDyes[color.getDyeDamage()]);
+            addShapelessRecipe(
+                    new ItemStack(ModBlocks.StainedClearGlass, 1, color.getMetadata()),
+                    new ItemStack(ModBlocks.ClearGlass),
+                    oreDicDyes[color.getDyeDamage()]);
         }
 
         addRecipe(new ShapedReturnRecipe(new ItemStack(ModBlocks.ClearGlass, 8),
