@@ -1,5 +1,6 @@
 package com.gamingsmod.littlethings.client.render;
 
+import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.init.ModItems;
 import com.gamingsmod.littlethings.common.lib.LibMisc;
 import net.minecraft.client.Minecraft;
@@ -11,16 +12,21 @@ public class ItemRender
     public static void registerItemRender()
     {
         reg(ModItems.IronNugget);
-        reg(ModItems.WoodHammer);
-        reg(ModItems.StoneHammer);
-        reg(ModItems.IronHammer);
-        reg(ModItems.GoldHammer);
-        reg(ModItems.DiamondHammer);
-        reg(ModItems.WoodExcavator);
-        reg(ModItems.StoneExcavator);
-        reg(ModItems.IronExcavator);
-        reg(ModItems.GoldExcavator);
-        reg(ModItems.DiamondExcavator);
+        if (ConfigurationHandler.enableHammers) {
+            reg(ModItems.WoodHammer);
+            reg(ModItems.StoneHammer);
+            reg(ModItems.IronHammer);
+            reg(ModItems.GoldHammer);
+            reg(ModItems.DiamondHammer);
+        }
+
+        if (ConfigurationHandler.enableExcavators) {
+            reg(ModItems.WoodExcavator);
+            reg(ModItems.StoneExcavator);
+            reg(ModItems.IronExcavator);
+            reg(ModItems.GoldExcavator);
+            reg(ModItems.DiamondExcavator);
+        }
     }
 
     private static void reg(Item item)
