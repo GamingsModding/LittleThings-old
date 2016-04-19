@@ -254,9 +254,15 @@ public class TileEntityItemElevator extends TileEntity implements IInventory, IT
                         if (toInventory.isItemValidForSlot(j, move)) {
                             //Move the stack
                             ItemStack currentStack = toInventory.getStackInSlot(j);
+                            if (currentStack != null &&
+                                    currentStack.getItem() == move.getItem() &&
+                                    currentStack.getMetadata() == move.getMetadata() &&
+                                    currentStack.getTagCompound() == move.getTagCompound() &&
+                                    currentStack.stackSize < currentStack.getMaxStackSize() &&
+                                    inventory[i] != null) {
 
-                            if (currentStack != null && currentStack.getItem() == move.getItem() && currentStack.stackSize < 64 && inventory[i] != null) {
                                 inventory[i].stackSize--;
+
                                 if (inventory[i].stackSize <= 0)
                                     inventory[i] = null;
 
