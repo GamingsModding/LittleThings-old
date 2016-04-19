@@ -1,6 +1,5 @@
 package com.gamingsmod.littlethings.common.init;
 
-import com.gamingsmod.littlethings.common.block.BlockVanillaCraftingTables;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -11,13 +10,15 @@ public class ModOreDic
 {
     public static void init()
     {
-        ItemStack[] workbenches = new ItemStack[1 + BlockVanillaCraftingTables.Variant.values().length];
-        workbenches[0] = new ItemStack(Blocks.crafting_table);
-        for (BlockVanillaCraftingTables.Variant variant : BlockVanillaCraftingTables.Variant.values())
-            workbenches[variant.getId() + 1] = new ItemStack(ModBlocks.VanillaCraftingTables, 1, variant.getId());
 
         add("nuggetIron", ModItems.IronNugget);
-        add("workbench", workbenches);
+
+        add("workbench", Blocks.crafting_table);
+        add("workbench", new ItemStack(ModBlocks.VanillaCraftingTables, 1, OreDictionary.WILDCARD_VALUE));
+
+        add("blockGlassColorless", ModBlocks.ClearGlass);
+        add("blockGlass", ModBlocks.ClearGlass);
+        add("blockClearGlass", new ItemStack(ModBlocks.ClearGlass), new ItemStack(ModBlocks.StainedClearGlass, 1, OreDictionary.WILDCARD_VALUE));
 ;    }
 
     private static void add(String entry, Item... items)

@@ -51,7 +51,8 @@ public class Recipes
 
         if (ConfigurationHandler.enableUnenchantingTable) recipesUnenchantingTable();
 
-        recipesHammer();
+        if (ConfigurationHandler.enableHammers)
+            recipesHammer();
     }
 
     private static void recipesHammer()
@@ -152,15 +153,11 @@ public class Recipes
         for (EnumDyeColor color : EnumDyeColor.values()) {
             addRecipe(new ItemStack(ModBlocks.StainedClearGlass, 8, color.getMetadata()),
                     "ggg", "gdg", "ggg",
-                    'g', new ItemStack(ModBlocks.ClearGlass),
-                    'd', oreDicDyes[color.getDyeDamage()]);
-            addRecipe(new ItemStack(ModBlocks.StainedClearGlass, 8, color.getMetadata()),
-                    "ggg", "gdg", "ggg",
-                    'g', new ItemStack(ModBlocks.StainedClearGlass, 1, OreDictionary.WILDCARD_VALUE),
+                    'g', "blockClearGlass",
                     'd', oreDicDyes[color.getDyeDamage()]);
             addShapelessRecipe(
                     new ItemStack(ModBlocks.StainedClearGlass, 1, color.getMetadata()),
-                    new ItemStack(ModBlocks.ClearGlass),
+                    "blockClearGlass",
                     oreDicDyes[color.getDyeDamage()]);
         }
 
@@ -237,22 +234,22 @@ public class Recipes
 
     private static void recipesUpgradedFurnaces()
     {
-        addRecipe(new ItemStack(ModBlocks.UpgradedFurnaces[0]),
+        addRecipe(new ItemStack(ModBlocks.UpgradedFurnaces[0]), //Iron
                 "iii", "ifi", "iii",
                 'i', "ingotIron",
                 'f', new ItemStack(Blocks.furnace));
 
-        addRecipe(new ItemStack(ModBlocks.UpgradedFurnaces[2]),
+        addRecipe(new ItemStack(ModBlocks.UpgradedFurnaces[2]), //Gold
                 "iii", "ifi", "iii",
                 'i', "ingotGold",
                 'f', new ItemStack(ModBlocks.UpgradedFurnaces[0]));
 
-        addRecipe(new ItemStack(ModBlocks.UpgradedFurnaces[4]),
+        addRecipe(new ItemStack(ModBlocks.UpgradedFurnaces[4]), //Diamond
                 "iii", "ifi", "iii",
                 'i', "gemDiamond",
                 'f', new ItemStack(ModBlocks.UpgradedFurnaces[2]));
 
-        addRecipe(new ItemStack(ModBlocks.UpgradedFurnaces[6]),
+        addRecipe(new ItemStack(ModBlocks.UpgradedFurnaces[6]), //Emerald
                 "iii", "ifi", "iii",
                 'i', "gemEmerald",
                 'f', new ItemStack(ModBlocks.UpgradedFurnaces[2]));
