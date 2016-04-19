@@ -65,7 +65,7 @@ public class GuiUnenchantingTable extends GuiContainer
             NBTTagList enchantmentList = te.getStackInSlot(0).getEnchantmentTagList();
             Enchantment enchantment = Enchantment.getEnchantmentByID(enchantmentList.getCompoundTagAt(0).getShort("id"));
             int levelCost = enchantment.getMinEnchantability(enchantmentList.getCompoundTagAt(0).getShort("lvl"));
-            this.buttons[0].displayString = levelCost + " Levels";
+            this.buttons[0].displayString = (int) Math.floor(levelCost / 2) + " Levels";
         } else {
             this.buttons[0].enabled = false;
             this.buttons[0].displayString = "???";
@@ -82,7 +82,7 @@ public class GuiUnenchantingTable extends GuiContainer
                 Enchantment enchantment = Enchantment.getEnchantmentByID(enchantmentList.getCompoundTagAt(0).getShort("id"));
                 int levelCost = enchantment.getMinEnchantability(enchantmentList.getCompoundTagAt(0).getShort("lvl"));
 
-                MessageHandler.INSTANCE.sendToServer(new MessageXP(levelCost, itemStack, this.te.getPos()));
+                MessageHandler.INSTANCE.sendToServer(new MessageXP((int) Math.floor(levelCost / 2), itemStack, this.te.getPos()));
             }
         }
     }
