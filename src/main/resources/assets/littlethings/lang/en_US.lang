@@ -101,3 +101,10 @@ command.littlethings.gma=/gma [player]
 command.littlethings.gmc=/gmc [player]
 command.littlethings.gmsp=/gmsp [player]
 command.littlethings.skull=/skull <player>
+
+#Versioning
+littlethings.versioning.alpha=New Alpha Build Found!
+littlethings.versioning.other=New Version Found!
+
+littlethings.versioning.messageAlpha=["Go to the [",{"text":"Download Page","clickEvent":{"action":"open_url","value":"https://drive.google.com/drive/folders/0B9-zqyDgitL5a0pKU2REbEFPUHM"}},"] [",{"text":"Changelog","clickEvent":{"action":"open_url","value":"https://drive.google.com/drive/folders/0B9-zqyDgitL5a0pKU2REbEFPUHM"}},"]"]
+littlethings.versioning.messageOther=["Go to the [",{"text":"Download Page","clickEvent":{"action":"open_url","value":"https://drive.google.com/drive/folders/0B9-zqyDgitL5a0pKU2REbEFPUHM"}},"] [",{"text":"Changelog","clickEvent":{"action":"open_url","value":"https://drive.google.com/drive/folders/0B9-zqyDgitL5a0pKU2REbEFPUHM"}},"]"]
