@@ -51,30 +51,65 @@ public class Recipes
 
         if (ConfigurationHandler.enableUnenchantingTable) recipesUnenchantingTable();
 
-        if (ConfigurationHandler.enableHammers)
-            recipesHammer();
+        if (ConfigurationHandler.enableHammers) recipesHammer();
+
+        if (ConfigurationHandler.enableExcavators) recipesExcavators();
+    }
+
+    private static void recipesExcavators()
+    {
+        addRecipe(new ItemStack(ModItems.WoodExcavator),
+                "ipi", "isi", " s ",
+                'p', new ItemStack(Items.wooden_shovel),
+                'i', "plankWood",
+                's', "stickWood");
+        addRecipe(new ItemStack(ModItems.StoneExcavator),
+                "ipi", "isi", " s ",
+                'p', new ItemStack(Items.stone_shovel),
+                'i', "cobblestone",
+                's', "stickWood");
+        addRecipe(new ItemStack(ModItems.IronExcavator),
+                "ipi", "isi", " s ",
+                'p', new ItemStack(Items.iron_shovel),
+                'i', "ingotIron",
+                's', "stickWood");
+        addRecipe(new ItemStack(ModItems.GoldExcavator),
+                "ipi", "isi", " s ",
+                'p', new ItemStack(Items.golden_shovel),
+                'i', "ingotGold",
+                's', "stickWood");
+        addRecipe(new ItemStack(ModItems.DiamondExcavator),
+                "ipi", "isi", " s ",
+                'p', new ItemStack(Items.diamond_shovel),
+                'i', "gemDiamond",
+                's', "stickWood");
     }
 
     private static void recipesHammer()
     {
         addRecipe(new ItemStack(ModItems.WoodHammer),
-                "iii", "isi", " s ",
+                "ipi", "isi", " s ",
+                'p', new ItemStack(Items.wooden_pickaxe),
                 'i', "plankWood",
                 's', "stickWood");
         addRecipe(new ItemStack(ModItems.StoneHammer),
-                "iii", "isi", " s ",
+                "ipi", "isi", " s ",
+                'p', new ItemStack(Items.stone_pickaxe),
                 'i', "cobblestone",
                 's', "stickWood");
         addRecipe(new ItemStack(ModItems.IronHammer),
-                "iii", "isi", " s ",
+                "ipi", "isi", " s ",
+                'p', new ItemStack(Items.iron_pickaxe),
                 'i', "ingotIron",
                 's', "stickWood");
         addRecipe(new ItemStack(ModItems.GoldHammer),
-                "iii", "isi", " s ",
+                "ipi", "isi", " s ",
+                'p', new ItemStack(Items.golden_pickaxe),
                 'i', "ingotGold",
                 's', "stickWood");
         addRecipe(new ItemStack(ModItems.DiamondHammer),
-                "iii", "isi", " s ",
+                "ipi", "isi", " s ",
+                'p', new ItemStack(Items.diamond_pickaxe),
                 'i', "gemDiamond",
                 's', "stickWood");
     }
