@@ -27,6 +27,8 @@ public class ItemRender
             reg(ModItems.GoldExcavator);
             reg(ModItems.DiamondExcavator);
         }
+
+        reg(ModItems.Crossbow);
     }
 
     private static void reg(Item item)

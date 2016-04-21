@@ -1,6 +1,7 @@
 package com.gamingsmod.littlethings.common.init;
 
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
+import com.gamingsmod.littlethings.common.item.ItemCrossbow;
 import com.gamingsmod.littlethings.common.item.ItemIronNugget;
 import com.gamingsmod.littlethings.common.item.ItemToolExcavator;
 import com.gamingsmod.littlethings.common.item.ItemToolHammer;
@@ -21,6 +22,7 @@ public class ModItems
     public static Item IronExcavator;
     public static Item GoldExcavator;
     public static Item DiamondExcavator;
+    public static Item Crossbow;
 
     public static void init()
     {
@@ -41,6 +43,8 @@ public class ModItems
             register(GoldExcavator = (new ItemToolExcavator(Item.ToolMaterial.GOLD)).setUnlocalizedName(LibItems.EXCAVATOR + "Gold"), LibItems.EXCAVATOR + "Gold");
             register(DiamondExcavator = (new ItemToolExcavator(Item.ToolMaterial.DIAMOND)).setUnlocalizedName(LibItems.EXCAVATOR + "Diamond"), LibItems.EXCAVATOR + "Diamond");
         }
+        
+        register(Crossbow = new ItemCrossbow(), LibItems.CROSSBOW);
     }
 
     public static void register(Item item, String name)
