@@ -8,9 +8,13 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -78,6 +82,26 @@ public class ItemToolExcavator extends ItemSpade
     }
 
     @Override
+    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        boolean ran = false;
+        ran = flatten(worldIn, facing, pos, stack, playerIn) || ran;
+        ran = flatten(worldIn, facing, pos.north(), stack, playerIn) || ran;
+        ran = flatten(worldIn, facing, pos.north().east(), stack, playerIn) || ran;
+        ran = flatten(worldIn, facing, pos.north().west(), stack, playerIn) || ran;
+        ran = flatten(worldIn, facing, pos.south(), stack, playerIn) || ran;
+        ran = flatten(worldIn, facing, pos.south().east(), stack, playerIn) || ran;
+        ran = flatten(worldIn, facing, pos.south().west(), stack, playerIn) || ran;
+        ran = flatten(worldIn, facing, pos.east(), stack, playerIn) || ran;
+        ran = flatten(worldIn, facing, pos.west(), stack, playerIn) || ran;
+
+        if (ran)
+            return EnumActionResult.SUCCESS;
+        else
+            return EnumActionResult.FAIL;
+    }
+
+    @Override
     public String getUnlocalizedName()
     {
         return String.format("item.%s%s", LibMisc.MOD_ID.toLowerCase() + ":", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
@@ -101,6 +125,30 @@ public class ItemToolExcavator extends ItemSpade
         if (isEffective(state)) {
             state.getBlock().harvestBlock(world, (EntityPlayer) player, pos, state, world.getTileEntity(pos), tool);
             world.destroyBlock(pos, false);
+        }
+    }
+
+    protected boolean flatten(World worldIn, EnumFacing facing, BlockPos pos, ItemStack stack, EntityPlayer playerIn)
+    {
+        IBlockState iblockstate = worldIn.getBlockState(pos);
+        Block block = iblockstate.getBlock();
+
+        if (facing != EnumFacing.DOWN && worldIn.getBlockState(pos.up()).getMaterial() == Material.air && block == Blocks.grass)
+        {
+            IBlockState iblockstate1 = Blocks.grass_path.getDefaultState();
+            worldIn.playSound(playerIn, pos, SoundEvents.item_shovel_flatten, SoundCategory.BLOCKS, 1.0F, 1.0F);
+
+            if (!worldIn.isRemote)
+            {
+                worldIn.setBlockState(pos, iblockstate1, 11);
+                stack.damageItem(1, playerIn);
+            }
+
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
