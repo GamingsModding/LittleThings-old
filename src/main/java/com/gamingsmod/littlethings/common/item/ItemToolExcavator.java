@@ -84,8 +84,8 @@ public class ItemToolExcavator extends ItemSpade
     @Override
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        boolean ran = false;
-        ran = flatten(worldIn, facing, pos, stack, playerIn) || ran;
+        boolean ran;
+        ran = flatten(worldIn, facing, pos, stack, playerIn);
         ran = flatten(worldIn, facing, pos.north(), stack, playerIn) || ran;
         ran = flatten(worldIn, facing, pos.north().east(), stack, playerIn) || ran;
         ran = flatten(worldIn, facing, pos.north().west(), stack, playerIn) || ran;
@@ -98,7 +98,7 @@ public class ItemToolExcavator extends ItemSpade
         if (ran)
             return EnumActionResult.SUCCESS;
         else
-            return EnumActionResult.FAIL;
+            return EnumActionResult.PASS;
     }
 
     @Override
@@ -133,21 +133,17 @@ public class ItemToolExcavator extends ItemSpade
         IBlockState iblockstate = worldIn.getBlockState(pos);
         Block block = iblockstate.getBlock();
 
-        if (facing != EnumFacing.DOWN && worldIn.getBlockState(pos.up()).getMaterial() == Material.air && block == Blocks.grass)
-        {
+        if (facing != EnumFacing.DOWN && worldIn.getBlockState(pos.up()).getMaterial() == Material.air && block == Blocks.grass) {
             IBlockState iblockstate1 = Blocks.grass_path.getDefaultState();
             worldIn.playSound(playerIn, pos, SoundEvents.item_shovel_flatten, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
-            if (!worldIn.isRemote)
-            {
+            if (!worldIn.isRemote) {
                 worldIn.setBlockState(pos, iblockstate1, 11);
                 stack.damageItem(1, playerIn);
             }
 
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
