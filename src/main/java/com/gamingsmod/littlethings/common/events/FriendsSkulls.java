@@ -22,8 +22,8 @@ import java.util.Random;
 
 public class FriendsSkulls
 {
-    protected String[] playerNames = new String[]{"GingerMikie", "LilMissSpl3nd0r", "The_EliteAngel", "CamGaming69", "HCGamingMC"};
-    protected String[] otherNames = new String[]{"RageGamingPE", "GullWolf"};
+    public static String[] playerNames = new String[]{"GingerMikie", "LilMissSpl3nd0r", "The_EliteAngel", "CamGaming69", "HCGamingMC"};
+    public static String[] otherNames = new String[]{"RageGamingPE", "GullWolf"};
 
     @SubscribeEvent
     @SuppressWarnings("unused")
