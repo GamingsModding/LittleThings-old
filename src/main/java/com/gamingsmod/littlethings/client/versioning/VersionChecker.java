@@ -1,6 +1,7 @@
 package com.gamingsmod.littlethings.client.versioning;
 
 import com.gamingsmod.littlethings.common.events.FriendsSkulls;
+import com.gamingsmod.littlethings.common.lib.LibMisc;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.ITextComponent;
@@ -33,11 +34,11 @@ public class VersionChecker
             if (!version.isEmpty()) {
                 EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 
-//                int[] onlineSplit = getIntegers(version.split("\\."));
-                int[] onlineSplit = getIntegers(new String[]{"0", "1", "5"});
+                int[] onlineSplit = getIntegers(version.split("\\."));
+//                int[] onlineSplit = getIntegers(new String[]{"0", "1", "5"});
 
-//                int[] clientSplit = LibMisc.BUILD.contains("GRADLE") ? new int[]{Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE} : getIntegers( LibMisc.BUILD.split("\\."));
-                int[] clientSplit = getIntegers(new String[]{"0", "1", "1"});
+                int[] clientSplit = LibMisc.BUILD.contains("GRADLE") ? new int[]{Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE} : getIntegers( LibMisc.BUILD.split("\\."));
+//                int[] clientSplit = getIntegers(new String[]{"0", "1", "1"});
 
                 if (onlineSplit[0] > clientSplit[0]) {
                     //MAJOR
