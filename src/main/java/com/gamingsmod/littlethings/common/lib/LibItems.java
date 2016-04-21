@@ -6,4 +6,5 @@ public class LibItems
     public static final String HAMMER = "hammer";
     public static final String EXCAVATOR = "excavator";
     public static final String CROSSBOW = "crossbow";
+    public static final String CROSSBOLT = "crossbolt";
 }

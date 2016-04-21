@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
@@ -33,7 +32,7 @@ public class ItemCrossbow extends ModItem
                 entityCrossBolt.func_184538_a(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 3.0F, 1.0F);
                 worldIn.spawnEntityInWorld(entityCrossBolt);
 
-                if (ammo != null) ammo.stackSize--;
+                if (ammo != null && !playerIn.isCreative()) ammo.stackSize--;
             }
         }
 
@@ -71,6 +70,6 @@ public class ItemCrossbow extends ModItem
 
     protected boolean isValidAmmo(ItemStack stack)
     {
-        return stack != null && stack.getItem() instanceof ItemArrow;
+        return stack != null && stack.getItem() instanceof ItemCrossBolt;
     }
 }

@@ -1,10 +1,7 @@
 package com.gamingsmod.littlethings.common.init;
 
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
-import com.gamingsmod.littlethings.common.item.ItemCrossbow;
-import com.gamingsmod.littlethings.common.item.ItemIronNugget;
-import com.gamingsmod.littlethings.common.item.ItemToolExcavator;
-import com.gamingsmod.littlethings.common.item.ItemToolHammer;
+import com.gamingsmod.littlethings.common.item.*;
 import com.gamingsmod.littlethings.common.lib.LibItems;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -22,7 +19,8 @@ public class ModItems
     public static Item IronExcavator;
     public static Item GoldExcavator;
     public static Item DiamondExcavator;
-    public static Item Crossbow;
+    public static Item CrossBow;
+    public static Item CrossBolt;
 
     public static void init()
     {
@@ -44,7 +42,8 @@ public class ModItems
             register(DiamondExcavator = (new ItemToolExcavator(Item.ToolMaterial.DIAMOND)).setUnlocalizedName(LibItems.EXCAVATOR + "Diamond"), LibItems.EXCAVATOR + "Diamond");
         }
         
-        register(Crossbow = new ItemCrossbow(), LibItems.CROSSBOW);
+        register(CrossBow = new ItemCrossbow(), LibItems.CROSSBOW);
+        register(CrossBolt = new ItemCrossBolt(), LibItems.CROSSBOLT);
     }
 
     public static void register(Item item, String name)

@@ -28,7 +28,8 @@ public class ItemRender
             reg(ModItems.DiamondExcavator);
         }
 
-        reg(ModItems.Crossbow);
+        reg(ModItems.CrossBow);
+        reg(ModItems.CrossBolt);
     }
 
     private static void reg(Item item)
