@@ -5,10 +5,7 @@ import com.gamingsmod.littlethings.common.events.FoodEvents;
 import com.gamingsmod.littlethings.common.events.FriendsSkulls;
 import com.gamingsmod.littlethings.common.events.RightClickCrops;
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
-import com.gamingsmod.littlethings.common.init.ModBlocks;
-import com.gamingsmod.littlethings.common.init.ModItems;
-import com.gamingsmod.littlethings.common.init.ModOreDic;
-import com.gamingsmod.littlethings.common.init.ModTileEntities;
+import com.gamingsmod.littlethings.common.init.*;
 import com.gamingsmod.littlethings.common.network.GuiHandler;
 import com.gamingsmod.littlethings.common.network.MessageHandler;
 import com.gamingsmod.littlethings.common.recipe.Recipes;
@@ -29,6 +26,7 @@ public class CommonProxy
         ModBlocks.init();
         ModItems.init();
         ModTileEntities.init();
+        ModEntities.init();
         MessageHandler.preInit();
     }
 
