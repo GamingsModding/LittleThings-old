@@ -21,6 +21,8 @@ public class ConfigurationHandler
     public static boolean enableHammers;
     public static boolean enableExcavators;
     public static boolean enableCrossbow;
+    public static boolean enableObsidianTools;
+    public static boolean enableEmeraldTools;
 
     public static boolean enableOldSaddleRecipe;
     public static boolean enableOldArmorRecipe;
@@ -28,6 +30,7 @@ public class ConfigurationHandler
     public static double percentOfSkullSpawn;
 
     public static final String CATEGORY_ITEMS = "Items";
+    public static final String CATEGORY_TOOLS = "Tools and Weapons";
     public static final String CATEGORY_BLOCKS = "Blocks";
     public static final String CATEGORY_RECIPES = "Recipes";
     public static final String CATEGORY_HORSE_ARMOR = "Horse Armor Recipes";
@@ -58,7 +61,11 @@ public class ConfigurationHandler
         //Items
         enableHammers = getBoolean(CATEGORY_ITEMS, "Enable Hammers", true);
         enableExcavators = getBoolean(CATEGORY_ITEMS, "Enable Excavators", true);
-        enableCrossbow = getBoolean(CATEGORY_ITEMS, "Enable Crossbow", true);
+
+        //Tools and Weapons
+        enableCrossbow = getBoolean(CATEGORY_TOOLS, "Enable Crossbow", true);
+        enableObsidianTools = getBoolean(CATEGORY_TOOLS, "Enable Obsidian Tool Set", true);
+        enableEmeraldTools = getBoolean(CATEGORY_TOOLS, "Enable Emerald Tool Set", true);
 
         //Recipes
         enableGlassPanesRecipe = getBoolean(CATEGORY_RECIPES, "Enable Recoloring Glass Panes", true);

@@ -48,16 +48,30 @@ tile.littlethings:unenchantingTable.name=Unenchanting Table
 
 #Items
 item.littlethings:ironNugget.name=Iron Nugget
+
 item.littlethings:hammerWood.name=Wooden Hammer
 item.littlethings:hammerStone.name=Stone Hammer
 item.littlethings:hammerIron.name=Iron Hammer
 item.littlethings:hammerGold.name=Gold Hammer
 item.littlethings:hammerDiamond.name=Diamond Hammer
+
 item.littlethings:excavatorWood.name=Wooden Excavator
 item.littlethings:excavatorStone.name=Stone Excavator
 item.littlethings:excavatorIron.name=Iron Excavator
 item.littlethings:excavatorGold.name=Gold Excavator
 item.littlethings:excavatorDiamond.name=Diamond Excavator
+
+item.littlethings:obsidian_sword.name=Obsidian Sword
+item.littlethings:obsidian_pickaxe.name=Obsidian Pickaxe
+item.littlethings:obsidian_axe.name=Obsidian Axe
+item.littlethings:obsidian_spade.name=Obsidian Shovel
+item.littlethings:obsidian_hoe.name=Obsidian Hoe
+
+item.littlethings:emerald_sword.name=Emerald Sword
+item.littlethings:emerald_pickaxe.name=Emerald Pickaxe
+item.littlethings:emerald_axe.name=Emerald Axe
+item.littlethings:emerald_spade.name=Emerald Shovel
+item.littlethings:emerald_hoe.name=Emerald Hoe
 
 item.littlethings:crossbow.name=Crossbow
 item.littlethings:crossbolt.name=Crossbolt

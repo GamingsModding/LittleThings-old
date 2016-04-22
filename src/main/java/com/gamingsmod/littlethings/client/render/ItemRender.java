@@ -32,6 +32,23 @@ public class ItemRender
             reg(ModItems.CrossBow);
             reg(ModItems.CrossBolt);
         }
+
+        if (ConfigurationHandler.enableObsidianTools) {
+            reg(ModItems.ObsidianSword);
+            reg(ModItems.ObsidianPickaxe);
+            reg(ModItems.ObsidianAxe);
+            reg(ModItems.ObsidianSpade);
+            reg(ModItems.ObsidianHoe);
+        }
+
+        if (ConfigurationHandler.enableEmeraldTools) {
+            reg(ModItems.EmeraldSword);
+            reg(ModItems.EmeraldPickaxe);
+            reg(ModItems.EmeraldAxe);
+            reg(ModItems.EmeraldSpade);
+            reg(ModItems.EmeraldHoe);
+
+        }
     }
 
     private static void reg(Item item)

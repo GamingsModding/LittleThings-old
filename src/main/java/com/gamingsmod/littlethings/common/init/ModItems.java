@@ -2,25 +2,42 @@ package com.gamingsmod.littlethings.common.init;
 
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.item.*;
+import com.gamingsmod.littlethings.common.item.tools.*;
 import com.gamingsmod.littlethings.common.lib.LibItems;
+import com.gamingsmod.littlethings.common.lib.LibMaterials;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModItems
 {
     public static Item IronNugget;
+
     public static Item WoodHammer;
     public static Item StoneHammer;
     public static Item IronHammer;
     public static Item GoldHammer;
     public static Item DiamondHammer;
+
     public static Item WoodExcavator;
     public static Item StoneExcavator;
     public static Item IronExcavator;
     public static Item GoldExcavator;
     public static Item DiamondExcavator;
+
     public static Item CrossBow;
     public static Item CrossBolt;
+
+    public static Item ObsidianSword;
+    public static Item ObsidianPickaxe;
+    public static Item ObsidianAxe;
+    public static Item ObsidianSpade;
+    public static Item ObsidianHoe;
+
+    public static Item EmeraldSword;
+    public static Item EmeraldPickaxe;
+    public static Item EmeraldAxe;
+    public static Item EmeraldSpade;
+    public static Item EmeraldHoe;
 
     public static void init()
     {
@@ -45,6 +62,23 @@ public class ModItems
         if (ConfigurationHandler.enableCrossbow) {
             register(CrossBow = new ItemCrossbow(), LibItems.CROSSBOW);
             register(CrossBolt = new ItemCrossBolt(), LibItems.CROSSBOLT);
+        }
+
+        if (ConfigurationHandler.enableObsidianTools) {
+            register(ObsidianSword = new ModItemSword("obsidian_sword", LibMaterials.Tools.OBSIDIAN), "obsidian_sword");
+            register(ObsidianPickaxe = new ModItemPickaxe("obsidian_pickaxe", LibMaterials.Tools.OBSIDIAN), "obsidian_pickaxe");
+            register(ObsidianAxe = new ModItemAxe("obsidian_axe", LibMaterials.Tools.OBSIDIAN), "obsidian_axe");
+            register(ObsidianSpade = new ModItemSpade("obsidian_spade", LibMaterials.Tools.OBSIDIAN), "obsidian_spade");
+            register(ObsidianHoe = new ModItemHoe("obsidian_hoe", LibMaterials.Tools.OBSIDIAN), "obsidian_hoe");
+        }
+
+        if (ConfigurationHandler.enableEmeraldTools) {
+            register(EmeraldSword = new ModItemSword("emerald_sword", LibMaterials.Tools.EMERALD), "emerald_sword");
+            register(EmeraldPickaxe = new ModItemPickaxe("emerald_pickaxe", LibMaterials.Tools.EMERALD), "emerald_pickaxe");
+            register(EmeraldAxe = new ModItemAxe("emerald_axe", LibMaterials.Tools.EMERALD), "emerald_axe");
+            register(EmeraldSpade = new ModItemSpade("emerald_spade", LibMaterials.Tools.EMERALD), "emerald_spade");
+            register(EmeraldHoe = new ModItemHoe("emerald_hoe", LibMaterials.Tools.EMERALD), "emerald_hoe");
+
         }
     }
 

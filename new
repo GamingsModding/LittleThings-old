@@ -1,6 +1,7 @@
 <?php
 $mod_id = "littlethings";
 $base = "src/main/resources/assets/{$mod_id}/";
+$toolset = ["sword", "spade", "pickaxe", "axe", "hoe"];
 array_shift($argv);
 
 switch (array_shift($argv)) {
@@ -9,9 +10,9 @@ switch (array_shift($argv)) {
 			if (!file_exists($base . "blockstates/{$arg}.json")) {
 				$file = fopen($base . "blockstates/{$arg}.json", "w");
 				fwrite($file, "{\n");
-		    	fwrite($file, "  \"variants\": {\n");
-		        fwrite($file, "    \"normal\": { \"model\": \"{$mod_id}:{$arg}\" }\n");
-		   		fwrite($file, "  }\n");
+				fwrite($file, "  \"variants\": {\n");
+				fwrite($file, "    \"normal\": { \"model\": \"{$mod_id}:{$arg}\" }\n");
+				fwrite($file, "  }\n");
 				fwrite($file, "}");
 				fclose($file);
 			}
@@ -61,6 +62,25 @@ switch (array_shift($argv)) {
 			echo "Writen {$arg}\n";
 		}
 		break;
+
+	case 'toolset':
+		foreach ($argv as $arg) {
+			foreach ($toolset as $x) {
+				if (!file_exists($base . "models/item/{$arg}_{$x}.json")) {
+					$file = fopen($base . "models/item/{$arg}_{$x}.json", "w");
+					fwrite($file, "{\n");
+					fwrite($file, "  \"parent\":\"item/handheld\",\n");
+					fwrite($file, "  \"textures\": {\n");
+					fwrite($file, "    \"layer0\":\"{$mod_id}:items/{$arg}_{$x}\"\n");
+					fwrite($file, "  }\n");
+					fwrite($file, "}");
+					fclose($file);
+		    	}
+			}
+			
+			echo "Writen {$arg}\n";
+        }
+        break;
 
 	default:
 		echo "Must have b or i has first arg\n";
