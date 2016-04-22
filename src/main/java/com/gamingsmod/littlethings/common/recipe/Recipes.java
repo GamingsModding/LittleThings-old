@@ -54,6 +54,27 @@ public class Recipes
         if (ConfigurationHandler.enableHammers) recipesHammer();
 
         if (ConfigurationHandler.enableExcavators) recipesExcavators();
+
+        if (ConfigurationHandler.enableObsidianTools)
+            recipesTools(
+                    new ItemStack(Blocks.obsidian),
+                    new ItemStack(Items.stick),
+                    ModItems.ObsidianSword,
+                    ModItems.ObsidianPickaxe,
+                    ModItems.ObsidianAxe,
+                    ModItems.ObsidianSpade,
+                    ModItems.ObsidianHoe
+            );
+        if (ConfigurationHandler.enableEmeraldTools)
+            recipesTools(
+                    new ItemStack(Items.emerald),
+                    new ItemStack(Items.stick),
+                    ModItems.EmeraldSword,
+                    ModItems.EmeraldPickaxe,
+                    ModItems.EmeraldAxe,
+                    ModItems.EmeraldSpade,
+                    ModItems.EmeraldHoe
+            );
     }
 
     private static void recipesExcavators()
@@ -363,5 +384,29 @@ public class Recipes
     private static void addBlockRecipe(ItemStack output, ItemStack input)
     {
         addBlockRecipe(output, input, true);
+    }
+
+    private static void recipesTools(ItemStack ing1, ItemStack ing2, Item sword, Item pickaxe, Item axe, Item spade, Item hoe)
+    {
+        addRecipe(new ItemStack(sword),
+                "i","i","s",
+                'i', ing1,
+                's', ing2);
+        addRecipe(new ItemStack(pickaxe),
+                "iii", " s ", " s ",
+                'i', ing1,
+                's', ing2);
+        addRecipe(new ItemStack(axe),
+                "ii ", "is ", " s ",
+                'i', ing1,
+                's', ing2);
+        addRecipe(new ItemStack(spade),
+                " i ", " s ", " s ",
+                'i', ing1,
+                's', ing2);
+        addRecipe(new ItemStack(hoe),
+                " ii", " s ", " s ",
+                'i', ing1,
+                's', ing2);
     }
 }
