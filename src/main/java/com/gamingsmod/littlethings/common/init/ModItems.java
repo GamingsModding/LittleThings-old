@@ -41,9 +41,11 @@ public class ModItems
             register(GoldExcavator = (new ItemToolExcavator(Item.ToolMaterial.GOLD)).setUnlocalizedName(LibItems.EXCAVATOR + "Gold"), LibItems.EXCAVATOR + "Gold");
             register(DiamondExcavator = (new ItemToolExcavator(Item.ToolMaterial.DIAMOND)).setUnlocalizedName(LibItems.EXCAVATOR + "Diamond"), LibItems.EXCAVATOR + "Diamond");
         }
-        
-        register(CrossBow = new ItemCrossbow(), LibItems.CROSSBOW);
-        register(CrossBolt = new ItemCrossBolt(), LibItems.CROSSBOLT);
+
+        if (ConfigurationHandler.enableCrossbow) {
+            register(CrossBow = new ItemCrossbow(), LibItems.CROSSBOW);
+            register(CrossBolt = new ItemCrossBolt(), LibItems.CROSSBOLT);
+        }
     }
 
     public static void register(Item item, String name)

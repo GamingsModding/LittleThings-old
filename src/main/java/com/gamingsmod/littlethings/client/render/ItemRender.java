@@ -28,8 +28,10 @@ public class ItemRender
             reg(ModItems.DiamondExcavator);
         }
 
-        reg(ModItems.CrossBow);
-        reg(ModItems.CrossBolt);
+        if (ConfigurationHandler.enableCrossbow) {
+            reg(ModItems.CrossBow);
+            reg(ModItems.CrossBolt);
+        }
     }
 
     private static void reg(Item item)

@@ -20,6 +20,7 @@ public class ConfigurationHandler
     public static boolean enableUnenchantingTable;
     public static boolean enableHammers;
     public static boolean enableExcavators;
+    public static boolean enableCrossbow;
 
     public static boolean enableOldSaddleRecipe;
     public static boolean enableOldArmorRecipe;
@@ -30,7 +31,7 @@ public class ConfigurationHandler
     public static final String CATEGORY_BLOCKS = "Blocks";
     public static final String CATEGORY_RECIPES = "Recipes";
     public static final String CATEGORY_HORSE_ARMOR = "Horse Armor Recipes";
-    
+
     public static void init(File file)
     {
         if (configuration == null) {
@@ -57,6 +58,7 @@ public class ConfigurationHandler
         //Items
         enableHammers = getBoolean(CATEGORY_ITEMS, "Enable Hammers", true);
         enableExcavators = getBoolean(CATEGORY_ITEMS, "Enable Excavators", true);
+        enableCrossbow = getBoolean(CATEGORY_ITEMS, "Enable Crossbow", true);
 
         //Recipes
         enableGlassPanesRecipe = getBoolean(CATEGORY_RECIPES, "Enable Recoloring Glass Panes", true);
