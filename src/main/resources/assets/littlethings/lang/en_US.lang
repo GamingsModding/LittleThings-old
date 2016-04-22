@@ -59,6 +59,9 @@ item.littlethings:excavatorIron.name=Iron Excavator
 item.littlethings:excavatorGold.name=Gold Excavator
 item.littlethings:excavatorDiamond.name=Diamond Excavator
 
+item.littlethings:crossbow.name=Crossbow
+item.littlethings:crossbolt.name=Crossbolt
+
 #Tooltips
 tooltip.littlethings.playerSkull=Player Skull
 tooltip.littlethings.skullOwner=Skull Owner: %s

@@ -35,7 +35,6 @@ public class CommonProxy
         Recipes.init();
         Smelting.init();
         ModOreDic.init();
-        ModEntities.initRender();
         NetworkRegistry.INSTANCE.registerGuiHandler(LittleThings.instance, new GuiHandler());
         MinecraftForge.EVENT_BUS.register(new FriendsSkulls());
         MinecraftForge.EVENT_BUS.register(new FoodEvents());

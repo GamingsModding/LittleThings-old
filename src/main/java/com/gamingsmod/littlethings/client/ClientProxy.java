@@ -4,6 +4,7 @@ import com.gamingsmod.littlethings.client.render.BlockRender;
 import com.gamingsmod.littlethings.client.render.ItemRender;
 import com.gamingsmod.littlethings.client.versioning.VersionChecker;
 import com.gamingsmod.littlethings.common.CommonProxy;
+import com.gamingsmod.littlethings.common.init.ModEntities;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
@@ -14,6 +15,7 @@ public class ClientProxy extends CommonProxy
         super.preInit(e);
 
         BlockRender.preInit();
+        ModEntities.initRender();
         new VersionChecker().init();
     }
 

@@ -1,11 +1,10 @@
 package com.gamingsmod.littlethings.common.item;
 
 import com.gamingsmod.littlethings.common.entity.EntityCrossBolt;
+import com.gamingsmod.littlethings.common.helper.NBTHelper;
 import com.gamingsmod.littlethings.common.item.base.ModItem;
 import com.gamingsmod.littlethings.common.lib.LibItems;
-import com.gamingsmod.littlethings.common.lib.LibMisc;
-import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -16,37 +15,48 @@ import net.minecraft.world.World;
 
 public class ItemCrossbow extends ModItem
 {
+    private static final String COOLDOWN_KEY = "cooldown";
+    private static final int COOLDOWN_MAX = 20;
+
     public ItemCrossbow()
     {
         super(LibItems.CROSSBOW);
+        this.setMaxDamage(350);
+        this.setMaxStackSize(1);
     }
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
         ItemStack ammo = getAmmo(playerIn);
-        if (playerIn.isCreative() || ammo != null) {
+        int cooldown = NBTHelper.getInt(itemStackIn, COOLDOWN_KEY);
+
+        if ((playerIn.isCreative() || ammo != null) && cooldown >= COOLDOWN_MAX) {
             worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.entity_arrow_shoot, SoundCategory.NEUTRAL, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) * 0.5F);
             if (!worldIn.isRemote) {
                 EntityCrossBolt entityCrossBolt = new EntityCrossBolt(worldIn, playerIn);
-                entityCrossBolt.func_184538_a(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 3.0F, 1.0F);
+                entityCrossBolt.func_184547_a(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 3.0F, 1.0F);
                 worldIn.spawnEntityInWorld(entityCrossBolt);
 
                 if (ammo != null && !playerIn.isCreative()) ammo.stackSize--;
+
+                itemStackIn.damageItem(1, playerIn);
+                NBTHelper.setInteger(itemStackIn, COOLDOWN_KEY, 0);
             }
         }
 
         return super.onItemRightClick(itemStackIn, worldIn, playerIn, hand);
     }
 
-    public static ItemMeshDefinition getMesh()
+    @Override
+    public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
     {
-        return new ItemMeshDefinition() {
-            @Override
-            public ModelResourceLocation getModelLocation(ItemStack stack) {
-                return new ModelResourceLocation(LibMisc.PREFIX_MOD + stack.getUnlocalizedName().substring(6 + LibMisc.MOD_ID.length()), "inventory");
+        if (isSelected) {
+            int cooldown = NBTHelper.getInt(stack, COOLDOWN_KEY);
+            if (cooldown < COOLDOWN_MAX) {
+                NBTHelper.setInteger(stack, COOLDOWN_KEY, ++cooldown);
             }
-        };
+        }
     }
 
     private ItemStack getAmmo(EntityPlayer player)

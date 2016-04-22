@@ -1,12 +1,12 @@
 package com.gamingsmod.littlethings.common.entity;
 
+import com.gamingsmod.littlethings.common.init.ModItems;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityCrossBolt extends EntityThrowable
+public class EntityCrossBolt extends EntityArrow
 {
     public EntityCrossBolt(World worldIn)
     {
@@ -24,16 +24,7 @@ public class EntityCrossBolt extends EntityThrowable
     }
 
     @Override
-    protected void onImpact(RayTraceResult result)
-    {
-        if (result.entityHit != null) {
-            int i = 6;
-
-            result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float)i);
-        }
-
-        if (!this.worldObj.isRemote) {
-            this.setDead();
-        }
+    protected ItemStack getArrowStack() {
+        return new ItemStack(ModItems.CrossBolt);
     }
 }
