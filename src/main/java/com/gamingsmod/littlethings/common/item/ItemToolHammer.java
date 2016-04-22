@@ -8,8 +8,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTool;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -20,7 +20,7 @@ import java.util.Set;
 /**
  * Inspired By Tinkers Construct
  */
-public class ItemToolHammer extends ItemPickaxe
+public class ItemToolHammer extends ItemTool
 {
     private static final Material[] effective = new Material[]{
             Material.iron,
@@ -36,7 +36,7 @@ public class ItemToolHammer extends ItemPickaxe
 
     public ItemToolHammer(ToolMaterial material)
     {
-        super(material);
+        super(2.0F, -2.8F, material, vanilla_effective);
     }
 
     @Override
@@ -77,6 +77,51 @@ public class ItemToolHammer extends ItemPickaxe
         return super.onBlockDestroyed(stack, worldIn, blockIn, pos, entityLiving);
     }
 
+    /**
+     * Check whether this Item can harvest the given Block
+     */
+    @Override
+    public boolean canHarvestBlock(IBlockState blockIn)
+    {
+        Block block = blockIn.getBlock();
+
+        if (block == Blocks.obsidian) {
+            return this.toolMaterial.getHarvestLevel() == 3;
+        } else if (block != Blocks.diamond_block && block != Blocks.diamond_ore) {
+            if (block != Blocks.emerald_ore && block != Blocks.emerald_block) {
+                if (block != Blocks.gold_block && block != Blocks.gold_ore) {
+                    if (block != Blocks.iron_block && block != Blocks.iron_ore) {
+                        if (block != Blocks.lapis_block && block != Blocks.lapis_ore) {
+                            if (block != Blocks.redstone_ore && block != Blocks.lit_redstone_ore) {
+                                Material material = blockIn.getMaterial();
+                                return material == Material.rock || (material == Material.iron || material == Material.anvil);
+                            } else {
+                                return this.toolMaterial.getHarvestLevel() >= 2;
+                            }
+                        } else {
+                            return this.toolMaterial.getHarvestLevel() >= 1;
+                        }
+                    } else {
+                        return this.toolMaterial.getHarvestLevel() >= 1;
+                    }
+                } else {
+                    return this.toolMaterial.getHarvestLevel() >= 2;
+                }
+            } else {
+                return this.toolMaterial.getHarvestLevel() >= 2;
+            }
+        } else {
+            return this.toolMaterial.getHarvestLevel() >= 2;
+        }
+    }
+
+    @Override
+    public float getStrVsBlock(ItemStack stack, IBlockState state)
+    {
+        Material material = state.getMaterial();
+        return material != Material.iron && material != Material.anvil && material != Material.rock ? super.getStrVsBlock(stack, state) : this.efficiencyOnProperMaterial;
+    }
+
     @Override
     public String getUnlocalizedName()
     {
@@ -87,11 +132,6 @@ public class ItemToolHammer extends ItemPickaxe
     public String getUnlocalizedName(ItemStack itemStack)
     {
         return getUnlocalizedName();
-    }
-
-    protected String getUnwrappedUnlocalizedName(String unlocalizedName)
-    {
-        return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
 
     protected void mineOrOtherwise(World world, BlockPos pos, ItemStack tool, EntityLivingBase player)
@@ -107,5 +147,10 @@ public class ItemToolHammer extends ItemPickaxe
     private boolean isEffective(IBlockState state)
     {
         return Arrays.asList(effective).contains(state.getMaterial()) || vanilla_effective.contains(state);
+    }
+
+    protected String getUnwrappedUnlocalizedName(String unlocalizedName)
+    {
+        return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
 }
