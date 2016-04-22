@@ -9,4 +9,4 @@ A minecraft mod which adds things designed to enhance the vanilla survival exper
 At the moment the mod is restricted to a closed alpha group. As soon as I believe that the mod is ready I will release the mod to open beta.
 
 ## NB
-Please contact HardcoreGamingMC or RageGamingPE if you have any ideas you want us to evaluate and put in the mod.
+If you have any ideas for what to put into this mod, please go to the issues tab and put it there.
