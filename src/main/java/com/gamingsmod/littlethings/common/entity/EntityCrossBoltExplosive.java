@@ -1,44 +1,43 @@
 package com.gamingsmod.littlethings.common.entity;
 
-import com.gamingsmod.littlethings.common.entity.base.EntityBaseCrossBolt;
 import com.gamingsmod.littlethings.common.init.ModItems;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntityCrossBolt extends EntityBaseCrossBolt
+public class EntityCrossBoltExplosive extends EntityCrossBolt
 {
-    public EntityCrossBolt(World worldIn)
+    public EntityCrossBoltExplosive(World worldIn)
     {
         super(worldIn);
     }
 
-    public EntityCrossBolt(World worldIn, double x, double y, double z)
+    public EntityCrossBoltExplosive(World worldIn, double x, double y, double z)
     {
         super(worldIn, x, y, z);
     }
 
-    public EntityCrossBolt(World worldIn, EntityLivingBase shooter)
+    public EntityCrossBoltExplosive(World worldIn, EntityLivingBase throwerIn)
     {
-        super(worldIn, shooter);
+        super(worldIn, throwerIn);
     }
 
     @Override
-    protected ItemStack getArrowStack()
-    {
-        return new ItemStack(ModItems.CrossBolt, 1, 0);
+    protected ItemStack getArrowStack() {
+        return new ItemStack(ModItems.CrossBolt, 1, 1);
     }
 
     @Override
     public void onBlockImpact(RayTraceResult rayTraceResult)
     {
-        //NO-OP
+        this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float)3, true);
+        this.setDead();
     }
 
     @Override
     public void onEntityImpact(RayTraceResult rayTraceResult)
     {
-        //NO-OP
+        this.onBlockImpact(rayTraceResult);
     }
 }

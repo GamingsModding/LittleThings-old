@@ -4,11 +4,22 @@ import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.init.ModItems;
 import com.gamingsmod.littlethings.common.lib.LibMisc;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 
 public class ItemRender
 {
+    public static void preInit()
+    {
+        ModelBakery.registerItemVariants(
+                ModItems.CrossBolt,
+                new ResourceLocation(LibMisc.PREFIX_MOD + "crossbolt_normal"),
+                new ResourceLocation(LibMisc.PREFIX_MOD + "crossbolt_explosive")
+        );
+    }
+
     public static void registerItemRender()
     {
         reg(ModItems.IronNugget);
@@ -30,7 +41,10 @@ public class ItemRender
 
         if (ConfigurationHandler.enableCrossbow) {
             reg(ModItems.CrossBow);
-            reg(ModItems.CrossBolt);
+            int i = 0;
+            for (String name: ModItems.CrossBolt.getVariants()) {
+                reg(ModItems.CrossBolt, i++, "crossbolt_" + name);
+            }
         }
 
         if (ConfigurationHandler.enableObsidianTools) {
@@ -56,5 +70,12 @@ public class ItemRender
         String modId = LibMisc.PREFIX_MOD;
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
                 .register(item, 0, new ModelResourceLocation(modId + item.getUnlocalizedName().substring(6 + LibMisc.MOD_ID.length()), "inventory"));
+    }
+
+    private static void reg(Item item, int meta, String file)
+    {
+        String modId = LibMisc.PREFIX_MOD;
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+                .register(item, meta, new ModelResourceLocation(modId + file, "inventory"));
     }
 }

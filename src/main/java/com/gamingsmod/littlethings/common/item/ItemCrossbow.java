@@ -1,6 +1,7 @@
 package com.gamingsmod.littlethings.common.item;
 
 import com.gamingsmod.littlethings.common.entity.EntityCrossBolt;
+import com.gamingsmod.littlethings.common.entity.EntityCrossBoltExplosive;
 import com.gamingsmod.littlethings.common.helper.NBTHelper;
 import com.gamingsmod.littlethings.common.item.base.ModItem;
 import com.gamingsmod.littlethings.common.lib.LibItems;
@@ -34,14 +35,23 @@ public class ItemCrossbow extends ModItem
         if ((playerIn.isCreative() || ammo != null) && cooldown >= COOLDOWN_MAX) {
             worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.entity_arrow_shoot, SoundCategory.NEUTRAL, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) * 0.5F);
             if (!worldIn.isRemote) {
-                EntityCrossBolt entityCrossBolt = new EntityCrossBolt(worldIn, playerIn);
-                entityCrossBolt.func_184547_a(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 3.0F, 1.0F);
-                worldIn.spawnEntityInWorld(entityCrossBolt);
+                EntityCrossBolt entityCrossBolt = null;
+                if (ammo != null) {
+                    if (ammo.getItemDamage() == 0)
+                        entityCrossBolt = new EntityCrossBolt(worldIn, playerIn);
+                    else if (ammo.getItemDamage() == 1)
+                        entityCrossBolt = new EntityCrossBoltExplosive(worldIn, playerIn);
+                }
 
-                if (ammo != null && !playerIn.isCreative()) ammo.stackSize--;
+                if (entityCrossBolt != null) {
+                    entityCrossBolt.func_184547_a(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 3.0F, 1.0F);
+                    worldIn.spawnEntityInWorld(entityCrossBolt);
 
-                itemStackIn.damageItem(1, playerIn);
-                NBTHelper.setInteger(itemStackIn, COOLDOWN_KEY, 0);
+                    if (ammo != null && !playerIn.isCreative()) ammo.stackSize--;
+
+                    itemStackIn.damageItem(1, playerIn);
+                    NBTHelper.setInteger(itemStackIn, COOLDOWN_KEY, 0);
+                }
             }
         }
 

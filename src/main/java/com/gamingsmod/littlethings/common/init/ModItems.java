@@ -25,7 +25,7 @@ public class ModItems
     public static Item DiamondExcavator;
 
     public static Item CrossBow;
-    public static Item CrossBolt;
+    public static ItemCrossBolt CrossBolt;
 
     public static Item ObsidianSword;
     public static Item ObsidianPickaxe;

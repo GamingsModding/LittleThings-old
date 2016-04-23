@@ -15,6 +15,7 @@ public class ClientProxy extends CommonProxy
         super.preInit(e);
 
         BlockRender.preInit();
+        ItemRender.preInit();
         ModEntities.initRender();
         new VersionChecker().init();
     }

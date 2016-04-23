@@ -74,7 +74,8 @@ item.littlethings:emerald_spade.name=Emerald Shovel
 item.littlethings:emerald_hoe.name=Emerald Hoe
 
 item.littlethings:crossbow.name=Crossbow
-item.littlethings:crossbolt.name=Crossbolt
+item.littlethings:crossbolt.normal.name=Crossbolt
+item.littlethings:crossbolt.explosive.name=Explosive Crossbolt
 
 #Entities
 entity.LittleThings.CrossBolt.name=CrossBolt
