@@ -31,7 +31,8 @@ public class CommonProxy
         ModEntities.init();
         MessageHandler.preInit();
 
-        GameRegistry.registerWorldGenerator(new EmeraldsEverywhere(1), 0);
+        if (ConfigurationHandler.enableEmeraldsEverywhere)
+            GameRegistry.registerWorldGenerator(new EmeraldsEverywhere(1), 0);
     }
 
     public void init(FMLInitializationEvent e)

@@ -23,6 +23,7 @@ public class ConfigurationHandler
     public static boolean enableCrossbow;
     public static boolean enableObsidianTools;
     public static boolean enableEmeraldTools;
+    public static boolean enableEmeraldsEverywhere;
 
     public static boolean enableOldSaddleRecipe;
     public static boolean enableOldArmorRecipe;
@@ -34,6 +35,7 @@ public class ConfigurationHandler
     public static final String CATEGORY_BLOCKS = "Blocks";
     public static final String CATEGORY_RECIPES = "Recipes";
     public static final String CATEGORY_HORSE_ARMOR = "Horse Armor Recipes";
+    public static final String CATEGORY_WORLD = "World";
 
     public static void init(File file)
     {
@@ -72,6 +74,9 @@ public class ConfigurationHandler
         enableHorseEquipment = getBoolean(CATEGORY_RECIPES, "Enable Horse Equipment Recipes", true);
         enableOldSaddleRecipe = getBoolean(CATEGORY_HORSE_ARMOR, "Enable Old Saddle Recipe", false, "Pre-13w18a Recipe");
         enableOldArmorRecipe = getBoolean(CATEGORY_HORSE_ARMOR, "Enable Old Armor Recipe", false, "Pre-13w16a Recipe");
+
+        //World
+        enableEmeraldsEverywhere = getBoolean(CATEGORY_WORLD, "Enable Emerald Generating Everywhere", true);
 
         if (configuration.hasChanged()) {
             configuration.save();
