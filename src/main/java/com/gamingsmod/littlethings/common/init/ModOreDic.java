@@ -16,7 +16,6 @@ public class ModOreDic
         add("workbench", Blocks.crafting_table);
         add("workbench", new ItemStack(ModBlocks.VanillaCraftingTables, 1, OreDictionary.WILDCARD_VALUE));
 
-        add("blockGlassColorless", ModBlocks.ClearGlass);
         add("blockGlass", ModBlocks.ClearGlass);
         add("blockClearGlass", new ItemStack(ModBlocks.ClearGlass), new ItemStack(ModBlocks.StainedClearGlass, 1, OreDictionary.WILDCARD_VALUE));
 ;    }
