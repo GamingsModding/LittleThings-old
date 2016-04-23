@@ -91,6 +91,10 @@ public class Recipes
                 "i", "o", "o",
                 'i', "ingotIron",
                 'o', new ItemStack(Blocks.obsidian));
+        addRecipe(new ItemStack(ModItems.CrossBolt, 2, 1),
+                " g ", "gbg", " g ",
+                'g', new ItemStack(Items.gunpowder),
+                'b', new ItemStack(ModItems.CrossBolt, 1, 0));
     }
 
     private static void recipesExcavators()
