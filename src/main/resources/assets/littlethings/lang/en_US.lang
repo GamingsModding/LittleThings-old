@@ -76,6 +76,9 @@ item.littlethings:emerald_hoe.name=Emerald Hoe
 item.littlethings:crossbow.name=Crossbow
 item.littlethings:crossbolt.name=Crossbolt
 
+#Entities
+entity.LittleThings.CrossBolt.name=CrossBolt
+
 #Tooltips
 tooltip.littlethings.playerSkull=Player Skull
 tooltip.littlethings.skullOwner=Skull Owner: %s
