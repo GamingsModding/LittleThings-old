@@ -75,6 +75,22 @@ public class Recipes
                     ModItems.EmeraldSpade,
                     ModItems.EmeraldHoe
             );
+
+        if (ConfigurationHandler.enableCrossbow)
+            recipesCrossBow();
+    }
+
+    private static void recipesCrossBow()
+    {
+        addRecipe(new ItemStack(ModItems.CrossBow),
+                "ibi", "sss", " s ",
+                'i', "ingotIron",
+                'b', new ItemStack(Items.bow),
+                's', "stickWood");
+        addRecipe(new ItemStack(ModItems.CrossBolt, 8),
+                "i", "o", "o",
+                'i', "ingotIron",
+                'o', new ItemStack(Blocks.obsidian));
     }
 
     private static void recipesExcavators()
