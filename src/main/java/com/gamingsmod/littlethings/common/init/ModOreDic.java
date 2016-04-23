@@ -18,7 +18,7 @@ public class ModOreDic
 
         add("blockGlass", ModBlocks.ClearGlass);
         add("blockClearGlass", new ItemStack(ModBlocks.ClearGlass), new ItemStack(ModBlocks.StainedClearGlass, 1, OreDictionary.WILDCARD_VALUE));
-;    }
+    }
 
     private static void add(String entry, Item... items)
     {

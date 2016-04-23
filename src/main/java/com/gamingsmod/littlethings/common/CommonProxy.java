@@ -10,12 +10,14 @@ import com.gamingsmod.littlethings.common.network.GuiHandler;
 import com.gamingsmod.littlethings.common.network.MessageHandler;
 import com.gamingsmod.littlethings.common.recipe.Recipes;
 import com.gamingsmod.littlethings.common.recipe.Smelting;
+import com.gamingsmod.littlethings.common.world.EmeraldsEverywhere;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CommonProxy
 {
@@ -28,6 +30,8 @@ public class CommonProxy
         ModTileEntities.init();
         ModEntities.init();
         MessageHandler.preInit();
+
+        GameRegistry.registerWorldGenerator(new EmeraldsEverywhere(1), 0);
     }
 
     public void init(FMLInitializationEvent e)
