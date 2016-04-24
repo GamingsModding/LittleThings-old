@@ -43,5 +43,6 @@ if (count($new_version) == 3) {
     exec("./gradlew build");
     echo "\nCommiting\n";
     exec("git commit -a -m \"Build V" . implode(".", $new_version) . "\"");
+    exec("git push")
     echo "\n Build Complete!\n";
 }
