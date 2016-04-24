@@ -40,12 +40,8 @@ if (count($new_version) == 3) {
     fwrite($file, implode(PHP_EOL, $buildProp));
     fclose($file);
 
-    echo "Building LittleThings V" + implode(".", $new_version) + "\n";
     exec("./gradlew build");
-
     echo "\nCommiting\n";
-
     exec("git commit -a -m \"Build V" . implode(".", $new_version) . "\"");
-
     echo "\n Build Complete!\n";
 }
