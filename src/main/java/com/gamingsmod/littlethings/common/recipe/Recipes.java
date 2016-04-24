@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -33,6 +34,12 @@ public class Recipes
                 "ccc", "cec", "ccc",
                 'e', new ItemStack(Items.ender_eye),
                 'c', new ItemStack(Blocks.sandstone, 1, 1));
+        addRecipe(new ItemStack(ModItems.StoneStick, 2),
+                "s", "s",
+                's', new ItemStack(Blocks.cobblestone));
+        addRecipe(new ItemStack(ModItems.StoneStick, 4),
+                "s", "s",
+                's', new ItemStack(Blocks.stone));
         recipesSingleDye();
 
         if (ConfigurationHandler.enableExtraCraftingTables) recipesExtraCraftingTables();
@@ -84,6 +91,17 @@ public class Recipes
                     " d ", "dgd", " d ",
                     'd', new ItemStack(Blocks.diamond_block),
                     'g', new ItemStack(Items.golden_apple, 1, 1));
+
+        if (ConfigurationHandler.enableStoneTorches && (!Loader.isModLoaded("tconstruct") && ConfigurationHandler.removeWithTC)) {
+            addRecipe(new ItemStack(ModBlocks.StoneTorch),
+                    "c", "s",
+                    's', "stickStone",
+                    'c', new ItemStack(Items.coal));
+            addRecipe(new ItemStack(ModBlocks.StoneTorch),
+                    "c", "s",
+                    's', "stickStone",
+                    'c', new ItemStack(Items.coal, 1, 1));
+        }
     }
 
     private static void recipesCrossBow()

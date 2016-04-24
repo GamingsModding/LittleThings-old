@@ -6,6 +6,7 @@ import com.gamingsmod.littlethings.common.item.base.ItemBlockMeta;
 import com.gamingsmod.littlethings.common.lib.LibBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModBlocks
@@ -17,6 +18,7 @@ public class ModBlocks
     public static Block ClearGlass;
     public static Block StainedClearGlass;
     public static Block UnenchantingTable;
+    public static Block StoneTorch;
 
     public static void init()
     {
@@ -52,6 +54,9 @@ public class ModBlocks
 
         if (ConfigurationHandler.enableUnenchantingTable)
             addBlock(UnenchantingTable = new BlockUnenchantingTable(), LibBlocks.UNENCHANTING_TABLE);
+
+        if (ConfigurationHandler.enableStoneTorches && (!Loader.isModLoaded("tconstruct") && ConfigurationHandler.removeWithTC))
+            addBlock(StoneTorch = new BlockStoneTorch(), LibBlocks.STONE_TORCH);
     }
 
     private static void addBlock(Block block, String name)

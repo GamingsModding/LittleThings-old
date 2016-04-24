@@ -2,10 +2,12 @@ package com.gamingsmod.littlethings.common.init;
 
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.item.*;
+import com.gamingsmod.littlethings.common.item.base.ModItem;
 import com.gamingsmod.littlethings.common.item.food.ItemFoodBejeweledApple;
 import com.gamingsmod.littlethings.common.item.tools.*;
 import com.gamingsmod.littlethings.common.lib.LibItems;
 import com.gamingsmod.littlethings.common.lib.LibMaterials;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -13,6 +15,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ModItems
 {
     public static Item IronNugget;
+    public static Item StoneStick;
 
     public static Item WoodHammer;
     public static Item StoneHammer;
@@ -46,6 +49,7 @@ public class ModItems
     public static void init()
     {
         register(IronNugget = new ItemIronNugget(), LibItems.IRONNUGGET);
+        register(StoneStick = (new ModItem(LibItems.STONE_STICK)).setCreativeTab(CreativeTabs.tabMaterials), LibItems.STONE_STICK);
 
         if (ConfigurationHandler.enableHammers) {
             register(WoodHammer = (new ItemToolHammer(Item.ToolMaterial.WOOD)).setUnlocalizedName(LibItems.HAMMER + "Wood"), LibItems.HAMMER + "Wood");
@@ -87,6 +91,7 @@ public class ModItems
 
         if (ConfigurationHandler.enableBejeweledApple)
             register(BejeweledApple = new ItemFoodBejeweledApple(), LibItems.BEJEWELED_APPLE);
+
     }
 
     public static void register(Item item, String name)

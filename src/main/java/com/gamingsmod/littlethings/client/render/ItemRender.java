@@ -26,6 +26,7 @@ public class ItemRender
     public static void registerItemRender()
     {
         reg(ModItems.IronNugget);
+        reg(ModItems.StoneStick);
         if (ConfigurationHandler.enableHammers) {
             reg(ModItems.WoodHammer);
             reg(ModItems.StoneHammer);

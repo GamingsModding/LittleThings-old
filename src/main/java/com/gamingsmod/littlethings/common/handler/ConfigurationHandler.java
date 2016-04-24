@@ -25,6 +25,8 @@ public class ConfigurationHandler
     public static boolean enableEmeraldTools;
     public static boolean enableEmeraldsEverywhere;
     public static boolean enableBejeweledApple;
+    public static boolean enableStoneTorches;
+    public static boolean removeWithTC;
 
     public static boolean enableOldSaddleRecipe;
     public static boolean enableOldArmorRecipe;
@@ -60,6 +62,8 @@ public class ConfigurationHandler
         enableAnimalChests = getBoolean(CATEGORY_BLOCKS, "Enable Animal Chests", true);
         enableClearGlass = getBoolean(CATEGORY_BLOCKS, "Enable Clear Glass", true);
         enableUnenchantingTable = getBoolean(CATEGORY_BLOCKS, "Enable Unenchanting Table", true);
+        enableStoneTorches = getBoolean(CATEGORY_BLOCKS, "Enable Stone Torches", true);
+        removeWithTC = getBoolean(CATEGORY_BLOCKS, "Stone Torches Leave To Tinkers", true, "This will not register Stone Torches if Tinkers Construct is loaded");
 
         //Items
         enableHammers = getBoolean(CATEGORY_ITEMS, "Enable Hammers", true);

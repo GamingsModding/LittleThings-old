@@ -14,6 +14,7 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.Loader;
 
 public class BlockRender
 {
@@ -72,6 +73,10 @@ public class BlockRender
 
         if (ConfigurationHandler.enableUnenchantingTable)
             reg(ModBlocks.UnenchantingTable);
+
+
+        if (ConfigurationHandler.enableStoneTorches && (!Loader.isModLoaded("tconstruct") && ConfigurationHandler.removeWithTC))
+            reg(ModBlocks.StoneTorch);
     }
 
     private static void reg(Block block)
