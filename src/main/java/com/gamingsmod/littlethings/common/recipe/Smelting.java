@@ -21,6 +21,13 @@ public class Smelting
 
 
         if (ConfigurationHandler.enableClearGlass) recipesClearGlass();
+
+        if (ConfigurationHandler.enableExtraFood) recipesExtraFood();
+    }
+
+    private static void recipesExtraFood()
+    {
+        reg(Items.egg, new ItemStack(ModItems.FriedEgg), 0.2F);
     }
 
     private static void recipesClearGlass()

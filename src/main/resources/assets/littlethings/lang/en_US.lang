@@ -45,6 +45,7 @@ tile.littlethings:stainedClearGlass.red.name=Red Stained Clear Glass
 tile.littlethings:stainedClearGlass.black.name=Black Stained Clear Glass
 
 tile.littlethings:unenchantingTable.name=Unenchanting Table
+tile.littlethings:stoneTorch.name=Stone Torch
 
 #Items
 item.littlethings:ironNugget.name=Iron Nugget
@@ -79,7 +80,8 @@ item.littlethings:crossbolt.explosive.name=Explosive Crossbolt
 
 item.littlethings:bejeweledApple.name=Bejeweled Apple
 item.littlethings:stoneStick.name=Stone Stick
-item.littlethings:stoneTorch.name=Stone Torch
+
+item.littlethings:friedEgg.name=Fried Egg
 
 #Entities
 entity.LittleThings.CrossBolt.name=CrossBolt

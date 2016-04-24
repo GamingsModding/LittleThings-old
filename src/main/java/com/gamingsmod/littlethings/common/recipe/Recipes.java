@@ -93,11 +93,11 @@ public class Recipes
                     'g', new ItemStack(Items.golden_apple, 1, 1));
 
         if (ConfigurationHandler.enableStoneTorches && (!Loader.isModLoaded("tconstruct") && ConfigurationHandler.removeWithTC)) {
-            addRecipe(new ItemStack(ModBlocks.StoneTorch),
+            addRecipe(new ItemStack(ModBlocks.StoneTorch, 4),
                     "c", "s",
                     's', "stickStone",
                     'c', new ItemStack(Items.coal));
-            addRecipe(new ItemStack(ModBlocks.StoneTorch),
+            addRecipe(new ItemStack(ModBlocks.StoneTorch, 4),
                     "c", "s",
                     's', "stickStone",
                     'c', new ItemStack(Items.coal, 1, 1));

@@ -9,4 +9,5 @@ public class LibItems
     public static final String CROSSBOLT = "crossbolt";
     public static final String BEJEWELED_APPLE = "bejeweledApple";
     public static final String STONE_STICK = "stoneStick";
+    public static final String FRIED_EGG = "friedEgg";
 }

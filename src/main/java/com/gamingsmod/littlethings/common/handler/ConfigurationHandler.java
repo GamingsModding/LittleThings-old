@@ -27,6 +27,7 @@ public class ConfigurationHandler
     public static boolean enableBejeweledApple;
     public static boolean enableStoneTorches;
     public static boolean removeWithTC;
+    public static boolean enableExtraFood;
 
     public static boolean enableOldSaddleRecipe;
     public static boolean enableOldArmorRecipe;
@@ -69,6 +70,7 @@ public class ConfigurationHandler
         enableHammers = getBoolean(CATEGORY_ITEMS, "Enable Hammers", true);
         enableExcavators = getBoolean(CATEGORY_ITEMS, "Enable Excavators", true);
         enableBejeweledApple = getBoolean(CATEGORY_ITEMS, "Enable Bejeweled Apples", true);
+        enableExtraFood = getBoolean(CATEGORY_ITEMS, "Enable Extra Food", true);
 
         //Tools and Weapons
         enableCrossbow = getBoolean(CATEGORY_TOOLS, "Enable Crossbow", true);

@@ -70,6 +70,10 @@ public class ItemRender
         if (ConfigurationHandler.enableBejeweledApple) {
             reg(ModItems.BejeweledApple);
         }
+
+        if (ConfigurationHandler.enableExtraFood) {
+            reg(ModItems.FriedEgg);
+        }
     }
 
     private static void reg(Item item)

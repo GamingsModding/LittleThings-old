@@ -3,6 +3,7 @@ package com.gamingsmod.littlethings.common.init;
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.item.*;
 import com.gamingsmod.littlethings.common.item.base.ModItem;
+import com.gamingsmod.littlethings.common.item.base.ModItemFood;
 import com.gamingsmod.littlethings.common.item.food.ItemFoodBejeweledApple;
 import com.gamingsmod.littlethings.common.item.tools.*;
 import com.gamingsmod.littlethings.common.lib.LibItems;
@@ -45,6 +46,7 @@ public class ModItems
     public static Item EmeraldHoe;
 
     public static ItemFood BejeweledApple;
+    public static ItemFood FriedEgg;
 
     public static void init()
     {
@@ -92,6 +94,8 @@ public class ModItems
         if (ConfigurationHandler.enableBejeweledApple)
             register(BejeweledApple = new ItemFoodBejeweledApple(), LibItems.BEJEWELED_APPLE);
 
+        if (ConfigurationHandler.enableExtraFood)
+            register(FriedEgg = new ModItemFood(5, false, LibItems.FRIED_EGG), LibItems.FRIED_EGG);
     }
 
     public static void register(Item item, String name)

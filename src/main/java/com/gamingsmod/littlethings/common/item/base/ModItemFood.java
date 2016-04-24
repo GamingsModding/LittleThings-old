@@ -12,6 +12,12 @@ public class ModItemFood extends ItemFood
         this.setUnlocalizedName(name);
     }
 
+    public ModItemFood(int amount, boolean isWolfFood, String name)
+    {
+        super(amount, isWolfFood);
+        this.setUnlocalizedName(name);
+    }
+
     @Override
     public String getUnlocalizedName()
     {
