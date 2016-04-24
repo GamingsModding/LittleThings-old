@@ -1,5 +1,5 @@
 {
-  "parent":"littlethings:item/_standard_item",
+  "parent":"item/generated",
   "textures": {
     "layer0":"littlethings:items/bejeweledApple"
   }

@@ -2,8 +2,10 @@ package com.gamingsmod.littlethings.client.render;
 
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.init.ModItems;
+import com.gamingsmod.littlethings.common.item.ItemCrossbow;
 import com.gamingsmod.littlethings.common.lib.LibMisc;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -18,6 +20,7 @@ public class ItemRender
                 new ResourceLocation(LibMisc.PREFIX_MOD + "crossbolt_normal"),
                 new ResourceLocation(LibMisc.PREFIX_MOD + "crossbolt_explosive")
         );
+        ItemCrossbow.registerModels();
     }
 
     public static void registerItemRender()
@@ -40,7 +43,7 @@ public class ItemRender
         }
 
         if (ConfigurationHandler.enableCrossbow) {
-            reg(ModItems.CrossBow);
+            reg(ModItems.CrossBow, ItemCrossbow.registerMesh());
             int i = 0;
             for (String name: ModItems.CrossBolt.getVariants()) {
                 reg(ModItems.CrossBolt, i++, "crossbolt_" + name);
@@ -80,5 +83,11 @@ public class ItemRender
         String modId = LibMisc.PREFIX_MOD;
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
                 .register(item, meta, new ModelResourceLocation(modId + file, "inventory"));
+    }
+
+    private static void reg(Item item, ItemMeshDefinition definition)
+    {
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+                .register(item, definition);
     }
 }

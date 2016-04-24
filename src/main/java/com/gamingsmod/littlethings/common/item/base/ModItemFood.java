@@ -10,7 +10,6 @@ public class ModItemFood extends ItemFood
     {
         super(amount, saturation, isWolfFood);
         this.setUnlocalizedName(name);
-        this.setAlwaysEdible();
     }
 
     @Override

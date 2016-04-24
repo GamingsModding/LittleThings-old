@@ -2,23 +2,25 @@ package com.gamingsmod.littlethings.common.item;
 
 import com.gamingsmod.littlethings.common.entity.EntityCrossBolt;
 import com.gamingsmod.littlethings.common.entity.EntityCrossBoltExplosive;
-import com.gamingsmod.littlethings.common.helper.NBTHelper;
+import com.gamingsmod.littlethings.common.init.ModItems;
 import com.gamingsmod.littlethings.common.item.base.ModItem;
 import com.gamingsmod.littlethings.common.lib.LibItems;
-import net.minecraft.entity.Entity;
+import com.gamingsmod.littlethings.common.lib.LibMisc;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
 public class ItemCrossbow extends ModItem
 {
-    private static final String COOLDOWN_KEY = "cooldown";
-    private static final int COOLDOWN_MAX = 20;
-
     public ItemCrossbow()
     {
         super(LibItems.CROSSBOW);
@@ -30,9 +32,8 @@ public class ItemCrossbow extends ModItem
     public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
         ItemStack ammo = getAmmo(playerIn);
-        int cooldown = NBTHelper.getInt(itemStackIn, COOLDOWN_KEY);
 
-        if ((playerIn.isCreative() || ammo != null) && cooldown >= COOLDOWN_MAX) {
+        if ((playerIn.isCreative() || ammo != null)) {
             worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.entity_arrow_shoot, SoundCategory.NEUTRAL, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) * 0.5F);
             if (!worldIn.isRemote) {
                 EntityCrossBolt entityCrossBolt = null;
@@ -49,8 +50,11 @@ public class ItemCrossbow extends ModItem
 
                     if (ammo != null && !playerIn.isCreative()) ammo.stackSize--;
 
+                    if (ammo.stackSize <= 0)
+                        playerIn.inventory.deleteStack(ammo);
+
+                    playerIn.getCooldownTracker().setCooldown(this, 20);
                     itemStackIn.damageItem(1, playerIn);
-                    NBTHelper.setInteger(itemStackIn, COOLDOWN_KEY, 0);
                 }
             }
         }
@@ -58,15 +62,23 @@ public class ItemCrossbow extends ModItem
         return super.onItemRightClick(itemStackIn, worldIn, playerIn, hand);
     }
 
-    @Override
-    public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
+    public static void registerModels()
     {
-        if (isSelected) {
-            int cooldown = NBTHelper.getInt(stack, COOLDOWN_KEY);
-            if (cooldown < COOLDOWN_MAX) {
-                NBTHelper.setInteger(stack, COOLDOWN_KEY, ++cooldown);
-            }
-        }
+        final String[] ICONS = new String[]{"crossbow1", "crossbow2", "crossbow3"};
+        for (String icon : ICONS)
+            ModelBakery.registerItemVariants(ModItems.CrossBow, new ResourceLocation(LibMisc.PREFIX_MOD + icon));
+    }
+
+    public static ItemMeshDefinition registerMesh()
+    {
+        return stack -> {
+            float cooldown = Minecraft.getMinecraft().thePlayer.getCooldownTracker().getCooldown(stack.getItem(), 0F);
+            if (cooldown > 0.75)
+                return new ModelResourceLocation(LibMisc.PREFIX_MOD + stack.getUnlocalizedName().substring(6 + LibMisc.MOD_ID.length()) + "1", "inventory");
+            else if (cooldown > 0.25)
+                return new ModelResourceLocation(LibMisc.PREFIX_MOD + stack.getUnlocalizedName().substring(6 + LibMisc.MOD_ID.length()) + "2", "inventory");
+            return new ModelResourceLocation(LibMisc.PREFIX_MOD + stack.getUnlocalizedName().substring(6 + LibMisc.MOD_ID.length()) + "3", "inventory");
+        };
     }
 
     private ItemStack getAmmo(EntityPlayer player)

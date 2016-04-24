@@ -13,6 +13,7 @@ public class ItemFoodBejeweledApple extends ModItemFood
     public ItemFoodBejeweledApple()
     {
         super(4, 1.2F, false, LibItems.BEJEWELED_APPLE);
+        this.setAlwaysEdible();
     }
 
     @Override
