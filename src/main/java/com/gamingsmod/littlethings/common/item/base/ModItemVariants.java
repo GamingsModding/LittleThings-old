@@ -25,7 +25,9 @@ public class ModItemVariants extends ModItem
     @Override
     public String getUnlocalizedName(ItemStack stack)
     {
-        return super.getUnlocalizedName() + "." + Variants[stack.getItemDamage()];
+        if (Variants.length > stack.getItemDamage())
+            return super.getUnlocalizedName() + "." + Variants[stack.getItemDamage()];
+        return null;
     }
 
     @Override
