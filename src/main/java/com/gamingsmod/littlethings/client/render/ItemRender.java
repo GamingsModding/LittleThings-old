@@ -61,7 +61,10 @@ public class ItemRender
             reg(ModItems.EmeraldAxe);
             reg(ModItems.EmeraldSpade);
             reg(ModItems.EmeraldHoe);
+        }
 
+        if (ConfigurationHandler.enableBejeweledApple) {
+            reg(ModItems.BejeweledApple);
         }
     }
 

@@ -24,6 +24,7 @@ public class ConfigurationHandler
     public static boolean enableObsidianTools;
     public static boolean enableEmeraldTools;
     public static boolean enableEmeraldsEverywhere;
+    public static boolean enableBejeweledApple;
 
     public static boolean enableOldSaddleRecipe;
     public static boolean enableOldArmorRecipe;
@@ -63,6 +64,7 @@ public class ConfigurationHandler
         //Items
         enableHammers = getBoolean(CATEGORY_ITEMS, "Enable Hammers", true);
         enableExcavators = getBoolean(CATEGORY_ITEMS, "Enable Excavators", true);
+        enableBejeweledApple = getBoolean(CATEGORY_ITEMS, "Enable Bejeweled Apples", true);
 
         //Tools and Weapons
         enableCrossbow = getBoolean(CATEGORY_TOOLS, "Enable Crossbow", true);

@@ -77,6 +77,8 @@ item.littlethings:crossbow.name=Crossbow
 item.littlethings:crossbolt.normal.name=Crossbolt
 item.littlethings:crossbolt.explosive.name=Explosive Crossbolt
 
+item.littlethings:bejeweledApple.name=Bejeweled Apple
+
 #Entities
 entity.LittleThings.CrossBolt.name=CrossBolt
 

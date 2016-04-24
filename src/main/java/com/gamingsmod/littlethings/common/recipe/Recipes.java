@@ -78,6 +78,12 @@ public class Recipes
 
         if (ConfigurationHandler.enableCrossbow)
             recipesCrossBow();
+
+        if (ConfigurationHandler.enableBejeweledApple)
+            addRecipe(new ItemStack(ModItems.BejeweledApple),
+                    " d ", "dgd", " d ",
+                    'd', new ItemStack(Blocks.diamond_block),
+                    'g', new ItemStack(Items.golden_apple, 1, 1));
     }
 
     private static void recipesCrossBow()

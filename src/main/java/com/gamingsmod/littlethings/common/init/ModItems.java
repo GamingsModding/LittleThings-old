@@ -2,10 +2,12 @@ package com.gamingsmod.littlethings.common.init;
 
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.item.*;
+import com.gamingsmod.littlethings.common.item.food.ItemFoodBejeweledApple;
 import com.gamingsmod.littlethings.common.item.tools.*;
 import com.gamingsmod.littlethings.common.lib.LibItems;
 import com.gamingsmod.littlethings.common.lib.LibMaterials;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModItems
@@ -38,6 +40,8 @@ public class ModItems
     public static Item EmeraldAxe;
     public static Item EmeraldSpade;
     public static Item EmeraldHoe;
+
+    public static ItemFood BejeweledApple;
 
     public static void init()
     {
@@ -80,6 +84,9 @@ public class ModItems
             register(EmeraldHoe = new ModItemHoe("emerald_hoe", LibMaterials.Tools.EMERALD), "emerald_hoe");
 
         }
+
+        if (ConfigurationHandler.enableBejeweledApple)
+            register(BejeweledApple = new ItemFoodBejeweledApple(), LibItems.BEJEWELED_APPLE);
     }
 
     public static void register(Item item, String name)
