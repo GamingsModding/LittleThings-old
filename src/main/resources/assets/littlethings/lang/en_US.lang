@@ -77,6 +77,7 @@ item.littlethings:emerald_hoe.name=Emerald Hoe
 item.littlethings:crossbow.name=Crossbow
 item.littlethings:crossbolt.normal.name=Crossbolt
 item.littlethings:crossbolt.explosive.name=Explosive Crossbolt
+item.littlethings:crossbolt.spectral.name=Spectral Crossbolt
 
 item.littlethings:bejeweledApple.name=Bejeweled Apple
 item.littlethings:stoneStick.name=Stone Stick
@@ -85,6 +86,8 @@ item.littlethings:friedEgg.name=Fried Egg
 
 #Entities
 entity.LittleThings.CrossBolt.name=CrossBolt
+entity.LittleThings.CrossBolt_Explosive.name=Explosive CrossBolt
+entity.LittleThings.CrossBolt_Potion.name=Potion CrossBolt
 
 #Tooltips
 tooltip.littlethings.playerSkull=Player Skull

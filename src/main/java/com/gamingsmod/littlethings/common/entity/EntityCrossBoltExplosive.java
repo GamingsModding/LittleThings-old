@@ -36,8 +36,10 @@ public class EntityCrossBoltExplosive extends EntityCrossBolt
     }
 
     @Override
-    public void onEntityImpact(RayTraceResult rayTraceResult)
+    protected void arrowHit(EntityLivingBase living)
     {
-        this.onBlockImpact(rayTraceResult);
+        System.out.println("Explode");
+        this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float)3, true);
+        this.setDead();
     }
 }

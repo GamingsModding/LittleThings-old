@@ -2,6 +2,7 @@ package com.gamingsmod.littlethings.common.item;
 
 import com.gamingsmod.littlethings.common.entity.EntityCrossBolt;
 import com.gamingsmod.littlethings.common.entity.EntityCrossBoltExplosive;
+import com.gamingsmod.littlethings.common.entity.EntityCrossBoltPotion;
 import com.gamingsmod.littlethings.common.init.ModItems;
 import com.gamingsmod.littlethings.common.item.base.ModItem;
 import com.gamingsmod.littlethings.common.lib.LibItems;
@@ -11,6 +12,7 @@ import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -38,17 +40,20 @@ public class ItemCrossbow extends ModItem
             if (!worldIn.isRemote) {
                 EntityCrossBolt entityCrossBolt = null;
                 if (ammo != null) {
-                    if (ammo.getItemDamage() == 0)
+                    if (ammo.getMetadata() == 0)
                         entityCrossBolt = new EntityCrossBolt(worldIn, playerIn);
-                    else if (ammo.getItemDamage() == 1)
+                    else if (ammo.getMetadata() == 1)
                         entityCrossBolt = new EntityCrossBoltExplosive(worldIn, playerIn);
+                    else if (ammo.getMetadata() == 2)
+                        entityCrossBolt = (new EntityCrossBoltPotion(worldIn, playerIn)).setPotionEffect(MobEffects.glowing);
+
                 }
 
                 if (entityCrossBolt != null) {
                     entityCrossBolt.func_184547_a(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 3.0F, 1.0F);
                     worldIn.spawnEntityInWorld(entityCrossBolt);
 
-                    if (ammo != null && !playerIn.isCreative()) ammo.stackSize--;
+                    if (!playerIn.isCreative()) ammo.stackSize--;
 
                     if (ammo.stackSize <= 0)
                         playerIn.inventory.deleteStack(ammo);

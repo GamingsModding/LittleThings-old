@@ -15,11 +15,9 @@ public class ItemRender
 {
     public static void preInit()
     {
-        ModelBakery.registerItemVariants(
-                ModItems.CrossBolt,
-                new ResourceLocation(LibMisc.PREFIX_MOD + "crossbolt_normal"),
-                new ResourceLocation(LibMisc.PREFIX_MOD + "crossbolt_explosive")
-        );
+        for (String name : ModItems.CrossBolt.getVariants()) {
+            ModelBakery.registerItemVariants(ModItems.CrossBolt, new ResourceLocation(LibMisc.PREFIX_MOD + "crossbolt_" + name));
+        }
         ItemCrossbow.registerModels();
     }
 

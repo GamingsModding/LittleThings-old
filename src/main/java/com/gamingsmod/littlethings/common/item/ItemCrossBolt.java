@@ -7,6 +7,6 @@ public class ItemCrossBolt extends ModItemVariants
 {
     public ItemCrossBolt()
     {
-        super(LibItems.CROSSBOLT, new String[]{"normal", "explosive"});
+        super(LibItems.CROSSBOLT, new String[]{"normal", "explosive", "spectral"});
     }
 }
