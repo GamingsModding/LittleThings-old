@@ -102,6 +102,13 @@ public class Recipes
                     's', "stickStone",
                     'c', new ItemStack(Items.coal, 1, 1));
         }
+
+        if (ConfigurationHandler.enableExtraFood) recipesExtraFood();
+    }
+
+    private static void recipesExtraFood()
+    {
+        addBlockRecipe(new ItemStack(ModItems.SeedsPack), new ItemStack(Items.wheat_seeds));
     }
 
     private static void recipesCrossBow()

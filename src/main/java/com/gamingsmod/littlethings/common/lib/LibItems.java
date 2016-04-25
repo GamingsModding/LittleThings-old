@@ -10,4 +10,5 @@ public class LibItems
     public static final String BEJEWELED_APPLE = "bejeweledApple";
     public static final String STONE_STICK = "stoneStick";
     public static final String FRIED_EGG = "friedEgg";
+    public static final String PACK_SEEDS = "packSeeds";
 }

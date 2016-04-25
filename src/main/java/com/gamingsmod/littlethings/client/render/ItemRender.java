@@ -71,6 +71,7 @@ public class ItemRender
 
         if (ConfigurationHandler.enableExtraFood) {
             reg(ModItems.FriedEgg);
+            reg(ModItems.SeedsPack);
         }
     }
 

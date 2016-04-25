@@ -5,6 +5,7 @@ import com.gamingsmod.littlethings.common.item.*;
 import com.gamingsmod.littlethings.common.item.base.ModItem;
 import com.gamingsmod.littlethings.common.item.base.ModItemFood;
 import com.gamingsmod.littlethings.common.item.food.ItemFoodBejeweledApple;
+import com.gamingsmod.littlethings.common.item.food.ItemFoodSeedsPack;
 import com.gamingsmod.littlethings.common.item.tools.*;
 import com.gamingsmod.littlethings.common.lib.LibItems;
 import com.gamingsmod.littlethings.common.lib.LibMaterials;
@@ -47,6 +48,7 @@ public class ModItems
 
     public static ItemFood BejeweledApple;
     public static ItemFood FriedEgg;
+    public static ItemFood SeedsPack;
 
     public static void init()
     {
@@ -94,8 +96,11 @@ public class ModItems
         if (ConfigurationHandler.enableBejeweledApple)
             register(BejeweledApple = new ItemFoodBejeweledApple(), LibItems.BEJEWELED_APPLE);
 
-        if (ConfigurationHandler.enableExtraFood)
+        if (ConfigurationHandler.enableExtraFood) {
             register(FriedEgg = new ModItemFood(5, false, LibItems.FRIED_EGG), LibItems.FRIED_EGG);
+            register(SeedsPack = new ItemFoodSeedsPack(), LibItems.PACK_SEEDS);
+        }
+
     }
 
     public static void register(Item item, String name)
