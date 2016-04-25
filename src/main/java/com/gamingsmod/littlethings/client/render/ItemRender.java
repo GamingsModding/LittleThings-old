@@ -46,7 +46,7 @@ public class ItemRender
         if (ConfigurationHandler.enableCrossbow) {
             reg(ModItems.CrossBow, ItemCrossbow.registerMesh());
             int i = 0;
-            for (String name: ModItems.CrossBolt.getVariants()) {
+            for (String name : ModItems.CrossBolt.getVariants()) {
                 reg(ModItems.CrossBolt, i++, "crossbolt_" + name);
             }
         }

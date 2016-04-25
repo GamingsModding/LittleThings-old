@@ -25,15 +25,13 @@ public class ModItemVariants extends ModItem
     @Override
     public String getUnlocalizedName(ItemStack stack)
     {
-        if (Variants.length > stack.getItemDamage())
-            return super.getUnlocalizedName() + "." + Variants[stack.getItemDamage()];
-        return null;
+        return super.getUnlocalizedName() + "." + Variants[stack.getItemDamage()];
     }
 
     @Override
     public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems)
     {
-        for (int i = 0; i <= Variants.length; i++) {
+        for (int i = 0; i < Variants.length; i++) {
             subItems.add(new ItemStack(itemIn, 1, i));
         }
     }
