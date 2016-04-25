@@ -41,6 +41,9 @@ public abstract class EntityBaseCrossBolt extends EntityArrow
                 this.setPortal(raytraceresultBlock.getBlockPos());
             else
                 this.onBlockImpact(raytraceresultBlock);
+
+            if (raytraceresultBlock.typeOfHit == RayTraceResult.Type.ENTITY)
+                this.onEntityImpact(raytraceresultBlock);
         }
 
     }
