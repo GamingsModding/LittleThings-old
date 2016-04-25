@@ -119,6 +119,10 @@ public class Recipes
                 " g ", "gbg", " g ",
                 'g', new ItemStack(Items.gunpowder),
                 'b', new ItemStack(ModItems.CrossBolt, 1, 0));
+        addRecipe(new ItemStack(ModItems.CrossBolt, 2, 2),
+                " g ", "gbg", " g ",
+                'g', new ItemStack(Items.glowstone_dust),
+                'b', new ItemStack(ModItems.CrossBolt, 1, 0));
     }
 
     private static void recipesExcavators()
