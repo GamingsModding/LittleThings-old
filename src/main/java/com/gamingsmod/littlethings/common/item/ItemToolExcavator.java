@@ -1,10 +1,12 @@
 package com.gamingsmod.littlethings.common.item;
 
+import com.gamingsmod.littlethings.common.helper.Vector3;
 import com.gamingsmod.littlethings.common.lib.LibMisc;
 import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -16,6 +18,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 import java.util.Arrays;
@@ -46,8 +49,10 @@ public class ItemToolExcavator extends ItemSpade
     @Override
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState blockIn, BlockPos pos, EntityLivingBase entityLiving)
     {
+        EnumFacing facing = getFacing(entityLiving);
+
         if (isEffective(blockIn)) {
-            if (entityLiving.getLookVec().yCoord < -0.7 || entityLiving.getLookVec().yCoord > 0.7) {
+            if (facing == EnumFacing.UP || facing == EnumFacing.DOWN) {
                 mineOrOtherwise(worldIn, pos.north(), stack, entityLiving);
                 mineOrOtherwise(worldIn, pos.south(), stack, entityLiving);
                 mineOrOtherwise(worldIn, pos.east(), stack, entityLiving);
@@ -60,14 +65,14 @@ public class ItemToolExcavator extends ItemSpade
             } else {
                 mineOrOtherwise(worldIn, pos.up(), stack, entityLiving);
                 mineOrOtherwise(worldIn, pos.down(), stack, entityLiving);
-                if (entityLiving.getHorizontalFacing() == EnumFacing.NORTH || entityLiving.getHorizontalFacing() == EnumFacing.SOUTH) {
+                if (facing == EnumFacing.NORTH || facing == EnumFacing.SOUTH) {
                     mineOrOtherwise(worldIn, pos.east(), stack, entityLiving);
                     mineOrOtherwise(worldIn, pos.east().up(), stack, entityLiving);
                     mineOrOtherwise(worldIn, pos.east().down(), stack, entityLiving);
                     mineOrOtherwise(worldIn, pos.west(), stack, entityLiving);
                     mineOrOtherwise(worldIn, pos.west().up(), stack, entityLiving);
                     mineOrOtherwise(worldIn, pos.west().down(), stack, entityLiving);
-                } else if (entityLiving.getHorizontalFacing() == EnumFacing.EAST || entityLiving.getHorizontalFacing() == EnumFacing.WEST) {
+                } else if (facing == EnumFacing.EAST || facing == EnumFacing.WEST) {
                     mineOrOtherwise(worldIn, pos.north(), stack, entityLiving);
                     mineOrOtherwise(worldIn, pos.north().up(), stack, entityLiving);
                     mineOrOtherwise(worldIn, pos.north().down(), stack, entityLiving);
@@ -126,6 +131,19 @@ public class ItemToolExcavator extends ItemSpade
             state.getBlock().harvestBlock(world, (EntityPlayer) player, pos, state, world.getTileEntity(pos), tool);
             world.destroyBlock(pos, false);
         }
+    }
+
+    protected EnumFacing getFacing(Entity player)
+    {
+        Vector3 origin = Vector3.fromEntity(player);
+        if (player instanceof EntityPlayer)
+            origin.add(0, player.getEyeHeight(), 0);
+
+        Vector3 look = new Vector3(player.getLookVec());
+
+        Vector3 end = origin.copy().add(look.copy().normalize().multiply(10));
+        RayTraceResult pos = player.worldObj.rayTraceBlocks(origin.toVec3D(), end.toVec3D());
+        return pos.sideHit;
     }
 
     protected boolean flatten(World worldIn, EnumFacing facing, BlockPos pos, ItemStack stack, EntityPlayer playerIn)
