@@ -83,6 +83,7 @@ item.littlethings:bejeweledApple.name=Bejeweled Apple
 item.littlethings:stoneStick.name=Stone Stick
 
 item.littlethings:friedEgg.name=Fried Egg
+item.littlethings:packSeeds.name=Pack Of Seeds
 
 #Entities
 entity.LittleThings.CrossBolt.name=CrossBolt
