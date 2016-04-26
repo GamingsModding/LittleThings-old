@@ -1,0 +1,18 @@
+black: #000000
+blue: #000B48
+brown: #23190D
+cyan: 004058
+gray: 2C2C2C
+green: 002C05
+light blue: 005858
+lime: 005800
+magenta: 580058
+orange: 583900
+pink: 960081
+purple: 4B004B
+red: 960000
+silver: 717171
+white: 969696
+yellow: 967F00
+
+opacity: 150
