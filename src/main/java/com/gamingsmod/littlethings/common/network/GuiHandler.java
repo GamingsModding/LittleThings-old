@@ -1,5 +1,6 @@
 package com.gamingsmod.littlethings.common.network;
 
+import com.gamingsmod.littlethings.client.gui.inventory.GuiExpStore;
 import com.gamingsmod.littlethings.client.gui.inventory.GuiItemElevator;
 import com.gamingsmod.littlethings.client.gui.inventory.GuiUnenchantingTable;
 import com.gamingsmod.littlethings.client.gui.inventory.GuiVanillaCraftingTable;
@@ -7,6 +8,7 @@ import com.gamingsmod.littlethings.common.gui.container.ContainerItemElevator;
 import com.gamingsmod.littlethings.common.gui.container.ContainerUnenchantingTable;
 import com.gamingsmod.littlethings.common.gui.container.ContainerVanillaCraftingTable;
 import com.gamingsmod.littlethings.common.lib.LibGuiId;
+import com.gamingsmod.littlethings.common.tileentity.TileEntityExpStore;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityItemElevator;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityUnenchantingTable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,6 +40,8 @@ public class GuiHandler implements IGuiHandler
                 return new GuiVanillaCraftingTable(player.inventory, world, new BlockPos(x, y, z));
             case LibGuiId.UNENCHANTING_TABLE:
                 return new GuiUnenchantingTable(player.inventory, (TileEntityUnenchantingTable) world.getTileEntity(new BlockPos(x,y,z)));
+            case LibGuiId.EXPSTORE:
+                return new GuiExpStore((TileEntityExpStore) world.getTileEntity(new BlockPos(x,y,z)));
         }
         return null;
     }

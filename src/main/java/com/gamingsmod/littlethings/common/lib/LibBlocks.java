@@ -10,4 +10,5 @@ public class LibBlocks
     public static final String STAINEDCLEARGLASS = "stainedClearGlass";
     public static final String UNENCHANTING_TABLE = "unenchantingTable";
     public static final String STONE_TORCH = "stoneTorch";
+    public static final String EXP_STORE = "expStore";
 }
