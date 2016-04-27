@@ -1,6 +1,6 @@
 package com.gamingsmod.littlethings.common.block;
 
-import com.gamingsmod.littlethings.common.block.base.ModBlockContainer;
+import com.gamingsmod.littlethings.common.block.base.ModBlockInventory;
 import com.gamingsmod.littlethings.common.lib.LibBlocks;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityAnimalChest;
 import net.minecraft.block.BlockHorizontal;
@@ -12,8 +12,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
@@ -25,7 +23,7 @@ import net.minecraft.world.World;
 /**
  * Code adapted from BlockEnderChest
  */
-public class BlockAnimalChest extends ModBlockContainer
+public class BlockAnimalChest extends ModBlockInventory
 {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     protected static final AxisAlignedBB field_185569_b = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
@@ -71,15 +69,8 @@ public class BlockAnimalChest extends ModBlockContainer
     }
 
     @Override
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase player, ItemStack stack)
     {
-        TileEntity te = worldIn.getTileEntity(pos);
-        if (te instanceof TileEntityAnimalChest) {
-            InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory) te);
-            worldIn.updateComparatorOutputLevel(pos, this);
-        }
-
-        super.breakBlock(worldIn, pos, state);
     }
 
     @Override

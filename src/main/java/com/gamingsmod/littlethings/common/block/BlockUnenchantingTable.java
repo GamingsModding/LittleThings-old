@@ -1,19 +1,17 @@
 package com.gamingsmod.littlethings.common.block;
 
 import com.gamingsmod.littlethings.common.LittleThings;
-import com.gamingsmod.littlethings.common.block.base.ModBlockContainer;
+import com.gamingsmod.littlethings.common.block.base.ModBlockInventory;
 import com.gamingsmod.littlethings.common.lib.LibBlocks;
 import com.gamingsmod.littlethings.common.lib.LibGuiId;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityUnenchantingTable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemBook;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -26,7 +24,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockUnenchantingTable extends ModBlockContainer
+public class BlockUnenchantingTable extends ModBlockInventory
 {
     protected static final AxisAlignedBB boundingbox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D);
 
@@ -62,12 +60,6 @@ public class BlockUnenchantingTable extends ModBlockContainer
         if (!worldIn.isRemote)
             playerIn.openGui(LittleThings.instance, LibGuiId.UNENCHANTING_TABLE, worldIn, pos.getX(), pos.getY(), pos.getZ());
         return true;
-    }
-
-    @Override
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-        InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory) worldIn.getTileEntity(pos));
-        super.breakBlock(worldIn, pos, state);
     }
 
     @Override
@@ -125,18 +117,6 @@ public class BlockUnenchantingTable extends ModBlockContainer
                     }
                 }
             }
-        }
-    }
-
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-    {
-        super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
-
-        if (stack.hasDisplayName()) {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
-
-            if (tileentity instanceof TileEntityUnenchantingTable)
-                ((TileEntityUnenchantingTable) tileentity).setCustomName(stack.getDisplayName());
         }
     }
 }
