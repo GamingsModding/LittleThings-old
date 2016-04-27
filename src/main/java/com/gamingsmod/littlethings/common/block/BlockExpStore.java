@@ -53,14 +53,16 @@ public class BlockExpStore extends ModBlockContainer
             if (xp >= playerEntity.experienceLevel || xp == 5000)
                 xp = playerEntity.experienceLevel;
 
-            te.xp += xp;
+            te.setXp(te.getXp() + xp);
+            te.markDirty();
             playerEntity.removeExperienceLevel(xp);
 
         } else if (action == MessageStoreXP.GIVE_EXP) {
-            if (xp > te.xp || xp == 5000)
-                xp = te.xp;
+            if (xp > te.getXp() || xp == 5000)
+                xp = te.getXp();
 
-            te.xp -= xp;
+            te.setXp(te.getXp() - xp);
+            te.markDirty();
             playerEntity.addExperienceLevel(xp);
         }
     }
