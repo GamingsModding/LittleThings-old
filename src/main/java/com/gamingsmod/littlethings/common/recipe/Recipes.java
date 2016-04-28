@@ -58,6 +58,8 @@ public class Recipes
 
         if (ConfigurationHandler.enableUnenchantingTable) recipesUnenchantingTable();
 
+        if (ConfigurationHandler.enableExpStore) recipesExpStore();
+
         if (ConfigurationHandler.enableHammers) recipesHammer();
 
         if (ConfigurationHandler.enableExcavators) recipesExcavators();
@@ -104,6 +106,14 @@ public class Recipes
         }
 
         if (ConfigurationHandler.enableExtraFood) recipesExtraFood();
+    }
+
+    private static void recipesExpStore()
+    {
+        addRecipe(new ItemStack(ModBlocks.ExpStore),
+                "bbb", "beb", "bbb",
+                'e', new ItemStack(Blocks.enchanting_table),
+                'b', new ItemStack(Items.experience_bottle));
     }
 
     private static void recipesExtraFood()
@@ -193,12 +203,12 @@ public class Recipes
     private static void recipesUnenchantingTable()
     {
         addRecipe(new ItemStack(ModBlocks.UnenchantingTable),
-                "rbr", "ded", "sss",
+                "nln", "ded", "sss",
                 'e', new ItemStack(Blocks.enchanting_table),
                 's', new ItemStack(Blocks.end_stone),
                 'd', "gemDiamond",
-                'r', new ItemStack(Blocks.wool, 1, 14),
-                'b', new ItemStack(Blocks.wool, 1, 3));
+                'n', new ItemStack(Items.ender_eye),
+                'l', new ItemStack(Items.dye, 1, EnumDyeColor.BLUE.getDyeDamage()));
     }
 
     private static void recipesSingleDye()

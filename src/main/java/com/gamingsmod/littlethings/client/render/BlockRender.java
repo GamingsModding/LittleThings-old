@@ -77,6 +77,8 @@ public class BlockRender
 
         if (ConfigurationHandler.enableStoneTorches && (!Loader.isModLoaded("tconstruct") && ConfigurationHandler.removeWithTC))
             reg(ModBlocks.StoneTorch);
+
+        reg(ModBlocks.ExpStore);
     }
 
     private static void reg(Block block)

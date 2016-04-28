@@ -28,6 +28,7 @@ public class ConfigurationHandler
     public static boolean enableStoneTorches;
     public static boolean removeWithTC;
     public static boolean enableExtraFood;
+    public static boolean enableExpStore;
 
     public static boolean enableOldSaddleRecipe;
     public static boolean enableOldArmorRecipe;
@@ -63,6 +64,7 @@ public class ConfigurationHandler
         enableAnimalChests = getBoolean(CATEGORY_BLOCKS, "Enable Animal Chests", true);
         enableClearGlass = getBoolean(CATEGORY_BLOCKS, "Enable Clear Glass", true);
         enableUnenchantingTable = getBoolean(CATEGORY_BLOCKS, "Enable Unenchanting Table", true);
+        enableExpStore = getBoolean(CATEGORY_BLOCKS, "Enable Experience Store", true);
         enableStoneTorches = getBoolean(CATEGORY_BLOCKS, "Enable Stone Torches", true);
         removeWithTC = getBoolean(CATEGORY_BLOCKS, "Stone Torches Leave To Tinkers", true, "This will not register Stone Torches if Tinkers Construct is loaded");
 

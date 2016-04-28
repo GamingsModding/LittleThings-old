@@ -19,7 +19,7 @@ public class ModBlocks
     public static Block StainedClearGlass;
     public static Block UnenchantingTable;
     public static Block StoneTorch;
-    private static Block ExpStore;
+    public static Block ExpStore;
 
     public static void init()
     {
