@@ -11,6 +11,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
@@ -26,6 +27,7 @@ public class ItemCrossbow extends ModItem
     public ItemCrossbow()
     {
         super(LibItems.CROSSBOW);
+        this.setCreativeTab(CreativeTabs.tabCombat);
         this.setMaxDamage(350);
         this.setMaxStackSize(1);
     }
