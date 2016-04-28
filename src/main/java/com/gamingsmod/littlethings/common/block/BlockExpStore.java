@@ -4,6 +4,8 @@ import com.gamingsmod.littlethings.common.LittleThings;
 import com.gamingsmod.littlethings.common.block.base.ModBlockContainer;
 import com.gamingsmod.littlethings.common.lib.LibBlocks;
 import com.gamingsmod.littlethings.common.lib.LibGuiId;
+import com.gamingsmod.littlethings.common.network.MessageHandler;
+import com.gamingsmod.littlethings.common.network.message.MessageHeldXP;
 import com.gamingsmod.littlethings.common.network.message.MessageStoreXP;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityExpStore;
 import net.minecraft.block.material.Material;
@@ -30,6 +32,8 @@ public class BlockExpStore extends ModBlockContainer
     {
         if (worldIn.isRemote)
             playerIn.openGui(LittleThings.instance, LibGuiId.EXPSTORE, worldIn, pos.getX(), pos.getY(), pos.getZ());
+        else
+            MessageHandler.INSTANCE.sendTo(new MessageHeldXP(((TileEntityExpStore)worldIn.getTileEntity(pos)).getXp()), (EntityPlayerMP) playerIn);
         return true;
     }
 
@@ -65,5 +69,7 @@ public class BlockExpStore extends ModBlockContainer
             te.markDirty();
             playerEntity.addExperienceLevel(xp);
         }
+
+        MessageHandler.INSTANCE.sendTo(new MessageHeldXP(te.getXp()), playerEntity);
     }
 }

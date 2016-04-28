@@ -2,7 +2,6 @@ package com.gamingsmod.littlethings.common.network.message;
 
 import com.gamingsmod.littlethings.common.block.BlockExpStore;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.util.IThreadListener;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -52,8 +51,9 @@ public class MessageStoreXP implements IMessage, IMessageHandler<MessageStoreXP,
     @Override
     public IMessage onMessage(MessageStoreXP message, MessageContext ctx)
     {
-        IThreadListener listener = (WorldServer) ctx.getServerHandler().playerEntity.worldObj;
+        WorldServer listener = (WorldServer) ctx.getServerHandler().playerEntity.worldObj;
         listener.addScheduledTask(() -> BlockExpStore.runAction(ctx.getServerHandler().playerEntity, message.xp, message.action, message.pos));
+//        return new MessageHeldXP(((TileEntityExpStore) listener.getTileEntity(message.pos)).getXp());
         return null;
     }
 }

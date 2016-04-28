@@ -8,12 +8,14 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
 
 public class GuiExpStore extends GuiScreen
 {
     private TileEntityExpStore te;
+    private static int heldXP = 0;
     private int xSize;
     private int ySize;
 
@@ -34,13 +36,13 @@ public class GuiExpStore extends GuiScreen
         int calcWidth = this.width / 2;
         int calcHeight = this.height / 2;
 
-        this.buttonList.add(buttons[0] = new GuiButton(0, calcWidth - 40, calcHeight - 30, 20, 20, "+"));
+        this.buttonList.add(buttons[0] = new GuiButton(0, calcWidth - 50, calcHeight - 30, 20, 20, "+"));
         this.buttonList.add(buttons[1] = new GuiButton(1, calcWidth - 10, calcHeight - 30, 20, 20, "++"));
-        this.buttonList.add(buttons[2] = new GuiButton(2, calcWidth + 20, calcHeight - 30, 20, 20, "+++"));
+        this.buttonList.add(buttons[2] = new GuiButton(2, calcWidth + 30, calcHeight - 30, 20, 20, "+++"));
 
-        this.buttonList.add(buttons[3] = new GuiButton(3, calcWidth - 40, calcHeight + 10, 20, 20, "-"));
+        this.buttonList.add(buttons[3] = new GuiButton(3, calcWidth - 50, calcHeight + 10, 20, 20, "-"));
         this.buttonList.add(buttons[4] = new GuiButton(4, calcWidth - 10, calcHeight + 10, 20, 20, "--"));
-        this.buttonList.add(buttons[5] = new GuiButton(5, calcWidth + 20, calcHeight + 10, 20, 20, "---"));
+        this.buttonList.add(buttons[5] = new GuiButton(5, calcWidth + 30, calcHeight + 10, 20, 20, "---"));
     }
 
     @Override
@@ -52,6 +54,8 @@ public class GuiExpStore extends GuiScreen
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        this.drawDefaultBackground();
         this.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
@@ -64,8 +68,8 @@ public class GuiExpStore extends GuiScreen
         this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
 
         FontRenderer fr = Minecraft.getMinecraft().fontRendererObj;
-        String text = this.te.getXp() + "";
-        fr.drawString(text, this.width / 2 - fr.getStringWidth(text), (this.height / 2) - 5, 8453920, true);
+        String text = heldXP + "";
+        fr.drawString(text, (this.width - fr.getStringWidth(text)) / 2, (this.height / 2) - 5, 8453920, true);
     }
 
     @Override
@@ -82,5 +86,10 @@ public class GuiExpStore extends GuiScreen
     private void sendMessage(int lvls, int action)
     {
         MessageHandler.INSTANCE.sendToServer(new MessageStoreXP(lvls, action, this.te.getPos()));
+    }
+
+    public static void setHeldXP(int xp)
+    {
+        heldXP = xp;
     }
 }
