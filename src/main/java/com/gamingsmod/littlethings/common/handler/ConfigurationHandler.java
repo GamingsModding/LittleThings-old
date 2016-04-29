@@ -29,6 +29,7 @@ public class ConfigurationHandler
     public static boolean removeWithTC;
     public static boolean enableExtraFood;
     public static boolean enableExpStore;
+    public static boolean enableBarbedWire;
 
     public static boolean enableOldSaddleRecipe;
     public static boolean enableOldArmorRecipe;
@@ -67,6 +68,7 @@ public class ConfigurationHandler
         enableExpStore = getBoolean(CATEGORY_BLOCKS, "Enable Experience Store", true);
         enableStoneTorches = getBoolean(CATEGORY_BLOCKS, "Enable Stone Torches", true);
         removeWithTC = getBoolean(CATEGORY_BLOCKS, "Stone Torches Leave To Tinkers", true, "This will not register Stone Torches if Tinkers Construct is loaded");
+        enableBarbedWire = getBoolean(CATEGORY_BLOCKS, "Enable Barbed Wire", true);
 
         //Items
         enableHammers = getBoolean(CATEGORY_ITEMS, "Enable Hammers", true);

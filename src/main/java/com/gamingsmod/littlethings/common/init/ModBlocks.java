@@ -20,6 +20,7 @@ public class ModBlocks
     public static Block UnenchantingTable;
     public static Block StoneTorch;
     public static Block ExpStore;
+    public static Block BarbedWire;
 
     public static void init()
     {
@@ -61,6 +62,9 @@ public class ModBlocks
 
         if (ConfigurationHandler.enableExpStore)
             addBlock(ExpStore = new BlockExpStore(), LibBlocks.EXP_STORE);
+
+        if (ConfigurationHandler.enableBarbedWire)
+            addBlock(BarbedWire = new BlockBarbedWire(), LibBlocks.BARBED_WIRE);
     }
 
     private static void addBlock(Block block, String name)

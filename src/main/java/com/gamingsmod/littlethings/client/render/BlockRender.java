@@ -80,6 +80,9 @@ public class BlockRender
 
         if (ConfigurationHandler.enableExpStore)
             reg(ModBlocks.ExpStore);
+
+        if (ConfigurationHandler.enableBarbedWire)
+            reg(ModBlocks.BarbedWire);
     }
 
     private static void reg(Block block)

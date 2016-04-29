@@ -134,6 +134,9 @@ command.littlethings.gmc=/gmc [player]
 command.littlethings.gmsp=/gmsp [player]
 command.littlethings.skull=/skull <player>
 
+#Deaths
+death.attack.barbedWire=%s tried to climb through barbed wire
+
 #Versioning
 littlethings.versioning.alpha=New Alpha Build Found!
 littlethings.versioning.other=New Version Found!
