@@ -21,8 +21,17 @@ switch (array_shift($argv)) {
     default:
         echo "Release, Major or Minor Required\n";
 }
-if (count($new_version) == 3) {
-    $file = fopen("version/mc1.9.txt", "w");
+
+$file_name = null;
+
+if (array_shift($argv) == "alpha") {
+    $file_name = "mc1.9a.txt";
+} else {
+    $file_name = "mc1.9.txt"
+}
+
+if ($file_name != null && count($new_version) == 3) {
+    $file = fopen("version/" . $file_name, "w");
     fwrite($file, implode(".", $new_version));
     fclose($file);
 
