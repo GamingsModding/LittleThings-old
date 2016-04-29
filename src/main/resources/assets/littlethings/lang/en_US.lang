@@ -47,6 +47,7 @@ tile.littlethings:stainedClearGlass.black.name=Black Stained Clear Glass
 tile.littlethings:unenchantingTable.name=Unenchanting Table
 tile.littlethings:expStore.name=Experience Store
 tile.littlethings:stoneTorch.name=Stone Torch
+tile.littlethings:barbedWire.name=Barbed Wire
 
 #Items
 item.littlethings:ironNugget.name=Iron Nugget
