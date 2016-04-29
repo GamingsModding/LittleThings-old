@@ -59,7 +59,8 @@ public class ModBlocks
         if (ConfigurationHandler.enableStoneTorches && (!Loader.isModLoaded("tconstruct") && ConfigurationHandler.removeWithTC))
             addBlock(StoneTorch = new BlockStoneTorch(), LibBlocks.STONE_TORCH);
 
-        addBlock(ExpStore = new BlockExpStore(), LibBlocks.EXP_STORE);
+        if (ConfigurationHandler.enableExpStore)
+            addBlock(ExpStore = new BlockExpStore(), LibBlocks.EXP_STORE);
     }
 
     private static void addBlock(Block block, String name)
