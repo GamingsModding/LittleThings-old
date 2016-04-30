@@ -1,6 +1,0 @@
-{
-  "parent": "littlethings:item/_crossbow",
-  "textures": {
-    "layer0":"littlethings:items/crossbowLoading1"
-  }
-}

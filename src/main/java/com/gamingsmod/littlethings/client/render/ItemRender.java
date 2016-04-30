@@ -2,7 +2,6 @@ package com.gamingsmod.littlethings.client.render;
 
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.init.ModItems;
-import com.gamingsmod.littlethings.common.item.ItemCrossbow;
 import com.gamingsmod.littlethings.common.lib.LibMisc;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
@@ -18,7 +17,6 @@ public class ItemRender
         for (String name : ModItems.CrossBolt.getVariants()) {
             ModelBakery.registerItemVariants(ModItems.CrossBolt, new ResourceLocation(LibMisc.PREFIX_MOD + "crossbolt_" + name));
         }
-        ItemCrossbow.registerModels();
     }
 
     public static void registerItemRender()
@@ -42,7 +40,7 @@ public class ItemRender
         }
 
         if (ConfigurationHandler.enableCrossbow) {
-            reg(ModItems.CrossBow, ItemCrossbow.registerMesh());
+            reg(ModItems.CrossBow);
             int i = 0;
             for (String name : ModItems.CrossBolt.getVariants()) {
                 reg(ModItems.CrossBolt, i++, "crossbolt_" + name);
