@@ -38,7 +38,6 @@ public class EntityCrossBoltExplosive extends EntityCrossBolt
     @Override
     protected void arrowHit(EntityLivingBase living)
     {
-        System.out.println("Explode");
         this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float)3, true);
         this.setDead();
     }
