@@ -2,11 +2,7 @@
 array_shift($argv);
 $inc = array_shift($argv);
 $alpha = array_shift($argc) == "alpha" ? true : false;
-if ($alpha) {
-    $current_version = explode(".", file_get_contents("version/mc1.9a.txt"));
-} else {
-    $current_version = explode(".", file_get_contents("version/mc1.9.txt"));
-}
+$current_version = explode(".", file_get_contents("version/mc1.9a.txt"));
 $new_version = [];
 switch (array_shift($argv)) {
     case "release":
