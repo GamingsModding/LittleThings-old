@@ -69,12 +69,16 @@ item.littlethings:obsidian_pickaxe.name=Obsidian Pickaxe
 item.littlethings:obsidian_axe.name=Obsidian Axe
 item.littlethings:obsidian_spade.name=Obsidian Shovel
 item.littlethings:obsidian_hoe.name=Obsidian Hoe
+item.littlethings:hammerObsidian.name=Obsidian Hammer
+item.littlethings:excavatorObsidian.name=Obsidian Excavator
 
 item.littlethings:emerald_sword.name=Emerald Sword
 item.littlethings:emerald_pickaxe.name=Emerald Pickaxe
 item.littlethings:emerald_axe.name=Emerald Axe
 item.littlethings:emerald_spade.name=Emerald Shovel
 item.littlethings:emerald_hoe.name=Emerald Hoe
+item.littlethings:hammerEmerald.name=Emerald Hammer
+item.littlethings:excavatorEmerald.name=Emerald Excavator
 
 item.littlethings:crossbow.name=Crossbow
 item.littlethings:crossbolt.normal.name=Crossbolt

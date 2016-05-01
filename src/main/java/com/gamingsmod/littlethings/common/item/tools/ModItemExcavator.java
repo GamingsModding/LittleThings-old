@@ -1,4 +1,4 @@
-package com.gamingsmod.littlethings.common.item;
+package com.gamingsmod.littlethings.common.item.tools;
 
 import com.gamingsmod.littlethings.common.helper.Vector3;
 import com.gamingsmod.littlethings.common.lib.LibMisc;
@@ -27,7 +27,7 @@ import java.util.Set;
 /**
  * Again, Inspired by Tinkers Construct
  */
-public class ItemToolExcavator extends ItemSpade
+public class ModItemExcavator extends ItemSpade
 {
     private static final Material[] effective = new Material[]{
             Material.grass,
@@ -41,7 +41,7 @@ public class ItemToolExcavator extends ItemSpade
 
     private static final Set<Block> vanilla_effective = Sets.newHashSet(Blocks.clay, Blocks.dirt, Blocks.farmland, Blocks.grass, Blocks.gravel, Blocks.mycelium, Blocks.sand, Blocks.snow, Blocks.snow_layer, Blocks.soul_sand, Blocks.grass_path);
 
-    public ItemToolExcavator(ToolMaterial material)
+    public ModItemExcavator(ToolMaterial material)
     {
         super(material);
     }

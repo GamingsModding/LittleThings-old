@@ -53,6 +53,10 @@ public class ItemRender
             reg(ModItems.ObsidianAxe);
             reg(ModItems.ObsidianSpade);
             reg(ModItems.ObsidianHoe);
+            if (ConfigurationHandler.enableHammers)
+                reg(ModItems.ObsidianHammer);
+            if (ConfigurationHandler.enableExcavators)
+                reg(ModItems.ObsidianExcavator);
         }
 
         if (ConfigurationHandler.enableEmeraldTools) {
@@ -61,6 +65,10 @@ public class ItemRender
             reg(ModItems.EmeraldAxe);
             reg(ModItems.EmeraldSpade);
             reg(ModItems.EmeraldHoe);
+            if (ConfigurationHandler.enableHammers)
+                reg(ModItems.EmeraldHammer);
+            if (ConfigurationHandler.enableExcavators)
+                reg(ModItems.EmeraldExcavator);
         }
 
         if (ConfigurationHandler.enableBejeweledApple) {

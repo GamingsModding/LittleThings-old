@@ -72,7 +72,9 @@ public class Recipes
                     ModItems.ObsidianPickaxe,
                     ModItems.ObsidianAxe,
                     ModItems.ObsidianSpade,
-                    ModItems.ObsidianHoe
+                    ModItems.ObsidianHoe,
+                    ModItems.ObsidianHammer,
+                    ModItems.ObsidianExcavator
             );
         if (ConfigurationHandler.enableEmeraldTools)
             recipesTools(
@@ -82,7 +84,9 @@ public class Recipes
                     ModItems.EmeraldPickaxe,
                     ModItems.EmeraldAxe,
                     ModItems.EmeraldSpade,
-                    ModItems.EmeraldHoe
+                    ModItems.EmeraldHoe,
+                    ModItems.EmeraldHammer,
+                    ModItems.EmeraldExcavator
             );
 
         if (ConfigurationHandler.enableCrossbow)
@@ -451,7 +455,7 @@ public class Recipes
         addBlockRecipe(output, input, true);
     }
 
-    private static void recipesTools(ItemStack ing1, ItemStack ing2, Item sword, Item pickaxe, Item axe, Item spade, Item hoe)
+    private static void recipesTools(ItemStack ing1, ItemStack ing2, Item sword, Item pickaxe, Item axe, Item spade, Item hoe, Item hammer, Item excavator)
     {
         addRecipe(new ItemStack(sword),
                 "i","i","s",
@@ -473,5 +477,22 @@ public class Recipes
                 " ii", " s ", " s ",
                 'i', ing1,
                 's', ing2);
+        if (hammer != null && ConfigurationHandler.enableHammers)
+            addRecipe(new ItemStack(hammer),
+                    "ipi", "isi", " s ",
+                    'i', ing1,
+                    'p', pickaxe,
+                    's', ing2);
+        if (excavator != null && ConfigurationHandler.enableExcavators)
+            addRecipe(new ItemStack(excavator),
+                    "ipi", "isi", " s ",
+                    'i', ing1,
+                    'p', spade,
+                    's', ing2);
+    }
+
+    private static void recipesTools(ItemStack ing1, ItemStack ing2, Item sword, Item pickaxe, Item axe, Item spade, Item hoe)
+    {
+        recipesTools(ing1, ing2, sword, pickaxe, axe, spade, hoe, null, null);
     }
 }

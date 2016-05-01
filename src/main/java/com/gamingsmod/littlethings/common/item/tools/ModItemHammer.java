@@ -1,4 +1,4 @@
-package com.gamingsmod.littlethings.common.item;
+package com.gamingsmod.littlethings.common.item.tools;
 
 import com.gamingsmod.littlethings.common.helper.Vector3;
 import com.gamingsmod.littlethings.common.lib.LibMisc;
@@ -23,7 +23,7 @@ import java.util.Set;
 /**
  * Inspired By Tinkers Construct
  */
-public class ItemToolHammer extends ItemTool
+public class ModItemHammer extends ItemTool
 {
     private static final Material[] effective = new Material[]{
             Material.iron,
@@ -37,7 +37,7 @@ public class ItemToolHammer extends ItemTool
 
     private static final Set<Block> vanilla_effective = Sets.newHashSet(Blocks.activator_rail, Blocks.coal_ore, Blocks.cobblestone, Blocks.detector_rail, Blocks.diamond_block, Blocks.diamond_ore, Blocks.double_stone_slab, Blocks.golden_rail, Blocks.gold_block, Blocks.gold_ore, Blocks.ice, Blocks.iron_block, Blocks.iron_ore, Blocks.lapis_block, Blocks.lapis_ore, Blocks.lit_redstone_ore, Blocks.mossy_cobblestone, Blocks.netherrack, Blocks.packed_ice, Blocks.rail, Blocks.redstone_ore, Blocks.sandstone, Blocks.red_sandstone, Blocks.stone, Blocks.stone_slab, Blocks.stone_button, Blocks.stone_pressure_plate);
 
-    public ItemToolHammer(ToolMaterial material)
+    public ModItemHammer(ToolMaterial material)
     {
         super(2.0F, -2.8F, material, vanilla_effective);
     }
