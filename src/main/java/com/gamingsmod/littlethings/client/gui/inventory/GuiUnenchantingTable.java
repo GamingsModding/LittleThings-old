@@ -2,7 +2,7 @@ package com.gamingsmod.littlethings.client.gui.inventory;
 
 import com.gamingsmod.littlethings.common.gui.container.ContainerUnenchantingTable;
 import com.gamingsmod.littlethings.common.network.MessageHandler;
-import com.gamingsmod.littlethings.common.network.message.MessageXP;
+import com.gamingsmod.littlethings.common.network.message.MessageUnenchant;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityUnenchantingTable;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -82,7 +82,8 @@ public class GuiUnenchantingTable extends GuiContainer
                 Enchantment enchantment = Enchantment.getEnchantmentByID(enchantmentList.getCompoundTagAt(0).getShort("id"));
                 int levelCost = enchantment.getMinEnchantability(enchantmentList.getCompoundTagAt(0).getShort("lvl"));
 
-                MessageHandler.INSTANCE.sendToServer(new MessageXP((int) Math.floor(levelCost / 2), itemStack, this.te.getPos()));
+                MessageHandler.INSTANCE.sendToServer(new MessageUnenchant(this.te.getPos()));
+                System.out.println("SENT w/ Stack: " + itemStack + " - Pos: " + this.te.getPos());
             }
         }
     }

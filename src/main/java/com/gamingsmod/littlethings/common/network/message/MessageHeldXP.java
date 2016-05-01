@@ -1,45 +1,36 @@
 package com.gamingsmod.littlethings.common.network.message;
 
-import com.gamingsmod.littlethings.client.gui.inventory.GuiExpStore;
-import io.netty.buffer.ByteBuf;
+import com.gamingsmod.littlethings.common.network.Message;
+import com.gamingsmod.littlethings.common.tileentity.TileEntityExpStore;
+import com.gamingsmod.littlethings.common.tileentity.base.TileEntityXpStore;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.IThreadListener;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class MessageHeldXP implements IMessage, IMessageHandler<MessageHeldXP, IMessage>
+public class MessageHeldXP extends Message
 {
-    private int xp;
+    public BlockPos pos;
+    public int xp;
 
     public MessageHeldXP()
     {
 
     }
 
-    public MessageHeldXP(int xp)
+    public MessageHeldXP(BlockPos pos, int xp)
     {
+        this.pos = pos;
         this.xp = xp;
     }
 
     @Override
-    public void fromBytes(ByteBuf buf)
+    public IMessage handleMessage(MessageContext context)
     {
-        xp = ByteBufUtils.readVarShort(buf);
-    }
-
-    @Override
-    public void toBytes(ByteBuf buf)
-    {
-        ByteBufUtils.writeVarShort(buf, xp);
-    }
-
-    @Override
-    public IMessage onMessage(MessageHeldXP message, MessageContext ctx)
-    {
-        IThreadListener listener = Minecraft.getMinecraft();
-        listener.addScheduledTask(() -> GuiExpStore.setHeldXP(message.xp));
+        World world = Minecraft.getMinecraft().theWorld;
+        if (world.getTileEntity(pos) instanceof TileEntityExpStore)
+            ((TileEntityXpStore) world.getTileEntity(pos)).setXp(xp);
         return null;
     }
 }

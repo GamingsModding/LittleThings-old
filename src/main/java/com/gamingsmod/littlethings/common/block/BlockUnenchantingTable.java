@@ -8,6 +8,7 @@ import com.gamingsmod.littlethings.common.tileentity.TileEntityUnenchantingTable
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
@@ -68,15 +69,24 @@ public class BlockUnenchantingTable extends ModBlockInventory
         return new TileEntityUnenchantingTable();
     }
 
-    public static void runUnenchant(EntityPlayerMP playerEntity, int xp, ItemStack stack, BlockPos pos)
+    public static void runUnenchant(EntityPlayerMP playerEntity, BlockPos pos)
     {
-        if (playerEntity.experienceLevel < xp && !playerEntity.isCreative())
-            return;
+        System.out.println("Run");
+        System.out.println("Pos: " + pos);
+        World world = playerEntity.worldObj;
 
-        if (stack != null && stack.getEnchantmentTagList() != null) {
-            World world = playerEntity.worldObj;
-            IInventory te  = (IInventory) world.getTileEntity(pos);
-            if (te instanceof TileEntityUnenchantingTable) {
+        IInventory te  = (IInventory) world.getTileEntity(pos);
+        if (te instanceof TileEntityUnenchantingTable) {
+            ItemStack stack = te.getStackInSlot(0);
+
+            if (stack != null && stack.getEnchantmentTagList() != null) {
+                NBTTagList enchantmentList = stack.getEnchantmentTagList();
+                Enchantment enchantment = Enchantment.getEnchantmentByID(enchantmentList.getCompoundTagAt(0).getShort("id"));
+                int xp = (int) Math.floor(enchantment.getMinEnchantability(enchantmentList.getCompoundTagAt(0).getShort("lvl")) / 2);
+
+                if (playerEntity.experienceLevel < xp && !playerEntity.isCreative())
+                    return;
+                
                 ItemStack books = te.getStackInSlot(1);
                 if ((books != null && books.getItem() instanceof ItemBook) && te.getStackInSlot(2) == null) {
                     NBTTagList list = stack.getEnchantmentTagList();

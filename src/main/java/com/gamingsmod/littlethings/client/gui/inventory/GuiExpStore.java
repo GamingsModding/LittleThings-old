@@ -1,7 +1,7 @@
 package com.gamingsmod.littlethings.client.gui.inventory;
 
 import com.gamingsmod.littlethings.common.network.MessageHandler;
-import com.gamingsmod.littlethings.common.network.message.MessageStoreXP;
+import com.gamingsmod.littlethings.common.network.message.MessageXP;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityExpStore;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -68,28 +68,23 @@ public class GuiExpStore extends GuiScreen
         this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
 
         FontRenderer fr = Minecraft.getMinecraft().fontRendererObj;
-        String text = heldXP + "";
+        String text = this.te.getXp() + "";
         fr.drawString(text, (this.width - fr.getStringWidth(text)) / 2, (this.height / 2) - 5, 8453920, true);
     }
 
     @Override
     protected void actionPerformed(GuiButton button) throws IOException
     {
-        if (button == buttons[0]) sendMessage(1, MessageStoreXP.TAKE_EXP);
-        else if (button == buttons[1]) sendMessage(10, MessageStoreXP.TAKE_EXP);
-        else if (button == buttons[2]) sendMessage(5000, MessageStoreXP.TAKE_EXP);
-        else if (button == buttons[3]) sendMessage(1, MessageStoreXP.GIVE_EXP);
-        else if (button == buttons[4]) sendMessage(10, MessageStoreXP.GIVE_EXP);
-        else if (button == buttons[5]) sendMessage(5000, MessageStoreXP.GIVE_EXP);
+        if (button == buttons[0]) sendMessage(1, MessageXP.TAKE_EXP);
+        else if (button == buttons[1]) sendMessage(10, MessageXP.TAKE_EXP);
+        else if (button == buttons[2]) sendMessage(5000, MessageXP.TAKE_EXP);
+        else if (button == buttons[3]) sendMessage(1, MessageXP.GIVE_EXP);
+        else if (button == buttons[4]) sendMessage(10, MessageXP.GIVE_EXP);
+        else if (button == buttons[5]) sendMessage(5000, MessageXP.GIVE_EXP);
     }
 
     private void sendMessage(int lvls, int action)
     {
-        MessageHandler.INSTANCE.sendToServer(new MessageStoreXP(lvls, action, this.te.getPos()));
-    }
-
-    public static void setHeldXP(int xp)
-    {
-        heldXP = xp;
+        MessageHandler.INSTANCE.sendToServer(new MessageXP(this.te.getPos(), lvls, action));
     }
 }

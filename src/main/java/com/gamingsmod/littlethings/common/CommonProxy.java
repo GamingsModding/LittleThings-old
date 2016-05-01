@@ -30,7 +30,7 @@ public class CommonProxy
         ModItems.init();
         ModTileEntities.init();
         ModEntities.init();
-        MessageHandler.preInit();
+        MessageHandler.init();
 
         if (ConfigurationHandler.enableEmeraldsEverywhere)
             GameRegistry.registerWorldGenerator(new EmeraldsEverywhere(1), 0);

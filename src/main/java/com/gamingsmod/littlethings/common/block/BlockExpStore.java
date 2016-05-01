@@ -1,19 +1,19 @@
 package com.gamingsmod.littlethings.common.block;
 
 import com.gamingsmod.littlethings.common.LittleThings;
+import com.gamingsmod.littlethings.common.block.base.IExperienceStore;
 import com.gamingsmod.littlethings.common.block.base.ModBlockContainer;
 import com.gamingsmod.littlethings.common.lib.LibBlocks;
 import com.gamingsmod.littlethings.common.lib.LibGuiId;
 import com.gamingsmod.littlethings.common.network.MessageHandler;
 import com.gamingsmod.littlethings.common.network.message.MessageHeldXP;
-import com.gamingsmod.littlethings.common.network.message.MessageStoreXP;
+import com.gamingsmod.littlethings.common.network.message.MessageXP;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityExpStore;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -22,8 +22,9 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
-public class BlockExpStore extends ModBlockContainer
+public class BlockExpStore extends ModBlockContainer implements IExperienceStore
 {
     protected static final AxisAlignedBB boundingbox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D);
 
@@ -59,8 +60,6 @@ public class BlockExpStore extends ModBlockContainer
     {
         if (worldIn.isRemote)
             playerIn.openGui(LittleThings.instance, LibGuiId.EXPSTORE, worldIn, pos.getX(), pos.getY(), pos.getZ());
-        else
-            MessageHandler.INSTANCE.sendTo(new MessageHeldXP(((TileEntityExpStore)worldIn.getTileEntity(pos)).getXp()), (EntityPlayerMP) playerIn);
         return true;
     }
 
@@ -81,33 +80,27 @@ public class BlockExpStore extends ModBlockContainer
         return new TileEntityExpStore();
     }
 
-    public static void runAction(EntityPlayerMP playerEntity, int xp, int action, BlockPos pos)
+
+    @Override
+    public IMessage updateStoredXP(EntityPlayer player, TileEntity te, int xp, int action)
     {
-        World world = playerEntity.worldObj;
-        TileEntityExpStore te = null;
-        if (world.getTileEntity(pos) instanceof TileEntityExpStore)
-            te = (TileEntityExpStore) world.getTileEntity(pos);
+        if (te instanceof TileEntityExpStore) {
+            if (action == MessageXP.GIVE_EXP) {
+                if (xp > ((TileEntityExpStore) te).getXp() || xp == 5000)
+                    xp = ((TileEntityExpStore) te).getXp();
 
-        if (te == null)
-            return;
+                ((TileEntityExpStore) te).removeXp(xp);
+                player.addExperienceLevel(xp);
+            } else if (action == MessageXP.TAKE_EXP) {
+                if (xp >= player.experienceLevel || xp == 5000)
+                    xp = player.experienceLevel;
 
-        if (action == MessageStoreXP.TAKE_EXP) {
-            if (xp >= playerEntity.experienceLevel || xp == 5000)
-                xp = playerEntity.experienceLevel;
-
-            te.setXp(te.getXp() + xp);
+                ((TileEntityExpStore) te).addXp(xp);
+                player.removeExperienceLevel(xp);
+            }
             te.markDirty();
-            playerEntity.removeExperienceLevel(xp);
-
-        } else if (action == MessageStoreXP.GIVE_EXP) {
-            if (xp > te.getXp() || xp == 5000)
-                xp = te.getXp();
-
-            te.setXp(te.getXp() - xp);
-            te.markDirty();
-            playerEntity.addExperienceLevel(xp);
+            MessageHandler.INSTANCE.sendToAll(new MessageHeldXP(te.getPos(), ((TileEntityExpStore) te).getXp()));
         }
-
-        MessageHandler.INSTANCE.sendTo(new MessageHeldXP(te.getXp()), playerEntity);
+        return null;
     }
 }
