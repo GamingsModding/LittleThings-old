@@ -1,10 +1,10 @@
 <?php
 array_shift($argv);
 $inc = array_shift($argv);
-$alpha = array_shift($argc) == "alpha" ? true : false;
+$alpha = array_shift($argv) == "alpha" ? true : false;
 $current_version = explode(".", file_get_contents("version/mc1.9a.txt"));
 $new_version = [];
-switch (array_shift($argv)) {
+switch ($inc) {
     case "release":
         $new_version[0] = $current_version[0] + 1;
         $new_version[1] = 0;
@@ -29,7 +29,7 @@ $file_name = null;
 if ($alpha) {
     $file_name = "mc1.9a.txt";
 } else {
-    $file_name = "mc1.9.txt"
+    $file_name = "mc1.9.txt";
 }
 
 if ($file_name != null && count($new_version) == 3) {
