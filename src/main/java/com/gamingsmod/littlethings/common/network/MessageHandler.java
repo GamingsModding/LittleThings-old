@@ -16,9 +16,9 @@ public class MessageHandler
 
     public static void init()
     {
+        register(MessageHeldXP.class, Side.CLIENT);
         register(MessageUnenchant.class, Side.SERVER);
         register(MessageXP.class, Side.SERVER);
-        register(MessageHeldXP.class, Side.CLIENT);
     }
 
     @SuppressWarnings("unchecked")

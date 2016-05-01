@@ -60,6 +60,8 @@ public class BlockExpStore extends ModBlockContainer implements IExperienceStore
     {
         if (worldIn.isRemote)
             playerIn.openGui(LittleThings.instance, LibGuiId.EXPSTORE, worldIn, pos.getX(), pos.getY(), pos.getZ());
+        else
+            MessageHandler.INSTANCE.sendToAll(new MessageHeldXP(pos, ((TileEntityExpStore) worldIn.getTileEntity(pos)).getXp()));
         return true;
     }
 

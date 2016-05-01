@@ -12,6 +12,7 @@ import com.gamingsmod.littlethings.common.network.MessageHandler;
 import com.gamingsmod.littlethings.common.recipe.Recipes;
 import com.gamingsmod.littlethings.common.recipe.Smelting;
 import com.gamingsmod.littlethings.common.world.EmeraldsEverywhere;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -61,5 +62,10 @@ public class CommonProxy
         e.registerServerCommand(new CommandAdventureShortcut());
         e.registerServerCommand(new CommandSpectatorShortcut());
         e.registerServerCommand(new CommandSkull());
+    }
+
+    public void updateXpBlock(BlockPos pos, int xp)
+    {
+        //NO-OP
     }
 }
