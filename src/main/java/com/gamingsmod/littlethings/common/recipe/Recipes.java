@@ -110,6 +110,11 @@ public class Recipes
         }
 
         if (ConfigurationHandler.enableExtraFood) recipesExtraFood();
+
+        if (ConfigurationHandler.enableBarbedWire)
+            addRecipe(new ItemStack(ModBlocks.BarbedWire),
+                    "b b", " b ", "b b",
+                    'b', new ItemStack(Blocks.iron_bars));
     }
 
     private static void recipesExpStore()
