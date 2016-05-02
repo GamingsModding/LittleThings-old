@@ -21,6 +21,7 @@ public class ModBlocks
     public static Block StoneTorch;
     public static Block ExpStore;
     public static Block BarbedWire;
+    public static Block MobChests;
 
     public static void init()
     {
@@ -47,6 +48,7 @@ public class ModBlocks
                 addBlock(AnimalChests[i] = new BlockAnimalChest(name.toString()), LibBlocks.ANIMALCHEST + name);
                 i++;
             }
+            addMetaBlock(MobChests = new BlockMobChest(), LibBlocks.MOBCHEST);
         }
 
         if (ConfigurationHandler.enableClearGlass) {

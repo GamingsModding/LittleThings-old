@@ -1,11 +1,14 @@
 package com.gamingsmod.littlethings.client.render;
 
 import com.gamingsmod.littlethings.client.model.TEAnimalChestRenderer;
+import com.gamingsmod.littlethings.client.model.TEMobChestRenderer;
+import com.gamingsmod.littlethings.common.block.BlockMobChest;
 import com.gamingsmod.littlethings.common.block.BlockVanillaCraftingTables;
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.init.ModBlocks;
 import com.gamingsmod.littlethings.common.lib.LibMisc;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityAnimalChest;
+import com.gamingsmod.littlethings.common.tileentity.TileEntityMobChest;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -42,6 +45,17 @@ public class BlockRender
 
             ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.StainedClearGlass), rl);
         }
+
+        if (ConfigurationHandler.enableAnimalChests) {
+            ResourceLocation[] rl = new ResourceLocation[BlockMobChest.Mobs.values().length];
+            int i = 0;
+            for (BlockMobChest.Mobs mob : BlockMobChest.Mobs.values()) {
+                rl[i] = new ResourceLocation(modId + "mobChest_" + mob.getName());
+                i++;
+            }
+
+            ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.MobChests), rl);
+        }
     }
 
     public static void registerBlockRenderer()
@@ -60,9 +74,13 @@ public class BlockRender
 
         if (ConfigurationHandler.enableAnimalChests) {
             ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAnimalChest.class, new TEAnimalChestRenderer());
+            ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMobChest.class, new TEMobChestRenderer());
 
             for (Block block : ModBlocks.AnimalChests)
                 reg(block);
+
+            for (BlockMobChest.Mobs mob : BlockMobChest.Mobs.values())
+                reg(ModBlocks.MobChests, mob.getMeta(), "mobChest_" + mob.getName());
         }
 
         if (ConfigurationHandler.enableClearGlass) {

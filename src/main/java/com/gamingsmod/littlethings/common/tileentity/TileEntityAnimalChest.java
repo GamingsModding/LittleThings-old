@@ -14,6 +14,7 @@ import net.minecraft.util.SoundEvent;
 /**
  * Code adapted From TileEntityEnderChest and TileEntityChest
  */
+@Deprecated
 public class TileEntityAnimalChest extends ModTileInventory implements ITickable
 {
     public float lidAngle;

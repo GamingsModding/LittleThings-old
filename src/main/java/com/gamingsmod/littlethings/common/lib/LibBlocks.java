@@ -12,4 +12,5 @@ public class LibBlocks
     public static final String STONE_TORCH = "stoneTorch";
     public static final String EXP_STORE = "expStore";
     public static final String BARBED_WIRE = "barbedWire";
+    public static final String MOBCHEST = "mobChest";
 }

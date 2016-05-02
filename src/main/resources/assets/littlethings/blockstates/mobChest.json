@@ -1,0 +1,44 @@
+{
+  "multipart": [
+    {
+      "when": { "facing": "north|south|east|west", "mob": "cow" },
+      "apply": { "model": "littlethings:animalChest_cow" }
+    },
+    {
+      "when": { "facing": "north|south|east|west", "mob": "chicken" },
+      "apply": { "model": "littlethings:animalChest_chicken" }
+    },
+    {
+      "when": { "facing": "north|south|east|west", "mob": "pig" },
+      "apply": { "model": "littlethings:animalChest_pig" }
+    },
+    {
+      "when": { "facing": "north|south|east|west", "mob": "sheep" },
+      "apply": { "model": "littlethings:animalChest_sheep" }
+    },
+    {
+      "when": { "facing": "north|south|east|west", "mob": "dog" },
+      "apply": { "model": "littlethings:animalChest_dog" }
+    },
+    {
+      "when": { "facing": "north|south|east|west", "mob": "squid" },
+      "apply": { "model": "littlethings:animalChest_squid" }
+    },
+    {
+      "when": { "facing": "north|south|east|west", "mob": "zombie" },
+      "apply": { "model": "littlethings:animalChest_zombie" }
+    },
+    {
+      "when": { "facing": "north|south|east|west", "mob": "skeleton" },
+      "apply": { "model": "littlethings:animalChest_skeleton" }
+    },
+    {
+      "when": { "facing": "north|south|east|west", "mob": "creeper" },
+      "apply": { "model": "littlethings:animalChest_creeper" }
+    },
+    {
+      "when": { "facing": "north|south|east|west", "mob": "spider" },
+      "apply": { "model": "littlethings:animalChest_spider" }
+    }
+  ]
+}

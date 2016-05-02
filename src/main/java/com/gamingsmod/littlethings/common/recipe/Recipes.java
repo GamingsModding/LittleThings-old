@@ -294,50 +294,53 @@ public class Recipes
 
     private static void recipesAnimalChests()
     {
-        addRecipe(new ItemStack(ModBlocks.AnimalChests[0]), //cow
+        addRecipe(new ItemStack(ModBlocks.MobChests, 1, 0), //cow
                 "mmm", "mcm", "mmm",
                 'm', new ItemStack(Items.beef),
                 'c', "chestWood");
-        addRecipe(new ItemStack(ModBlocks.AnimalChests[1]), //chicken
+        addRecipe(new ItemStack(ModBlocks.MobChests, 1, 1), //chicken
                 "mmm", "mcm", "mmm",
                 'm', new ItemStack(Items.chicken),
                 'c', "chestWood");
-        addRecipe(new ItemStack(ModBlocks.AnimalChests[2]), //pig
+        addRecipe(new ItemStack(ModBlocks.MobChests, 1, 2), //pig
                 "mmm", "mcm", "mmm",
                 'm', new ItemStack(Items.porkchop),
                 'c', "chestWood");
-        addRecipe(new ItemStack(ModBlocks.AnimalChests[3]), //sheep
+        addRecipe(new ItemStack(ModBlocks.MobChests, 1, 3), //sheep
                 "mmm", "mcm", "mmm",
                 'm', new ItemStack(Items.mutton),
                 'c', "chestWood");
-//        addRecipe(new ItemStack(ModBlocks.AnimalChests[4])); //horse
-        addRecipe(new ItemStack(ModBlocks.AnimalChests[5]), //dog
+        addRecipe(new ItemStack(ModBlocks.MobChests, 1, 4), //dog
                 "pbp", "bcb", "sbs",
                 'b', new ItemStack(Items.bone),
                 'p', new ItemStack(Items.cooked_porkchop),
                 's', new ItemStack(Items.cooked_beef),
                 'c', "chestWood");
-        addRecipe(new ItemStack(ModBlocks.AnimalChests[6]), //squid
+        addRecipe(new ItemStack(ModBlocks.MobChests, 1, 5), //squid
                 "iii", "ici", "iii",
                 'i', new ItemStack(Items.dye, 1, 0),
                 'c', "chestWood");
 
-        addRecipe(new ItemStack(ModBlocks.AnimalChests[7]), //zombie
+        addRecipe(new ItemStack(ModBlocks.MobChests, 1, 6), //zombie
                 "fff", "fcf", "fff",
                 'f', new ItemStack(Items.rotten_flesh),
                 'c', "chestWood");
-        addRecipe(new ItemStack(ModBlocks.AnimalChests[8]), //skeleton
+        addRecipe(new ItemStack(ModBlocks.MobChests, 1, 7), //skeleton
                 "bbb", "bcb", "bbb",
                 'b', new ItemStack(Items.bone),
                 'c', "chestWood");
-        addRecipe(new ItemStack(ModBlocks.AnimalChests[9]), //creeper
+        addRecipe(new ItemStack(ModBlocks.MobChests, 1, 8), //creeper
                 "sss", "scs", "sss",
                 's', new ItemStack(Items.gunpowder),
                 'c', "chestWood");
-        addRecipe(new ItemStack(ModBlocks.AnimalChests[10]), //spider
+        addRecipe(new ItemStack(ModBlocks.MobChests, 1, 9), //spider
                 "ooo", "oco", "ooo",
                 'o', new ItemStack(Blocks.web),
                 'c', "chestWood");
+
+        for (int i = 0; i < ModBlocks.AnimalChests.length; i++){
+            addShapelessRecipe(new ItemStack(ModBlocks.MobChests, 1, i), new ItemStack(ModBlocks.AnimalChests[i]));
+        }
     }
 
     private static void recipesRecoloringGlassPanes()

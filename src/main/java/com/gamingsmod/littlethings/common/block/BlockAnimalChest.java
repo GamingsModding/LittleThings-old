@@ -20,9 +20,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 /**
  * Code adapted from BlockEnderChest
  */
+@Deprecated
 public class BlockAnimalChest extends ModBlockInventory
 {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
@@ -121,13 +124,20 @@ public class BlockAnimalChest extends ModBlockInventory
         return new BlockStateContainer(this, FACING);
     }
 
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced)
+    {
+        tooltip.add("§c DEPRECATED BLOCK");
+        tooltip.add("Will be removed in next update");
+        tooltip.add("Put in crafting table to replace");
+    }
+
     public enum Types
     {
         cow,
         chicken,
         pig,
         sheep,
-        horse,
         dog,
         squid,
         zombie,
