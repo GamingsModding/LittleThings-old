@@ -26,9 +26,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITickable, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] {0};
-    private static final int[] slotsBottom = new int[] {2, 1};
-    private static final int[] slotsSides = new int[] {1};
+    private static final int[] slotsTop = new int[]{0};
+    private static final int[] slotsBottom = new int[]{2, 1};
+    private static final int[] slotsSides = new int[]{1};
     private ItemStack[] furnaceItemStacks = new ItemStack[3];
     private int furnaceBurnTime;
     private int currentItemBurnTime;
@@ -118,8 +118,7 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
         this.totalCookTime = compound.getInteger("CookTimeTotal");
         this.currentItemBurnTime = getItemBurnTime(this.furnaceItemStacks[1]);
 
-        if (compound.hasKey("CustomName", 8))
-        {
+        if (compound.hasKey("CustomName", 8)) {
             this.furnaceCustomName = compound.getString("CustomName");
         }
     }
@@ -133,12 +132,10 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
         compound.setInteger("CookTimeTotal", this.totalCookTime);
         NBTTagList nbttaglist = new NBTTagList();
 
-        for (int i = 0; i < this.furnaceItemStacks.length; ++i)
-        {
-            if (this.furnaceItemStacks[i] != null)
-            {
+        for (int i = 0; i < this.furnaceItemStacks.length; ++i) {
+            if (this.furnaceItemStacks[i] != null) {
                 NBTTagCompound nbttagcompound = new NBTTagCompound();
-                nbttagcompound.setByte("Slot", (byte)i);
+                nbttagcompound.setByte("Slot", (byte) i);
                 this.furnaceItemStacks[i].writeToNBT(nbttagcompound);
                 nbttaglist.appendTag(nbttagcompound);
             }
@@ -146,8 +143,7 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
 
         compound.setTag("Items", nbttaglist);
 
-        if (this.hasCustomName())
-        {
+        if (this.hasCustomName()) {
             compound.setString("CustomName", this.furnaceCustomName);
         }
     }
@@ -299,9 +295,9 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
                     return 16000;
             }
 
-            if (item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD")) return 200;
-            if (item instanceof ItemSword && ((ItemSword)item).getToolMaterialName().equals("WOOD")) return 200;
-            if (item instanceof ItemHoe && ((ItemHoe)item).getMaterialName().equals("WOOD")) return 200;
+            if (item instanceof ItemTool && ((ItemTool) item).getToolMaterialName().equals("WOOD")) return 200;
+            if (item instanceof ItemSword && ((ItemSword) item).getToolMaterialName().equals("WOOD")) return 200;
+            if (item instanceof ItemHoe && ((ItemHoe) item).getMaterialName().equals("WOOD")) return 200;
             if (item == Items.stick) return 100;
             if (item == Items.coal) return 1600;
             if (item == Items.lava_bucket) return 20000;

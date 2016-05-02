@@ -64,7 +64,7 @@ public abstract class ModTileInventory extends TileEntity implements IInventory
         if (this.getStackInSlot(index) != null) {
             ItemStack itemstack;
 
-            if (this.getStackInSlot(index).stackSize <= count){
+            if (this.getStackInSlot(index).stackSize <= count) {
                 itemstack = this.getStackInSlot(index);
                 this.setInventorySlotContents(index, null);
                 this.markDirty();
@@ -124,10 +124,10 @@ public abstract class ModTileInventory extends TileEntity implements IInventory
     }
 
     @Override
-    public void openInventory(EntityPlayer player) {}
+    public void openInventory(EntityPlayer player){}
 
     @Override
-    public void closeInventory(EntityPlayer player) {}
+    public void closeInventory(EntityPlayer player){}
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack)
@@ -142,7 +142,7 @@ public abstract class ModTileInventory extends TileEntity implements IInventory
     }
 
     @Override
-    public void setField(int id, int value) {}
+    public void setField(int id, int value){}
 
     @Override
     public int getFieldCount()

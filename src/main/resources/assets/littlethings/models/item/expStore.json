@@ -1,5 +1,5 @@
 {
-  "parent":"littlethings:block/expStore",
+  "parent": "littlethings:block/expStore",
   "display": {
     "thirdperson": {
       "rotation": [ 10, -45, 170 ],

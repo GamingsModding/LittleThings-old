@@ -24,21 +24,22 @@ public class EntityCrossBoltExplosive extends EntityCrossBolt
     }
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getArrowStack()
+    {
         return new ItemStack(ModItems.CrossBolt, 1, 1);
     }
 
     @Override
     public void onBlockImpact(RayTraceResult rayTraceResult)
     {
-        this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float)3, true);
+        this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float) 3, true);
         this.setDead();
     }
 
     @Override
     protected void arrowHit(EntityLivingBase living)
     {
-        this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float)3, true);
+        this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float) 3, true);
         this.setDead();
     }
 }

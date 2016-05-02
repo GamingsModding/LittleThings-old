@@ -1,5 +1,5 @@
 {
-  "parent":"littlethings:block/clearGlass_all",
+  "parent": "littlethings:block/clearGlass_all",
   "display": {
     "thirdperson": {
       "rotation": [ 10, -45, 170 ],

@@ -1,5 +1,5 @@
 {
-  "parent":"littlethings:block/vanillaCraftingTable_acacia",
+  "parent": "littlethings:block/vanillaCraftingTable_acacia",
   "display": {
     "thirdperson": {
       "rotation": [ 10, -45, 170 ],

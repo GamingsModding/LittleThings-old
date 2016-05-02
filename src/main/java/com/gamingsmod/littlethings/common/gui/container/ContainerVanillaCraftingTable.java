@@ -14,11 +14,15 @@ import net.minecraft.world.World;
  */
 public class ContainerVanillaCraftingTable extends Container
 {
-    /** The crafting matrix inventory (3x3). */
+    /**
+     * The crafting matrix inventory (3x3).
+     */
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
     public IInventory craftResult = new InventoryCraftResult();
     private World worldObj;
-    /** Position of the workbench */
+    /**
+     * Position of the workbench
+     */
     private BlockPos pos;
 
     public ContainerVanillaCraftingTable(InventoryPlayer playerInventory, World worldIn, BlockPos posIn)

@@ -1,5 +1,5 @@
 {
-  "parent":"littlethings:block/upgradedFurnace_iron",
+  "parent": "littlethings:block/upgradedFurnace_iron",
   "display": {
     "thirdperson": {
       "rotation": [ 10, -45, 170 ],

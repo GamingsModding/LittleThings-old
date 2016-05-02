@@ -23,7 +23,7 @@ public abstract class ModBlockInventory extends ModBlockContainer
     {
         TileEntity te = worldIn.getTileEntity(pos);
         if (te instanceof IInventory) {
-            InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory)te);
+            InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory) te);
             worldIn.updateComparatorOutputLevel(pos, this);
         }
 

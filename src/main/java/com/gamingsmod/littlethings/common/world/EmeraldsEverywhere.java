@@ -25,7 +25,7 @@ public class EmeraldsEverywhere implements IWorldGenerator
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
     {
-        for (int i = 0; i < clusterCount; i++){
+        for (int i = 0; i < clusterCount; i++) {
             int x = chunkX * 16 + random.nextInt(16);
             int y = random.nextInt(16);
             int z = chunkZ * 16 + random.nextInt(16);

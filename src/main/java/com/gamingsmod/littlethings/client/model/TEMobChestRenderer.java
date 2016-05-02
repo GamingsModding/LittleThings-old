@@ -36,7 +36,7 @@ public class TEMobChestRenderer extends TileEntitySpecialRenderer<TileEntityMobC
         GlStateManager.pushMatrix();
         GlStateManager.enableRescaleNormal();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        GlStateManager.translate((float)x, (float)y + 1.0F, (float)z + 1.0F);
+        GlStateManager.translate((float) x, (float) y + 1.0F, (float) z + 1.0F);
         GlStateManager.scale(1.0F, -1.0F, -1.0F);
         GlStateManager.translate(0.5F, 0.5F, 0.5F);
         int j = 0;
@@ -53,12 +53,12 @@ public class TEMobChestRenderer extends TileEntitySpecialRenderer<TileEntityMobC
         if (i == 5)
             j = -90;
 
-        GlStateManager.rotate((float)j, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate((float) j, 0.0F, 1.0F, 0.0F);
         GlStateManager.translate(-0.5F, -0.5F, -0.5F);
         float f = te.prevLidAngle + (te.lidAngle - te.prevLidAngle) * partialTicks;
         f = 1.0F - f;
         f = 1.0F - f * f * f;
-        this.modelChest.chestLid.rotateAngleX = -(f * ((float)Math.PI / 2F));
+        this.modelChest.chestLid.rotateAngleX = -(f * ((float) Math.PI / 2F));
         this.modelChest.renderAll();
         GlStateManager.disableRescaleNormal();
         GlStateManager.popMatrix();

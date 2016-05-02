@@ -37,7 +37,7 @@ public class VersionChecker
                 int[] onlineSplit_alpha = getIntegers(alpha_version.split("\\."));
 //                int[] onlineSplit_alpha = getIntegers(new String[]{"0", "1", "7"});
 
-                int[] clientSplit = LibMisc.BUILD.contains("GRADLE") ? new int[]{Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE} : getIntegers( LibMisc.BUILD.split("\\."));
+                int[] clientSplit = LibMisc.BUILD.contains("GRADLE") ? new int[]{Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE} : getIntegers(LibMisc.BUILD.split("\\."));
 //                int[] clientSplit = getIntegers(new String[]{"0", "1", "1"});
 
                 if (isVersionGreater(onlineSplit, onlineSplit_alpha))
@@ -53,21 +53,20 @@ public class VersionChecker
                         //MINOR
                         player.addChatComponentMessage(new TextComponentTranslation("littlethings.versioning.other"));
                         player.addChatComponentMessage(ITextComponent.Serializer.jsonToComponent(I18n.translateToLocal("littlethings.versioning.messageOther")));
-                    }
-                else if (PlayerHelper.isAlphaTester(player))
-                    if (onlineSplit_alpha[0] > clientSplit[0]) {
-                        //RELEASE
-                        player.addChatComponentMessage(new TextComponentTranslation("littlethings.versioning.alpha"));
-                        player.addChatComponentMessage(ITextComponent.Serializer.jsonToComponent(I18n.translateToLocal("littlethings.versioning.messageAlpha")));
-                    } else if (onlineSplit_alpha[1] > clientSplit[1]) {
-                        //MAJOR
-                        player.addChatComponentMessage(new TextComponentTranslation("littlethings.versioning.alpha"));
-                        player.addChatComponentMessage(ITextComponent.Serializer.jsonToComponent(I18n.translateToLocal("littlethings.versioning.messageAlpha")));
-                    } else if (onlineSplit_alpha[2] > clientSplit[2]) {
-                        //MINOR
-                        player.addChatComponentMessage(new TextComponentTranslation("littlethings.versioning.alpha"));
-                        player.addChatComponentMessage(ITextComponent.Serializer.jsonToComponent(I18n.translateToLocal("littlethings.versioning.messageAlpha")));
-                    }
+                    } else if (PlayerHelper.isAlphaTester(player))
+                        if (onlineSplit_alpha[0] > clientSplit[0]) {
+                            //RELEASE
+                            player.addChatComponentMessage(new TextComponentTranslation("littlethings.versioning.alpha"));
+                            player.addChatComponentMessage(ITextComponent.Serializer.jsonToComponent(I18n.translateToLocal("littlethings.versioning.messageAlpha")));
+                        } else if (onlineSplit_alpha[1] > clientSplit[1]) {
+                            //MAJOR
+                            player.addChatComponentMessage(new TextComponentTranslation("littlethings.versioning.alpha"));
+                            player.addChatComponentMessage(ITextComponent.Serializer.jsonToComponent(I18n.translateToLocal("littlethings.versioning.messageAlpha")));
+                        } else if (onlineSplit_alpha[2] > clientSplit[2]) {
+                            //MINOR
+                            player.addChatComponentMessage(new TextComponentTranslation("littlethings.versioning.alpha"));
+                            player.addChatComponentMessage(ITextComponent.Serializer.jsonToComponent(I18n.translateToLocal("littlethings.versioning.messageAlpha")));
+                        }
             }
 
             warnedPlayer = true;

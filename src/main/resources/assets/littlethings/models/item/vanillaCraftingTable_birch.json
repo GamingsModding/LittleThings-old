@@ -1,5 +1,5 @@
 {
-  "parent":"littlethings:block/vanillaCraftingTable_birch",
+  "parent": "littlethings:block/vanillaCraftingTable_birch",
   "display": {
     "thirdperson": {
       "rotation": [ 10, -45, 170 ],

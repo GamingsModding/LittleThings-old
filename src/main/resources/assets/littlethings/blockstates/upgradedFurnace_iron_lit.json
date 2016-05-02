@@ -1,8 +1,8 @@
 {
-	"variants": {
-		"facing=north": { "model": "littlethings:upgradedFurnace_iron_lit" },
-		"facing=south": { "model": "littlethings:upgradedFurnace_iron_lit", "y": 180 },
-		"facing=west":  { "model": "littlethings:upgradedFurnace_iron_lit", "y": 270 },
-		"facing=east":  { "model": "littlethings:upgradedFurnace_iron_lit", "y": 90 }
-	}
+  "variants": {
+    "facing=north": { "model": "littlethings:upgradedFurnace_iron_lit" },
+    "facing=south": { "model": "littlethings:upgradedFurnace_iron_lit", "y": 180 },
+    "facing=west": { "model": "littlethings:upgradedFurnace_iron_lit", "y": 270 },
+    "facing=east": { "model": "littlethings:upgradedFurnace_iron_lit", "y": 90 }
+  }
 }

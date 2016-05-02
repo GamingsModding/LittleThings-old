@@ -147,7 +147,7 @@ public class BlockUpgradedFurnace extends ModBlockContainer
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
             if (tileentity instanceof TileEntityUpgradedFurnace) {
-                ((TileEntityUpgradedFurnace)tileentity).setCustomInventoryName(stack.getDisplayName());
+                ((TileEntityUpgradedFurnace) tileentity).setCustomInventoryName(stack.getDisplayName());
             }
         }
     }
@@ -159,7 +159,7 @@ public class BlockUpgradedFurnace extends ModBlockContainer
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
             if (tileentity instanceof TileEntityUpgradedFurnace) {
-                InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityUpgradedFurnace)tileentity);
+                InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityUpgradedFurnace) tileentity);
                 worldIn.updateComparatorOutputLevel(pos, this);
             }
         }
@@ -168,7 +168,8 @@ public class BlockUpgradedFurnace extends ModBlockContainer
     }
 
     @Override
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+    {
         int index = findIndex(state);
         if (index == -1)
             return null;
@@ -219,9 +220,9 @@ public class BlockUpgradedFurnace extends ModBlockContainer
     {
         if (this.isBurning) {
             EnumFacing enumfacing = worldIn.getValue(FACING);
-            double d0 = (double)state.getX() + 0.5D;
-            double d1 = (double)state.getY() + rand.nextDouble() * 6.0D / 16.0D;
-            double d2 = (double)state.getZ() + 0.5D;
+            double d0 = (double) state.getX() + 0.5D;
+            double d1 = (double) state.getY() + rand.nextDouble() * 6.0D / 16.0D;
+            double d2 = (double) state.getZ() + 0.5D;
             double d3 = 0.52D;
             double d4 = rand.nextDouble() * 0.6D - 0.3D;
 

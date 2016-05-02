@@ -21,7 +21,7 @@ public abstract class CommandBaseGameMode extends CommandBase
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return I18n.format( "command.littlethings." + getCommandName());
+        return I18n.format("command.littlethings." + getCommandName());
     }
 
     @Override

@@ -1,5 +1,5 @@
 {
-  "parent":"littlethings:block/stainedClearGlass_all_lime",
+  "parent": "littlethings:block/stainedClearGlass_all_lime",
   "display": {
     "thirdperson": {
       "rotation": [ 10, -45, 170 ],

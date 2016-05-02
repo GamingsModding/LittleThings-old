@@ -110,9 +110,9 @@ public class Vector3
     {
         double d = vec.x * x + vec.y * y + vec.z * z;
 
-        if(d > 1 && d < 1.00001)
+        if (d > 1 && d < 1.00001)
             d = 1;
-        else if(d < -1 && d > -1.00001)
+        else if (d < -1 && d > -1.00001)
             d = -1;
         return d;
     }
@@ -154,7 +154,8 @@ public class Vector3
         return add(d, d, d);
     }
 
-    public Vector3 sub(Vector3 vec) {
+    public Vector3 sub(Vector3 vec)
+    {
         return subtract(vec);
     }
 
@@ -211,7 +212,7 @@ public class Vector3
     public Vector3 normalize()
     {
         double d = mag();
-        if(d != 0)
+        if (d != 0)
             multiply(1 / d);
 
         return this;
@@ -221,12 +222,12 @@ public class Vector3
     public String toString()
     {
         MathContext cont = new MathContext(4, RoundingMode.HALF_UP);
-        return "Vector[" + new BigDecimal(x, cont) + ", " +new BigDecimal(y, cont) + ", " + new BigDecimal(z, cont) + "]";
+        return "Vector[" + new BigDecimal(x, cont) + ", " + new BigDecimal(y, cont) + ", " + new BigDecimal(z, cont) + "]";
     }
 
     public Vector3 perpendicular()
     {
-        if(z == 0)
+        if (z == 0)
             return zCrossProduct();
         return xCrossProduct();
     }
@@ -295,13 +296,13 @@ public class Vector3
     @SideOnly(Side.CLIENT)
     public Vector3f vector3f()
     {
-        return new Vector3f((float)x, (float)y, (float)z);
+        return new Vector3f((float) x, (float) y, (float) z);
     }
 
     @SideOnly(Side.CLIENT)
     public Vector4f vector4f()
     {
-        return new Vector4f((float)x, (float)y, (float)z, 1);
+        return new Vector4f((float) x, (float) y, (float) z, 1);
     }
 
     @SideOnly(Side.CLIENT)
@@ -321,18 +322,18 @@ public class Vector3
     public double scalarProject(Vector3 b)
     {
         double l = b.mag();
-        return l == 0 ? 0 : dotProduct(b)/l;
+        return l == 0 ? 0 : dotProduct(b) / l;
     }
 
     public Vector3 project(Vector3 b)
     {
         double l = b.magSquared();
-        if(l == 0) {
+        if (l == 0) {
             set(0, 0, 0);
             return this;
         }
 
-        double m = dotProduct(b)/l;
+        double m = dotProduct(b) / l;
         set(b).multiply(m);
         return this;
     }
@@ -346,10 +347,10 @@ public class Vector3
     @Override
     public boolean equals(Object o)
     {
-        if(!(o instanceof Vector3))
+        if (!(o instanceof Vector3))
             return false;
 
-        Vector3 v = (Vector3)o;
+        Vector3 v = (Vector3) o;
         return x == v.x && y == v.y && z == v.z;
     }
 }

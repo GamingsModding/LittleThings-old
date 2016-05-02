@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0":"littlethings:items/hammerStone"
+    "layer0": "littlethings:items/hammerStone"
   }
 }

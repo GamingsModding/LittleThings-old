@@ -1,7 +1,9 @@
 package com.gamingsmod.littlethings.common.init;
 
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
-import com.gamingsmod.littlethings.common.item.*;
+import com.gamingsmod.littlethings.common.item.ItemCrossBolt;
+import com.gamingsmod.littlethings.common.item.ItemCrossbow;
+import com.gamingsmod.littlethings.common.item.ItemIronNugget;
 import com.gamingsmod.littlethings.common.item.base.ModItem;
 import com.gamingsmod.littlethings.common.item.base.ModItemFood;
 import com.gamingsmod.littlethings.common.item.food.ItemFoodBejeweledApple;

@@ -21,7 +21,8 @@ public class TileEntityItemElevator extends ModTileInventory implements ITickabl
     }
 
     @Override
-    public int getSizeInventory() {
+    public int getSizeInventory()
+    {
         return 9;
     }
 
@@ -48,7 +49,7 @@ public class TileEntityItemElevator extends ModTileInventory implements ITickabl
             if (worldObj.getBlockState(added).getBlock() instanceof BlockGlass || worldObj.getBlockState(added).getBlock() instanceof BlockStainedGlass)
                 for (int i = 10; i >= 1; i--)
                     worldObj.spawnParticle(EnumParticleTypes.PORTAL,
-                            added.getX() + 0.5, added.getY() - 1 + i/10, added.getZ() + 0.5,
+                            added.getX() + 0.5, added.getY() - 1 + i / 10, added.getZ() + 0.5,
                             0, 0.3, 0);
             else break;
         }

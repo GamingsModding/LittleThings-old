@@ -1,5 +1,5 @@
 {
-  "parent":"littlethings:block/vanillaCraftingTable_jungle",
+  "parent": "littlethings:block/vanillaCraftingTable_jungle",
   "display": {
     "thirdperson": {
       "rotation": [ 10, -45, 170 ],

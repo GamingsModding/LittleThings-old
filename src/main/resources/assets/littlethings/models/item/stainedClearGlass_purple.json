@@ -1,5 +1,5 @@
 {
-  "parent":"littlethings:block/stainedClearGlass_all_purple",
+  "parent": "littlethings:block/stainedClearGlass_all_purple",
   "display": {
     "thirdperson": {
       "rotation": [ 10, -45, 170 ],

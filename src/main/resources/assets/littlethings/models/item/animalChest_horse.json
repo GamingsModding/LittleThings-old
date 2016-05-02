@@ -1,5 +1,5 @@
 {
-  "parent":"littlethings:block/animalChest_horse",
+  "parent": "littlethings:block/animalChest_horse",
   "display": {
     "thirdperson": {
       "rotation": [ 10, -45, 170 ],

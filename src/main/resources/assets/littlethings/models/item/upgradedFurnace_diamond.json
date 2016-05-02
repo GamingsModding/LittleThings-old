@@ -1,5 +1,5 @@
 {
-  "parent":"littlethings:block/upgradedFurnace_diamond",
+  "parent": "littlethings:block/upgradedFurnace_diamond",
   "display": {
     "thirdperson": {
       "rotation": [ 10, -45, 170 ],

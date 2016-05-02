@@ -10,7 +10,9 @@ import net.minecraft.util.SoundCategory;
 public class TileEntityMobChest extends ModTileInventory implements ITickable
 {
     public float lidAngle;
-    /** The angle of the ender chest lid last tick */
+    /**
+     * The angle of the ender chest lid last tick
+     */
     public float prevLidAngle;
     public int numPlayersUsing;
     private int ticksSinceSync;
@@ -48,10 +50,10 @@ public class TileEntityMobChest extends ModTileInventory implements ITickable
         float f = 0.1F;
 
         if (this.numPlayersUsing > 0 && this.lidAngle == 0.0F) {
-            double d0 = (double)i + 0.5D;
-            double d1 = (double)k + 0.5D;
+            double d0 = (double) i + 0.5D;
+            double d1 = (double) k + 0.5D;
 
-            this.worldObj.playSound(null, d0, (double)j + 0.5D, d1, getMob().getOpenSound(), SoundCategory.BLOCKS, 0.75F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+            this.worldObj.playSound(null, d0, (double) j + 0.5D, d1, getMob().getOpenSound(), SoundCategory.BLOCKS, 0.75F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
         }
 
         if (this.numPlayersUsing == 0 && this.lidAngle > 0.0F || this.numPlayersUsing > 0 && this.lidAngle < 1.0F) {
@@ -66,10 +68,10 @@ public class TileEntityMobChest extends ModTileInventory implements ITickable
             float f1 = 0.5F;
 
             if (this.lidAngle < f1 && f2 >= f1) {
-                double d3 = (double)i + 0.5D;
-                double d2 = (double)k + 0.5D;
+                double d3 = (double) i + 0.5D;
+                double d2 = (double) k + 0.5D;
 
-                this.worldObj.playSound(null, d3, (double)j + 0.5D, d2, getMob().getCloseSound(), SoundCategory.BLOCKS, 0.75F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+                this.worldObj.playSound(null, d3, (double) j + 0.5D, d2, getMob().getCloseSound(), SoundCategory.BLOCKS, 0.75F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
             }
 
             if (this.lidAngle < 0.0F)

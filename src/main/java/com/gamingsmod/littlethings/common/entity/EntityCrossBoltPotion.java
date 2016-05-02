@@ -51,8 +51,7 @@ public class EntityCrossBoltPotion extends EntityCrossBolt
     public void readEntityFromNBT(NBTTagCompound tagCompund)
     {
         super.readEntityFromNBT(tagCompund);
-        if (tagCompund.hasKey("Duration"))
-        {
+        if (tagCompund.hasKey("Duration")) {
             this.duration = tagCompund.getInteger("Duration");
         }
     }

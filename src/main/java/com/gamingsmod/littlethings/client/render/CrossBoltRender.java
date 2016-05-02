@@ -102,7 +102,7 @@ public class CrossBoltRender implements IRenderFactory<EntityCrossBolt>
             @Override
             protected ResourceLocation getEntityTexture(EntityCrossBolt entity)
             {
-                return new ResourceLocation(LibMisc.PREFIX_MOD  + "models/entity/crossbowBolt.png");
+                return new ResourceLocation(LibMisc.PREFIX_MOD + "models/entity/crossbowBolt.png");
             }
         };
     }

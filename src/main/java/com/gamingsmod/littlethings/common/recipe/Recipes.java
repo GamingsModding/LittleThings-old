@@ -338,7 +338,7 @@ public class Recipes
                 'o', new ItemStack(Blocks.web),
                 'c', "chestWood");
 
-        for (int i = 0; i < ModBlocks.AnimalChests.length; i++){
+        for (int i = 0; i < ModBlocks.AnimalChests.length; i++) {
             addShapelessRecipe(new ItemStack(ModBlocks.MobChests, 1, i), new ItemStack(ModBlocks.AnimalChests[i]));
         }
     }
@@ -461,7 +461,7 @@ public class Recipes
     private static void recipesTools(ItemStack ing1, ItemStack ing2, Item sword, Item pickaxe, Item axe, Item spade, Item hoe, Item hammer, Item excavator)
     {
         addRecipe(new ItemStack(sword),
-                "i","i","s",
+                "i", "i", "s",
                 'i', ing1,
                 's', ing2);
         addRecipe(new ItemStack(pickaxe),

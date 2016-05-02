@@ -1,5 +1,5 @@
 {
-  "parent":"littlethings:block/unenchantingTable",
+  "parent": "littlethings:block/unenchantingTable",
   "display": {
     "thirdperson": {
       "rotation": [ 10, -45, 170 ],

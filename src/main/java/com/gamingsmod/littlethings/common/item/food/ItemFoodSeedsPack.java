@@ -49,7 +49,7 @@ public class ItemFoodSeedsPack extends ModItemFood
                 worldIn.isAirBlock(pos.up())) {
             worldIn.setBlockState(pos.up(), Blocks.wheat.getDefaultState());
             return true;
-        }else{
+        } else {
             return false;
         }
     }

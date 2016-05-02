@@ -1,5 +1,5 @@
 {
-  "parent":"littlethings:block/upgradedFurnace_emerald_lit",
+  "parent": "littlethings:block/upgradedFurnace_emerald_lit",
   "display": {
     "thirdperson": {
       "rotation": [ 10, -45, 170 ],

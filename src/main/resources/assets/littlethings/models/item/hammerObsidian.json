@@ -1,6 +1,6 @@
 {
-  "parent":"littlethings:item/_standard_item",
+  "parent": "littlethings:item/_standard_item",
   "textures": {
-    "layer0":"littlethings:items/hammerObsidian"
+    "layer0": "littlethings:items/hammerObsidian"
   }
 }

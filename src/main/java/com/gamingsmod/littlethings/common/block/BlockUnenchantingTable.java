@@ -75,7 +75,7 @@ public class BlockUnenchantingTable extends ModBlockInventory
         System.out.println("Pos: " + pos);
         World world = playerEntity.worldObj;
 
-        IInventory te  = (IInventory) world.getTileEntity(pos);
+        IInventory te = (IInventory) world.getTileEntity(pos);
         if (te instanceof TileEntityUnenchantingTable) {
             ItemStack stack = te.getStackInSlot(0);
 
@@ -86,7 +86,7 @@ public class BlockUnenchantingTable extends ModBlockInventory
 
                 if (playerEntity.experienceLevel < xp && !playerEntity.isCreative())
                     return;
-                
+
                 ItemStack books = te.getStackInSlot(1);
                 if ((books != null && books.getItem() instanceof ItemBook) && te.getStackInSlot(2) == null) {
                     NBTTagList list = stack.getEnchantmentTagList();
