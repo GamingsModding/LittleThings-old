@@ -1,9 +1,9 @@
 package com.gamingsmod.littlethings.common.tileentity;
 
-import com.gamingsmod.littlethings.common.block.BlockUpgradedFurnace;
-import com.gamingsmod.littlethings.common.lib.LibMisc;
+import com.gamingsmod.littlethings.common.block.BlockMetalFurnace;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
@@ -24,8 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * Edited from TileEntityFurnace
  * Because it is basically the same code
  */
-@Deprecated
-public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITickable, ISidedInventory
+public class TileEntityMetalFurnace extends TileEntityLockable implements ITickable, ISidedInventory
 {
     private static final int[] slotsTop = new int[]{0};
     private static final int[] slotsBottom = new int[]{2, 1};
@@ -80,12 +79,7 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
     @Override
     public String getName()
     {
-        Block block = worldObj.getBlockState(pos).getBlock();
-        String unlocName = block.getUnlocalizedName().substring(6 + LibMisc.MOD_ID.length() + "upgradedFurnace_".length());
-        if (unlocName.endsWith("_lit")) {
-            unlocName = unlocName.substring(0, unlocName.length() - 4);
-        }
-        return this.hasCustomName() ? this.furnaceCustomName : "container.upgradedFurnace." + unlocName;
+        return this.hasCustomName() ? this.furnaceCustomName : "container.upgradedFurnace." + getType(worldObj.getBlockState(getPos())).getName();
     }
 
     @Override
@@ -211,7 +205,7 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
 
             if (flag != this.isBurning()) {
                 flag1 = true;
-                BlockUpgradedFurnace.setState(this.isBurning(), this.worldObj, this.pos);
+                BlockMetalFurnace.setState(this.isBurning(), this.worldObj, this.pos);
             }
         }
 
@@ -222,21 +216,7 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
 
     public int getCookTime(ItemStack stack)
     {
-        Block block = worldObj.getBlockState(pos).getBlock();
-        String unlocName = block.getUnlocalizedName().substring(6 + LibMisc.MOD_ID.length() + "upgradedFurnace_".length());
-
-        switch (unlocName) {
-            case "iron":
-                return 150;
-            case "gold":
-                return 100;
-            case "diamond":
-                return 50;
-            case "emerald":
-                return 50;
-        }
-
-        return 150;
+        return getType(worldObj.getBlockState(getPos())).getBurn();
     }
 
     private boolean canSmelt()
@@ -444,5 +424,10 @@ public class TileEntityUpgradedFurnace extends TileEntityLockable implements ITi
             else
                 return (T) handlerSide;
         return super.getCapability(capability, facing);
+    }
+
+    private BlockMetalFurnace.Types getType(IBlockState state)
+    {
+        return state.getValue(BlockMetalFurnace.TYPE);
     }
 }

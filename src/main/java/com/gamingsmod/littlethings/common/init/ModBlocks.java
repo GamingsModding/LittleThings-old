@@ -14,6 +14,8 @@ public class ModBlocks
     public static Block VanillaCraftingTables;
     public static Block ItemEleveator;
     public static Block[] UpgradedFurnaces = new Block[8];
+    public static Block MetalFurnace;
+    public static Block MetalFurnace_Lit;
     public static Block[] AnimalChests = new Block[BlockAnimalChest.Types.values().length];
     public static Block ClearGlass;
     public static Block StainedClearGlass;
@@ -40,6 +42,8 @@ public class ModBlocks
                 addBlock(UpgradedFurnaces[i] = new BlockUpgradedFurnace(LibBlocks.UPGRADEDFURNACE + name, false), LibBlocks.UPGRADEDFURNACE + name);
                 i = i + 2;
             }
+            addMetaBlock(MetalFurnace = new BlockMetalFurnace(LibBlocks.METAL_FURNACE, false), LibBlocks.METAL_FURNACE);
+            addMetaBlock(MetalFurnace_Lit = new BlockMetalFurnace(LibBlocks.METAL_FURNACE, true), LibBlocks.METAL_FURNACE + "_lit");
         }
 
         if (ConfigurationHandler.enableAnimalChests) {

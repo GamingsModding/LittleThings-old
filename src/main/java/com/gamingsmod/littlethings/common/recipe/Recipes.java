@@ -367,25 +367,29 @@ public class Recipes
 
     private static void recipesUpgradedFurnaces()
     {
-        addRecipe(new ItemStack(ModBlocks.UpgradedFurnaces[0]), //Iron
+        addRecipe(new ItemStack(ModBlocks.MetalFurnace, 1, 0), //Iron
                 "iii", "ifi", "iii",
                 'i', "ingotIron",
                 'f', new ItemStack(Blocks.furnace));
+        addShapelessRecipe(new ItemStack(ModBlocks.MetalFurnace, 1, 0), new ItemStack(ModBlocks.UpgradedFurnaces[0]));
 
-        addRecipe(new ItemStack(ModBlocks.UpgradedFurnaces[2]), //Gold
+        addRecipe(new ItemStack(ModBlocks.MetalFurnace, 1, 1), //Gold
                 "iii", "ifi", "iii",
                 'i', "ingotGold",
-                'f', new ItemStack(ModBlocks.UpgradedFurnaces[0]));
+                'f', new ItemStack(ModBlocks.MetalFurnace, 1, 0));
+        addShapelessRecipe(new ItemStack(ModBlocks.MetalFurnace, 1, 1), new ItemStack(ModBlocks.UpgradedFurnaces[2]));
 
-        addRecipe(new ItemStack(ModBlocks.UpgradedFurnaces[4]), //Diamond
+        addRecipe(new ItemStack(ModBlocks.MetalFurnace, 1, 2), //Diamond
                 "iii", "ifi", "iii",
                 'i', "gemDiamond",
-                'f', new ItemStack(ModBlocks.UpgradedFurnaces[2]));
+                'f', new ItemStack(ModBlocks.MetalFurnace, 1, 1));
+        addShapelessRecipe(new ItemStack(ModBlocks.MetalFurnace, 1, 2), new ItemStack(ModBlocks.UpgradedFurnaces[4]));
 
-        addRecipe(new ItemStack(ModBlocks.UpgradedFurnaces[6]), //Emerald
+        addRecipe(new ItemStack(ModBlocks.MetalFurnace, 1, 3), //Emerald
                 "iii", "ifi", "iii",
                 'i', "gemEmerald",
-                'f', new ItemStack(ModBlocks.UpgradedFurnaces[2]));
+                'f', new ItemStack(ModBlocks.MetalFurnace, 1, 2));
+        addShapelessRecipe(new ItemStack(ModBlocks.MetalFurnace, 1, 4), new ItemStack(ModBlocks.UpgradedFurnaces[6]));
     }
 
     private static void recipesExtraCraftingTables()

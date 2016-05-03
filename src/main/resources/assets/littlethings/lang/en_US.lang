@@ -35,6 +35,11 @@ tile.littlethings:upgradedFurnace_gold.name=Gold Furnace
 tile.littlethings:upgradedFurnace_diamond.name=Diamond Furnace
 tile.littlethings:upgradedFurnace_emerald.name=Emerald Furnace
 
+tile.littlethings:metalFurnace.iron.name=Iron Furnace
+tile.littlethings:metalFurnace.gold.name=Gold Furnace
+tile.littlethings:metalFurnace.diamond.name=Diamond Furnace
+tile.littlethings:metalFurnace.emerald.name=Emerald Furnace
+
 tile.littlethings:itemElevator.name=Item Elevator
 tile.littlethings:clearGlass.name=Clear Glass
 tile.littlethings:stainedClearGlass.white.name=White Stained Clear Glass

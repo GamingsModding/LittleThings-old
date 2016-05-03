@@ -1,0 +1,68 @@
+{
+  "multipart": [
+    {
+      "when": { "facing": "north", "type": "iron" },
+      "apply": { "model": "littlethings:upgradedFurnace_iron" }
+    },
+    {
+      "when": { "facing": "south", "type": "iron" },
+      "apply": { "model": "littlethings:upgradedFurnace_iron", "y": 180 }
+    },
+    {
+      "when": { "facing": "east", "type": "iron" },
+      "apply": { "model": "littlethings:upgradedFurnace_iron", "y": 90 }
+    },
+    {
+      "when": { "facing": "west", "type": "iron" },
+      "apply": { "model": "littlethings:upgradedFurnace_iron", "y": 270 }
+    },
+    {
+      "when": { "facing": "north", "type": "gold" },
+      "apply": { "model": "littlethings:upgradedFurnace_gold" }
+    },
+    {
+      "when": { "facing": "south", "type": "gold" },
+      "apply": { "model": "littlethings:upgradedFurnace_gold", "y": 180 }
+    },
+    {
+      "when": { "facing": "east", "type": "gold" },
+      "apply": { "model": "littlethings:upgradedFurnace_gold", "y": 90 }
+    },
+    {
+      "when": { "facing": "west", "type": "gold" },
+      "apply": { "model": "littlethings:upgradedFurnace_gold", "y": 270 }
+    },
+    {
+      "when": { "facing": "north", "type": "diamond" },
+      "apply": { "model": "littlethings:upgradedFurnace_diamond" }
+    },
+    {
+      "when": { "facing": "south", "type": "diamond" },
+      "apply": { "model": "littlethings:upgradedFurnace_diamond", "y": 180 }
+    },
+    {
+      "when": { "facing": "east", "type": "diamond" },
+      "apply": { "model": "littlethings:upgradedFurnace_diamond", "y": 90 }
+    },
+    {
+      "when": { "facing": "west", "type": "diamond" },
+      "apply": { "model": "littlethings:upgradedFurnace_diamond", "y": 270 }
+    },
+    {
+      "when": { "facing": "north", "type": "emerald" },
+      "apply": { "model": "littlethings:upgradedFurnace_emerald" }
+    },
+    {
+      "when": { "facing": "south", "type": "emerald" },
+      "apply": { "model": "littlethings:upgradedFurnace_emerald", "y": 180 }
+    },
+    {
+      "when": { "facing": "east", "type": "emerald" },
+      "apply": { "model": "littlethings:upgradedFurnace_emerald", "y": 90 }
+    },
+    {
+      "when": { "facing": "west", "type": "emerald" },
+      "apply": { "model": "littlethings:upgradedFurnace_emerald", "y": 270 }
+    }
+  ]
+}

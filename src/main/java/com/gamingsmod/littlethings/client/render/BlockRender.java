@@ -2,6 +2,7 @@ package com.gamingsmod.littlethings.client.render;
 
 import com.gamingsmod.littlethings.client.model.TEAnimalChestRenderer;
 import com.gamingsmod.littlethings.client.model.TEMobChestRenderer;
+import com.gamingsmod.littlethings.common.block.BlockMetalFurnace;
 import com.gamingsmod.littlethings.common.block.BlockMobChest;
 import com.gamingsmod.littlethings.common.block.BlockVanillaCraftingTables;
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
@@ -56,6 +57,19 @@ public class BlockRender
 
             ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.MobChests), rl);
         }
+
+        if (ConfigurationHandler.enableUpgradedFurnaces) {
+            ResourceLocation[] rl = new ResourceLocation[4];
+            ResourceLocation[] rl1 = new ResourceLocation[4];
+            int i = 0;
+            for (BlockMetalFurnace.Types type : BlockMetalFurnace.Types.values()) {
+                rl[i] = new ResourceLocation(modId + "upgradedFurnace_" + type.getName());
+                rl1[i] = new ResourceLocation(modId + "upgradedFurnace_" + type.getName() + "_lit");
+                i++;
+            }
+            ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.MetalFurnace), rl);
+            ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.MetalFurnace_Lit), rl1);
+        }
     }
 
     public static void registerBlockRenderer()
@@ -68,9 +82,14 @@ public class BlockRender
         if (ConfigurationHandler.enableItemElevator)
             reg(ModBlocks.ItemEleveator);
 
-        if (ConfigurationHandler.enableUpgradedFurnaces)
+        if (ConfigurationHandler.enableUpgradedFurnaces) {
             for (Block block : ModBlocks.UpgradedFurnaces)
                 reg(block);
+            for (BlockMetalFurnace.Types type : BlockMetalFurnace.Types.values()) {
+                reg(ModBlocks.MetalFurnace, type.getId(), "upgradedFurnace_" + type.getName());
+                reg(ModBlocks.MetalFurnace_Lit, type.getId(), "upgradedFurnace_" + type.getName() + "_lit");
+            }
+        }
 
         if (ConfigurationHandler.enableAnimalChests) {
             ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAnimalChest.class, new TEAnimalChestRenderer());

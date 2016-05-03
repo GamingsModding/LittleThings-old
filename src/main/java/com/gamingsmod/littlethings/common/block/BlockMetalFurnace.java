@@ -1,14 +1,14 @@
 package com.gamingsmod.littlethings.common.block;
 
+import com.gamingsmod.littlethings.common.block.base.IMetaBlockName;
 import com.gamingsmod.littlethings.common.block.base.ModBlockContainer;
 import com.gamingsmod.littlethings.common.init.ModBlocks;
-import com.gamingsmod.littlethings.common.lib.LibMisc;
-import com.gamingsmod.littlethings.common.tileentity.TileEntityUpgradedFurnace;
-import net.minecraft.block.Block;
+import com.gamingsmod.littlethings.common.tileentity.TileEntityMetalFurnace;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -30,39 +30,39 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
 
-@Deprecated
-public class BlockUpgradedFurnace extends ModBlockContainer
+public class BlockMetalFurnace extends ModBlockContainer implements IMetaBlockName
 {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
-    private final boolean isBurning;
+    public static final PropertyEnum<Types> TYPE = PropertyEnum.create("type", Types.class);
     private static boolean keepInventory;
+    private boolean isBurning;
 
-    public BlockUpgradedFurnace(String name, boolean isBurning)
+    public BlockMetalFurnace(String name, boolean isBurning)
     {
         super(Material.iron);
         this.setUnlocalizedName(name);
         this.setHardness(3.5F);
         this.setStepSound(SoundType.STONE);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+        this.setDefaultState(this.blockState.getBaseState()
+                .withProperty(FACING, EnumFacing.NORTH)
+                .withProperty(TYPE, Types.iron));
         this.isBurning = isBurning;
         if (!isBurning) this.setCreativeTab(CreativeTabs.tabDecorations);
         else this.setLightLevel(0.875F);
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
-        int foundIndex = findIndex(state);
-        if (foundIndex == -1)
-            return null;
-
-        return Item.getItemFromBlock(ModBlocks.UpgradedFurnaces[foundIndex]);
-    }
-
-    @Override
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
     {
         this.setDefaultFacing(worldIn, pos, state);
+    }
+
+    @Override
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
+    {
+        if (!this.isBurning)
+            for (Types t : Types.values())
+                list.add(new ItemStack(this, 1, t.getId()));
     }
 
     private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state)
@@ -93,8 +93,8 @@ public class BlockUpgradedFurnace extends ModBlockContainer
         if (!worldIn.isRemote) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityUpgradedFurnace) {
-                playerIn.displayGUIChest((TileEntityUpgradedFurnace) tileentity);
+            if (tileentity instanceof TileEntityMetalFurnace) {
+                playerIn.displayGUIChest((TileEntityMetalFurnace) tileentity);
                 playerIn.addStat(StatList.furnaceInteraction);
             }
         }
@@ -106,20 +106,14 @@ public class BlockUpgradedFurnace extends ModBlockContainer
         IBlockState iblockstate = worldIn.getBlockState(pos);
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        int foundIndex = findIndex(worldIn.getBlockState(pos));
-        if (foundIndex == -1)
-            return;
-
         keepInventory = true;
         if (active) {
-            foundIndex += 1;
-            worldIn.setBlockState(pos, ModBlocks.UpgradedFurnaces[foundIndex].getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, ModBlocks.UpgradedFurnaces[foundIndex].getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, ModBlocks.MetalFurnace_Lit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)).withProperty(TYPE, iblockstate.getValue(TYPE)), 3);
+            worldIn.setBlockState(pos, ModBlocks.MetalFurnace_Lit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)).withProperty(TYPE, iblockstate.getValue(TYPE)), 3);
         } else {
-            worldIn.setBlockState(pos, ModBlocks.UpgradedFurnaces[foundIndex].getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, ModBlocks.UpgradedFurnaces[foundIndex].getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, ModBlocks.MetalFurnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)).withProperty(TYPE, iblockstate.getValue(TYPE)), 3);
+            worldIn.setBlockState(pos, ModBlocks.MetalFurnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)).withProperty(TYPE, iblockstate.getValue(TYPE)), 3);
         }
-
         keepInventory = false;
 
         if (tileentity != null) {
@@ -131,13 +125,13 @@ public class BlockUpgradedFurnace extends ModBlockContainer
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
-        return new TileEntityUpgradedFurnace();
+        return new TileEntityMetalFurnace();
     }
 
     @Override
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(TYPE, Types.values()[meta]);
     }
 
     @Override
@@ -148,8 +142,8 @@ public class BlockUpgradedFurnace extends ModBlockContainer
         if (stack.hasDisplayName()) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityUpgradedFurnace) {
-                ((TileEntityUpgradedFurnace) tileentity).setCustomInventoryName(stack.getDisplayName());
+            if (tileentity instanceof TileEntityMetalFurnace) {
+                ((TileEntityMetalFurnace) tileentity).setCustomInventoryName(stack.getDisplayName());
             }
         }
     }
@@ -160,8 +154,8 @@ public class BlockUpgradedFurnace extends ModBlockContainer
         if (!keepInventory) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityUpgradedFurnace) {
-                InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityUpgradedFurnace) tileentity);
+            if (tileentity instanceof TileEntityMetalFurnace) {
+                InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityMetalFurnace) tileentity);
                 worldIn.updateComparatorOutputLevel(pos, this);
             }
         }
@@ -172,29 +166,30 @@ public class BlockUpgradedFurnace extends ModBlockContainer
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        int index = findIndex(state);
-        if (index == -1)
-            return null;
-
-        return new ItemStack(ModBlocks.UpgradedFurnaces[index]);
+        return new ItemStack(state.getBlock(), 1, state.getValue(TYPE).getId());
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing = EnumFacing.getFront(meta);
+        Types type = Types.iron;
+        for (Types t : Types.values())
+            if ((t.getId() & meta) > 0)
+                type = t;
+
+        EnumFacing enumfacing = EnumFacing.getFront(meta - type.getId());
 
         if (enumfacing.getAxis() == EnumFacing.Axis.Y) {
             enumfacing = EnumFacing.NORTH;
         }
 
-        return this.getDefaultState().withProperty(FACING, enumfacing);
+        return this.getDefaultState().withProperty(FACING, enumfacing).withProperty(TYPE, type);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(FACING).getIndex();
+        return state.getValue(FACING).getIndex() + state.getValue(TYPE).getId();
     }
 
     @Override
@@ -212,7 +207,7 @@ public class BlockUpgradedFurnace extends ModBlockContainer
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, FACING);
+        return new BlockStateContainer(this, FACING, TYPE);
     }
 
     @Override
@@ -251,36 +246,44 @@ public class BlockUpgradedFurnace extends ModBlockContainer
         }
     }
 
-    public static int findIndex(IBlockState state)
+    @Override
+    public String getSpecialName(ItemStack stack)
     {
-        Block block = state.getBlock();
-        String unlocName = block.getUnlocalizedName().substring(6 + LibMisc.MOD_ID.length() + "upgradedFurnace_".length());
+        return Types.values()[stack.getMetadata()].getName();
+    }
 
-        int foundIndex = -1;
-        for (int i = 0; i < Types.values().length; i++) {
-            if (Types.values()[i].toString().equals(unlocName)) {
-                foundIndex = ((i + 1) * 2) - 2;
-                break;
-            }
+    public enum Types implements IStringSerializable
+    {
+        iron("iron", 0, 150),
+        gold("gold", 1, 100),
+        diamond("diamond", 2, 50),
+        emerald("emerald", 3, 50);
+
+        private String name;
+        private int id;
+        private int burn;
+
+        Types(String name, int id, int burn)
+        {
+            this.name = name;
+            this.id = id;
+            this.burn = burn;
         }
 
-        return foundIndex;
-    }
+        @Override
+        public String getName()
+        {
+            return this.name;
+        }
 
+        public int getId()
+        {
+            return id;
+        }
 
-    @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced)
-    {
-        tooltip.add("§c DEPRECATED BLOCK");
-        tooltip.add("Will be removed in next update");
-        tooltip.add("Put in crafting table to replace");
-    }
-
-    public enum Types
-    {
-        iron,
-        gold,
-        diamond,
-        emerald
+        public int getBurn()
+        {
+            return burn;
+        }
     }
 }
