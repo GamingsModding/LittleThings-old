@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=north": { "model": "littlethings:animalChest_creeper" },
-    "facing=south": { "model": "littlethings:animalChest_creeper" },
-    "facing=east": { "model": "littlethings:animalChest_creeper" },
-    "facing=west": { "model": "littlethings:animalChest_creeper" }
-  }
-}

@@ -13,10 +13,8 @@ public class ModBlocks
 {
     public static Block VanillaCraftingTables;
     public static Block ItemEleveator;
-    public static Block[] UpgradedFurnaces = new Block[8];
     public static Block MetalFurnace;
     public static Block MetalFurnace_Lit;
-    public static Block[] AnimalChests = new Block[BlockAnimalChest.Types.values().length];
     public static Block ClearGlass;
     public static Block StainedClearGlass;
     public static Block UnenchantingTable;
@@ -36,22 +34,11 @@ public class ModBlocks
             addBlock(ItemEleveator = new BlockItemElevator(), LibBlocks.ITEMELEVATOR);
 
         if (ConfigurationHandler.enableUpgradedFurnaces) {
-            i = 0;
-            for (BlockUpgradedFurnace.Types name : BlockUpgradedFurnace.Types.values()) {
-                addBlock(UpgradedFurnaces[i + 1] = new BlockUpgradedFurnace(LibBlocks.UPGRADEDFURNACE + name, true), LibBlocks.UPGRADEDFURNACE + name + "_lit");
-                addBlock(UpgradedFurnaces[i] = new BlockUpgradedFurnace(LibBlocks.UPGRADEDFURNACE + name, false), LibBlocks.UPGRADEDFURNACE + name);
-                i = i + 2;
-            }
             addMetaBlock(MetalFurnace = new BlockMetalFurnace(LibBlocks.METAL_FURNACE, false), LibBlocks.METAL_FURNACE);
             addMetaBlock(MetalFurnace_Lit = new BlockMetalFurnace(LibBlocks.METAL_FURNACE, true), LibBlocks.METAL_FURNACE + "_lit");
         }
 
         if (ConfigurationHandler.enableAnimalChests) {
-            i = 0;
-            for (BlockAnimalChest.Types name : BlockAnimalChest.Types.values()) {
-                addBlock(AnimalChests[i] = new BlockAnimalChest(name.toString()), LibBlocks.ANIMALCHEST + name);
-                i++;
-            }
             addMetaBlock(MobChests = new BlockMobChest(), LibBlocks.MOBCHEST);
         }
 

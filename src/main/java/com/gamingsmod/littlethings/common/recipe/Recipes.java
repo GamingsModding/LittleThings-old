@@ -342,10 +342,6 @@ public class Recipes
                 "ooo", "oco", "ooo",
                 'o', new ItemStack(Blocks.web),
                 'c', "chestWood");
-
-        for (int i = 0; i < ModBlocks.AnimalChests.length; i++) {
-            addShapelessRecipe(new ItemStack(ModBlocks.MobChests, 1, i), new ItemStack(ModBlocks.AnimalChests[i]));
-        }
     }
 
     private static void recipesRecoloringGlassPanes()
@@ -371,25 +367,21 @@ public class Recipes
                 "iii", "ifi", "iii",
                 'i', "ingotIron",
                 'f', new ItemStack(Blocks.furnace));
-        addShapelessRecipe(new ItemStack(ModBlocks.MetalFurnace, 1, 0), new ItemStack(ModBlocks.UpgradedFurnaces[0]));
 
         addRecipe(new ItemStack(ModBlocks.MetalFurnace, 1, 1), //Gold
                 "iii", "ifi", "iii",
                 'i', "ingotGold",
                 'f', new ItemStack(ModBlocks.MetalFurnace, 1, 0));
-        addShapelessRecipe(new ItemStack(ModBlocks.MetalFurnace, 1, 1), new ItemStack(ModBlocks.UpgradedFurnaces[2]));
 
         addRecipe(new ItemStack(ModBlocks.MetalFurnace, 1, 2), //Diamond
                 "iii", "ifi", "iii",
                 'i', "gemDiamond",
                 'f', new ItemStack(ModBlocks.MetalFurnace, 1, 1));
-        addShapelessRecipe(new ItemStack(ModBlocks.MetalFurnace, 1, 2), new ItemStack(ModBlocks.UpgradedFurnaces[4]));
 
         addRecipe(new ItemStack(ModBlocks.MetalFurnace, 1, 3), //Emerald
                 "iii", "ifi", "iii",
                 'i', "gemEmerald",
                 'f', new ItemStack(ModBlocks.MetalFurnace, 1, 2));
-        addShapelessRecipe(new ItemStack(ModBlocks.MetalFurnace, 1, 4), new ItemStack(ModBlocks.UpgradedFurnaces[6]));
     }
 
     private static void recipesExtraCraftingTables()

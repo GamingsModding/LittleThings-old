@@ -21,10 +21,8 @@ public class ClientProxy extends CommonProxy
     {
         super.preInit(e);
 
-        DeprecatedWarning.modHasDeprecatedClasses = true;
-        DeprecatedWarning.deprecatedAreas = new String[]{
-                "AnimalChests have been moved to one block id",
-                "Upgraded Furnaces have been moved to one block id"};
+        DeprecatedWarning.modHasDeprecatedClasses = false;
+        DeprecatedWarning.deprecatedAreas = new String[0];
         MinecraftForge.EVENT_BUS.register(new DeprecatedWarning());
         BlockRender.preInit();
         ItemRender.preInit();
