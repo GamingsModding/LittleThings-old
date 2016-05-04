@@ -3,6 +3,7 @@ package com.gamingsmod.littlethings.common.block;
 import com.gamingsmod.littlethings.common.block.base.ModBlock;
 import com.gamingsmod.littlethings.common.init.ModDamageSource;
 import com.gamingsmod.littlethings.common.lib.LibBlocks;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -21,7 +22,7 @@ public class BlockBarbedWire extends ModBlock
 {
     public BlockBarbedWire()
     {
-        super(LibBlocks.BARBED_WIRE, Material.web);
+        super(LibBlocks.BARBED_WIRE, Material.web, MapColor.ironColor);
         this.setCreativeTab(CreativeTabs.tabDecorations);
         this.setLightOpacity(1);
         this.setHardness(6.0F);
