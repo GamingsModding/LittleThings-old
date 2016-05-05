@@ -1,11 +1,11 @@
 package com.gamingsmod.littlethings.client;
 
-import com.gamingsmod.littlethings.client.render.ItemRender;
 import com.gamingsmod.littlethings.client.versioning.VersionChecker;
 import com.gamingsmod.littlethings.common.CommonProxy;
 import com.gamingsmod.littlethings.common.events.DeprecatedWarning;
 import com.gamingsmod.littlethings.common.init.ModBlocks;
 import com.gamingsmod.littlethings.common.init.ModEntities;
+import com.gamingsmod.littlethings.common.init.ModItems;
 import com.gamingsmod.littlethings.common.tileentity.base.TileEntityXpStore;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
@@ -26,7 +26,7 @@ public class ClientProxy extends CommonProxy
         MinecraftForge.EVENT_BUS.register(new DeprecatedWarning());
 
         ModBlocks.registerBlockVariants();
-        ItemRender.preInit();
+        ModItems.registerItemVariants();
         ModEntities.initRender();
         new VersionChecker().init();
     }
@@ -35,9 +35,8 @@ public class ClientProxy extends CommonProxy
     {
         super.init(e);
 
-//        BlockRender.registerBlockRenderer();
         ModBlocks.registerBlockRender();
-        ItemRender.registerItemRender();
+        ModItems.registerItemRender();
     }
 
     @Override

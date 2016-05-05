@@ -4,129 +4,132 @@ import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.item.ItemCrossBolt;
 import com.gamingsmod.littlethings.common.item.ItemCrossbow;
 import com.gamingsmod.littlethings.common.item.ItemIronNugget;
+import com.gamingsmod.littlethings.common.item.base.IModItem;
 import com.gamingsmod.littlethings.common.item.base.ModItem;
 import com.gamingsmod.littlethings.common.item.base.ModItemFood;
+import com.gamingsmod.littlethings.common.item.base.ModItemTool;
 import com.gamingsmod.littlethings.common.item.food.ItemFoodBejeweledApple;
 import com.gamingsmod.littlethings.common.item.food.ItemFoodSeedsPack;
 import com.gamingsmod.littlethings.common.item.tools.*;
 import com.gamingsmod.littlethings.common.lib.LibItems;
 import com.gamingsmod.littlethings.common.lib.LibMaterials;
+import com.gamingsmod.littlethings.common.lib.LibMisc;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ModItems
 {
-    public static Item IronNugget;
-    public static Item StoneStick;
+    public static final List<IModItem> ITEMS = new ArrayList<>();
 
-    public static Item WoodHammer;
-    public static Item StoneHammer;
-    public static Item IronHammer;
-    public static Item GoldHammer;
-    public static Item DiamondHammer;
+    public static ModItem IronNugget;
+    public static ModItem StoneStick;
 
-    public static Item WoodExcavator;
-    public static Item StoneExcavator;
-    public static Item IronExcavator;
-    public static Item GoldExcavator;
-    public static Item DiamondExcavator;
+    public static ModItemTool WoodHammer;
+    public static ModItemTool StoneHammer;
+    public static ModItemTool IronHammer;
+    public static ModItemTool GoldHammer;
+    public static ModItemTool DiamondHammer;
 
-    public static Item CrossBow;
+    public static ModItemTool WoodExcavator;
+    public static ModItemTool StoneExcavator;
+    public static ModItemTool IronExcavator;
+    public static ModItemTool GoldExcavator;
+    public static ModItemTool DiamondExcavator;
+
+    public static ModItem CrossBow;
     public static ItemCrossBolt CrossBolt;
 
-    public static Item ObsidianSword;
-    public static Item ObsidianPickaxe;
-    public static Item ObsidianAxe;
-    public static Item ObsidianSpade;
-    public static Item ObsidianHoe;
-    public static Item ObsidianHammer;
-    public static Item ObsidianExcavator;
+    public static ModItem ObsidianSword;
+    public static ModItemTool ObsidianPickaxe;
+    public static ModItemTool ObsidianAxe;
+    public static ModItemTool ObsidianSpade;
+    public static ModItem ObsidianHoe;
+    public static ModItemTool ObsidianHammer;
+    public static ModItemTool ObsidianExcavator;
 
-    public static Item EmeraldSword;
-    public static Item EmeraldPickaxe;
-    public static Item EmeraldAxe;
-    public static Item EmeraldSpade;
-    public static Item EmeraldHoe;
-    public static Item EmeraldHammer;
-    public static Item EmeraldExcavator;
+    public static ModItem EmeraldSword;
+    public static ModItemTool EmeraldPickaxe;
+    public static ModItemTool EmeraldAxe;
+    public static ModItemTool EmeraldSpade;
+    public static ModItem EmeraldHoe;
+    public static ModItemTool EmeraldHammer;
+    public static ModItemTool EmeraldExcavator;
 
-    public static ItemFood BejeweledApple;
-    public static ItemFood FriedEgg;
-    public static ItemFood SeedsPack;
+    public static ModItemFood BejeweledApple;
+    public static ModItemFood FriedEgg;
+    public static ModItemFood SeedsPack;
 
     public static void init()
     {
-        register(IronNugget = new ItemIronNugget(), LibItems.IRONNUGGET);
-        register(StoneStick = (new ModItem(LibItems.STONE_STICK)).setCreativeTab(CreativeTabs.tabMaterials), LibItems.STONE_STICK);
+        IronNugget = new ItemIronNugget();
+        StoneStick = (ModItem) (new ModItem(LibItems.STONE_STICK)).setCreativeTab(CreativeTabs.tabMaterials);
 
         if (ConfigurationHandler.enableHammers) {
-            register(WoodHammer = (new ModItemHammer(Item.ToolMaterial.WOOD)).setUnlocalizedName(LibItems.HAMMER + "Wood"), LibItems.HAMMER + "Wood");
-            register(StoneHammer = (new ModItemHammer(Item.ToolMaterial.STONE)).setUnlocalizedName(LibItems.HAMMER + "Stone"), LibItems.HAMMER + "Stone");
-            register(IronHammer = (new ModItemHammer(Item.ToolMaterial.IRON)).setUnlocalizedName(LibItems.HAMMER + "Iron"), LibItems.HAMMER + "Iron");
-            register(GoldHammer = (new ModItemHammer(Item.ToolMaterial.GOLD)).setUnlocalizedName(LibItems.HAMMER + "Gold"), LibItems.HAMMER + "Gold");
-            register(DiamondHammer = (new ModItemHammer(Item.ToolMaterial.DIAMOND)).setUnlocalizedName(LibItems.HAMMER + "Diamond"), LibItems.HAMMER + "Diamond");
+            WoodHammer = new ModItemHammer(LibItems.HAMMER + "Wood", Item.ToolMaterial.WOOD);
+            StoneHammer = new ModItemHammer(LibItems.HAMMER + "Stone", Item.ToolMaterial.STONE);
+            IronHammer = new ModItemHammer(LibItems.HAMMER + "Iron", Item.ToolMaterial.IRON);
+            GoldHammer = new ModItemHammer(LibItems.HAMMER + "Gold", Item.ToolMaterial.GOLD);
+            DiamondHammer = new ModItemHammer(LibItems.HAMMER + "Diamond", Item.ToolMaterial.DIAMOND);
         }
 
         if (ConfigurationHandler.enableExcavators) {
-            register(WoodExcavator = (new ModItemExcavator(Item.ToolMaterial.WOOD)).setUnlocalizedName(LibItems.EXCAVATOR + "Wood"), LibItems.EXCAVATOR + "Wood");
-            register(StoneExcavator = (new ModItemExcavator(Item.ToolMaterial.STONE)).setUnlocalizedName(LibItems.EXCAVATOR + "Stone"), LibItems.EXCAVATOR + "Stone");
-            register(IronExcavator = (new ModItemExcavator(Item.ToolMaterial.IRON)).setUnlocalizedName(LibItems.EXCAVATOR + "Iron"), LibItems.EXCAVATOR + "Iron");
-            register(GoldExcavator = (new ModItemExcavator(Item.ToolMaterial.GOLD)).setUnlocalizedName(LibItems.EXCAVATOR + "Gold"), LibItems.EXCAVATOR + "Gold");
-            register(DiamondExcavator = (new ModItemExcavator(Item.ToolMaterial.DIAMOND)).setUnlocalizedName(LibItems.EXCAVATOR + "Diamond"), LibItems.EXCAVATOR + "Diamond");
+            WoodExcavator = new ModItemExcavator(LibItems.EXCAVATOR + "Wood", Item.ToolMaterial.WOOD);
+            StoneExcavator = new ModItemExcavator(LibItems.EXCAVATOR + "Stone", Item.ToolMaterial.STONE);
+            IronExcavator = new ModItemExcavator(LibItems.EXCAVATOR + "Iron", Item.ToolMaterial.IRON);
+            GoldExcavator = new ModItemExcavator(LibItems.EXCAVATOR + "Gold", Item.ToolMaterial.GOLD);
+            DiamondExcavator = new ModItemExcavator(LibItems.EXCAVATOR + "Diamond", Item.ToolMaterial.DIAMOND);
         }
 
         if (ConfigurationHandler.enableCrossbow) {
-            register(CrossBow = new ItemCrossbow(), LibItems.CROSSBOW);
-            register(CrossBolt = new ItemCrossBolt(), LibItems.CROSSBOLT);
+            CrossBow = new ItemCrossbow();
+            CrossBolt = new ItemCrossBolt();
         }
 
         if (ConfigurationHandler.enableObsidianTools) {
-            register(ObsidianSword = new ModItemSword("obsidian_sword", LibMaterials.Tools.OBSIDIAN), "obsidian_sword");
-            register(ObsidianPickaxe = new ModItemPickaxe("obsidian_pickaxe", LibMaterials.Tools.OBSIDIAN), "obsidian_pickaxe");
-            register(ObsidianAxe = new ModItemAxe("obsidian_axe", LibMaterials.Tools.OBSIDIAN), "obsidian_axe");
-            register(ObsidianSpade = new ModItemSpade("obsidian_spade", LibMaterials.Tools.OBSIDIAN), "obsidian_spade");
-            register(ObsidianHoe = new ModItemHoe("obsidian_hoe", LibMaterials.Tools.OBSIDIAN), "obsidian_hoe");
+            ObsidianSword = new ModItemSword("obsidian_sword", LibMaterials.Tools.OBSIDIAN);
+            ObsidianPickaxe = new ModItemPickaxe("obsidian_pickaxe", LibMaterials.Tools.OBSIDIAN);
+            ObsidianAxe = new ModItemAxe("obsidian_axe", LibMaterials.Tools.OBSIDIAN);
+            ObsidianSpade = new ModItemSpade("obsidian_spade", LibMaterials.Tools.OBSIDIAN);
+            ObsidianHoe = new ModItemHoe("obsidian_hoe", LibMaterials.Tools.OBSIDIAN);
             if (ConfigurationHandler.enableHammers)
-                register(ObsidianHammer = (new ModItemHammer(LibMaterials.Tools.OBSIDIAN)).setUnlocalizedName(LibItems.HAMMER + "Obsidian"), LibItems.HAMMER + "Obsidian");
+                ObsidianHammer = new ModItemHammer(LibItems.HAMMER + "Obsidian", LibMaterials.Tools.OBSIDIAN);
             if (ConfigurationHandler.enableExcavators)
-                register(ObsidianExcavator = (new ModItemExcavator(LibMaterials.Tools.OBSIDIAN)).setUnlocalizedName(LibItems.EXCAVATOR + "Obsidian"), LibItems.EXCAVATOR + "Obsidian");
+                ObsidianExcavator = new ModItemExcavator(LibItems.EXCAVATOR + "Obsidian", LibMaterials.Tools.OBSIDIAN);
         }
 
         if (ConfigurationHandler.enableEmeraldTools) {
-            register(EmeraldSword = new ModItemSword("emerald_sword", LibMaterials.Tools.EMERALD), "emerald_sword");
-            register(EmeraldPickaxe = new ModItemPickaxe("emerald_pickaxe", LibMaterials.Tools.EMERALD), "emerald_pickaxe");
-            register(EmeraldAxe = new ModItemAxe("emerald_axe", LibMaterials.Tools.EMERALD), "emerald_axe");
-            register(EmeraldSpade = new ModItemSpade("emerald_spade", LibMaterials.Tools.EMERALD), "emerald_spade");
-            register(EmeraldHoe = new ModItemHoe("emerald_hoe", LibMaterials.Tools.EMERALD), "emerald_hoe");
+            EmeraldSword = new ModItemSword("emerald_sword", LibMaterials.Tools.EMERALD);
+            EmeraldPickaxe = new ModItemPickaxe("emerald_pickaxe", LibMaterials.Tools.EMERALD);
+            EmeraldAxe = new ModItemAxe("emerald_axe", LibMaterials.Tools.EMERALD);
+            EmeraldSpade = new ModItemSpade("emerald_spade", LibMaterials.Tools.EMERALD);
+            EmeraldHoe = new ModItemHoe("emerald_hoe", LibMaterials.Tools.EMERALD);
             if (ConfigurationHandler.enableHammers)
-                register(EmeraldHammer = (new ModItemHammer(LibMaterials.Tools.EMERALD)).setUnlocalizedName(LibItems.HAMMER + "Emerald"), LibItems.HAMMER + "Emerald");
+                EmeraldHammer = new ModItemHammer(LibItems.HAMMER + "Emerald", LibMaterials.Tools.EMERALD);
             if (ConfigurationHandler.enableExcavators)
-                register(EmeraldExcavator = (new ModItemExcavator(LibMaterials.Tools.EMERALD)).setUnlocalizedName(LibItems.EXCAVATOR + "Emerald"), LibItems.EXCAVATOR + "Emerald");
+                EmeraldExcavator = new ModItemExcavator(LibItems.EXCAVATOR + "Emerald", LibMaterials.Tools.EMERALD);
 
         }
 
         if (ConfigurationHandler.enableBejeweledApple)
-            register(BejeweledApple = new ItemFoodBejeweledApple(), LibItems.BEJEWELED_APPLE);
+            BejeweledApple = new ItemFoodBejeweledApple();
 
         if (ConfigurationHandler.enableExtraFood) {
-            register(FriedEgg = new ModItemFood(5, false, LibItems.FRIED_EGG), LibItems.FRIED_EGG);
-            register(SeedsPack = new ItemFoodSeedsPack(), LibItems.PACK_SEEDS);
+            FriedEgg = new ModItemFood(5, false, LibItems.FRIED_EGG);
+            SeedsPack = new ItemFoodSeedsPack();
         }
 
     }
 
-    public static void register(Item item, String name)
+    public static void registerItemVariants()
     {
-        if (item.getRegistryName() == null)
-            item.setRegistryName(name);
-
-        GameRegistry.register(item);
+        ITEMS.forEach(iModItem -> iModItem.registerItemVariants(LibMisc.PREFIX_MOD));
     }
 
-    public static void register(Item item)
+    public static void registerItemRender()
     {
-        GameRegistry.register(item);
+        ITEMS.forEach(IModItem::registerRender);
     }
 }

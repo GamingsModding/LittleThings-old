@@ -1,8 +1,6 @@
 package com.gamingsmod.littlethings.common.item.tools;
 
 import com.gamingsmod.littlethings.common.helper.Vector3;
-import com.gamingsmod.littlethings.common.lib.LibMisc;
-import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -11,7 +9,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -22,12 +19,11 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 import java.util.Arrays;
-import java.util.Set;
 
 /**
  * Again, Inspired by Tinkers Construct
  */
-public class ModItemExcavator extends ItemSpade
+public class ModItemExcavator extends ModItemSpade
 {
     private static final Material[] effective = new Material[]{
             Material.grass,
@@ -39,11 +35,9 @@ public class ModItemExcavator extends ItemSpade
             Material.cake
     };
 
-    private static final Set<Block> vanilla_effective = Sets.newHashSet(Blocks.clay, Blocks.dirt, Blocks.farmland, Blocks.grass, Blocks.gravel, Blocks.mycelium, Blocks.sand, Blocks.snow, Blocks.snow_layer, Blocks.soul_sand, Blocks.grass_path);
-
-    public ModItemExcavator(ToolMaterial material)
+    public ModItemExcavator(String name, ToolMaterial material)
     {
-        super(material);
+        super(name, material);
     }
 
     @Override
@@ -106,23 +100,6 @@ public class ModItemExcavator extends ItemSpade
             return EnumActionResult.PASS;
     }
 
-    @Override
-    public String getUnlocalizedName()
-    {
-        return String.format("item.%s%s", LibMisc.MOD_ID.toLowerCase() + ":", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
-    }
-
-    @Override
-    public String getUnlocalizedName(ItemStack itemStack)
-    {
-        return getUnlocalizedName();
-    }
-
-    protected String getUnwrappedUnlocalizedName(String unlocalizedName)
-    {
-        return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
-    }
-
     protected void mineOrOtherwise(World world, BlockPos pos, ItemStack tool, EntityLivingBase player)
     {
         IBlockState state = world.getBlockState(pos);
@@ -168,6 +145,6 @@ public class ModItemExcavator extends ItemSpade
 
     private boolean isEffective(IBlockState state)
     {
-        return Arrays.asList(effective).contains(state.getMaterial()) || vanilla_effective.contains(state);
+        return Arrays.asList(effective).contains(state.getMaterial()) || EFFECTIVE_ON.contains(state.getBlock());
     }
 }

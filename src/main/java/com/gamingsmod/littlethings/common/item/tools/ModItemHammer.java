@@ -1,8 +1,6 @@
 package com.gamingsmod.littlethings.common.item.tools;
 
 import com.gamingsmod.littlethings.common.helper.Vector3;
-import com.gamingsmod.littlethings.common.lib.LibMisc;
-import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -11,19 +9,17 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 import java.util.Arrays;
-import java.util.Set;
 
 /**
  * Inspired By Tinkers Construct
  */
-public class ModItemHammer extends ItemTool
+public class ModItemHammer extends ModItemPickaxe
 {
     private static final Material[] effective = new Material[]{
             Material.iron,
@@ -35,11 +31,9 @@ public class ModItemHammer extends ItemTool
             Material.piston
     };
 
-    private static final Set<Block> vanilla_effective = Sets.newHashSet(Blocks.activator_rail, Blocks.coal_ore, Blocks.cobblestone, Blocks.detector_rail, Blocks.diamond_block, Blocks.diamond_ore, Blocks.double_stone_slab, Blocks.golden_rail, Blocks.gold_block, Blocks.gold_ore, Blocks.ice, Blocks.iron_block, Blocks.iron_ore, Blocks.lapis_block, Blocks.lapis_ore, Blocks.lit_redstone_ore, Blocks.mossy_cobblestone, Blocks.netherrack, Blocks.packed_ice, Blocks.rail, Blocks.redstone_ore, Blocks.sandstone, Blocks.red_sandstone, Blocks.stone, Blocks.stone_slab, Blocks.stone_button, Blocks.stone_pressure_plate);
-
-    public ModItemHammer(ToolMaterial material)
+    public ModItemHammer(String name, ToolMaterial material)
     {
-        super(2.0F, -2.8F, material, vanilla_effective);
+        super(name, material);
     }
 
     @Override
@@ -120,25 +114,6 @@ public class ModItemHammer extends ItemTool
         }
     }
 
-    @Override
-    public float getStrVsBlock(ItemStack stack, IBlockState state)
-    {
-        Material material = state.getMaterial();
-        return material != Material.iron && material != Material.anvil && material != Material.rock ? super.getStrVsBlock(stack, state) : this.efficiencyOnProperMaterial;
-    }
-
-    @Override
-    public String getUnlocalizedName()
-    {
-        return String.format("item.%s%s", LibMisc.MOD_ID.toLowerCase() + ":", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
-    }
-
-    @Override
-    public String getUnlocalizedName(ItemStack itemStack)
-    {
-        return getUnlocalizedName();
-    }
-
     protected void mineOrOtherwise(World world, BlockPos pos, ItemStack tool, EntityLivingBase player)
     {
         IBlockState state = world.getBlockState(pos);
@@ -151,7 +126,7 @@ public class ModItemHammer extends ItemTool
 
     private boolean isEffective(IBlockState state)
     {
-        return Arrays.asList(effective).contains(state.getMaterial()) || vanilla_effective.contains(state);
+        return Arrays.asList(effective).contains(state.getMaterial()) || EFFECTIVE_ON.contains(state.getBlock());
     }
 
     protected EnumFacing getFacing(Entity player)
@@ -165,10 +140,5 @@ public class ModItemHammer extends ItemTool
         Vector3 end = origin.copy().add(look.copy().normalize().multiply(10));
         RayTraceResult pos = player.worldObj.rayTraceBlocks(origin.toVec3D(), end.toVec3D());
         return pos.sideHit;
-    }
-
-    protected String getUnwrappedUnlocalizedName(String unlocalizedName)
-    {
-        return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
 }
