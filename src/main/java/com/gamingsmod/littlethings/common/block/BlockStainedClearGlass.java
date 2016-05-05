@@ -1,7 +1,8 @@
 package com.gamingsmod.littlethings.common.block;
 
-import com.gamingsmod.littlethings.common.block.base.IMetaBlock;
+import com.gamingsmod.littlethings.common.block.base.IMetaBlockName;
 import com.gamingsmod.littlethings.common.block.base.ModBlock;
+import com.gamingsmod.littlethings.common.init.ModBlocks;
 import com.gamingsmod.littlethings.common.lib.LibBlocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -9,12 +10,14 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
@@ -24,7 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class BlockStainedClearGlass extends ModBlock implements IMetaBlock
+public class BlockStainedClearGlass extends ModBlock implements IMetaBlockName
 {
     private static final PropertyEnum<EnumDyeColor> COLOR = PropertyEnum.create("color", EnumDyeColor.class);
     private static final PropertyBool UP = PropertyBool.create("up");
@@ -129,5 +132,25 @@ public class BlockStainedClearGlass extends ModBlock implements IMetaBlock
     public String getSpecialName(ItemStack stack)
     {
         return EnumDyeColor.byMetadata(stack.getMetadata()).getUnlocalizedName();
+    }
+
+    @Override
+    public void registerBlockVariants(String modId)
+    {
+        ResourceLocation[] rl = new ResourceLocation[16];
+        int i = 0;
+        for (EnumDyeColor color : EnumDyeColor.values()) {
+            rl[i] = new ResourceLocation(modId + "stainedClearGlass_" + color.getName());
+            i++;
+        }
+
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.StainedClearGlass), rl);
+    }
+
+    @Override
+    public void registerRender()
+    {
+        for (EnumDyeColor color : EnumDyeColor.values())
+            registerItemModel(color.getMetadata(), "stainedClearGlass_" + color.getName());
     }
 }

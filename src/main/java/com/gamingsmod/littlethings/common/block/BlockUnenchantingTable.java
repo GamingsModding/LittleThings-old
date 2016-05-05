@@ -31,8 +31,7 @@ public class BlockUnenchantingTable extends ModBlockInventory
 
     public BlockUnenchantingTable()
     {
-        super(Material.rock);
-        this.setUnlocalizedName(LibBlocks.UNENCHANTING_TABLE);
+        super(LibBlocks.UNENCHANTING_TABLE, Material.rock);
         this.setCreativeTab(CreativeTabs.tabDecorations);
         this.setHardness(5.0F);
         this.setResistance(2000.0F);

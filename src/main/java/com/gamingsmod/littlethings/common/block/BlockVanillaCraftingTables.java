@@ -1,7 +1,9 @@
 package com.gamingsmod.littlethings.common.block;
 
 import com.gamingsmod.littlethings.common.LittleThings;
-import com.gamingsmod.littlethings.common.block.base.ModBlockMeta;
+import com.gamingsmod.littlethings.common.block.base.IMetaBlockName;
+import com.gamingsmod.littlethings.common.block.base.ModBlock;
+import com.gamingsmod.littlethings.common.init.ModBlocks;
 import com.gamingsmod.littlethings.common.lib.LibBlocks;
 import com.gamingsmod.littlethings.common.lib.LibGuiId;
 import net.minecraft.block.SoundType;
@@ -9,6 +11,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -17,13 +20,14 @@ import net.minecraft.stats.StatList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BlockVanillaCraftingTables extends ModBlockMeta
+public class BlockVanillaCraftingTables extends ModBlock implements IMetaBlockName
 {
     public static final PropertyEnum TYPE = PropertyEnum.create("type", BlockVanillaCraftingTables.Variant.class);
 
@@ -84,6 +88,26 @@ public class BlockVanillaCraftingTables extends ModBlockMeta
     public String getSpecialName(ItemStack stack)
     {
         return Variant.values()[stack.getItemDamage()].getName();
+    }
+
+    @Override
+    public void registerBlockVariants(String modId)
+    {
+        ModelBakery.registerItemVariants(
+                Item.getItemFromBlock(ModBlocks.VanillaCraftingTables),
+                new ResourceLocation(modId + "vanillaCraftingTable_acacia"),
+                new ResourceLocation(modId + "vanillaCraftingTable_birch"),
+                new ResourceLocation(modId + "vanillaCraftingTable_darkoak"),
+                new ResourceLocation(modId + "vanillaCraftingTable_jungle"),
+                new ResourceLocation(modId + "vanillaCraftingTable_spruce")
+        );
+    }
+
+    @Override
+    public void registerRender()
+    {
+        for (BlockVanillaCraftingTables.Variant variant : BlockVanillaCraftingTables.Variant.values())
+            registerItemModel(variant.getId(), "vanillaCraftingTable_" + variant.getName());
     }
 
     public enum Variant implements IStringSerializable

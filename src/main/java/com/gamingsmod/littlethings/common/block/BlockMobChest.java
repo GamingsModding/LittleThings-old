@@ -1,7 +1,9 @@
 package com.gamingsmod.littlethings.common.block;
 
-import com.gamingsmod.littlethings.common.block.base.IMetaBlock;
+import com.gamingsmod.littlethings.client.model.TEMobChestRenderer;
+import com.gamingsmod.littlethings.common.block.base.IMetaBlockName;
 import com.gamingsmod.littlethings.common.block.base.ModBlockInventory;
+import com.gamingsmod.littlethings.common.init.ModBlocks;
 import com.gamingsmod.littlethings.common.lib.LibBlocks;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityMobChest;
 import net.minecraft.block.BlockHorizontal;
@@ -11,6 +13,7 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,10 +26,11 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 import java.util.List;
 
-public class BlockMobChest extends ModBlockInventory implements IMetaBlock
+public class BlockMobChest extends ModBlockInventory implements IMetaBlockName
 {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public static final PropertyEnum<Mobs> MOB = PropertyEnum.create("mob", Mobs.class);
@@ -34,8 +38,7 @@ public class BlockMobChest extends ModBlockInventory implements IMetaBlock
 
     public BlockMobChest()
     {
-        super(Material.wood);
-        this.setUnlocalizedName(LibBlocks.MOBCHEST);
+        super(LibBlocks.MOBCHEST, Material.wood);
         this.setHardness(2.5F);
         this.setStepSound(SoundType.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(MOB, Mobs.cow));
@@ -146,6 +149,28 @@ public class BlockMobChest extends ModBlockInventory implements IMetaBlock
     public String getSpecialName(ItemStack stack)
     {
         return Mobs.byMeta(stack.getMetadata()).getName();
+    }
+
+    @Override
+    public void registerBlockVariants(String modId)
+    {
+        ResourceLocation[] rl = new ResourceLocation[BlockMobChest.Mobs.values().length];
+        int i = 0;
+        for (BlockMobChest.Mobs mob : BlockMobChest.Mobs.values()) {
+            rl[i] = new ResourceLocation(modId + "mobChest_" + mob.getName());
+            i++;
+        }
+
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.MobChests), rl);
+    }
+
+    @Override
+    public void registerRender()
+    {
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMobChest.class, new TEMobChestRenderer());
+
+        for (BlockMobChest.Mobs mob : BlockMobChest.Mobs.values())
+            registerItemModel(mob.getMeta(), "mobChest_" + mob.getName());
     }
 
     public enum Mobs implements IStringSerializable

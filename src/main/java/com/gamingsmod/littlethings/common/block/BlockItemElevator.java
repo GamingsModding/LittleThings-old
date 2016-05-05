@@ -22,8 +22,7 @@ public class BlockItemElevator extends ModBlockInventory
 {
     public BlockItemElevator()
     {
-        super(Material.rock);
-        this.setUnlocalizedName(LibBlocks.ITEMELEVATOR);
+        super(LibBlocks.ITEMELEVATOR, Material.rock);
         this.setHardness(3.5F);
         this.setStepSound(SoundType.STONE);
         this.setCreativeTab(CreativeTabs.tabRedstone);

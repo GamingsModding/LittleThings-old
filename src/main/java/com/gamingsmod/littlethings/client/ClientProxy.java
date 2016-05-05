@@ -1,10 +1,10 @@
 package com.gamingsmod.littlethings.client;
 
-import com.gamingsmod.littlethings.client.render.BlockRender;
 import com.gamingsmod.littlethings.client.render.ItemRender;
 import com.gamingsmod.littlethings.client.versioning.VersionChecker;
 import com.gamingsmod.littlethings.common.CommonProxy;
 import com.gamingsmod.littlethings.common.events.DeprecatedWarning;
+import com.gamingsmod.littlethings.common.init.ModBlocks;
 import com.gamingsmod.littlethings.common.init.ModEntities;
 import com.gamingsmod.littlethings.common.tileentity.base.TileEntityXpStore;
 import net.minecraft.client.Minecraft;
@@ -24,7 +24,8 @@ public class ClientProxy extends CommonProxy
         DeprecatedWarning.modHasDeprecatedClasses = false;
         DeprecatedWarning.deprecatedAreas = new String[0];
         MinecraftForge.EVENT_BUS.register(new DeprecatedWarning());
-        BlockRender.preInit();
+
+        ModBlocks.registerBlockVariants();
         ItemRender.preInit();
         ModEntities.initRender();
         new VersionChecker().init();
@@ -34,7 +35,8 @@ public class ClientProxy extends CommonProxy
     {
         super.init(e);
 
-        BlockRender.registerBlockRenderer();
+//        BlockRender.registerBlockRenderer();
+        ModBlocks.registerBlockRender();
         ItemRender.registerItemRender();
     }
 

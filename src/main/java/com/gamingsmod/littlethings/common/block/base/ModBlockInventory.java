@@ -13,9 +13,14 @@ import net.minecraft.world.World;
 
 public abstract class ModBlockInventory extends ModBlockContainer
 {
-    public ModBlockInventory(Material materialIn)
+    public ModBlockInventory(Material material)
     {
-        super(materialIn);
+        super(material);
+    }
+
+    public ModBlockInventory(String name, Material materialIn)
+    {
+        super(name, materialIn);
     }
 
     @Override

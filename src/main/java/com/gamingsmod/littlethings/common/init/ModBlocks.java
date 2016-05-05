@@ -1,85 +1,73 @@
 package com.gamingsmod.littlethings.common.init;
 
 import com.gamingsmod.littlethings.common.block.*;
+import com.gamingsmod.littlethings.common.block.base.ModBlock;
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
-import com.gamingsmod.littlethings.common.item.base.ItemBlockMeta;
-import com.gamingsmod.littlethings.common.lib.LibBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
+import com.gamingsmod.littlethings.common.lib.LibMisc;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ModBlocks
 {
-    public static Block VanillaCraftingTables;
-    public static Block ItemEleveator;
-    public static Block MetalFurnace;
-    public static Block MetalFurnace_Lit;
-    public static Block ClearGlass;
-    public static Block StainedClearGlass;
-    public static Block UnenchantingTable;
-    public static Block StoneTorch;
-    public static Block ExpStore;
-    public static Block BarbedWire;
-    public static Block MobChests;
+    public static final List<ModBlock> BLOCKS = new ArrayList<>();
+
+    public static ModBlock VanillaCraftingTables;
+    public static ModBlock ItemEleveator;
+    public static ModBlock MetalFurnace;
+    public static ModBlock MetalFurnace_Lit;
+    public static ModBlock ClearGlass;
+    public static ModBlock StainedClearGlass;
+    public static ModBlock UnenchantingTable;
+    public static ModBlock StoneTorch;
+    public static ModBlock ExpStore;
+    public static ModBlock BarbedWire;
+    public static ModBlock MobChests;
 
     public static void init()
     {
-        int i;
 
         if (ConfigurationHandler.enableExtraCraftingTables)
-            addMetaBlock(VanillaCraftingTables = new BlockVanillaCraftingTables(), LibBlocks.VANILLACRAFTINGTABLE);
+            VanillaCraftingTables = new BlockVanillaCraftingTables();
 
         if (ConfigurationHandler.enableItemElevator)
-            addBlock(ItemEleveator = new BlockItemElevator(), LibBlocks.ITEMELEVATOR);
+            ItemEleveator = new BlockItemElevator();
 
         if (ConfigurationHandler.enableUpgradedFurnaces) {
-            addMetaBlock(MetalFurnace = new BlockMetalFurnace(LibBlocks.METAL_FURNACE, false), LibBlocks.METAL_FURNACE);
-            addMetaBlock(MetalFurnace_Lit = new BlockMetalFurnace(LibBlocks.METAL_FURNACE, true), LibBlocks.METAL_FURNACE + "_lit");
+            MetalFurnace = new BlockMetalFurnace(false);
+            MetalFurnace_Lit = new BlockMetalFurnace(true);
         }
 
         if (ConfigurationHandler.enableAnimalChests) {
-            addMetaBlock(MobChests = new BlockMobChest(), LibBlocks.MOBCHEST);
+            MobChests = new BlockMobChest();
         }
 
         if (ConfigurationHandler.enableClearGlass) {
-            addBlock(ClearGlass = new BlockClearGlass(), LibBlocks.CLEARGLASS);
-            addMetaBlock(StainedClearGlass = new BlockStainedClearGlass(), LibBlocks.STAINEDCLEARGLASS);
+            ClearGlass = new BlockClearGlass();
+            StainedClearGlass = new BlockStainedClearGlass();
         }
 
         if (ConfigurationHandler.enableUnenchantingTable)
-            addBlock(UnenchantingTable = new BlockUnenchantingTable(), LibBlocks.UNENCHANTING_TABLE);
+            UnenchantingTable = new BlockUnenchantingTable();
 
         if (ConfigurationHandler.enableStoneTorches && (!Loader.isModLoaded("tconstruct") && ConfigurationHandler.removeWithTC))
-            addBlock(StoneTorch = new BlockStoneTorch(), LibBlocks.STONE_TORCH);
+            StoneTorch = new BlockStoneTorch();
 
         if (ConfigurationHandler.enableExpStore)
-            addBlock(ExpStore = new BlockExpStore(), LibBlocks.EXP_STORE);
+            ExpStore = new BlockExpStore();
 
         if (ConfigurationHandler.enableBarbedWire)
-            addBlock(BarbedWire = new BlockBarbedWire(), LibBlocks.BARBED_WIRE);
+            BarbedWire = new BlockBarbedWire();
     }
 
-    private static void addBlock(Block block, String name)
+    public static void registerBlockVariants()
     {
-        if (block.getRegistryName() == null)
-            block.setRegistryName(name);
-
-        register(block);
-        ModItems.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+        BLOCKS.forEach(modBlock -> modBlock.registerBlockVariants(LibMisc.PREFIX_MOD));
     }
 
-    private static void addMetaBlock(Block block, String name)
+    public static void registerBlockRender()
     {
-        if (block.getRegistryName() == null)
-            block.setRegistryName(name);
-
-        register(block);
-        ModItems.register(new ItemBlockMeta(block).setRegistryName(block.getRegistryName()));
-    }
-
-    public static void register(Block block)
-    {
-        GameRegistry.register(block);
+        BLOCKS.forEach(ModBlock::registerRender);
     }
 }

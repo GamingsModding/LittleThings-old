@@ -1,32 +1,41 @@
 package com.gamingsmod.littlethings.common.block.base;
 
-import com.gamingsmod.littlethings.common.lib.LibMisc;
-import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-public abstract class ModBlockContainer extends BlockContainer
+public abstract class ModBlockContainer extends ModBlock implements ITileEntityProvider
 {
-    protected ModBlockContainer(Material materialIn)
+    protected ModBlockContainer(Material material)
     {
-        super(materialIn);
+        super(material);
     }
 
-    @Override
-    public EnumBlockRenderType getRenderType(IBlockState state)
+    protected ModBlockContainer(String name, Material materialIn)
     {
-        return EnumBlockRenderType.MODEL;
+        this(name, materialIn, materialIn.getMaterialMapColor());
     }
 
-    @Override
-    public String getUnlocalizedName()
+    protected ModBlockContainer(String name, Material materialIn, MapColor color)
     {
-        return String.format("tile.%s%s", LibMisc.MOD_ID.toLowerCase() + ":", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
+        super(name, materialIn, color);
+        this.isBlockContainer = true;
     }
 
-    protected String getUnwrappedUnlocalizedName(String unlocalizedName)
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
     {
-        return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
+        super.breakBlock(worldIn, pos, state);
+        worldIn.removeTileEntity(pos);
+    }
+
+    public boolean onBlockEventReceived(World worldIn, BlockPos pos, IBlockState state, int eventID, int eventParam)
+    {
+        super.onBlockEventReceived(worldIn, pos, state, eventID, eventParam);
+        TileEntity tileentity = worldIn.getTileEntity(pos);
+        return tileentity != null && tileentity.receiveClientEvent(eventID, eventParam);
     }
 }

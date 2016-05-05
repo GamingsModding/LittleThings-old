@@ -3,6 +3,7 @@ package com.gamingsmod.littlethings.common.block;
 import com.gamingsmod.littlethings.common.block.base.IMetaBlockName;
 import com.gamingsmod.littlethings.common.block.base.ModBlockContainer;
 import com.gamingsmod.littlethings.common.init.ModBlocks;
+import com.gamingsmod.littlethings.common.lib.LibBlocks;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityMetalFurnace;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
@@ -11,6 +12,7 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,10 +39,11 @@ public class BlockMetalFurnace extends ModBlockContainer implements IMetaBlockNa
     private static boolean keepInventory;
     private boolean isBurning;
 
-    public BlockMetalFurnace(String name, boolean isBurning)
+    public BlockMetalFurnace(boolean isBurning)
     {
         super(Material.iron);
-        this.setUnlocalizedName(name);
+        this.setRegistryName(LibBlocks.METAL_FURNACE + (isBurning ? "_lit" : ""));
+        this.setUnlocalizedName(LibBlocks.METAL_FURNACE);
         this.setHardness(3.5F);
         this.setStepSound(SoundType.STONE);
         this.setDefaultState(this.blockState.getBaseState()
@@ -256,6 +259,35 @@ public class BlockMetalFurnace extends ModBlockContainer implements IMetaBlockNa
     public String getSpecialName(ItemStack stack)
     {
         return Types.values()[stack.getMetadata()].getName();
+    }
+
+    @Override
+    public void registerBlockVariants(String modId)
+    {
+        ResourceLocation[] rl = new ResourceLocation[4];
+        int i = 0;
+        for (BlockMetalFurnace.Types type : BlockMetalFurnace.Types.values()) {
+            if (!isBurning)
+                rl[i] = new ResourceLocation(modId + "upgradedFurnace_" + type.getName());
+            else
+                rl[i] = new ResourceLocation(modId + "upgradedFurnace_" + type.getName() + "_lit");
+            i++;
+        }
+        if (!isBurning)
+            ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.MetalFurnace), rl);
+        else
+            ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.MetalFurnace_Lit), rl);
+    }
+
+    @Override
+    public void registerRender()
+    {
+        for (BlockMetalFurnace.Types type : BlockMetalFurnace.Types.values()) {
+            if (!isBurning)
+                registerItemModel(type.getId(), "upgradedFurnace_" + type.getName());
+            else
+                registerItemModel(type.getId(), "upgradedFurnace_" + type.getName() + "_lit");
+        }
     }
 
     public enum Types implements IStringSerializable

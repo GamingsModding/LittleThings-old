@@ -30,8 +30,7 @@ public class BlockExpStore extends ModBlockContainer implements IExperienceStore
 
     public BlockExpStore()
     {
-        super(Material.iron);
-        this.setUnlocalizedName(LibBlocks.EXP_STORE);
+        super(LibBlocks.EXP_STORE, Material.iron);
         this.setCreativeTab(CreativeTabs.tabDecorations);
         this.setHardness(5.0F);
         this.setResistance(2000.0F);
