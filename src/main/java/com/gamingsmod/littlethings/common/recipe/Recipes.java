@@ -115,6 +115,18 @@ public class Recipes
             addRecipe(new ItemStack(ModBlocks.BarbedWire),
                     "b b", " b ", "b b",
                     'b', new ItemStack(Blocks.iron_bars));
+        
+        if (ConfigurationHandler.enableStove) {
+            addRecipe(new ItemStack(ModBlocks.Stove),
+                    "cic", "ibi", "ccc",
+                    'c', "cobblestone",
+                    'i', "ingotIron",
+                    'b', new ItemStack(Blocks.coal_block));
+            addRecipe(new ItemStack(ModItems.Pan),
+                    "iii", "iii", " s ",
+                    'i', "ingotIron",
+                    's', "stickWood");
+        }
     }
 
     private static void recipesExpStore()
