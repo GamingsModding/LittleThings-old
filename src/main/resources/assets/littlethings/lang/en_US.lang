@@ -63,6 +63,7 @@ tile.littlethings:unenchantingTable.name=Unenchanting Table
 tile.littlethings:expStore.name=Experience Store
 tile.littlethings:stoneTorch.name=Stone Torch
 tile.littlethings:barbedWire.name=Barbed Wire
+tile.littlethings:stove.name=Stove
 
 #Items
 item.littlethings:ironNugget.name=Iron Nugget
@@ -105,6 +106,7 @@ item.littlethings:stoneStick.name=Stone Stick
 
 item.littlethings:friedEgg.name=Fried Egg
 item.littlethings:packSeeds.name=Pack Of Seeds
+item.littlethings:pan.name=Iron Pan
 
 #Entities
 entity.LittleThings.CrossBolt.name=CrossBolt
@@ -144,6 +146,7 @@ container.animalChest.creeper=Creeper Chest
 container.animalChest.spider=Spider Chest
 
 container.unenchantingTable=Unenchanting Table
+container.stove=Stove
 
 #Command Usage
 command.littlethings.head=/head

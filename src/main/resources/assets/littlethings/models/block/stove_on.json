@@ -1,0 +1,19 @@
+{
+  "parent": "block/cube",
+  "display": {
+    "firstperson_righthand": {
+      "rotation": [ 0, 135, 0 ],
+      "translation": [ 0, 0, 0 ],
+      "scale": [ 0.40, 0.40, 0.40 ]
+    }
+  },
+  "textures": {
+    "particle": "littlethings:blocks/stove_side_on",
+    "down": "littlethings:blocks/stove_bottom",
+    "up": "littlethings:blocks/stove_top_on",
+    "north": "littlethings:blocks/stove_side_on",
+    "east": "littlethings:blocks/stove_bottom",
+    "south": "littlethings:blocks/stove_bottom",
+    "west": "littlethings:blocks/stove_bottom"
+  }
+}

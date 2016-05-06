@@ -24,6 +24,7 @@ public class ModBlocks
     public static ModBlock ExpStore;
     public static ModBlock BarbedWire;
     public static ModBlock MobChests;
+    public static ModBlock Stove;
 
     public static void init()
     {
@@ -59,6 +60,9 @@ public class ModBlocks
 
         if (ConfigurationHandler.enableBarbedWire)
             BarbedWire = new BlockBarbedWire();
+
+        if (ConfigurationHandler.enableStove)
+            Stove = new BlockStove();
     }
 
     public static void registerBlockVariants()

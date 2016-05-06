@@ -13,5 +13,6 @@ public class ModTileEntities
         GameRegistry.registerTileEntity(TileEntityMobChest.class, LibMisc.MOD_NAME + "_mobChest");
         GameRegistry.registerTileEntity(TileEntityUnenchantingTable.class, LibMisc.MOD_NAME + "_unenchantingTable");
         GameRegistry.registerTileEntity(TileEntityExpStore.class, LibMisc.MOD_NAME + "_expStore");
+        GameRegistry.registerTileEntity(TileEntityStove.class, LibMisc.MOD_NAME + "_stove");
     }
 }

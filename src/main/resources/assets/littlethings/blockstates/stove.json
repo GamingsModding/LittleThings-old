@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "facing=north,on=true": { "model": "littlethings:stove_on" },
+    "facing=east,on=true": { "model": "littlethings:stove_on", "y": 90 },
+    "facing=south,on=true": { "model": "littlethings:stove_on", "y": 180 },
+    "facing=west,on=true": { "model": "littlethings:stove_on", "y": 270 },
+    "facing=north,on=false": { "model": "littlethings:stove_off" },
+    "facing=east,on=false": { "model": "littlethings:stove_off", "y": 90 },
+    "facing=south,on=false": { "model": "littlethings:stove_off", "y": 180 },
+    "facing=west,on=false": { "model": "littlethings:stove_off", "y": 270 }
+  }
+}

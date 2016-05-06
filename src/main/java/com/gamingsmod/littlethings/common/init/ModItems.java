@@ -26,6 +26,7 @@ public class ModItems
 
     public static ModItem IronNugget;
     public static ModItem StoneStick;
+    public static ModItem Pan;
 
     public static ModItemTool WoodHammer;
     public static ModItemTool StoneHammer;
@@ -120,6 +121,8 @@ public class ModItems
             FriedEgg = new ModItemFood(5, false, LibItems.FRIED_EGG);
             SeedsPack = new ItemFoodSeedsPack();
         }
+        if (ConfigurationHandler.enableStove)
+            Pan = (ModItem) (new ModItem(LibItems.PAN)).setCreativeTab(CreativeTabs.tabMisc);
 
     }
 

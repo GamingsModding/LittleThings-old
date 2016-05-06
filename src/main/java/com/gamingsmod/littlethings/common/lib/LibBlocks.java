@@ -14,4 +14,5 @@ public class LibBlocks
     public static final String BARBED_WIRE = "barbedWire";
     public static final String MOBCHEST = "mobChest";
     public static final String METAL_FURNACE = "metalFurnace";
+    public static final String STOVE = "stove";
 }
