@@ -122,7 +122,7 @@ public class ModItems
             SeedsPack = new ItemFoodSeedsPack();
         }
         if (ConfigurationHandler.enableStove)
-            Pan = (ModItem) (new ModItem(LibItems.PAN)).setCreativeTab(CreativeTabs.tabMisc);
+            Pan = (ModItem) (new ModItem(LibItems.PAN)).setCreativeTab(CreativeTabs.tabMisc).setMaxStackSize(1).setMaxDamage(150);
 
     }
 

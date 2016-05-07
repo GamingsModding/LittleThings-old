@@ -1,19 +1,22 @@
 package com.gamingsmod.littlethings.common.gui.container;
 
 import com.gamingsmod.littlethings.common.init.ModItems;
+import com.gamingsmod.littlethings.common.recipe.custom.StoveRecipes;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityStove;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
-import net.minecraft.inventory.SlotFurnaceFuel;
+import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ContainerStove extends Container
 {
     private TileEntityStove te;
+    private int cookTime;
+    private int totalCookTime;
+    private int furnaceBurnTime;
+    private int currentItemBurnTime;
 
     public ContainerStove(IInventory playerInventory, TileEntityStove te)
     {
@@ -21,7 +24,7 @@ public class ContainerStove extends Container
         this.addSlotToContainer(new Slot(te, 0, 54, 20));
         this.addSlotToContainer(new SlotPan(te, 1, 54, 40));
         this.addSlotToContainer(new SlotFurnaceFuel(te, 2, 54, 76));
-        this.addSlotToContainer(new Slot(te, 3, 114, 57));
+        this.addSlotToContainer(new SlotResult(te, 3, 114, 57));
 
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 9; ++j) {
@@ -34,11 +37,56 @@ public class ContainerStove extends Container
         }
     }
 
+    public void onCraftGuiOpened(ICrafting listener)
+    {
+        super.onCraftGuiOpened(listener);
+        listener.sendAllWindowProperties(this, this.te);
+    }
+
+    /**
+     * Looks for changes made in the container, sends them to every listener.
+     */
+    public void detectAndSendChanges()
+    {
+        super.detectAndSendChanges();
+
+        for (int i = 0; i < this.crafters.size(); ++i) {
+            ICrafting icrafting = this.crafters.get(i);
+
+            if (this.cookTime != this.te.getField(2)) {
+                icrafting.sendProgressBarUpdate(this, 2, this.te.getField(2));
+            }
+
+            if (this.furnaceBurnTime != this.te.getField(0)) {
+                icrafting.sendProgressBarUpdate(this, 0, this.te.getField(0));
+            }
+
+            if (this.currentItemBurnTime != this.te.getField(1)) {
+                icrafting.sendProgressBarUpdate(this, 1, this.te.getField(1));
+            }
+
+            if (this.totalCookTime != this.te.getField(3)) {
+                icrafting.sendProgressBarUpdate(this, 3, this.te.getField(3));
+            }
+        }
+
+        this.cookTime = this.te.getField(2);
+        this.furnaceBurnTime = this.te.getField(0);
+        this.currentItemBurnTime = this.te.getField(1);
+        this.totalCookTime = this.te.getField(3);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void updateProgressBar(int id, int data)
+    {
+        this.te.setField(id, data);
+    }
+
     @Override
     public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
     {
         ItemStack itemstack = null;
-        Slot slot = (Slot) this.inventorySlots.get(index);
+        Slot slot = this.inventorySlots.get(index);
 
         if (slot != null && slot.getHasStack()) {
             ItemStack itemstack1 = slot.getStack();
@@ -51,12 +99,16 @@ public class ContainerStove extends Container
 
                 slot.onSlotChange(itemstack1, itemstack);
             } else if (index != 1 && index != 0) {
-                if (FurnaceRecipes.instance().getSmeltingResult(itemstack1) != null) {
+                if (StoveRecipes.getInstance().getOutput(itemstack1) != null) {
                     if (!this.mergeItemStack(itemstack1, 0, 1, false)) {
                         return null;
                     }
-                } else if (TileEntityFurnace.isItemFuel(itemstack1)) {
+                } else if (itemstack1.getItem() == ModItems.Pan) {
                     if (!this.mergeItemStack(itemstack1, 1, 2, false)) {
+                        return null;
+                    }
+                } else if (TileEntityFurnace.isItemFuel(itemstack1)) {
+                    if (!this.mergeItemStack(itemstack1, 2, 3, false)) {
                         return null;
                     }
                 } else if (index >= 3 && index < 30) {
@@ -71,7 +123,7 @@ public class ContainerStove extends Container
             }
 
             if (itemstack1.stackSize == 0) {
-                slot.putStack((ItemStack) null);
+                slot.putStack(null);
             } else {
                 slot.onSlotChanged();
             }

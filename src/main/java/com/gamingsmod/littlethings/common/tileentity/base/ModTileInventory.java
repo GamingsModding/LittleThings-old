@@ -196,5 +196,4 @@ public abstract class ModTileInventory extends TileEntity implements IInventory
             this.setCustomName(nbt.getString("CustomName"));
         }
     }
-
 }

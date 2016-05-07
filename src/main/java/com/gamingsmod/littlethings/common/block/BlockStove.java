@@ -1,7 +1,8 @@
 package com.gamingsmod.littlethings.common.block;
 
 import com.gamingsmod.littlethings.common.LittleThings;
-import com.gamingsmod.littlethings.common.block.base.ModBlockInventory;
+import com.gamingsmod.littlethings.common.block.base.ModBlockContainer;
+import com.gamingsmod.littlethings.common.init.ModBlocks;
 import com.gamingsmod.littlethings.common.lib.LibBlocks;
 import com.gamingsmod.littlethings.common.lib.LibGuiId;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityStove;
@@ -14,6 +15,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -23,10 +26,11 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockStove extends ModBlockInventory
+public class BlockStove extends ModBlockContainer
 {
     public static final PropertyBool ON = PropertyBool.create("on");
     public static final PropertyEnum<EnumFacing> FACING = PropertyEnum.create("facing", EnumFacing.class);
+    private static boolean keepInventory;
 
     public BlockStove()
     {
@@ -66,6 +70,19 @@ public class BlockStove extends ModBlockInventory
     }
 
     @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    {
+        if (!keepInventory) {
+            TileEntity te = worldIn.getTileEntity(pos);
+            if (te instanceof IInventory) {
+                InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory) te);
+                worldIn.updateComparatorOutputLevel(pos, this);
+            }
+        }
+        super.breakBlock(worldIn, pos, state);
+    }
+
+    @Override
     public IBlockState getStateFromMeta(int meta)
     {
         boolean on = (meta & 8) > 0;
@@ -95,5 +112,22 @@ public class BlockStove extends ModBlockInventory
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, ON, FACING);
+    }
+
+    public static void setState(boolean burning, World worldIn, BlockPos pos)
+    {
+        IBlockState iblockstate = worldIn.getBlockState(pos);
+        TileEntity tileentity = worldIn.getTileEntity(pos);
+        keepInventory = true;
+
+        worldIn.setBlockState(pos, ModBlocks.Stove.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ON, burning), 3);
+        worldIn.setBlockState(pos, ModBlocks.Stove.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ON, burning), 3);
+
+        keepInventory = false;
+
+        if (tileentity != null) {
+            tileentity.validate();
+            worldIn.setTileEntity(pos, tileentity);
+        }
     }
 }
