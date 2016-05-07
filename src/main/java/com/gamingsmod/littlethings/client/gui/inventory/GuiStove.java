@@ -28,6 +28,13 @@ public class GuiStove extends GuiContainer
         int i = (this.width - this.xSize) / 2;
         int j = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
+        if (TileEntityStove.isBurning(this.te)) {
+            int k = this.getBurnLeftScaled(13);
+            this.drawTexturedModalRect(i + 55, j + 60 + 12 - k, 176, 12 - k, 14, k + 1);
+        }
+
+        int l = this.getCookProgressScaled(24);
+        this.drawTexturedModalRect(i + 77, j + 57, 176, 14, l + 1, 16);
     }
 
     // Code adapted from BedrockMiner
@@ -38,5 +45,24 @@ public class GuiStove extends GuiContainer
         String s = this.te.getDisplayName().getUnformattedText();
         this.fontRendererObj.drawString(s, 88 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);            //#404040
         this.fontRendererObj.drawString("Inventory", 8, 95, 4210752);      //#404040
+
+    }
+
+    private int getCookProgressScaled(int pixels)
+    {
+        int i = this.te.getField(2);
+        int j = this.te.getField(3);
+        return j != 0 && i != 0 ? i * pixels / j : 0;
+    }
+
+    private int getBurnLeftScaled(int pixels)
+    {
+        int i = this.te.getField(1);
+
+        if (i == 0) {
+            i = 200;
+        }
+
+        return this.te.getField(0) * pixels / i;
     }
 }
