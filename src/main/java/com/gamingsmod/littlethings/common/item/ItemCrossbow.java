@@ -40,23 +40,25 @@ public class ItemCrossbow extends ModItem
                     else if (ammo.getMetadata() == 1)
                         entityCrossBolt = new EntityCrossBoltExplosive(worldIn, playerIn);
                     else if (ammo.getMetadata() == 2)
-                        entityCrossBolt = (new EntityCrossBoltPotion(worldIn, playerIn)).setPotionEffect(MobEffects.glowing);
+                        entityCrossBolt = (new EntityCrossBoltPotion(worldIn, playerIn, ammo)).setPotionEffect(MobEffects.glowing);
                     else if (ammo.getMetadata() == 3)
-                        entityCrossBolt = (new EntityCrossBoltPotion(worldIn, playerIn)).setPotionEffect(MobEffects.wither, 10, 0);
+                        entityCrossBolt = (new EntityCrossBoltPotion(worldIn, playerIn, ammo)).setPotionEffect(MobEffects.wither, 100, 0);
                     else if (ammo.getMetadata() == 4)
-                        entityCrossBolt = (new EntityCrossBoltPotion(worldIn, playerIn)).setPotionEffect(MobEffects.poison, 10, 1);
+                        entityCrossBolt = (new EntityCrossBoltPotion(worldIn, playerIn, ammo)).setPotionEffect(MobEffects.poison, 100, 1);
                     else if (ammo.getMetadata() == 5)
-                        entityCrossBolt = (new EntityCrossBoltPotion(worldIn, playerIn)).setPotionEffect(MobEffects.moveSlowdown);
+                        entityCrossBolt = (new EntityCrossBoltPotion(worldIn, playerIn, ammo)).setPotionEffect(MobEffects.moveSlowdown);
 
+                } else if (playerIn.isCreative()) {
+                    entityCrossBolt = new EntityCrossBolt(worldIn, playerIn);
                 }
 
                 if (entityCrossBolt != null) {
                     entityCrossBolt.func_184547_a(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 3.0F, 1.0F);
                     worldIn.spawnEntityInWorld(entityCrossBolt);
 
-                    if (!playerIn.isCreative()) ammo.stackSize--;
+                    if (!playerIn.isCreative() && ammo != null) ammo.stackSize--;
 
-                    if (ammo.stackSize <= 0)
+                    if (ammo != null && ammo.stackSize <= 0)
                         playerIn.inventory.deleteStack(ammo);
 
                     playerIn.getCooldownTracker().setCooldown(this, 10);

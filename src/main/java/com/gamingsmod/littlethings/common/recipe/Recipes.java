@@ -165,9 +165,20 @@ public class Recipes
                 'g', new ItemStack(Items.glowstone_dust),
                 'b', new ItemStack(ModItems.CrossBolt, 1, 0));
 
-        addShapelessRecipe(new ItemStack(ModItems.CrossBolt, 2, 3), //Wither
-                new ItemStack(ModItems.CrossBolt, 1, 0),
-                new ItemStack(ModItems.WitherDust));
+        addRecipe(new ItemStack(ModItems.CrossBolt, 2, 3), //Wither
+                " g ", "gbg", " g ",
+                'g', new ItemStack(ModItems.MobDust, 1, 0),
+                'b', new ItemStack(ModItems.CrossBolt, 1, 0));
+
+        addRecipe(new ItemStack(ModItems.CrossBolt, 2, 4), //Poison
+                " g ", "gbg", " g ",
+                'g', new ItemStack(ModItems.MobDust, 1, 1),
+                'b', new ItemStack(ModItems.CrossBolt, 1, 0));
+
+        addRecipe(new ItemStack(ModItems.CrossBolt, 2, 5), //Slowness
+                " g ", "gbg", " g ",
+                'g', new ItemStack(Blocks.soul_sand),
+                'b', new ItemStack(ModItems.CrossBolt, 1, 0));
     }
 
     private static void recipesExcavators()

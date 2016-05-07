@@ -4,6 +4,7 @@ import com.gamingsmod.littlethings.common.init.ModItems;
 import com.gamingsmod.littlethings.common.lib.LibMisc;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -29,6 +30,13 @@ public class ModItem extends Item implements IModItem
 
         ModItems.ITEMS.add(this);
 
+        return this;
+    }
+
+    @Override
+    public ModItem setCreativeTab(CreativeTabs tab)
+    {
+        super.setCreativeTab(tab);
         return this;
     }
 

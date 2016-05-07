@@ -14,6 +14,7 @@ public class EntityCrossBoltPotion extends EntityCrossBolt
     //Length of Spectral Arrows
     public int duration = 200;
     private PotionEffect potionEffect;
+    private ItemStack stack;
 
     public EntityCrossBoltPotion(World worldIn)
     {
@@ -25,9 +26,11 @@ public class EntityCrossBoltPotion extends EntityCrossBolt
         super(worldIn, x, y, z);
     }
 
-    public EntityCrossBoltPotion(World worldIn, EntityLivingBase throwerIn)
+    public EntityCrossBoltPotion(World worldIn, EntityLivingBase throwerIn, ItemStack stack)
     {
         super(worldIn, throwerIn);
+        this.stack = stack.copy();
+        this.stack.stackSize = 1;
     }
 
     public EntityCrossBoltPotion setPotionEffect(Potion effect)
@@ -49,7 +52,7 @@ public class EntityCrossBoltPotion extends EntityCrossBolt
     @Override
     protected ItemStack getArrowStack()
     {
-        return new ItemStack(ModItems.CrossBolt, 1, 2);
+        return stack;
     }
 
     @Override
@@ -59,6 +62,10 @@ public class EntityCrossBoltPotion extends EntityCrossBolt
         if (tagCompund.hasKey("Duration")) {
             this.duration = tagCompund.getInteger("Duration");
         }
+
+        if (tagCompund.hasKey("OrigStack")) {
+            this.stack = ItemStack.loadItemStackFromNBT(tagCompund.getCompoundTag("OrigStack"));
+        }
     }
 
     @Override
@@ -66,6 +73,9 @@ public class EntityCrossBoltPotion extends EntityCrossBolt
     {
         super.writeEntityToNBT(tagCompound);
         tagCompound.setInteger("Duration", this.duration);
+        NBTTagCompound stackTag = new NBTTagCompound();
+        stack.writeToNBT(stackTag);
+        tagCompound.setTag("OrigStack", stackTag);
     }
 
     @Override

@@ -4,10 +4,7 @@ import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.item.ItemCrossBolt;
 import com.gamingsmod.littlethings.common.item.ItemCrossbow;
 import com.gamingsmod.littlethings.common.item.ItemIronNugget;
-import com.gamingsmod.littlethings.common.item.base.IModItem;
-import com.gamingsmod.littlethings.common.item.base.ModItem;
-import com.gamingsmod.littlethings.common.item.base.ModItemFood;
-import com.gamingsmod.littlethings.common.item.base.ModItemTool;
+import com.gamingsmod.littlethings.common.item.base.*;
 import com.gamingsmod.littlethings.common.item.food.ItemFoodBejeweledApple;
 import com.gamingsmod.littlethings.common.item.food.ItemFoodSeedsPack;
 import com.gamingsmod.littlethings.common.item.tools.*;
@@ -27,7 +24,7 @@ public class ModItems
     public static ModItem IronNugget;
     public static ModItem StoneStick;
     public static ModItem Pan;
-    public static ModItem WitherDust;
+    public static ModItem MobDust;
 
     public static ModItemTool WoodHammer;
     public static ModItemTool StoneHammer;
@@ -67,7 +64,7 @@ public class ModItems
     public static void init()
     {
         IronNugget = new ItemIronNugget();
-        StoneStick = (ModItem) (new ModItem(LibItems.STONE_STICK)).setCreativeTab(CreativeTabs.tabMaterials);
+        StoneStick = new ModItem(LibItems.STONE_STICK).setCreativeTab(CreativeTabs.tabMaterials);
 
         if (ConfigurationHandler.enableHammers) {
             WoodHammer = new ModItemHammer(LibItems.HAMMER + "Wood", Item.ToolMaterial.WOOD);
@@ -88,7 +85,7 @@ public class ModItems
         if (ConfigurationHandler.enableCrossbow) {
             CrossBow = new ItemCrossbow();
             CrossBolt = new ItemCrossBolt();
-            WitherDust = (ModItem) new ModItem(LibItems.WITHER_DUST).setCreativeTab(CreativeTabs.tabMisc);
+            MobDust = new ModItemVariants(LibItems.MOB_DUST, new String[]{"wither", "poison"}).setCreativeTab(CreativeTabs.tabMisc);
         }
 
         if (ConfigurationHandler.enableObsidianTools) {

@@ -12,5 +12,5 @@ public class LibItems
     public static final String FRIED_EGG = "friedEgg";
     public static final String PACK_SEEDS = "packSeeds";
     public static final String PAN = "pan";
-    public static final String WITHER_DUST = "witherDust";
+    public static final String MOB_DUST = "mobDust";
 }

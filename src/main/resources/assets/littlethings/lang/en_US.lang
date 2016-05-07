@@ -106,6 +106,8 @@ item.littlethings:crossbolt.slowness.name=Slowness Crossbolt
 
 item.littlethings:bejeweledApple.name=Bejeweled Apple
 item.littlethings:stoneStick.name=Stone Stick
+item.littlethings:mobDust.wither.name=Wither Dust
+item.littlethings:mobDust.poison.name=Poison Dust
 
 item.littlethings:friedEgg.name=Fried Egg
 item.littlethings:packSeeds.name=Pack Of Seeds

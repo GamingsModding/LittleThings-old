@@ -44,7 +44,7 @@ public class CommonProxy
         MinecraftForge.EVENT_BUS.register(new FoodEvents());
         MinecraftForge.EVENT_BUS.register(new RightClickCrops());
         MinecraftForge.EVENT_BUS.register(new GetExpBottles());
-        MinecraftForge.EVENT_BUS.register(new WitherDustDrop());
+        MinecraftForge.EVENT_BUS.register(new DustMobDrop());
     }
 
     public void postInit(FMLPostInitializationEvent e)
