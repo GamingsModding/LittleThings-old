@@ -1,10 +1,7 @@
 package com.gamingsmod.littlethings.common;
 
 import com.gamingsmod.littlethings.common.command.*;
-import com.gamingsmod.littlethings.common.events.FoodEvents;
-import com.gamingsmod.littlethings.common.events.FriendsSkulls;
-import com.gamingsmod.littlethings.common.events.GetExpBottles;
-import com.gamingsmod.littlethings.common.events.RightClickCrops;
+import com.gamingsmod.littlethings.common.events.*;
 import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.init.*;
 import com.gamingsmod.littlethings.common.network.GuiHandler;
@@ -47,6 +44,7 @@ public class CommonProxy
         MinecraftForge.EVENT_BUS.register(new FoodEvents());
         MinecraftForge.EVENT_BUS.register(new RightClickCrops());
         MinecraftForge.EVENT_BUS.register(new GetExpBottles());
+        MinecraftForge.EVENT_BUS.register(new WitherDustDrop());
     }
 
     public void postInit(FMLPostInitializationEvent e)

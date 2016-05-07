@@ -27,6 +27,7 @@ public class ModItems
     public static ModItem IronNugget;
     public static ModItem StoneStick;
     public static ModItem Pan;
+    public static ModItem WitherDust;
 
     public static ModItemTool WoodHammer;
     public static ModItemTool StoneHammer;
@@ -87,6 +88,7 @@ public class ModItems
         if (ConfigurationHandler.enableCrossbow) {
             CrossBow = new ItemCrossbow();
             CrossBolt = new ItemCrossBolt();
+            WitherDust = (ModItem) new ModItem(LibItems.WITHER_DUST).setCreativeTab(CreativeTabs.tabMisc);
         }
 
         if (ConfigurationHandler.enableObsidianTools) {

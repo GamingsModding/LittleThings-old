@@ -37,7 +37,12 @@ public class EntityCrossBoltPotion extends EntityCrossBolt
 
     public EntityCrossBoltPotion setPotionEffect(Potion effect, int amp)
     {
-        this.potionEffect = new PotionEffect(effect, duration, amp);
+        return setPotionEffect(effect, duration, amp);
+    }
+
+    public EntityCrossBoltPotion setPotionEffect(Potion effect, int dur, int amp)
+    {
+        this.potionEffect = new PotionEffect(effect, dur, amp);
         return this;
     }
 

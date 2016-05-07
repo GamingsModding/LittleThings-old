@@ -8,7 +8,7 @@ public class ItemCrossBolt extends ModItemVariants
 {
     public ItemCrossBolt()
     {
-        super(LibItems.CROSSBOLT, new String[]{"normal", "explosive", "spectral"});
+        super(LibItems.CROSSBOLT, new String[]{"normal", "explosive", "spectral", "wither", "poison", "slowness"});
         this.setCreativeTab(CreativeTabs.tabCombat);
     }
 }

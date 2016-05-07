@@ -149,18 +149,25 @@ public class Recipes
                 'i', "ingotIron",
                 'b', new ItemStack(Items.bow),
                 's', "stickWood");
-        addRecipe(new ItemStack(ModItems.CrossBolt, 8),
+
+        addRecipe(new ItemStack(ModItems.CrossBolt, 8), //Normal
                 "i", "o", "o",
                 'i', "ingotIron",
                 'o', new ItemStack(Blocks.obsidian));
-        addRecipe(new ItemStack(ModItems.CrossBolt, 2, 1),
+
+        addRecipe(new ItemStack(ModItems.CrossBolt, 2, 1), //Explode
                 " g ", "gbg", " g ",
                 'g', new ItemStack(Items.gunpowder),
                 'b', new ItemStack(ModItems.CrossBolt, 1, 0));
-        addRecipe(new ItemStack(ModItems.CrossBolt, 2, 2),
+
+        addRecipe(new ItemStack(ModItems.CrossBolt, 2, 2), //Spec
                 " g ", "gbg", " g ",
                 'g', new ItemStack(Items.glowstone_dust),
                 'b', new ItemStack(ModItems.CrossBolt, 1, 0));
+
+        addShapelessRecipe(new ItemStack(ModItems.CrossBolt, 2, 3), //Wither
+                new ItemStack(ModItems.CrossBolt, 1, 0),
+                new ItemStack(ModItems.WitherDust));
     }
 
     private static void recipesExcavators()
