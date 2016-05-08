@@ -10,4 +10,6 @@ public interface IModItem
 
     @SideOnly(Side.CLIENT)
     void registerRender();
+
+    void registerItemModel(int meta, String name);
 }

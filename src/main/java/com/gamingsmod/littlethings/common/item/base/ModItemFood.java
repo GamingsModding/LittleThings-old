@@ -64,4 +64,10 @@ public class ModItemFood extends ItemFood implements IModItem
         Minecraft.getMinecraft().getRenderItem()
                 .getItemModelMesher().register(this, 0, new ModelResourceLocation(LibMisc.PREFIX_MOD + this.getUnlocalizedName().substring(6 + LibMisc.MOD_ID.length()), "inventory"));
     }
+
+    @Override
+    public void registerItemModel(int meta, String name)
+    {
+        ModItem.registerItemModel(this, meta, name);
+    }
 }

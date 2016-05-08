@@ -1,139 +1,74 @@
 package com.gamingsmod.littlethings.common.item.tools;
 
-import com.gamingsmod.littlethings.common.item.base.ModItem;
-import com.google.common.collect.Multimap;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.init.Blocks;
-import net.minecraft.inventory.EntityEquipmentSlot;
+import com.gamingsmod.littlethings.common.init.ModItems;
+import com.gamingsmod.littlethings.common.item.base.IModItem;
+import com.gamingsmod.littlethings.common.lib.LibMisc;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.item.ItemSword;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ModItemSword extends ModItem
+public class ModItemSword extends ItemSword implements IModItem
 {
-    private final float attackDamage;
-    private final Item.ToolMaterial material;
-
     public ModItemSword(String name, ToolMaterial material)
     {
-        super(name);
-        this.material = material;
-        this.maxStackSize = 1;
-        this.setMaxDamage(material.getMaxUses());
-        this.setCreativeTab(CreativeTabs.tabCombat);
-        this.attackDamage = 3.0F + material.getDamageVsEntity();
-    }
-
-    /**
-     * Returns the amount of damage this item will deal. One heart of damage is equal to 2 damage points.
-     */
-    public float getDamageVsEntity()
-    {
-        return this.material.getDamageVsEntity();
+        super(material);
+        this.setUnlocalizedName(name);
     }
 
     @Override
-    public float getStrVsBlock(ItemStack stack, IBlockState state)
+    public Item setUnlocalizedName(String name)
     {
-        Block block = state.getBlock();
+        super.setUnlocalizedName(name);
+        if (getRegistryName() == null)
+            setRegistryName(name);
 
-        if (block == Blocks.web) {
-            return 15.0F;
-        } else {
-            Material material = state.getMaterial();
-            return material != Material.plants && material != Material.vine && material != Material.coral && material != Material.leaves && material != Material.gourd ? 1.0F : 1.5F;
-        }
+        GameRegistry.register(this);
+
+        ModItems.ITEMS.add(this);
+
+        return this;
     }
 
-    /**
-     * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
-     * the damage on the stack.
-     */
-    @Override
-    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
-    {
-        stack.damageItem(1, attacker);
-        return true;
-    }
-
-    /**
-     * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
-     */
-    @Override
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState blockIn, BlockPos pos, EntityLivingBase entityLiving)
-    {
-        if ((double) blockIn.getBlockHardness(worldIn, pos) != 0.0D) {
-            stack.damageItem(2, entityLiving);
-        }
-
-        return true;
-    }
-
-    /**
-     * Check whether this Item can harvest the given Block
-     */
-    @Override
-    public boolean canHarvestBlock(IBlockState blockIn)
-    {
-        return blockIn.getBlock() == Blocks.web;
-    }
-
-    /**
-     * Returns True is the item is renderer in full 3D when hold.
-     */
-    @Override
     @SideOnly(Side.CLIENT)
-    public boolean isFull3D()
+    public void registerItemVariants(String modId)
     {
-        return true;
+
     }
 
-    /**
-     * Return the enchantability factor of the item, most of the time is based on material.
-     */
-    @Override
-    public int getItemEnchantability()
+    @SideOnly(Side.CLIENT)
+    public void registerRender()
     {
-        return this.material.getEnchantability();
-    }
-
-    /**
-     * Return the name for this tool's material.
-     */
-    public String getToolMaterialName()
-    {
-        return this.material.toString();
-    }
-
-    /**
-     * Return whether this item is repairable in an anvil.
-     */
-    @Override
-    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
-    {
-        ItemStack mat = this.material.getRepairItemStack();
-        return mat != null && net.minecraftforge.oredict.OreDictionary.itemMatches(mat, repair, false) || super.getIsRepairable(toRepair, repair);
+        Minecraft.getMinecraft().getRenderItem()
+                .getItemModelMesher().register(this, 0, new ModelResourceLocation(LibMisc.PREFIX_MOD + this.getUnlocalizedName().substring(6 + LibMisc.MOD_ID.length()), "inventory"));
     }
 
     @Override
-    public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot equipmentSlot, ItemStack stack)
+    public String getUnlocalizedName()
     {
-        Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(equipmentSlot, stack);
+        return String.format("item.%s%s", LibMisc.MOD_ID.toLowerCase() + ":", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
+    }
 
-        if (equipmentSlot == EntityEquipmentSlot.MAINHAND) {
-            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", (double) this.attackDamage, 0));
-            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -2.4000000953674316D, 0));
-        }
+    @Override
+    public String getUnlocalizedName(ItemStack itemStack)
+    {
+        return getUnlocalizedName();
+    }
 
-        return multimap;
+
+    protected String getUnwrappedUnlocalizedName(String unlocalizedName)
+    {
+        return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
+    }
+
+    @Override
+    public void registerItemModel(int meta, String name)
+    {
+        Minecraft.getMinecraft().getRenderItem()
+                .getItemModelMesher().register(this, meta, new ModelResourceLocation(LibMisc.PREFIX_MOD + name, "inventory"));
     }
 }

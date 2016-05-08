@@ -41,7 +41,7 @@ public class ModItems
     public static ModItem CrossBow;
     public static ItemCrossBolt CrossBolt;
 
-    public static ModItem ObsidianSword;
+    public static ModItemSword ObsidianSword;
     public static ModItemTool ObsidianPickaxe;
     public static ModItemTool ObsidianAxe;
     public static ModItemTool ObsidianSpade;
@@ -49,7 +49,7 @@ public class ModItems
     public static ModItemTool ObsidianHammer;
     public static ModItemTool ObsidianExcavator;
 
-    public static ModItem EmeraldSword;
+    public static ModItemSword EmeraldSword;
     public static ModItemTool EmeraldPickaxe;
     public static ModItemTool EmeraldAxe;
     public static ModItemTool EmeraldSpade;

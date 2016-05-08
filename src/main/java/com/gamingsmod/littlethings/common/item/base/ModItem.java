@@ -70,9 +70,15 @@ public class ModItem extends Item implements IModItem
         return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
 
-    protected void registerItemModel(int meta, String name)
+    @Override
+    public void registerItemModel(int meta, String name)
+    {
+        registerItemModel(this, meta, name);
+    }
+
+    public static void registerItemModel(Item item, int meta, String name)
     {
         Minecraft.getMinecraft().getRenderItem()
-                .getItemModelMesher().register(this, meta, new ModelResourceLocation(LibMisc.PREFIX_MOD + name, "inventory"));
+                .getItemModelMesher().register(item, meta, new ModelResourceLocation(LibMisc.PREFIX_MOD + name, "inventory"));
     }
 }
