@@ -22,12 +22,14 @@ public class LittleThingsPlugin extends BlankModPlugin
         IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
         IRecipeTransferRegistry recipeTransferHandler = registry.getRecipeTransferRegistry();
 
-        recipeTransferHandler.addRecipeTransferHandler(ContainerVanillaCraftingTable.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 36);
-        registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.VanillaCraftingTables, 1, OreDictionary.WILDCARD_VALUE), VanillaRecipeCategoryUid.CRAFTING);
-        registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.Stove), LibViewerUid.STOVE);
-
         registry.addRecipeCategories(new StoveCookingCategory(guiHelper));
         registry.addRecipeHandlers(new StoveRecipeHandler());
         registry.addRecipes(StoveRecipeMaker.getCookingRecipes(jeiHelpers));
+
+        registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.VanillaCraftingTables, 1, OreDictionary.WILDCARD_VALUE), VanillaRecipeCategoryUid.CRAFTING);
+        registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.MetalFurnace, 1, OreDictionary.WILDCARD_VALUE), VanillaRecipeCategoryUid.SMELTING, VanillaRecipeCategoryUid.FUEL);
+        registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.Stove), LibViewerUid.STOVE, VanillaRecipeCategoryUid.FUEL);
+
+        recipeTransferHandler.addRecipeTransferHandler(ContainerVanillaCraftingTable.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 36);
     }
 }
