@@ -4,6 +4,7 @@ import com.gamingsmod.littlethings.common.handler.ConfigurationHandler;
 import com.gamingsmod.littlethings.common.item.ItemCrossBolt;
 import com.gamingsmod.littlethings.common.item.ItemCrossbow;
 import com.gamingsmod.littlethings.common.item.ItemIronNugget;
+import com.gamingsmod.littlethings.common.item.ItemPan;
 import com.gamingsmod.littlethings.common.item.base.*;
 import com.gamingsmod.littlethings.common.item.food.ItemFoodBejeweledApple;
 import com.gamingsmod.littlethings.common.item.food.ItemFoodSeedsPack;
@@ -121,7 +122,7 @@ public class ModItems
             SeedsPack = new ItemFoodSeedsPack();
         }
         if (ConfigurationHandler.enableStove)
-            Pan = (ModItem) (new ModItem(LibItems.PAN)).setCreativeTab(CreativeTabs.tabMisc).setMaxStackSize(1).setMaxDamage(150);
+            Pan = new ItemPan();
 
     }
 
