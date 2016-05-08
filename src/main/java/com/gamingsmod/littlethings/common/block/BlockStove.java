@@ -6,10 +6,11 @@ import com.gamingsmod.littlethings.common.init.ModBlocks;
 import com.gamingsmod.littlethings.common.lib.LibBlocks;
 import com.gamingsmod.littlethings.common.lib.LibGuiId;
 import com.gamingsmod.littlethings.common.tileentity.TileEntityStove;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -29,7 +30,7 @@ import net.minecraft.world.World;
 public class BlockStove extends ModBlockContainer
 {
     public static final PropertyBool ON = PropertyBool.create("on");
-    public static final PropertyEnum<EnumFacing> FACING = PropertyEnum.create("facing", EnumFacing.class);
+    public static final PropertyDirection FACING = BlockHorizontal.FACING;
     private static boolean keepInventory;
 
     public BlockStove()
@@ -37,7 +38,7 @@ public class BlockStove extends ModBlockContainer
         super(LibBlocks.STOVE, Material.iron);
         this.setHardness(2.5F);
         this.setStepSound(SoundType.WOOD);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(ON, false));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(ON, false).withProperty(FACING, EnumFacing.NORTH));
         this.setCreativeTab(CreativeTabs.tabDecorations);
     }
 
@@ -53,6 +54,12 @@ public class BlockStove extends ModBlockContainer
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
         return new TileEntityStove();
+    }
+
+    @Override
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    {
+        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(ON, false);
     }
 
     @Override
