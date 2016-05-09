@@ -33,7 +33,7 @@ public class TileEntityItemElevator extends ModTileInventory implements ITickabl
     @Override
     public void update()
     {
-        int currentRedstone = worldObj.getStrongPower(getPos());
+        int currentRedstone = worldObj.isBlockIndirectlyGettingPowered(getPos());
 
         if (previousRedstone == 0 && currentRedstone != 0) {
             if (!worldObj.isRemote) this.updateElevator();

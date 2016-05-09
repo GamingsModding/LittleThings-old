@@ -31,6 +31,7 @@ public class ConfigurationHandler
     public static boolean enableExpStore;
     public static boolean enableBarbedWire;
     public static boolean enableStove;
+    public static boolean enableRedstoneClock;
 
     public static boolean enableOldSaddleRecipe;
     public static boolean enableOldArmorRecipe;
@@ -71,6 +72,7 @@ public class ConfigurationHandler
         removeWithTC = getBoolean(CATEGORY_BLOCKS, "Stone Torches Leave To Tinkers", true, "This will not register Stone Torches if Tinkers Construct is loaded");
         enableBarbedWire = getBoolean(CATEGORY_BLOCKS, "Enable Barbed Wire", true);
         enableStove = getBoolean(CATEGORY_BLOCKS, "Enable Stove", true);
+        enableRedstoneClock = getBoolean(CATEGORY_BLOCKS, "Enable Redstone Clock", true);
 
         //Items
         enableHammers = getBoolean(CATEGORY_ITEMS, "Enable Hammers", true);

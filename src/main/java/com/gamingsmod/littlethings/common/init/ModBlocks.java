@@ -25,6 +25,7 @@ public class ModBlocks
     public static ModBlock BarbedWire;
     public static ModBlock MobChests;
     public static ModBlock Stove;
+    public static ModBlock RedstoneClock;
 
     public static void init()
     {
@@ -63,6 +64,9 @@ public class ModBlocks
 
         if (ConfigurationHandler.enableStove)
             Stove = new BlockStove();
+
+        if (ConfigurationHandler.enableRedstoneClock)
+            RedstoneClock = new BlockRedstoneClock();
     }
 
     public static void registerBlockVariants()
