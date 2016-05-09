@@ -64,6 +64,7 @@ tile.littlethings:expStore.name=Experience Store
 tile.littlethings:stoneTorch.name=Stone Torch
 tile.littlethings:barbedWire.name=Barbed Wire
 tile.littlethings:stove.name=Stove
+tile.littlethings:redstoneClock.name=Redstone Clock
 
 #Items
 item.littlethings:ironNugget.name=Iron Nugget
