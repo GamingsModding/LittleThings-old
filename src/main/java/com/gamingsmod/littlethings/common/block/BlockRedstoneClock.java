@@ -20,6 +20,7 @@ public class BlockRedstoneClock extends ModBlockContainer
     {
         super("redstoneClock", Material.rock);
         this.setDefaultState(this.blockState.getBaseState().withProperty(POWERED, false));
+        this.setHardness(3.0F);
     }
 
     @Override
