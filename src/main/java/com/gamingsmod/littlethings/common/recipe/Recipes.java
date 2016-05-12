@@ -15,10 +15,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+
+import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 
 public class Recipes
 {
@@ -44,7 +45,13 @@ public class Recipes
 
         if (ConfigurationHandler.enableExtraCraftingTables) recipesExtraCraftingTables();
 
-        if (ConfigurationHandler.enableItemElevator) recipesItemElevator();
+        if (ConfigurationHandler.enableItemElevator) {
+            addRecipe(new ItemStack(ModBlocks.ItemEleveator),
+                    "sos", "sds", "sss",
+                    's', "stone",
+                    'o', new ItemStack(Blocks.obsidian),
+                    'd', new ItemStack(Blocks.dispenser));
+        }
 
         if (ConfigurationHandler.enableUpgradedFurnaces) recipesUpgradedFurnaces();
 
@@ -56,9 +63,22 @@ public class Recipes
 
         if (ConfigurationHandler.enableHorseEquipment) recipesHorseEquipment();
 
-        if (ConfigurationHandler.enableUnenchantingTable) recipesUnenchantingTable();
+        if (ConfigurationHandler.enableUnenchantingTable) {
+            addRecipe(new ItemStack(ModBlocks.UnenchantingTable),
+                    "nln", "ded", "sss",
+                    'e', new ItemStack(Blocks.enchanting_table),
+                    's', new ItemStack(Blocks.end_stone),
+                    'd', "gemDiamond",
+                    'n', new ItemStack(Items.ender_eye),
+                    'l', new ItemStack(Items.dye, 1, EnumDyeColor.BLUE.getDyeDamage()));
+        }
 
-        if (ConfigurationHandler.enableExpStore) recipesExpStore();
+        if (ConfigurationHandler.enableExpStore) {
+            addRecipe(new ItemStack(ModBlocks.ExpStore),
+                    "bbb", "beb", "bbb",
+                    'e', new ItemStack(Blocks.enchanting_table),
+                    'b', new ItemStack(Items.experience_bottle));
+        }
 
         if (ConfigurationHandler.enableHammers) recipesHammer();
 
@@ -109,7 +129,9 @@ public class Recipes
                     'c', new ItemStack(Items.coal, 1, 1));
         }
 
-        if (ConfigurationHandler.enableExtraFood) recipesExtraFood();
+        if (ConfigurationHandler.enableExtraFood) {
+            addBlockRecipe(new ItemStack(ModItems.SeedsPack), new ItemStack(Items.wheat_seeds));
+        }
 
         if (ConfigurationHandler.enableBarbedWire)
             addRecipe(new ItemStack(ModBlocks.BarbedWire),
@@ -127,19 +149,6 @@ public class Recipes
                     'i', "ingotIron",
                     's', "stickWood");
         }
-    }
-
-    private static void recipesExpStore()
-    {
-        addRecipe(new ItemStack(ModBlocks.ExpStore),
-                "bbb", "beb", "bbb",
-                'e', new ItemStack(Blocks.enchanting_table),
-                'b', new ItemStack(Items.experience_bottle));
-    }
-
-    private static void recipesExtraFood()
-    {
-        addBlockRecipe(new ItemStack(ModItems.SeedsPack), new ItemStack(Items.wheat_seeds));
     }
 
     private static void recipesCrossBow()
@@ -239,17 +248,6 @@ public class Recipes
                 's', "stickWood");
     }
 
-    private static void recipesUnenchantingTable()
-    {
-        addRecipe(new ItemStack(ModBlocks.UnenchantingTable),
-                "nln", "ded", "sss",
-                'e', new ItemStack(Blocks.enchanting_table),
-                's', new ItemStack(Blocks.end_stone),
-                'd', "gemDiamond",
-                'n', new ItemStack(Items.ender_eye),
-                'l', new ItemStack(Items.dye, 1, EnumDyeColor.BLUE.getDyeDamage()));
-    }
-
     private static void recipesSingleDye()
     {
         int i = 0;
@@ -280,31 +278,31 @@ public class Recipes
             addRecipe(new ItemStack(Items.iron_horse_armor),
                     "  i", "iwi", "iii",
                     'i', "ingotIron",
-                    'w', new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE));
+                    'w', new ItemStack(Blocks.wool, 1, WILDCARD_VALUE));
             addRecipe(new ItemStack(Items.golden_horse_armor),
                     "  i", "iwi", "iii",
                     'i', "ingotGold",
-                    'w', new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE));
+                    'w', new ItemStack(Blocks.wool, 1, WILDCARD_VALUE));
             addRecipe(new ItemStack(Items.diamond_horse_armor),
                     "  i", "iwi", "iii",
                     'i', "gemDiamond",
-                    'w', new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE));
+                    'w', new ItemStack(Blocks.wool, 1, WILDCARD_VALUE));
         } else {
             addRecipe(new ItemStack(Items.iron_horse_armor),
                     "  h", "iwi", "i i",
                     'i', "ingotIron",
                     'h', new ItemStack(Items.iron_helmet),
-                    'w', new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE));
+                    'w', new ItemStack(Blocks.wool, 1, WILDCARD_VALUE));
             addRecipe(new ItemStack(Items.golden_horse_armor),
                     "  h", "iwi", "i i",
                     'i', "ingotGold",
                     'h', new ItemStack(Items.golden_helmet),
-                    'w', new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE));
+                    'w', new ItemStack(Blocks.wool, 1, WILDCARD_VALUE));
             addRecipe(new ItemStack(Items.diamond_horse_armor),
                     "  h", "iwi", "i i",
                     'i', "gemDiamond",
                     'h', new ItemStack(Items.diamond_helmet),
-                    'w', new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE));
+                    'w', new ItemStack(Blocks.wool, 1, WILDCARD_VALUE));
         }
     }
 
@@ -323,7 +321,7 @@ public class Recipes
 
         addRecipe(new ShapedReturnRecipe(new ItemStack(ModBlocks.ClearGlass, 8),
                 "ggg", "gbg", "ggg",
-                'g', new ItemStack(ModBlocks.StainedClearGlass, 1, OreDictionary.WILDCARD_VALUE),
+                'g', new ItemStack(ModBlocks.StainedClearGlass, 1, WILDCARD_VALUE),
                 'b', new ItemStack(Items.water_bucket)));
     }
 
@@ -387,7 +385,7 @@ public class Recipes
 
         addRecipe(new ShapedReturnRecipe(new ItemStack(Blocks.glass, 8),
                 "ggg", "gbg", "ggg",
-                'g', new ItemStack(Blocks.stained_glass, 1, OreDictionary.WILDCARD_VALUE),
+                'g', new ItemStack(Blocks.stained_glass, 1, WILDCARD_VALUE),
                 'b', new ItemStack(Items.water_bucket)));
     }
 
@@ -427,17 +425,8 @@ public class Recipes
                     "xx", "xx",
                     'x', new ItemStack(Blocks.planks, 1, variant.getId() + 1));
 
-            addShapelessRecipe(new ItemStack(Blocks.crafting_table), new ItemStack(ModBlocks.VanillaCraftingTables, 1, variant.getId()));
         }
-    }
-
-    private static void recipesItemElevator()
-    {
-        addRecipe(new ItemStack(ModBlocks.ItemEleveator),
-                "sos", "sds", "sss",
-                's', "stone",
-                'o', new ItemStack(Blocks.obsidian),
-                'd', new ItemStack(Blocks.dispenser));
+        addShapelessRecipe(new ItemStack(Blocks.crafting_table), new ItemStack(ModBlocks.VanillaCraftingTables, 1, WILDCARD_VALUE));
     }
 
     private static void removeFirstRecipeFor(Block block)
