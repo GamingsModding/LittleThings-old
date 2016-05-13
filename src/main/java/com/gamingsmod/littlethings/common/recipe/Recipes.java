@@ -149,6 +149,12 @@ public class Recipes
                     'i', "ingotIron",
                     's', "stickWood");
         }
+
+        if (ConfigurationHandler.enableRedstoneClock) {
+            addShapelessRecipe(new ItemStack(ModBlocks.RedstoneClock),
+                    new ItemStack(Blocks.redstone_block),
+                    new ItemStack(Items.clock));
+        }
     }
 
     private static void recipesCrossBow()
