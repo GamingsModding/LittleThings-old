@@ -3,6 +3,7 @@ package com.gamingsmod.littlethings.common.recipe.custom;
 import com.gamingsmod.littlethings.common.init.ModItems;
 import com.google.common.collect.Maps;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemFishFood;
 import net.minecraft.item.ItemStack;
 
 import java.util.Map;
@@ -20,6 +21,11 @@ public class StoveRecipes
     private StoveRecipes()
     {
         this.addRecipe(new ItemStack(Items.egg), new ItemStack(ModItems.FriedEgg));
+        for (ItemFishFood.FishType fish : ItemFishFood.FishType.values()) {
+            if (fish.canCook()) {
+                this.addRecipe(new ItemStack(Items.fish, 1, fish.getMetadata()), new ItemStack(Items.cooked_fish, 1, fish.getMetadata()));
+            }
+        }
     }
 
     public void addRecipe(ItemStack input, ItemStack output)
