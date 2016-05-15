@@ -148,6 +148,7 @@ public class BlockStainedClearGlass extends ModBlock implements IMetaBlockName
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerRender()
     {
         for (EnumDyeColor color : EnumDyeColor.values())

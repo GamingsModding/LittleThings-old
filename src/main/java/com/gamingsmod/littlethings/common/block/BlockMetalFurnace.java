@@ -280,6 +280,7 @@ public class BlockMetalFurnace extends ModBlockContainer implements IMetaBlockNa
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerRender()
     {
         for (BlockMetalFurnace.Types type : BlockMetalFurnace.Types.values()) {
