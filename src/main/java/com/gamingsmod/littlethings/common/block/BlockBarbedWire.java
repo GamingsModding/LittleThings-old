@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -64,6 +65,8 @@ public class BlockBarbedWire extends ModBlock
     @Override
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
     {
+        if (!(entityIn instanceof EntityLivingBase))
+            return;
         entityIn.setInWeb();
         entityIn.attackEntityFrom(ModDamageSource.BARBED_WIRE, 3.0F);
     }
