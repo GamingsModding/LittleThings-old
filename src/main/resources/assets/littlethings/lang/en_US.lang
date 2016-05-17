@@ -161,6 +161,11 @@ command.littlethings.gma=/gma [player]
 command.littlethings.gmc=/gmc [player]
 command.littlethings.gmsp=/gmsp [player]
 command.littlethings.skull=/skull <player>
+command.littlethings.tpdim=/tpdim
+command.littlethings.tpdim.noDim=Dimension #%s does not exist!
+command.littlethings.tpdim.useVanilla=Please use /tp to run this command (Will be operational soon)
+command.littlethings.tpdim.success.dim=Successfully Teleported %s to dimension #%d at %d %d %d
+command.littlethings.tpdim.success.player=Successfully Teleported %s to %s
 
 #Deaths
 death.attack.barbedWire=%s tried to climb through barbed wire

@@ -60,6 +60,7 @@ public class CommonProxy
         e.registerServerCommand(new CommandAdventureShortcut());
         e.registerServerCommand(new CommandSpectatorShortcut());
         e.registerServerCommand(new CommandSkull());
+        e.registerServerCommand(new CommandDimTeleport());
     }
 
     public void updateXpBlock(BlockPos pos, int xp)
