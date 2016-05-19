@@ -32,6 +32,7 @@ public class ConfigurationHandler
     public static boolean enableBarbedWire;
     public static boolean enableStove;
     public static boolean enableRedstoneClock;
+    public static boolean enableSilkingSpawners;
 
     public static boolean enableOldSaddleRecipe;
     public static boolean enableOldArmorRecipe;
@@ -93,6 +94,7 @@ public class ConfigurationHandler
 
         //World
         enableEmeraldsEverywhere = getBoolean(CATEGORY_WORLD, "Enable Emerald Generating Everywhere", true);
+        enableSilkingSpawners = getBoolean(CATEGORY_WORLD, "Enable Silk Touching Spawners", true);
 
         if (configuration.hasChanged()) {
             configuration.save();
