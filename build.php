@@ -37,6 +37,12 @@ if ($file_name != null && count($new_version) == 3) {
     fwrite($file, implode(".", $new_version));
     fclose($file);
 
+    if (!$alpha) {
+        $file = fopen("version/mc1.9a.txt", "w");
+        fwrite($file, implode(".", $new_version));
+        fclose($file);
+    }
+
     $buildProp = explode(PHP_EOL, file_get_contents("build.properties"));
     $i = 0;
     foreach ($buildProp as $prop) {
@@ -53,7 +59,7 @@ if ($file_name != null && count($new_version) == 3) {
 
     exec("./gradlew build");
     echo "\nCommiting\n";
-    exec("git commit -a -m \"Build V" . implode(".", $new_version) . "\"");
-    exec("git push");
+    //exec("git commit -a -m \"Build V" . implode(".", $new_version) . "\"");
+    //exec("git push");
     echo "\n Build Complete!\n";
 }
