@@ -45,6 +45,7 @@ public class CommonProxy
         MinecraftForge.EVENT_BUS.register(new RightClickCrops());
         MinecraftForge.EVENT_BUS.register(new GetExpBottles());
         MinecraftForge.EVENT_BUS.register(new DustMobDrop());
+        MinecraftForge.EVENT_BUS.register(new DisplayDeathCoords());
         if (ConfigurationHandler.enableSilkingSpawners)
             MinecraftForge.EVENT_BUS.register(new DropableSpawners());
     }

@@ -22,8 +22,6 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import org.apache.commons.lang3.math.NumberUtils;
 
-import java.util.Iterator;
-
 public class CommandDimTeleport extends CommandBase
 {
 
@@ -67,21 +65,24 @@ public class CommandDimTeleport extends CommandBase
                 throw new CommandException("command.littlethings.tpdim.noDim");
 
             EntityPlayer host = getCommandSenderAsPlayer(sender);
-            if (host.dimension == dimension) throw new CommandException("command.littlethings.tpdim.useVanilla");
-
-            if (args.length == 4) {
+            if (host.dimension == dimension) {
                 notifyOperators(sender, this, "command.littlethings.tpdim.success.dim", host.getDisplayNameString(), dimension, Double.valueOf(args[1]), Double.valueOf(args[2]), Double.valueOf(args[3]));
-                teleportPlayerToDim(host.worldObj, dimension, Double.valueOf(args[1]), Double.valueOf(args[2]), Double.valueOf(args[3]), host);
-            } else if (args.length == 1) {
-                WorldServer newServer = server.worldServerForDimension(dimension);
-                BlockPos spawn = newServer.getSpawnCoordinate();
-                if (spawn == null)
-                    spawn = newServer.getSpawnPoint();
-
-                notifyOperators(sender, this, "command.littlethings.tpdim.success.dim", host.getDisplayNameString(), dimension, spawn.getX(), spawn.getY(), spawn.getZ());
-                teleportPlayerToDim(host.worldObj, dimension, spawn.getX(), spawn.getY(), spawn.getZ(), host);
+                vanillaTeleport(host, Double.valueOf(args[1]), Double.valueOf(args[2]), Double.valueOf(args[3]));
             } else {
-                throw new WrongUsageException(getCommandUsage(sender));
+                if (args.length == 4) {
+                    notifyOperators(sender, this, "command.littlethings.tpdim.success.dim", host.getDisplayNameString(), dimension, Double.valueOf(args[1]), Double.valueOf(args[2]), Double.valueOf(args[3]));
+                    teleportPlayerToDim(host.worldObj, dimension, Double.valueOf(args[1]), Double.valueOf(args[2]), Double.valueOf(args[3]), host);
+                } else if (args.length == 1) {
+                    WorldServer newServer = server.worldServerForDimension(dimension);
+                    BlockPos spawn = newServer.getSpawnCoordinate();
+                    if (spawn == null)
+                        spawn = newServer.getSpawnPoint();
+
+                    notifyOperators(sender, this, "command.littlethings.tpdim.success.dim", host.getDisplayNameString(), dimension, spawn.getX(), spawn.getY(), spawn.getZ());
+                    teleportPlayerToDim(host.worldObj, dimension, spawn.getX(), spawn.getY(), spawn.getZ(), host);
+                } else {
+                    throw new WrongUsageException(getCommandUsage(sender));
+                }
             }
         } else {
             /**
@@ -102,15 +103,17 @@ public class CommandDimTeleport extends CommandBase
                     if (!DimensionManager.isDimensionRegistered(dimension))
                         throw new CommandException("command.littlethings.tpdim.noDim");
                     EntityPlayer host = getPlayer(server, sender, args[0]);
-                    if (host.dimension == dimension)
-                        throw new CommandException("command.littlethings.tpdim.useVanilla");
-                    WorldServer newServer = server.worldServerForDimension(dimension);
-                    BlockPos spawn = newServer.getSpawnCoordinate();
-                    if (spawn == null)
-                        spawn = newServer.getSpawnPoint();
-
-                    notifyOperators(sender, this, "command.littlethings.tpdim.success.dim", host.getDisplayNameString(), dimension, spawn.getX(), spawn.getY(), spawn.getZ());
-                    teleportPlayerToDim(host.worldObj, dimension, spawn.getX(), spawn.getY(), spawn.getZ(), host);
+                    if (host.dimension == dimension) {
+                        BlockPos spawn = host.worldObj.getSpawnPoint();
+                        notifyOperators(sender, this, "command.littlethings.tpdim.success.dim", host.getDisplayNameString(), dimension, spawn.getX(), spawn.getY(), spawn.getZ());
+                        vanillaTeleport(host, spawn.getX(), spawn.getY(), spawn.getZ());
+                    } else {
+                        WorldServer newServer = server.worldServerForDimension(dimension);
+                        BlockPos spawn = newServer.getSpawnCoordinate();
+                        if (spawn == null) spawn = newServer.getSpawnPoint();
+                        notifyOperators(sender, this, "command.littlethings.tpdim.success.dim", host.getDisplayNameString(), dimension, spawn.getX(), spawn.getY(), spawn.getZ());
+                        teleportPlayerToDim(host.worldObj, dimension, spawn.getX(), spawn.getY(), spawn.getZ(), host);
+                    }
                 } else {
                     playerToPlayer(server, sender, getPlayer(server, sender, args[0]), getPlayer(server, sender, args[1]));
                 }
@@ -119,9 +122,13 @@ public class CommandDimTeleport extends CommandBase
                 int dimension = Integer.valueOf(args[1]);
                 if (!DimensionManager.isDimensionRegistered(dimension))
                     throw new CommandException("command.littlethings.tpdim.noDim");
-                if (host.dimension == dimension) throw new CommandException("command.littlethings.tpdim.useVanilla");
-                notifyOperators(sender, this, "command.littlethings.tpdim.success.dim", host.getDisplayNameString(), dimension, Double.valueOf(args[2]), Double.valueOf(args[3]), Double.valueOf(args[4]));
-                teleportPlayerToDim(host.worldObj, dimension, Double.valueOf(args[2]), Double.valueOf(args[3]), Double.valueOf(args[4]), host);
+                if (host.dimension == dimension) {
+                    notifyOperators(sender, this, "command.littlethings.tpdim.success.dim", host.getDisplayNameString(), dimension, Double.valueOf(args[2]), Double.valueOf(args[3]), Double.valueOf(args[4]));
+                    vanillaTeleport(host, Double.valueOf(args[2]), Double.valueOf(args[3]), Double.valueOf(args[4]));
+                } else {
+                    notifyOperators(sender, this, "command.littlethings.tpdim.success.dim", host.getDisplayNameString(), dimension, Double.valueOf(args[2]), Double.valueOf(args[3]), Double.valueOf(args[4]));
+                    teleportPlayerToDim(host.worldObj, dimension, Double.valueOf(args[2]), Double.valueOf(args[3]), Double.valueOf(args[4]), host);
+                }
             } else {
                 throw new WrongUsageException(getCommandUsage(sender));
 
@@ -129,11 +136,16 @@ public class CommandDimTeleport extends CommandBase
         }
     }
 
+    private void vanillaTeleport(EntityPlayer host, double x, double y, double z)
+    {
+        host.setPositionAndUpdate(x, y, z);
+    }
+
     private void playerToPlayer(MinecraftServer server, ICommandSender sender, EntityPlayer host, EntityPlayer recp) throws CommandException
     {
         if (host.dimension == recp.dimension) {
             //Maybe teleport using code from CommandTeleport
-            return;
+            vanillaTeleport(host, recp.posX, recp.posY, recp.posZ);
         }
 
         teleportPlayerToDim(host.worldObj, recp.dimension, recp.posX, recp.posY, recp.posZ, host);
@@ -167,8 +179,8 @@ public class CommandDimTeleport extends CommandBase
                 oldWorldServer.resetUpdateEntityTick();
                 newWorldServer.resetUpdateEntityTick();
                 player.worldObj.theProfiler.endSection();
-                for (Iterator<PotionEffect> potion = player.getActivePotionEffects().iterator(); potion.hasNext(); ) {
-                    player.playerNetServerHandler.sendPacket(new SPacketEntityEffect(player.getEntityId(), potion.next()));
+                for (PotionEffect potionEffect : player.getActivePotionEffects()) {
+                    player.playerNetServerHandler.sendPacket(new SPacketEntityEffect(player.getEntityId(), potionEffect));
                 }
                 player.playerNetServerHandler.sendPacket(new SPacketSetExperience(player.experience, player.experienceTotal, player.experienceLevel));
                 FMLCommonHandler.instance().firePlayerChangedDimensionEvent(player, oldWorldServer.provider.getDimension(), player.dimension);

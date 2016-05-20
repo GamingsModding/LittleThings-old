@@ -176,3 +176,6 @@ littlethings.versioning.other=New Version Found!
 
 littlethings.versioning.messageAlpha=["Go to the [",{"text":"Download Page","clickEvent":{"action":"open_url","value":"https://drive.google.com/drive/folders/0B9-zqyDgitL5a0pKU2REbEFPUHM"}},"] [",{"text":"Changelog","clickEvent":{"action":"open_url","value":"https://drive.google.com/drive/folders/0B9-zqyDgitL5a0pKU2REbEFPUHM"}},"]"]
 littlethings.versioning.messageOther=["Go to the [",{"text":"Download Page","clickEvent":{"action":"open_url","value":"http://minecraft.curseforge.com/projects/littlethings/files"}},"] [",{"text":"Changelog","clickEvent":{"action":"open_url","value":"http://minecraft.curseforge.com/projects/littlethings/files"}},"]"]
+
+message.littlethings.deathCoords=You died at: %d, %d, %d
+message.littlethings.deathLinks=[" [", {"text":"Teleport Back", "clickEvent":{"action":"run_command","value":"/tpdim %w% %x% %y% %z%"}}, "]"]
