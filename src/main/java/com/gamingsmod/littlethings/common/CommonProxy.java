@@ -48,6 +48,7 @@ public class CommonProxy
         MinecraftForge.EVENT_BUS.register(new DisplayDeathCoords());
         if (ConfigurationHandler.enableSilkingSpawners)
             MinecraftForge.EVENT_BUS.register(new DropableSpawners());
+        MinecraftForge.EVENT_BUS.register(new ReplaceArmor());
     }
 
     public void postInit(FMLPostInitializationEvent e)
