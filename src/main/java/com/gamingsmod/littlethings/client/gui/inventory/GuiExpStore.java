@@ -68,7 +68,7 @@ public class GuiExpStore extends GuiScreen
         this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
 
         FontRenderer fr = Minecraft.getMinecraft().fontRendererObj;
-        String text = this.te.getXp() + "";
+        String text = this.te.xpLevel + "";
         fr.drawString(text, (this.width - fr.getStringWidth(text)) / 2, (this.height / 2) - 5, 8453920, true);
     }
 

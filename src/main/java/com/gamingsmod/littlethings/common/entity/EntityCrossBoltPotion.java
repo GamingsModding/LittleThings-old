@@ -1,6 +1,5 @@
 package com.gamingsmod.littlethings.common.entity;
 
-import com.gamingsmod.littlethings.common.init.ModItems;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

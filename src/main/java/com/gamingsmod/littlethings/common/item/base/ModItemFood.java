@@ -56,7 +56,8 @@ public class ModItemFood extends ItemFood implements IModItem
 
     @Override
     public void registerItemVariants(String modId)
-    {}
+    {
+    }
 
     @Override
     public void registerRender()

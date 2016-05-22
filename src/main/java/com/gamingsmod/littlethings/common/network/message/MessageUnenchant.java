@@ -10,7 +10,9 @@ public class MessageUnenchant extends Message
 {
     public BlockPos pos;
 
-    public MessageUnenchant(){}
+    public MessageUnenchant()
+    {
+    }
 
     public MessageUnenchant(BlockPos pos)
     {

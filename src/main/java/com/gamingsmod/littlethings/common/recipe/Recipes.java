@@ -137,7 +137,7 @@ public class Recipes
             addRecipe(new ItemStack(ModBlocks.BarbedWire),
                     "b b", " b ", "b b",
                     'b', new ItemStack(Blocks.iron_bars));
-        
+
         if (ConfigurationHandler.enableStove) {
             addRecipe(new ItemStack(ModBlocks.Stove),
                     "cic", "ibi", "ccc",

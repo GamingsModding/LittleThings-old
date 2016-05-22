@@ -1,7 +1,7 @@
 package com.gamingsmod.littlethings.common.network.message;
 
-import com.gamingsmod.littlethings.common.block.base.IExperienceStore;
 import com.gamingsmod.littlethings.common.network.Message;
+import com.gamingsmod.littlethings.common.tileentity.base.TileEntityXpStore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -40,8 +40,8 @@ public class MessageXP extends Message
         EntityPlayer player = context.getServerHandler().playerEntity;
         World world = player.worldObj;
 
-        if (world.getBlockState(pos).getBlock() instanceof IExperienceStore)
-            return ((IExperienceStore) world.getBlockState(pos).getBlock()).updateStoredXP(player, world.getTileEntity(pos), action, xp);
+        if (world.getTileEntity(pos) instanceof TileEntityXpStore)
+            return ((TileEntityXpStore) world.getTileEntity(pos)).updateStoredXP(player, action, xp);
 
         return null;
     }

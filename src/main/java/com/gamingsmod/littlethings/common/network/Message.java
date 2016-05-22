@@ -24,7 +24,7 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
     private static final HashMap<Class, Pair<Reader, Writer>> handlers = new HashMap();
     private static final HashMap<Class, Field[]> fieldCache = new HashMap();
 
-    static{
+    static {
         map(byte.class, Message::readByte, Message::writeByte);
         map(short.class, Message::readShort, Message::writeShort);
         map(int.class, Message::readInt, Message::writeInt);

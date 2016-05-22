@@ -52,7 +52,8 @@ public class ModItemTool extends ItemTool implements IModItem
 
     @Override
     public void registerItemVariants(String modId)
-    {}
+    {
+    }
 
     @Override
     public void registerRender()

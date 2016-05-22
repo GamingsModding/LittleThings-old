@@ -45,6 +45,6 @@ public class ClientProxy extends CommonProxy
         World world = Minecraft.getMinecraft().theWorld;
         TileEntity te = world.getTileEntity(pos);
         if (te instanceof TileEntityXpStore)
-            ((TileEntityXpStore) te).setXp(xp);
+            ((TileEntityXpStore) te).xpLevel = xp;
     }
 }
